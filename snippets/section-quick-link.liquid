@@ -1,0 +1,42 @@
+{% comment %}
+	Renders a section quick link
+
+	Accepts:
+	- section: {String} (Required)
+
+	Usage:
+	Render this snippet inside of liquid capture and pass it to section snippet as sectionAction.
+
+	{% render 'section-quick-link', section: section %}
+{% endcomment %}
+
+{%- if section.settings.sectionQuickLinkText | strip -%}
+
+    {%- if section.settings.sectionQuickLinkStyle == 'nil' -%}
+        {%- assign sectionQuickLinkStyle = settings.sectionQuickLinkStyle -%}
+    {%- else -%}
+        {%- assign sectionQuickLinkStyle = section.settings.sectionQuickLinkStyle -%}
+    {%- endif -%}
+
+     {%- case sectionQuickLinkStyle -%}
+        {% when 'primary' %}
+            {%- assign sectionQuickLinkClass = 'btn btn-primary btn-sm' -%}
+        {% when 'secondary' %}
+            {%- assign sectionQuickLinkClass = 'btn btn-secondary btn-sm' -%}
+        {% when 'link' %}
+            {%- assign sectionQuickLinkClass = 'text-reset text-underline-indicator fw-bold' -%}
+        {% when 'link-with-icon' %}
+            {%- assign sectionQuickLinkClass = 'text-reset text-icon-with-underline-indicator fw-bold' -%}
+    {%- endcase -%}
+
+    <a href="{{ section.settings.sectionQuickLinkResource.url | default: '#' }}" class="{{ sectionQuickLinkClass }}">
+
+        {{- section.settings.sectionQuickLinkText -}}
+
+        {%- if sectionQuickLinkStyle == 'link-with-icon' -%}
+            {%- render 'icon', icon: 'arrow-right' -%}
+        {%- endif -%}
+
+    </a>
+
+{%- endif -%}

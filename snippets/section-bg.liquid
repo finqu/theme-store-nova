@@ -1,0 +1,18 @@
+{% comment %}
+	Renders a section bg
+
+	Accepts:
+	- sectionBgImgSrc: {String}
+	- sectionBgImgDimming: {String}
+
+	Usage:
+	Render this snippet inside of element with a "section" class.
+
+	{% render 'section-bg', sectionBgImgSrc: src, sectionBgImgDimming: '0' %}
+{% endcomment %}
+
+<div class="section-bg-container">
+
+	<div class="section-bg{% if sectionBgImgSrc %} lazy{% endif %}"{% if sectionBgImgSrc %} data-bg-set="{% if sectionBgImgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.sectionBgImgDimming -}}%), rgb(0,0,0, {{- section.settings.sectionBgImgDimming -}}%)) | {% endif %}url('{{- sectionBgImgSrc | thumb: '1920,1080' -}}') 1x, url('{{- sectionBgImgSrc | thumb: '1920,1080' | thumb: '@2x' -}}') 2x"{% endif %}></div>
+
+</div>

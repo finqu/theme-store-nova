@@ -1,0 +1,99 @@
+{% comment %}
+	Renders product badges
+
+	Accepts:
+	- product: {Object} Product Liquid object (required)
+    - position: {String} Position of badges: ''
+    - showNew: {Boolean} Show new badge
+    - showDiscount: {Boolean} Show discount badge
+    - showOutOfStock: {Boolean} Show out of stock badge
+
+    Usage:
+    Render this snippet inside of element with "product-media-container" or "product-main-media-swiper" class.
+
+	Usage:
+	{% render 'product-badges', product: product %}
+{% endcomment %}
+
+{%- if showNew != false -%}
+    {%- assign showNew = settings.productShowNewBadge -%}
+{%- endif -%}
+
+{%- if showDiscount != false -%}
+    {%- assign showDiscount = settings.productShowDiscountBadge -%}
+{%- endif -%}
+
+{%- if showOutOfStock != false -%}
+    {%- assign showOutOfStock = settings.productShowOutOfStockBadge -%}
+{%- endif -%}
+
+{%- assign position = position | default: 'bottom-left'-%}
+{%- assign prefix = 'product-badge-position-' -%}
+
+{% case position %}
+
+    {% when 'top-left' %}
+        {%- assign positionClass = position | prepend: prefix -%}
+    {% when 'top-right' %}
+        {%- assign positionClass = position | prepend: prefix -%}
+    {% when 'bottom-left' %}
+        {%- assign positionClass = position | prepend: prefix -%}
+    {% when 'bottom-right' %}
+        {%- assign positionClass = position | prepend: prefix -%}
+    {% when 'inline' %}
+        {%- assign positionClass = position | prepend: prefix -%}
+    {% else %}
+        {%- assign positionClass = 'bottom-left' | prepend: prefix -%}
+
+{% endcase %}
+
+{%- assign productHasDiscount = productHasDiscount | default: product.has_discount | default: false -%}
+{%- assign productOutOfStock = productOutOfStock | default: product.out_of_stock | default: false -%}
+{%- assign productIsNew = productIsNew | default: product.is_new | default: false -%}
+{%- assign productDiscountPercent = productDiscountPercent | default: product.discount_percent | default: 0 -%}
+
+{%- if store.customer_accounts_require_approval == true and customer.has_access -%}
+    {%- assign accountHasApproval = true -%}
+{%- endif -%}
+
+<div class="product-badges {{ positionClass }}">
+
+    {%- if store.customer_accounts_require_approval == false or accountHasApproval -%}
+
+        {%- if showDiscount and productHasDiscount and productOutOfStock == false -%}
+
+            <div class="product-badge product-badge-discount">
+
+                <span class="product-badge-content">
+                    -{{ productDiscountPercent }}%
+                </span>
+
+            </div>
+
+        {%- endif -%}
+
+    {% endif %}
+
+    {%- if showNew and productIsNew and productOutOfStock == false -%}
+
+        <div class="product-badge product-badge-new">
+
+            <span class="product-badge-content">
+                {{- 'product.new' | t -}}
+            </span>
+
+        </div>
+
+    {%- elsif showOutOfStock and productOutOfStock -%}
+
+        <div class="product-badge">
+
+            <span class="product-badge-content">
+                {{- 'product.out_of_stock' | t -}}
+            </span>
+
+        </div>
+
+    {%- endif -%}
+
+</div>
