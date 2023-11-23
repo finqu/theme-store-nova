@@ -1,6 +1,4 @@
 {
-    "name": "nova",
-    "theme_name": "Nova",
     "theme_image": "assets/theme-preview.jpg",
     "theme_author": "Finqu",
     "section_categories": [
@@ -2827,5 +2825,7 @@
                 }
             ]
         }
-    ]
+    ],
+    "name": "nova",
+    "theme_name": "Nova"
 }
