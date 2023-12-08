@@ -18,10 +18,12 @@
     - sectionInnerPadding {String}
     - sectionDescription: {String}
     - sectionBreadcrumbs: {Object} Breadcrumbs Liquid object
+    - sectionHeader {Boolean}
     - sectionHeaderClass {String}
     - sectionHeaderContainer: {String} 'none', 'fixed', 'fluid', 'compact', 'tiny'
     - sectionHeaderSecondaryAction: {String}
     - sectionHeaderAnimation: {Boolean}
+    - sectionHeaderGapScale: {Float}
     - sectionTabs {String}
     - sectionContent: {String}
     - sectionContentTextAlign: {String} 'start', 'center', 'end'
@@ -39,7 +41,6 @@
     - sectionAnimation {String}
     - sectionAnimationRepeat {Boolean}
     - sectionAction {String}
-    - sectionHeader {Boolean}
     - sectionHighlightItems {Boolean}
 
     Usage:
@@ -73,6 +74,7 @@
 {%- assign sectionBreadcrumbs = sectionBreadcrumbs | default: nil -%}
 {%- assign sectionHeaderContainer = sectionHeaderContainer | default: sectionContainer -%}
 {%- assign sectionHeaderSecondaryAction = sectionHeaderSecondaryAction | default: nil -%}
+{%- assign sectionHeaderGapScale = sectionHeaderGapScale | default: settings.sectionHeaderGapScale -%}
 {%- assign sectionOverlay = sectionOverlay | default: section.settings.sectionOverlay | default: false -%}
 {%- assign sectionOverlayPadding = sectionOverlayPadding | default: section.settings.sectionOverlayPadding | default: settings.sectionOverlayPadding -%}
 {%- assign sectionClasses = sectionClasses -%}
@@ -183,6 +185,17 @@
     {%- capture sectionStyle -%}
         {{ sectionHandle }} {
 
+            --section-padding-top: {{ sectionPaddingTop }};
+            --section-padding-bottom: {{ sectionPaddingBottom }};
+            --section-overlay-padding: {{ sectionOverlayPadding }};
+            --section-inner-gap: {{ sectionInnerGap }};
+            --section-inner-gap-mobile: {{ sectionInnerGap | replace: 'rem', '' | times: 0.5 | append: 'rem' }};
+            --section-text-align: {{ sectionTextAlign }};
+            --section-header-gap-scale: {{ sectionHeaderGapScale }};
+            --section-header-text-align: {{ sectionHeaderTextAlign }};
+            --section-content-text-align: {{ sectionContentTextAlign }};
+            --section-bg-img-pos: {{ sectionBgImgPos | replace: '-', ' ' }};
+
             {%- if sectionHeight -%}
                 --section-height: {{ sectionHeight }};
             {%- endif -%}
@@ -191,41 +204,8 @@
                 --section-min-height: {{ sectionMinHeight }};
             {%- endif -%}
 
-            {%- if sectionPaddingTop -%}
-                --section-padding-top: {{ sectionPaddingTop }};
-            {%- endif -%}
-
-            {%- if sectionPaddingBottom -%}
-                --section-padding-bottom: {{ sectionPaddingBottom }};
-            {%- endif -%}
-
-            {%- if sectionOverlayPadding -%}
-                --section-overlay-padding: {{ sectionOverlayPadding }};
-            {%- endif -%}
-
-            {%- if sectionInnerGap -%}
-                --section-inner-gap: {{ sectionInnerGap }};
-                --section-inner-gap-mobile: {{ sectionInnerGap | replace: 'rem', '' | times: 0.5 | append: 'rem' }};
-            {%- endif -%}
-
-            {%- if sectionTextAlign -%}
-                --section-text-align: {{ sectionTextAlign }};
-            {%- endif -%}
-
-            {%- if sectionHeaderTextAlign -%}
-                --section-header-text-align: {{ sectionHeaderTextAlign }};
-            {%- endif -%}
-
-            {%- if sectionContentTextAlign -%}
-                --section-content-text-align: {{ sectionContentTextAlign }};
-            {%- endif -%}
-
             {%- if sectionContentOverflow -%}
                 --section-content-overflow: {{ sectionContentOverflow }};
-            {%- endif -%}
-
-            {%- if sectionBgImgPos -%}
-                --section-bg-img-pos: {{ sectionBgImgPos | replace: '-', ' ' }};
             {%- endif -%}
 
             {%- if sectionGutterWidth -%}

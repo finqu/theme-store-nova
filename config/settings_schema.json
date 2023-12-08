@@ -115,9 +115,19 @@
             "default": "1.42855rem"
         },
         {
+            "id": "styleIconStrokeWidth",
+            "type": "hidden",
+            "default": "1.5px"
+        },
+        {
             "id": "styleCartVariant",
             "type": "hidden",
             "default": "3"
+        },
+        {
+            "id": "styleProductBadgePosition",
+            "type": "hidden",
+            "default": "bottom-start"
         },
         {
             "id": "styleAnnouncementHeight",
@@ -150,7 +160,7 @@
             "default": "0px"
         },
         {
-            "id": "styleMenuBorderRadius",
+            "id": "styleComponentBorderRadius",
             "type": "hidden",
             "default": "0px"
         },
@@ -178,6 +188,11 @@
             "id": "sectionInnerGap",
             "type": "hidden",
             "default": "2rem"
+        },
+        {
+            "id": "sectionHeaderGapScale",
+            "type": "hidden",
+            "default": "1"
         },
         {
             "id": "sectionBgImgPos",
@@ -1292,6 +1307,33 @@
                     ]
                 },
                 {
+                    "id": "textLineHeight",
+                    "type": "radio-pill",
+                    "label": {
+                        "en": "Line height",
+                        "fi": "Rivinkorkeus"
+                    },
+                    "default": "1.5",
+                    "options": [
+                        {
+                            "value": "1.25",
+                            "label": "S"
+                        },
+                        {
+                            "value": "1.5",
+                            "label": "M"
+                        },
+                        {
+                            "value": "1.85",
+                            "label": "L"
+                        },
+                        {
+                            "value": "2.1",
+                            "label": "Xl"
+                        }
+                    ]
+                },
+                {
                     "type": "spacer"
                 },
                 {
@@ -2249,13 +2291,25 @@
                     "default": true
                 },
                 {
+                    "id": "accessibilityShowSearch",
+                    "type": "checkbox",
+                    "label": {
+                        "en": "Show search",
+                        "fi": "Näytä haku"
+                    },
+                    "default": true
+                },
+                {
                     "id": "accessibilityShowSearchAutocomplete",
                     "type": "checkbox",
                     "label": {
                         "en": "Show search autocomplete",
                         "fi": "Näytä ennakoiva haku"
                     },
-                    "default": true
+                    "default": true,
+                    "conditions": [
+                        "accessibilityShowSearch eq true"
+                    ]
                 },
                 {
                     "id": "accessibilityShowBackToTopButton",
@@ -2447,6 +2501,15 @@
                     "default": true
                 },
                 {
+                    "id": "productShowPromotionBadge",
+                    "type": "checkbox",
+                    "label": {
+                        "en": "Promotion badge",
+                        "fi": "Kampanjamerkki"
+                    },
+                    "default": true
+                },
+                {
                     "id": "productShowDiscountBadge",
                     "type": "checkbox",
                     "label": {
@@ -2463,6 +2526,15 @@
                         "fi": "Loppumerkki"
                     },
                     "default": true
+                },
+                {
+                    "id": "productShowDiscountPercentage",
+                    "type": "checkbox",
+                    "label": {
+                        "en": "Show discount as percentage",
+                        "fi": "Näytä alennus prosenttina"
+                    },
+                    "default": false
                 },
                 {
                     "id": "productWrapName",

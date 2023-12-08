@@ -26,6 +26,7 @@
 		accessibility: {
 			showAnimations: {{ settings.accessibilityShowAnimations | json }},
 			showBackToTopButton: {{ settings.accessibilityShowBackToTopButton | json }},
+			showSearch: {{ settings.accessibilityShowSearch | json }},
 			showSearchAutocomplete: {{ settings.accessibilityShowSearchAutocomplete | json }}
 		},
 		customer: {
@@ -88,7 +89,6 @@
 			'general.tax_free_price': {{ 'general.tax_free_price' | t | json }},
 			'general.tax': {{ 'general.tax' | t | json }},
 			'general.back_to_home_page': {{ 'general.back_to_home_page' | t | json }},
-			'general.wishlist_empty': {{ 'general.wishlist_empty' | t | json }},
 			'general.payment_fee': {{ 'general.payment_fee' | t | json }},
 			'general.shipping_price': {{ 'general.shipping_price' | t | json }},
 			'general.vat_included': {{ 'general.vat_included' | t | json }},
@@ -97,6 +97,8 @@
 			'general.collapse_show_less': {{ 'general.collapse_show_less' | t | json }},
 			'filters.show_result': {{ 'filters.show_result' | t | json }},
 		    'filters.show_result_plural': {{ 'filters.show_result_plural' | t | json }},
+			'wishlist.add': {{ 'wishlist.add' | t | json }},
+			'wishlist.remove': {{ 'wishlist.remove' | t | json }},
 			'cart.title': {{ 'cart.title' | t | json }},
 			'cart.product_added_to_cart': {{ 'cart.product_added_to_cart' | t | json }},
 			'cart.proceed_to_checkout': {{ 'cart.proceed_to_checkout' | t | json }},

@@ -18,19 +18,23 @@
 
     {% else %}
 
-        {%- render 'icon', icon: 'like', class: 'svg-icon-5x mb-3' -%}
+        <div class="text-center">
 
-        <span class="h5 d-block mb-3">
-            {{- 'wishlist.empty_title' | t -}}
-        </span>
+            {%- render 'icon', icon: 'like', class: 'svg-icon-5x mb-3' -%}
 
-        <p class="mb-6">
-            {{- 'wishlist.empty_description' | t -}}
-        </p>
+            <span class="h5 d-block mb-3">
+                {{- 'wishlist.empty_title' | t -}}
+            </span>
 
-        <a href="{{ routes.root_url }}" class="btn btn-primary">
-            {{- 'wishlist.continue_browsing' | t -}}
-        </a>
+            <p class="mb-6">
+                {{- 'wishlist.empty_description' | t -}}
+            </p>
+
+            <a href="{{ routes.root_url }}" class="btn btn-primary">
+                {{- 'wishlist.continue_browsing' | t -}}
+            </a>
+
+        </div>
 
     {% endif %}
 
@@ -42,11 +46,11 @@
 
         {%- assign sectionTitle = 'wishlist.title' | t -%}
 
-        {% render 'section', sectionHandle: '.section-wishlist', sectionTitle: sectionTitle, sectionContent: sectionContent, sectionContentAnimation: false %}
+        {% render 'section', sectionHandle: '.section-wishlist', sectionTitle: sectionTitle, sectionContent: sectionContent, sectionContentAnimation: false, sectionInnerGap: '2rem' %}
 
     {% else %}
 
-        {% render 'section', sectionHandle: '.section-wishlist', sectionContent: sectionContent, sectionTextAlign: 'center' %}
+        {% render 'section', sectionHandle: '.section-wishlist', sectionContent: sectionContent, sectionTextAlign: 'center', sectionInnerGap: '2rem' %}
 
     {% endif %}
     

@@ -4,91 +4,187 @@
     {% assign textAlign = settings.sectionTextAlign %}
 {% endif %}
 
-{%- capture sectionContent -%}
+{%- capture slides -%}
 
-    <div class="row gy-g row-cols-{% if section.settings.setting_blocks.items.size > 3 %}2{% else %}1{% endif %} row-cols-lg-{{ section.settings.setting_blocks.items.size }}">
+    {%- for item in section.settings.setting_blocks.items -%}
 
-        {% for item in section.settings.setting_blocks.items %}
+        <div class="swiper-slide">
 
-            <div class="col d-flex{% if section.settings.setting_blocks.items.size > 3 %} flex-column flex-md-row{% endif %}">
+            <div class="swiper-slide-inner">
 
-                <div class="w-100 flex-shrink-1 max-w-px-40 text-{{ textAlign }} text-lg-center {% if section.settings.setting_blocks.items.size > 3 %}mb-g mb-md-0 me-md-g{% else %}me-g{% endif %}">
+                {%- if section.settings.orientation == 'horizontal' -%}
 
-                    {% if item.settings.iconFormat == 'svg' %}
- 
-                        {% if item.settings.svgContent %}
+                    <div class="d-flex flex-column">
 
-                            {{- item.settings.svgContent | replace: '<svg ', '<svg class="svg-icon svg-icon-3x" ' -}}
+                        {% if item.settings.iconFormat == 'svg' %}
 
+                            {% if item.settings.svgContent %}
+
+                                <div class="text-{{ textAlign }}">
+
+                                    {{- item.settings.svgContent | replace: '<svg ', '<svg class="svg-icon svg-icon-3x" ' -}}
+
+                                </div>
+
+                            {% else %}
+
+                                <div class="aspect-ratio-1-1 align-self-{{ textAlign }}">
+
+                                    <div class="aspect-ratio-container max-w-px-40">
+
+                                        {%- capture imgSrc -%}
+                                            {% render 'placeholder-svg', type: 'image', base64: true %}
+                                        {%- endcapture -%}
+
+                                        <img class="lazy lazy-disable-transition aspect-ratio-item svg-placeholder" alt="{{ item.settings.title }}" data-src="{{ imgSrc | strip }}">
+
+                                    </div>
+
+                                </div>
+
+                            {% endif %}
+                        
                         {% else %}
 
-                            <div class="aspect-ratio-1-1">
+                            <div class="aspect-ratio-1-1 align-self-{{ textAlign }}">
 
-                                <div class="aspect-ratio-container">
+                                <div class="aspect-ratio-container max-w-px-40">
 
-                                    {%- capture imgSrc -%}
-                                        {% render 'placeholder-svg', type: 'image', base64: true %}
-                                    {%- endcapture -%}
+                                    {% if item.settings.imgSrc %}
 
-                                    <img class="lazy lazy-disable-transition aspect-ratio-item svg-placeholder" alt="{{ item.settings.title }}" data-src="{{ imgSrc | strip }}">
+                                        <img
+                                            alt="{{ item.settings.title }}"
+                                            data-src="{{ item.settings.imgSrc | thumb: '40,40' }}"
+                                            data-srcset="{{ item.settings.imgSrc | thumb: '40,40' }} 1x,{{ item.settings.imgSrc | thumb: '40,40' | thumb:'@2x' }} 2x"
+                                            class="lazy aspect-ratio-item">
+
+                                    {% else %}
+
+                                        {%- capture imgSrc -%}
+                                            {% render 'placeholder-svg', type: 'image', base64: true %}
+                                        {%- endcapture -%}
+
+                                        <img class="lazy lazy-disable-transition aspect-ratio-item svg-placeholder" alt="{{ item.settings.title }}" data-src="{{ imgSrc | strip }}">
+
+                                    {% endif %}
 
                                 </div>
 
                             </div>
 
                         {% endif %}
-                    
-                    {% else %}
 
-                        <div class="aspect-ratio-1-1">
+                        <div class="mt-g text-{{ textAlign }}">
 
-                            <div class="aspect-ratio-container">
+                            {% if item.settings.title %}
 
-                                {% if item.settings.imgSrc %}
+                                <span class="text-title d-block fw-bold{% if item.settings.richtext %} mb-2{% endif %}">
+                                    {{ item.settings.title }}
+                                </span>
 
-                                    <img
-                                        alt="{{ item.settings.title }}"
-                                        data-src="{{ item.settings.imgSrc | thumb: '40,40' }}"
-                                        data-srcset="{{ item.settings.imgSrc | thumb: '40,40' }} 1x,{{ item.settings.imgSrc | thumb: '40,40' | thumb:'@2x' }} 2x"
-                                        class="lazy aspect-ratio-item">
+                            {% endif %}
 
-                                {% else %}
-
-                                    {%- capture imgSrc -%}
-                                        {% render 'placeholder-svg', type: 'image', base64: true %}
-                                    {%- endcapture -%}
-
-                                    <img class="lazy lazy-disable-transition aspect-ratio-item svg-placeholder" alt="{{ item.settings.title }}" data-src="{{ imgSrc | strip }}">
-
-                                {% endif %}
-
-                            </div>
+                            {{ item.settings.richtext }}
 
                         </div>
 
-                    {% endif %}
+                    </div>
 
-                </div>
+                {%- else -%}
 
-                <div class="flex-grow-1">
+                    <div class="d-flex justify-content-{{ textAlign }}">
 
-                    {% if item.settings.title %}
+                        <div class="me-g">
 
-                        <span class="text-title d-block fw-bold{% if item.settings.richtext %} mb-2{% endif %}">
-                            {{ item.settings.title }}
-                        </span>
+                            {% if item.settings.iconFormat == 'svg' %}
 
-                    {% endif %}
+                                {% if item.settings.svgContent %}
 
-                    {{ item.settings.richtext }}
+                                    <div>
 
-                </div>
+                                        {{- item.settings.svgContent | replace: '<svg ', '<svg class="svg-icon svg-icon-3x" ' -}}
+
+                                    </div>
+
+                                {% else %}
+
+                                    <div class="aspect-ratio-1-1">
+
+                                        <div class="aspect-ratio-container max-w-px-40">
+
+                                            {%- capture imgSrc -%}
+                                                {% render 'placeholder-svg', type: 'image', base64: true %}
+                                            {%- endcapture -%}
+
+                                            <img class="lazy lazy-disable-transition aspect-ratio-item svg-placeholder" alt="{{ item.settings.title }}" data-src="{{ imgSrc | strip }}">
+
+                                        </div>
+
+                                    </div>
+
+                                {% endif %}
+                            
+                            {% else %}
+
+                                <div class="aspect-ratio-1-1">
+
+                                    <div class="aspect-ratio-container max-w-px-40">
+
+                                        {% if item.settings.imgSrc %}
+
+                                            <img
+                                                alt="{{ item.settings.title }}"
+                                                data-src="{{ item.settings.imgSrc | thumb: '40,40' }}"
+                                                data-srcset="{{ item.settings.imgSrc | thumb: '40,40' }} 1x,{{ item.settings.imgSrc | thumb: '40,40' | thumb:'@2x' }} 2x"
+                                                class="lazy aspect-ratio-item">
+
+                                        {% else %}
+
+                                            {%- capture imgSrc -%}
+                                                {% render 'placeholder-svg', type: 'image', base64: true %}
+                                            {%- endcapture -%}
+
+                                            <img class="lazy lazy-disable-transition aspect-ratio-item svg-placeholder" alt="{{ item.settings.title }}" data-src="{{ imgSrc | strip }}">
+
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <div class="text-start">
+
+                            {% if item.settings.title %}
+
+                                <span class="text-title d-block fw-bold{% if item.settings.richtext %} mb-2{% endif %}">
+                                    {{ item.settings.title }}
+                                </span>
+
+                            {% endif %}
+
+                            {{ item.settings.richtext }}
+
+                        </div>
+
+                    </div>
+
+                {%- endif -%}
 
             </div>
 
-        {% endfor %}
+        </div>
 
-    </div>
+    {%- endfor -%}
+
+{%- endcapture -%}
+
+{%- capture sectionContent -%}
+
+    {%- render 'swiper', slides: slides, pagination: 'on', slidesPerView: section.settings.setting_blocks.items.size, style: 2, paginationPosition: 'relative', evenHeightSlides: true, standalone: true, freemode: true, class: 'swiper-navigation-hide-on-desktop' -%}
 
 {%- endcapture -%}
 
@@ -142,6 +238,38 @@
                             "en": "Subtitle",
                             "fi": "Alaotsikko"
                         }
+                    },
+                    {
+                        "type": "title",
+                        "label": {
+                            "en": "View",
+                            "fi": "Näkymä"
+                        }
+                    },
+                    {
+                        "id": "orientation",
+                        "label": {
+                            "en": "Text orientation",
+                            "fi": "Tekstin suunta"
+                        },
+                        "type": "radio-pill",
+                        "default": "horizontal",
+                        "options": [
+                            {
+                                "value": "horizontal",
+                                "label": {
+                                    "en": "Horizontal",
+                                    "fi": "Vaaka"
+                                }
+                            },
+                            {
+                                "value": "vertical",
+                                "label": {
+                                    "en": "Vertical",
+                                    "fi": "Pysty"
+                                }
+                            }
+                        ]
                     }
                 ]
             },
@@ -151,7 +279,7 @@
                     "fi": "Sarakkeet"
                 },
                 "id": "items",
-                "max_blocks": 4,
+                "max_blocks": 5,
                 "call_to_action": {
                     "en": "Add a column",
                     "fi": "Lisää sarake"
@@ -252,7 +380,7 @@
                             "en": "Content align",
                             "fi": "Sisällön tasaus"
                         },
-                        "default": "nil",
+                        "default": "center",
                         "options": [
                             {
                                 "value": "nil",
@@ -271,86 +399,6 @@
                                 "label": "{# icon.align-end #}"
                             }
                         ]
-                    },
-                    {
-                        "id": "imgAspectRatio",
-                        "type": "select",
-                        "label": {
-                            "en": "Aspect ratio",
-                            "fi": "Kuvasuhde"
-                        },
-                        "default": "1:1",
-                        "options": [
-                            {
-                                "value": "auto",
-                                "label": {
-                                    "en": "Original",
-                                    "fi": "Alkuperäinen"
-                                }
-                            },
-                            {
-                                "value": "16:9",
-                                "label": "16:9"
-                            },
-                            {
-                                "value": "9:13",
-                                "label": "9:13"
-                            },
-                            {
-                                "value": "4:3",
-                                "label": "4:3"
-                            },
-                            {
-                                "value": "1:1",
-                                "label": "1:1"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "imgScaleRatio",
-                        "label": {
-                            "en": "Image scaling",
-                            "fi": "Kuvan skaalaus"
-                        },
-                        "type": "range",
-                        "min": 0.3,
-                        "max": 1,
-                        "step": 0.1,
-                        "default": 1
-                    },
-                    {
-                        "id": "imgAlign",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Image align",
-                            "fi": "Kuvan tasaus"
-                        },
-                        "default": "center",
-                        "options": [
-                            {
-                                "value": "start",
-                                "label": "{# icon.align-start #}"
-                            },
-                            {
-                                "value": "center",
-                                "label": "{# icon.align-center #}"
-                            },
-                            {
-                                "value": "end",
-                                "label": "{# icon.align-end #}"
-                            }
-                        ],
-                        "conditions": ["!imgScaleRatio eq 1"]
-                    },
-                    {
-                        "id": "imgFit",
-                        "type": "checkbox",
-                        "label": {
-                            "en": "Image area fill",
-                            "fi": "Kuva-alueen täyttö"
-                        },
-                        "default": false,
-                        "conditions": ["!imgAspectRatio eq auto"]
                     },
                     {
                         "type": "title",
@@ -500,7 +548,7 @@
                             {
                                 "value": "dark",
                                 "label": {
-                                    "en": "Dark background / light content",
+                                    "en": "Dark background / Light content",
                                     "fi": "Tumma tausta / Vaalea sisältö"
                                 }
                             },
@@ -688,21 +736,32 @@
                             "type": "image",
                             "settings": {
                                 "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>"
+                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "iconFormat": "img"
                             }
                         },
                         {
                             "type": "image",
                             "settings": {
                                 "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>"
+                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "iconFormat": "img"
                             }
                         },
                         {
                             "type": "image",
                             "settings": {
                                 "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>"
+                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "iconFormat": "img"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "title": "Heading",
+                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "iconFormat": "img"
                             }
                         }
                     ]

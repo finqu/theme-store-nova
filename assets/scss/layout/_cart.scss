@@ -132,7 +132,7 @@
 	.cart-message {
 		padding: spacer(3);
 		background-color: var(--style-bg-accent-color);
-		border-radius: var(--style-border-radius);
+		border-radius: var(--style-component-border-radius);
 		@include font-size($font-size-base * 0.8);
 	}
 
@@ -140,7 +140,7 @@
 		grid-column: span 12;
 		margin-top: spacer(3);
 		background-color: var(--style-bg-accent-color);
-		border-radius: var(--style-border-radius);
+		border-radius: var(--style-component-border-radius);
 		padding: spacer(4);
 		
 		@include media-breakpoint-up(md) {
@@ -313,7 +313,7 @@
 	.cart-message {
 		padding: spacer(3);
 		background-color: var(--style-bg-accent-color);
-		border-radius: var(--style-border-radius);
+		border-radius: var(--style-component-border-radius);
 		@include font-size($font-size-base * 0.8);
 	}
 }
@@ -452,7 +452,7 @@
 	.cart-message {
 		padding: spacer(3);
 		background-color: var(--style-bg-accent-color);
-		border-radius: var(--style-border-radius);
+		border-radius: var(--style-component-border-radius);
 		@include font-size($font-size-base * 0.8);
 	}
 

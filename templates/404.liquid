@@ -3,18 +3,22 @@
 
 {%- capture sectionContent -%}
 
-	<div class="mb-4">
-		{%- render 'icon', icon: 'page-missing', class: 'svg-icon-10x' -%}
-	</div>
+	<div class="text-center">
 
-	<a href="{{ routes.root_url }}" class="btn btn-primary">
-		{{- 'general.back_to_home_page' | t -}}
-	</a>
+		<div class="mb-7">
+			{%- render 'icon', icon: 'page-missing', class: 'svg-icon-10x' -%}
+		</div>
+
+		<a href="{{ routes.root_url }}" class="btn btn-primary">
+			{{- 'general.back_to_home_page' | t -}}
+		</a>
+
+	</div>
 
 {%- endcapture -%}
 
 <section class="section section-404">
-	{% render 'section', sectionHandle: '.section-404', sectionTitle: sectionTitle, sectionTitleTag: 'h1', sectionSubtitle: sectionSubtitle, sectionContent: sectionContent, sectionTextAlign: 'center' %}
+	{% render 'section', sectionHandle: '.section-404', sectionTitle: sectionTitle, sectionTitleTag: 'h1', sectionSubtitle: sectionSubtitle, sectionContent: sectionContent, sectionHeaderTextAlign: 'center' %}
 </section>
 
 {% schema %}

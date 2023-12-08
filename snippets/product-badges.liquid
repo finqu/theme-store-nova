@@ -5,7 +5,9 @@
 	- product: {Object} Product Liquid object (required)
     - position: {String} Position of badges: ''
     - showNew: {Boolean} Show new badge
+    - showPromotion: {Boolean} Show promotion badge
     - showDiscount: {Boolean} Show discount badge
+    - showDiscountPercentage: {Boolean} Show discount percentage
     - showOutOfStock: {Boolean} Show out of stock badge
 
     Usage:
@@ -19,34 +21,24 @@
     {%- assign showNew = settings.productShowNewBadge -%}
 {%- endif -%}
 
+{%- if showPromotion != false -%}
+    {%- assign showPromotion = settings.productShowPromotion -%}
+{%- endif -%}
+
 {%- if showDiscount != false -%}
     {%- assign showDiscount = settings.productShowDiscountBadge -%}
+{%- endif -%}
+
+{%- if showDiscountPercentage != false -%}
+    {%- assign showDiscountPercentage = settings.productShowDiscountPercentage -%}
 {%- endif -%}
 
 {%- if showOutOfStock != false -%}
     {%- assign showOutOfStock = settings.productShowOutOfStockBadge -%}
 {%- endif -%}
 
-{%- assign position = position | default: 'bottom-left'-%}
-{%- assign prefix = 'product-badge-position-' -%}
-
-{% case position %}
-
-    {% when 'top-left' %}
-        {%- assign positionClass = position | prepend: prefix -%}
-    {% when 'top-right' %}
-        {%- assign positionClass = position | prepend: prefix -%}
-    {% when 'bottom-left' %}
-        {%- assign positionClass = position | prepend: prefix -%}
-    {% when 'bottom-right' %}
-        {%- assign positionClass = position | prepend: prefix -%}
-    {% when 'inline' %}
-        {%- assign positionClass = position | prepend: prefix -%}
-    {% else %}
-        {%- assign positionClass = 'bottom-left' | prepend: prefix -%}
-
-{% endcase %}
-
+{%- assign position = position | default: settings.styleProductBadgePosition -%}
+{%- assign positionClass = 'product-badge-position-' | append: position -%}
 {%- assign productHasDiscount = productHasDiscount | default: product.has_discount | default: false -%}
 {%- assign productOutOfStock = productOutOfStock | default: product.out_of_stock | default: false -%}
 {%- assign productIsNew = productIsNew | default: product.is_new | default: false -%}
@@ -58,23 +50,7 @@
 
 <div class="product-badges {{ positionClass }}">
 
-    {%- if store.customer_accounts_require_approval == false or accountHasApproval -%}
-
-        {%- if showDiscount and productHasDiscount and productOutOfStock == false -%}
-
-            <div class="product-badge product-badge-discount">
-
-                <span class="product-badge-content">
-                    -{{ productDiscountPercent }}%
-                </span>
-
-            </div>
-
-        {%- endif -%}
-
-    {% endif %}
-
-    {%- if showNew and productIsNew and productOutOfStock == false -%}
+     {%- if showNew and productIsNew and productOutOfStock == false -%}
 
         <div class="product-badge product-badge-new">
 
@@ -84,7 +60,41 @@
 
         </div>
 
-    {%- elsif showOutOfStock and productOutOfStock -%}
+    {%- endif -%}
+
+    {%- if store.customer_accounts_require_approval == false or accountHasApproval -%}
+
+         {%- if showPromotion and product.promotion and productOutOfStock == false -%}
+
+            <div class="product-badge product-badge-promotion">
+
+                <span class="product-badge-content">
+                    {{- product.promotion.title | strip -}}
+                </span>
+
+            </div>
+
+        {%- endif -%}
+
+        {%- if showDiscount and productHasDiscount and productOutOfStock == false -%}
+
+            <div class="product-badge product-badge-discount">
+
+                <span class="product-badge-content">
+                    {%- if showDiscountPercentage -%}
+                        -{{ productDiscountPercent }}%
+                    {%- else -%}
+                        {{- 'product.sale' | t -}}
+                    {%- endif -%}
+                </span>
+
+            </div>
+
+        {%- endif -%}
+
+    {% endif %}
+
+    {%- if showOutOfStock and productOutOfStock -%}
 
         <div class="product-badge">
 

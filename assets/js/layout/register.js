@@ -2,8 +2,9 @@ export default function() {
     
     const containerEl = document.querySelector('.section-register');
     const registerCtaEl = containerEl.querySelector('#register-cta');
+    const checkInputEls = containerEl.querySelectorAll('.form-check-input');
     
-    containerEl.querySelectorAll('.form-check-input').forEach(el => { el.addEventListener('change', e => {
+    checkInputEls.forEach(el => { el.addEventListener('change', e => {
 
         if (Array.from(checkInputEls).every(el => el.checked)) {
             registerCtaEl.disabled = false;

@@ -159,7 +159,7 @@ export default class Cart {
                         return;
                     }
 
-                    this.addItem(parseInt(itemId, 10), parseInt(quantity, 10), attributes);
+                    this.addItem(parseInt(itemId, 10), parseInt(quantity, 10), attributes, e.target.hasAttribute('data-cart-checkout'));
                 }
 
             } else {
@@ -167,16 +167,16 @@ export default class Cart {
                 const itemId = parseInt(e.target.getAttribute('data-cart-add'), 10);
                 const quantity = parseInt(e.target.getAttribute('data-cart-quantity'), 10);
 
-                this.addItem(itemId, quantity);
+                this.addItem(itemId, quantity, [], e.target.hasAttribute('data-cart-checkout'));
             }
-        }
+        };
 
         const remove = (e) => {
 
             e.preventDefault();
 
             this.removeItem(parseInt(e.target.getAttribute('data-cart-remove'), 10));
-        }
+        };
 
         const update = (e) => {
 
@@ -186,7 +186,7 @@ export default class Cart {
             const quantity = parseInt(e.target.getAttribute('data-cart-quantity'), 10);
 
             this.updateItem(itemId, quantity);
-        }
+        };
 
         const quantityDynamic = (e) => {
 
@@ -204,7 +204,7 @@ export default class Cart {
                     this.updateItem(itemId, quantity);
                 }
             }
-        }
+        };
 
         const quantityDecrease = (e) => {
 
@@ -230,7 +230,7 @@ export default class Cart {
 
                 this.updateItem(item.id, item.quantity - 1);
             }
-        }
+        };
 
         const quantityIncrease = (e) => {
 
@@ -242,21 +242,21 @@ export default class Cart {
             if (item) {
                 this.updateItem(item.id, item.quantity + 1);
             }
-        }
+        };
 
         const clear = (e) => {
 
             e.preventDefault();
 
             this.clearItems();
-        }
+        };
 
-        const checkout = () => {
+        const checkout = (e) => {
 
-            document.dispatchEvent(new CustomEvent('theme:cart:initiateCheckout', {
-                detail: this.cart
-            }));
-        }
+            e.preventDefault()
+
+            this.checkout();
+        };
 
         const render = () => {
 
@@ -439,36 +439,36 @@ export default class Cart {
             document.dispatchEvent(new CustomEvent('theme:cart:render'));
 
             isInitialRender = false;
-        }
+        };
 
         document.addEventListener('click', (e) => {
 
             if (e.target.hasAttribute('data-cart-add')) {
-                add(e);
+                return add(e);
             }
 
             if (e.target.hasAttribute('data-cart-remove')) {
-                remove(e);
+                return remove(e);
             }
 
             if (e.target.hasAttribute('data-cart-update')) {
-                update(e);
+                return update(e);
             }
 
             if (e.target.hasAttribute('data-cart-quantity-decrease')) {
-                quantityDecrease(e);
+                return quantityDecrease(e);
             }
 
             if (e.target.hasAttribute('data-cart-quantity-increase')) {
-                quantityIncrease(e);
+                return quantityIncrease(e);
             }
 
             if (e.target.hasAttribute('data-cart-clear')) {
-                clear(e);
+                return clear(e);
             }
 
             if (e.target.hasAttribute('data-cart-checkout')) {
-                checkout();
+                return checkout(e);
             }
         });
 
@@ -635,7 +635,7 @@ export default class Cart {
         });
     }
 
-    updateCart(data = null) {
+    updateCart(data = null, triggerEvent = true) {
 
         if (data) {
             this.cart = data;
@@ -645,12 +645,15 @@ export default class Cart {
             this.items = {};
         }
 
-        document.dispatchEvent(new CustomEvent('theme:cart:update', {
-            detail: this.cart
-        }));
+        if (triggerEvent) {
+            
+            document.dispatchEvent(new CustomEvent('theme:cart:update', {
+                detail: this.cart
+            }));
+        }
     }
 
-    addItem(id = null, quantity = 1, attributes = []) {
+    addItem(id = null, quantity = 1, attributes = [], checkout = false) {
 
         if (id === null) {
             return;
@@ -682,13 +685,13 @@ export default class Cart {
 
         this.addToQueue('POST', '/api/cart/items', data).then((res) => {
 
-            this.updateCart(res);
+            this.updateCart(res, !checkout);
 
             const lastItem = res.items.filter((item) => item.product_id === parseInt(id, 10))[0];
 
             if (lastItem) {
 
-                if (theme.store.cart.showAddNotification) {
+                if (theme.store.cart.showAddNotification && !checkout) {
                     this.notify.success(theme.utils.t('cart.product_added_to_cart'), lastItem.name, null, () => {
                         window.location.href = theme.store.routes.cartUrl;
                     });
@@ -701,6 +704,10 @@ export default class Cart {
                 document.dispatchEvent(new CustomEvent('theme:cart:addItem', {
                     detail: eventDetail
                 }));
+
+                if (checkout) {
+                    this.checkout();
+                }
             }
 
         }).catch((res) => {
@@ -782,5 +789,14 @@ export default class Cart {
 
             this.notify.warning(null, theme.utils.t('error.'+res.error));
         });
+    }
+
+    checkout() {
+
+        document.dispatchEvent(new CustomEvent('theme:cart:initiateCheckout', {
+            detail: this.cart
+        }));
+
+        window.location.href = theme.store.routes.checkoutUrl;
     }
 }

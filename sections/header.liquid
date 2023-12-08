@@ -202,65 +202,69 @@
     <h1 class="text-hidden">{{- store.name -}}</h1>
 {%- endif -%}
 
-<div class="site-search-container site-search-floating">
+{%- if settings.accessibilityShowSearch -%}
 
-    <div class="site-search">
+    <div class="site-search-container site-search-floating">
 
-        <div class="site-search-form-container">
+        <div class="site-search">
 
-            {% form 'search', class: 'site-search-form' %}
+            <div class="site-search-form-container">
 
-                {% if form.posted_successfully? %}
+                {% form 'search', class: 'site-search-form' %}
 
-                    <script type="application/javascript">
-                        document.addEventListener('DOMContentLoaded', function() {
-                            document.dispatchEvent(new CustomEvent('theme:search', {
-                                detail: {
-                                    query: {{ submitted_form.q | json }}
-                                }
-                            }));
-                        });
-                    </script>
+                    {% if form.posted_successfully? %}
 
-                {% endif %}
+                        <script type="application/javascript">
+                            document.addEventListener('DOMContentLoaded', function() {
+                                document.dispatchEvent(new CustomEvent('theme:search', {
+                                    detail: {
+                                        query: {{ submitted_form.q | json }}
+                                    }
+                                }));
+                            });
+                        </script>
 
-                <div class="input-group">
+                    {% endif %}
 
-                    <button type="submit" class="btn pe-0">
+                    <div class="input-group">
 
-                        {%- render 'icon', icon: 'search', class: 'svg-icon-fw' -%}
+                        <button type="submit" class="btn pe-0">
 
-                    </button>
+                            {%- render 'icon', icon: 'search', class: 'svg-icon-fw' -%}
 
-                    <input
-                        class="form-control"
-                        type="search"
-                        placeholder="{{ 'general.search_products' | t }}"
-                        name="q"
-                        value="{{ search.search_term }}"
-                        autocomplete="off">
+                        </button>
 
-                    <button type="reset" class="btn btn-icon ps-0">
+                        <input
+                            class="form-control"
+                            type="search"
+                            placeholder="{{ 'general.search_products' | t }}"
+                            name="q"
+                            value="{{ search.search_term }}"
+                            autocomplete="off">
 
-                        {%- render 'icon', icon: 'close', class: 'svg-icon-fw' -%}
+                        <button type="reset" class="btn btn-icon ps-0">
 
-                    </button>
+                            {%- render 'icon', icon: 'close', class: 'svg-icon-fw' -%}
 
-                </div>
+                        </button>
 
-            {% endform %}
+                    </div>
 
-        </div>
+                {% endform %}
 
-        <div class="site-search-results-container">
+            </div>
 
-            <div class="site-search-results"></div>
+            <div class="site-search-results-container">
+
+                <div class="site-search-results"></div>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+{%- endif -%}
 
 <div class="site-mobile-header-container{% if section.settings.stickyMobileHeader %} site-mobile-header-sticky{% endif %}">
 
@@ -542,53 +546,57 @@
 
     <div class="site-mobile-navigation-layer site-mobile-navigation-layer-root">
 
-        <div class="site-search-container">
+        {%- if settings.accessibilityShowSearch -%}
 
-            <div class="site-search">
+            <div class="site-search-container">
 
-                <div class="site-search-form-container">
+                <div class="site-search">
 
-                    {% form 'search', class: 'site-search-form' %}
+                    <div class="site-search-form-container">
 
-                        <div class="input-group">
+                        {% form 'search', class: 'site-search-form' %}
 
-                            <button type="submit" class="btn btn-icon pe-0">
+                            <div class="input-group">
 
-                                {%- render 'icon', icon: 'search', class: 'svg-icon-fw' -%}
+                                <button type="submit" class="btn btn-icon pe-0">
 
-                            </button>
-                                                    
-                            <div class="form-floating">
+                                    {%- render 'icon', icon: 'search', class: 'svg-icon-fw' -%}
 
-                                <input id="site-mobile-site-search" class="form-control" type="search" placeholder="{{ 'general.search_products' | t }}" name="q" value="{{ search.search_term }}" autocomplete="off">
-                                
-                                <label for="site-mobile-site-search">
-                                    {{- 'general.search_products' | t -}}
-                                </label>
+                                </button>
+                                                        
+                                <div class="form-floating">
+
+                                    <input id="site-mobile-site-search" class="form-control" type="search" placeholder="{{ 'general.search_products' | t }}" name="q" value="{{ search.search_term }}" autocomplete="off">
+                                    
+                                    <label for="site-mobile-site-search">
+                                        {{- 'general.search_products' | t -}}
+                                    </label>
+
+                                </div>
+
+                                <button type="reset" class="btn btn-icon ps-0">
+
+                                    {%- render 'icon', icon: 'close' -%}
+
+                                </button>
 
                             </div>
 
-                            <button type="reset" class="btn btn-icon ps-0">
+                        {% endform %}
 
-                                {%- render 'icon', icon: 'close' -%}
+                    </div>
 
-                            </button>
+                    <div class="site-search-results-container">
 
-                        </div>
+                        <div class="site-search-results"></div>
 
-                    {% endform %}
-
-                </div>
-
-                <div class="site-search-results-container">
-
-                    <div class="site-search-results"></div>
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+        {%- endif -%}
 
         <ul class="site-mobile-navigation-menu">
 
@@ -649,6 +657,14 @@
 
         </ul>
 
+        {% unless section.settings.mobileMenuSecondary %}
+
+            <span class="d-block fw-bold fs-4 px-c mt-4">
+                {{- 'account.title' | t -}}
+            </span>
+
+        {% endunless %}
+
         <ul class="site-mobile-navigation-menu-secondary">
 
             {% if section.settings.mobileMenuSecondary %}
@@ -689,7 +705,7 @@
                             class="site-mobile-navigation-menu-secondary-item-text">
 
                             {%- if session.logged_in -%}
-                                {{- 'account.title' | t -}}
+                                {{- 'account.information_title' | t -}}
                             {%- else -%}
                                 {{- 'login.title' | t -}}
                             {%- endif -%}
@@ -709,14 +725,22 @@
                                 <span class="site-header-item-counter{% if wishlist.products.size > 0 %} has-items{% endif %}">
 
                                     <span class="me-2">
-                                        {{- 'general.wishlist' | t -}}
-                                    </span>
-
-                                    <span class="site-header-item-counter-text" data-wishlist-item-count>
-                                        {{- wishlist.products.size -}}
+                                        {{- 'general.favourites' | t -}}
                                     </span>
 
                                 </span>
+
+                            </a>
+
+                        </li>
+
+                        <li class="site-mobile-navigation-menu-secondary-item">
+
+                            <a
+                                href="{{ routes.account_orders_url }}"
+                                class="site-mobile-navigation-menu-secondary-item-text">
+
+                                    {{- 'account.order_plural' | t -}}
 
                             </a>
 
@@ -879,15 +903,19 @@
 
                 <div class="site-header-items-actions-container">
 
-                    <div class="site-header-item site-header-item-search">
+                    {%- if settings.accessibilityShowSearch -%}
 
-                        <button type="button" class="site-search-toggle btn btn-text">
+                        <div class="site-header-item site-header-item-search">
 
-                            {%- render 'icon', icon: 'search' -%}
+                            <button type="button" class="site-search-toggle btn btn-text">
 
-                        </button>
+                                {%- render 'icon', icon: 'search' -%}
 
-                    </div>
+                            </button>
+
+                        </div>
+
+                    {%- endif -%}
 
                     {% if store.customer_accounts_enabled %}
 
@@ -983,7 +1011,7 @@
 
                                 <div class="container">
 
-                                    <div class="row">
+                                    <div class="grid">
 
                                         {%- assign hasMultipleLevels = false -%}
 
@@ -999,19 +1027,19 @@
 
                                             {% for item in menu.links %}
 
-                                                <div class="site-header-submenu-column col">
+                                                <div class="site-header-submenu-item">
 
-                                                    <div class="site-header-submenu-column-title">
+                                                    <div class="site-header-submenu-item-title">
 
                                                         {%- if item.url -%}
 
-                                                            <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-column-title-text">
+                                                            <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-item-title-text">
                                                                 {{ item.title }}
                                                             </a>
 
                                                         {%- else -%}
 
-                                                            <span class="site-header-submenu-column-title-text">
+                                                            <span class="site-header-submenu-item-title-text">
                                                                 {{ item.title }}
                                                             </span>
 
@@ -1019,21 +1047,21 @@
 
                                                     </div>
 
-                                                    <ul class="site-header-submenu-column-menu">
+                                                    <ul class="site-header-submenu-item-menu">
 
                                                         {% for item in item.links %}
 
-                                                            <li class="site-header-submenu-column-menu-item{% if item.active %} site-header-submenu-column-menu-item-active{% endif %}">
+                                                            <li class="site-header-submenu-item-menu-item{% if item.active %} site-header-submenu-item-menu-item-active{% endif %}">
 
                                                                 {%- if item.url -%}
 
-                                                                    <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                                    <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                         {{ item.title }}
                                                                     </a>
 
                                                                 {%- else -%}
 
-                                                                    <span class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                                    <span class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                         {{ item.title }}
                                                                     </span>
 
@@ -1051,23 +1079,23 @@
 
                                         {% elsif menu %}
 
-                                            <div class="site-header-submenu-column col">
+                                            <div class="site-header-submenu-item">
 
-                                                <ul class="site-header-submenu-column-menu">
+                                                <ul class="site-header-submenu-item-menu">
 
                                                     {% for item in menu.links %}
 
-                                                        <li class="site-header-submenu-column-menu-item{% if item.active %} site-header-submenu-column-menu-item-active{% endif %}">
+                                                        <li class="site-header-submenu-item-menu-item{% if item.active %} site-header-submenu-item-menu-item-active{% endif %}">
 
                                                             {%- if item.url -%}
 
-                                                                <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                                <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                     {{ item.title }}
                                                                 </a>
 
                                                             {%- else -%}
 
-                                                                <span class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                                <span class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                     {{ item.title }}
                                                                 </span>
 
@@ -1085,7 +1113,7 @@
 
                                         {% if megamenu.settings.promotion1ImgSrc %}
 
-                                            <div class="site-header-submenu-column col">
+                                            <div class="site-header-submenu-item">
 
                                                 {% if megamenu.settings.promotion1Link %}
                                                     <a
@@ -1145,7 +1173,7 @@
                                                                     alt="{{ megamenu.settings.promotion1ImgAlt }}"
                                                                     data-src="{{ megamenu.settings.promotion1ImgSrc | thumb: imgSizeSm }}"
                                                                     data-srcset="{{ megamenu.settings.promotion1ImgSrc | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotionImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-column-promotion-img">
+                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-item-promotion-img">
                                                             </picture>
                                             
                                                         </div>
@@ -1156,9 +1184,9 @@
         
                                                 {% if megamenu.settings.promotion1ImgText %}
                                                 
-                                                    <div class="site-header-submenu-column-title text-center">
+                                                    <div class="site-header-submenu-item-title text-center">
         
-                                                        <span class="site-header-submenu-column-title-text">
+                                                        <span class="site-header-submenu-item-title-text">
                                                             {{ megamenu.settings.promotion1ImgText }}
                                                         </span>
         
@@ -1176,7 +1204,7 @@
 
                                         {% if megamenu.settings.promotion2ImgSrc %}
 
-                                            <div class="site-header-submenu-column col">
+                                            <div class="site-header-submenu-item">
 
                                                 {% if megamenu.settings.promotion2Link %}
                                                     <a
@@ -1236,7 +1264,7 @@
                                                                     alt="{{ megamenu.settings.promotion2ImgAlt }}"
                                                                     data-src="{{ megamenu.settings.promotion2ImgSrc | thumb: imgSizeSm }}"
                                                                     data-srcset="{{ megamenu.settings.promotion2ImgSrc | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotionImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-column-promotion-img">
+                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-item-promotion-img">
                                                             </picture>
                                             
                                                         </div>
@@ -1247,9 +1275,9 @@
         
                                                 {% if megamenu.settings.promotion2ImgText %}
                                                 
-                                                    <div class="site-header-submenu-column-title text-center">
+                                                    <div class="site-header-submenu-item-title text-center">
         
-                                                        <span class="site-header-submenu-column-title-text">
+                                                        <span class="site-header-submenu-item-title-text">
                                                             {{ megamenu.settings.promotion2ImgText }}
                                                         </span>
         
@@ -1267,7 +1295,7 @@
 
                                         {% if megamenu.settings.promotion3ImgSrc %}
 
-                                            <div class="site-header-submenu-column col">
+                                            <div class="site-header-submenu-item">
 
                                                 {% if megamenu.settings.promotion3Link %}
                                                     <a
@@ -1327,7 +1355,7 @@
                                                                     alt="{{ megamenu.settings.promotion3ImgAlt }}"
                                                                     data-src="{{ megamenu.settings.promotion3ImgSrc | thumb: imgSizeSm }}"
                                                                     data-srcset="{{ megamenu.settings.promotion3ImgSrc | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotionImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-column-promotion-img">
+                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-item-promotion-img">
                                                             </picture>
                                             
                                                         </div>
@@ -1338,9 +1366,9 @@
         
                                                 {% if megamenu.settings.promotion3ImgText %}
                                                 
-                                                    <div class="site-header-submenu-column-title text-center">
+                                                    <div class="site-header-submenu-item-title text-center">
         
-                                                        <span class="site-header-submenu-column-title-text">
+                                                        <span class="site-header-submenu-item-title-text">
                                                             {{ megamenu.settings.promotion3ImgText }}
                                                         </span>
         
@@ -1358,7 +1386,7 @@
 
                                         {% if megamenu.settings.promotion4ImgSrc %}
 
-                                            <div class="site-header-submenu-column col">
+                                            <div class="site-header-submenu-item">
 
                                                 {% if megamenu.settings.promotion4Link %}
                                                     <a
@@ -1418,7 +1446,7 @@
                                                                     alt="{{ megamenu.settings.promotion4ImgAlt }}"
                                                                     data-src="{{ megamenu.settings.promotion4ImgSrc | thumb: imgSizeSm }}"
                                                                     data-srcset="{{ megamenu.settings.promotion4ImgSrc | thumb: imgSizeSm }} 1x,{{ megamenu.settings.promotionImgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-column-promotion-img">
+                                                                    class="lazy aspect-ratio-item aspect-ratio-item-cover site-header-submenu-item-promotion-img">
                                                             </picture>
                                             
                                                         </div>
@@ -1429,9 +1457,9 @@
         
                                                 {% if megamenu.settings.promotion4ImgText %}
                                                 
-                                                    <div class="site-header-submenu-column-title text-center">
+                                                    <div class="site-header-submenu-item-title text-center">
         
-                                                        <span class="site-header-submenu-column-title-text">
+                                                        <span class="site-header-submenu-item-title-text">
                                                             {{ megamenu.settings.promotion4ImgText }}
                                                         </span>
         
@@ -1463,7 +1491,7 @@
 
                             <div class="container">
 
-                                <div class="row">
+                                <div class="grid">
 
                                     {%- assign hasMultipleLevels = false -%}
 
@@ -1477,23 +1505,23 @@
 
                                     {% if hasMultipleLevels %}
 
-                                        <div class="site-header-submenu-column col">
+                                        <div class="site-header-submenu-item">
 
-                                            <ul class="site-header-submenu-column-menu">
+                                            <ul class="site-header-submenu-item-menu">
 
                                                 {% for item in item.links %}
 
-                                                    <li class="site-header-submenu-column-menu-item{% if item.active %} site-header-submenu-column-menu-item-active{% endif %}">
+                                                    <li class="site-header-submenu-item-menu-item{% if item.active %} site-header-submenu-item-menu-item-active{% endif %}">
 
                                                         {%- if item.url -%}
 
-                                                            <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                            <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                 {{ item.title }}
                                                             </a>
 
                                                         {%- else -%}
 
-                                                            <span class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                            <span class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                 {{ item.title }}
                                                             </span>
 
@@ -1545,23 +1573,23 @@
 
                                     {% else %}
 
-                                        <div class="site-header-submenu-column col">
+                                        <div class="site-header-submenu-item">
 
-                                            <ul class="site-header-submenu-column-menu">
+                                            <ul class="site-header-submenu-item-menu">
 
                                                 {% for item in item.links %}
 
-                                                    <li class="site-header-submenu-column-menu-item{% if item.active %} site-header-submenu-column-menu-item-active{% endif %}">
+                                                    <li class="site-header-submenu-item-menu-item{% if item.active %} site-header-submenu-item-menu-item-active{% endif %}">
 
                                                         {%- if item.url -%}
 
-                                                            <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                            <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                 {{ item.title }}
                                                             </a>
 
                                                         {%- else -%}
 
-                                                            <span class="site-header-submenu-column-menu-item-text text-underline-indicator">
+                                                            <span class="site-header-submenu-item-menu-item-text text-underline-indicator">
                                                                 {{ item.title }}
                                                             </span>
 

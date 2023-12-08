@@ -5,7 +5,7 @@
  
 {%- capture sectionContent -%}
 
-	<div class="section-highlight-item mb-g{% if settings.sectionHighlightItems == false %} border-bottom pt-g{% endif %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor=".section-account" data-aos-delay style="--aos-order: 3">
+	<div class="section-highlight-item{% if settings.sectionHighlightItems == false %} border-bottom pb-4 pb-md-6{% else %} mb-g{% endif %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor=".section-account" data-aos-delay style="--aos-order: 3">
 
 		<div class="row g-0">
 
@@ -149,7 +149,7 @@
 
 	{% if loyalty %}
 
-		<div class="section-highlight-item mb-g{% if settings.sectionHighlightItems == false %} border-bottom pt-g{% endif %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor=".section-account" data-aos-delay style="--aos-order: 4">
+		<div class="section-highlight-item{% if settings.sectionHighlightItems == false %} border-bottom py-4 py-md-6{% else %} mb-g{% endif %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor=".section-account" data-aos-delay style="--aos-order: 4">
 
 			<div class="row g-0">
 
@@ -249,7 +249,7 @@
 
 	{% endif %}
 
-	<div class="section-highlight-item mb-g{% if settings.sectionHighlightItems == false %} border-bottom pt-g{% endif %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor=".section-account" data-aos-delay style="--aos-order: {{ loyalty | yepnope: 5, 4 }}">
+	<div class="section-highlight-item{% if settings.sectionHighlightItems == false %} border-bottom py-4 py-md-6{% else %} mb-g{% endif %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor=".section-account" data-aos-delay style="--aos-order: {{ loyalty | yepnope: 5, 4 }}">
 
 		<div class="row g-0">
 
@@ -295,7 +295,7 @@
 
 	</div>
 
-	<div class="section-highlight-item mb-g{% if settings.sectionHighlightItems == false %} border-bottom pt-g{% endif %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor=".section-account" data-aos-delay style="--aos-order: {{ loyalty | yepnope: 6, 5 }}">
+	<div class="section-highlight-item{% if settings.sectionHighlightItems == false %} border-bottom py-4 py-md-6{% else %} mb-g{% endif %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor=".section-account" data-aos-delay style="--aos-order: {{ loyalty | yepnope: 6, 5 }}">
 
 		<div class="row g-0">
 
@@ -341,7 +341,7 @@
 
 	</div>
 
-	<div class="section-highlight-item" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor=".section-account" data-aos-delay style="--aos-order: {{ loyalty | yepnope: 7, 6 }}">
+	<div class="section-highlight-item{% if settings.sectionHighlightItems == false %} pt-4 pt-md-6{% endif %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor=".section-account" data-aos-delay style="--aos-order: {{ loyalty | yepnope: 7, 6 }}">
 
 		<div class="row g-0">
 
@@ -390,5 +390,5 @@
 {%- endcapture -%}
 
 <section class="section section-account">
-    {% render 'section', sectionHandle: '.section-account', sectionTitle: sectionTitle, sectionSubtitle: sectionSubtitle, sectionContent: sectionContent, sectionContainer: 'compact', sectionContentAnimation: false, sectionOverlay: settings.sectionOverlay %}
+    {% render 'section', sectionHandle: '.section-account', sectionTitle: sectionTitle, sectionSubtitle: sectionSubtitle, sectionContent: sectionContent, sectionContainer: 'compact', sectionContentAnimation: false, sectionOverlay: settings.sectionOverlay, sectionInnerGap: '3.5rem' %}
 </section>

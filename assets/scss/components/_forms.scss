@@ -1,6 +1,11 @@
 // Forms
 // -----------------------------------------------------------------------------------------
 
+// Check
+.form-check {
+	text-align: start;
+}
+
 // Check badge
 .form-check-badge-container {
 	margin-top: -#{spacer(4) / 2};
@@ -137,6 +142,7 @@
 
 	& > label {
 		width: 100%;
+		line-height: 1.5;
 	}
 
 	& > .form-control ~ label,

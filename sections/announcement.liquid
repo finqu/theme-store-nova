@@ -16,32 +16,56 @@
 
 {% if announcementIsVisible or request.design_mode == 'edit' -%}
 
-    <div class="site-announcement-container{% if section.settings.announcementText | size > 50 %} has-long-text{% endif %}">
+    {%- capture slides -%}
 
-        <div class="site-announcement container">
+        {%- for item in section.settings.setting_blocks.items -%}
 
-            {% if section.settings.announcementLink.url %}
+            <div class="swiper-slide">
 
-                <a
-                    href="{{- section.settings.announcementLink.url -}}"
-                    class="site-announcement-text"
-                    {% if section.settings.announcementLinkOpenInNewWindowStatus %}
-                    target="_blank"
-                    {% endif %}>
+                <div class="swiper-slide-inner container{% if item.settings.announcementText | size > 50 %} has-long-text{% endif %}">
 
-                    {{ section.settings.announcementText }}
+                    {% if item.settings.announcementLink.url %}
 
-                </a>
+                        <a
+                            href="{{- item.settings.announcementLink.url -}}"
+                            class="site-announcement-text"
+                            {% if item.settings.announcementLinkOpenInNewWindowStatus %}
+                            target="_blank"
+                            {% endif %}>
 
-            {% else %}
+                            {{ item.settings.announcementText }}
 
-                <span class="site-announcement-text">
+                        </a>
 
-                    {{ section.settings.announcementText }}
+                    {% else %}
 
-                </span>
+                        <span class="site-announcement-text">
 
-            {% endif %}
+                            {{ item.settings.announcementText }}
+
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        {%- endfor -%}
+
+    {%- endcapture -%}
+
+    {%- if section.settings.setting_blocks.items.size > 1 -%}
+        {%- assign autoplaySpeed = section.settings.carouselAutoplaySpeed -%}
+    {%- else -%}
+        {%- assign autoplaySpeed = 0 -%}
+    {%- endif -%}
+
+    <div class="site-announcement-container">
+
+        <div class="site-announcement">
+
+            {%- render 'swiper', slides: slides, slidesPerView: 1, style: 1, evenHeightSlides: true, standalone: true, class: 'w-100', noSwiping: true, autoplaySpeed: autoplaySpeed, loop: true, speed: 700, slidesGap: '0' -%}
 
         </div>
 
@@ -67,32 +91,46 @@
                         "en": "Content",
                         "fi": "Sisältö"
                     },
-                    "settings": [
+                    "id": "items",
+                    "call_to_action": {
+                        "en": "Add a announcement",
+                        "fi": "Lisää ilmoitus"
+                    },
+                    "is_sortable": true,
+                    "setting_blocks": [
                         {
-                            "id": "announcementText",
                             "type": "text",
-                            "label": {
-                                "en": "Text",
-                                "fi": "Teksti"
+                            "title": {
+                                "en": "Announcement",
+                                "fi": "ilmoitus"
                             },
-                            "default": "Tell your customers about your promotions."
-                        },
-                        {
-                            "id": "announcementLink",
-                            "type": "url",
-                            "label": {
-                                "en": "Link",
-                                "fi": "Linkki"
-                            }
-                        },
-                        {
-                            "id": "announcementLinkOpenInNewWindowStatus",
-                            "type": "checkbox",
-                            "label": {
-                                "en": "Open link in a new tab",
-                                "fi": "Avaa linkki uudessa välilehdessä"
-                            },
-                            "default": false
+                            "settings": [
+                                {
+                                    "id": "announcementText",
+                                    "type": "text",
+                                    "label": {
+                                        "en": "Text",
+                                        "fi": "Teksti"
+                                    }
+                                },
+                                {
+                                    "id": "announcementLink",
+                                    "type": "url",
+                                    "label": {
+                                        "en": "Link",
+                                        "fi": "Linkki"
+                                    }
+                                },
+                                {
+                                    "id": "announcementLinkOpenInNewWindowStatus",
+                                    "type": "checkbox",
+                                    "label": {
+                                        "en": "Open link in a new tab",
+                                        "fi": "Avaa linkki uudessa välilehdessä"
+                                    },
+                                    "default": false
+                                }
+                            ]
                         }
                     ]
                 },
@@ -154,6 +192,29 @@
                             ]
                         },
                         {
+                            "id": "carouselAutoplaySpeed",
+                            "label": {
+                                "en": "Autoplay",
+                                "fi": "Automaattinen toisto"
+                            },
+                            "type": "radio-pill",
+                            "default": 3,
+                            "options": [
+                                {
+                                    "value": 3,
+                                    "label": "3 s"
+                                },
+                                {
+                                    "value": 5,
+                                    "label": "5 s"
+                                },
+                                {
+                                    "value": 10,
+                                    "label": "10 s"
+                                }
+                            ]
+                        },
+                        {
                             "id": "announcementStatus",
                             "type": "checkbox",
                             "label": {
@@ -165,6 +226,22 @@
                     ]
                 }
             ]
-        }
+        },
+        "presets": [
+            {
+                "settings": {
+                    "setting_blocks": {
+                        "items": [
+                            {
+                                "type": "text",
+                                "settings": {
+                                    "announcementText": "Tell your customers about your promotions."
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
     }
 {% endschema %}

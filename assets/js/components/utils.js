@@ -185,26 +185,42 @@ const formatNumber = function (opts = {}) {
 	return Intl.NumberFormat(theme.store.locale, settings).format(parseFloat(number, 10));
 };
 
-const animate = function (el, animation, prefix = 'animate__') {
+const animate = function (el, animation, delay, duration) {
+
+	const prefix = 'animate__';
 
 	return new Promise((resolve, reject) => {
 
-		const animationName = `${prefix}${animation}`;
 		const node = el && el.nodeType ? el : document.querySelector(el);
+
+		let classes = [
+			prefix+'animated',
+			prefix+animation
+		];
+
+		if (delay) {
+			classes.push(prefix+'delay-'+delay);
+		}
+
+		if (duration) {
+			classes.push(prefix+duration);
+		}
 
 		if (node) {
 
-			node.classList.add(`${prefix}animated`, animationName);
+			node.classList.add(...classes);
 
 			function handleAnimationEnd(e) {
 
 				e.stopPropagation();
-				node.classList.remove(`${prefix}animated`, animationName);
+				node.classList.remove(...classes);
 
 				resolve('Animation ended');
 			}
 
-			node.addEventListener('animationend', handleAnimationEnd, {once: true});
+			node.addEventListener('animationend', handleAnimationEnd, {
+				once: true
+			});
 
 		} else {
 

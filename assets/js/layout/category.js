@@ -12,15 +12,20 @@ export default function() {
     let categoryFiltersFormEl = null;
 
     if (matchMedia.matches) {
-        categoryFiltersFormEl = containerEl.querySelector('#category-filters-form');
-    } else {
-        categoryFiltersFormEl = containerEl.querySelector('#category-filters-mobile-form');
-    }
 
-    const categoryFilterInputEls = categoryFiltersFormEl.querySelectorAll('input');
-    const categoryRangeSliderEls = categoryFiltersFormEl.querySelectorAll('.range-slider');
-    const facetResultCountEls = categoryFiltersFormEl.querySelectorAll('[data-facet-result-count]');
-    const filtersMobileNavigationCtaEl = containerEl.querySelector('.filters-mobile-navigation-container .filters-mobile-navigation-footer-inner-cta');
+        const el = containerEl.querySelector('#category-filters-form');
+        categoryFiltersFormEl = el ? el : false;
+
+    } else {
+
+        const el = containerEl.querySelector('#category-filters-mobile-form');
+        categoryFiltersFormEl = el ? el : false;
+    }
+    
+    const categoryFilterInputEls = categoryFiltersFormEl ? categoryFiltersFormEl.querySelectorAll('input') : [];
+    const categoryRangeSliderEls = categoryFiltersFormEl ? categoryFiltersFormEl.querySelectorAll('.range-slider') : [];
+    const facetResultCountEls = categoryFiltersFormEl ? categoryFiltersFormEl.querySelectorAll('[data-facet-result-count]') : [];
+    const filtersMobileNavigationCtaEl = categoryFiltersFormEl ? containerEl.querySelector('.filters-mobile-navigation-container .filters-mobile-navigation-footer-inner-cta') : null;
     
     let categoryDynamicContentEl = containerEl.querySelector('.category-dynamic-content');
     let categoryResetFiltersEls = categoryDynamicContentEl.querySelectorAll('.category-reset-filters');
@@ -98,9 +103,9 @@ export default function() {
                     });
                 }
 
-                if (itemCountEl) {
+                if (filtersMobileNavigationCtaEl) {
 
-                    const itemCount = itemCountEl.getAttribute('data-category-items-count');
+                    const itemCount = itemCountEl ? itemCountEl.getAttribute('data-category-items-count') : '0';
 
                     if (itemCount == 1) {
 
@@ -114,12 +119,6 @@ export default function() {
                             amount: itemCount
                         });
                     }
-
-                } else {
-
-                    filtersMobileNavigationCtaEl.innerText = theme.utils.t('filters.show_result_plural', {
-                        amount: '0'
-                    });
                 }
 
                 categoryDynamicContentEl.replaceWith(newCategoryDynamicContent);

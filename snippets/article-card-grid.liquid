@@ -4,6 +4,7 @@
     Accepts:
     - article: {Object} article Liquid object (required)
     - articlePerRow {Number} Number of product card grid siblings
+    - aspectRatio {String} Aspect ratio of the article image
 
     Usage:
     {% render 'article-card-grid', article: article %}
@@ -13,11 +14,12 @@
     {%- assign articlePerRow = settings.articlePerRow -%}
 {%- endif -%}
 
+{% assign aspectRatio = aspectRatio | default: settings.articleImageAspectRatio %}
 {% assign dateFormat = 'general.date_format' | t %}
 
 <div class="article-card-grid-item section-highlight-item">
 
-    <div class="article-media aspect-ratio-article img-indicator-zoom">
+    <div class="article-media aspect-ratio-{{ aspectRatio | replace: ':', '-' }} img-indicator-zoom">
 
         <div class="article-img-container aspect-ratio-container">
 
@@ -25,7 +27,7 @@
 
                 {%- if article.header_image -%}
 
-                    {%- if settings.articleImageAspectRatio == '9:13' -%}
+                    {%- if aspectRatio == '9:13' -%}
 
                         {%- assign imgSizeSm = '388,388' -%}
                         {%- assign imgSizeMd = '330,330' -%}
@@ -43,7 +45,7 @@
                                 {%- assign imgSizeLg = '272,272' -%}
                         {%- endcase -%}
 
-                    {%- elsif settings.articleImageAspectRatio == '4:3' -%}
+                    {%- elsif aspectRatio == '4:3' -%}
 
                         {%- assign imgSizeSm = '280,220' -%}
                         {%- assign imgSizeMd = '240,190' -%}
@@ -61,7 +63,7 @@
                                 {%- assign imgSizeLg = '200,160' -%}
                         {%- endcase -%}
 
-                    {%- elsif settings.articleImageAspectRatio == '1:1' -%}
+                    {%- elsif aspectRatio == '1:1' -%}
 
                         {%- assign imgSizeSm = '280,280' -%}
                         {%- assign imgSizeMd = '240,240' -%}
@@ -98,7 +100,7 @@
                             alt="{{ article.title }}"
                             data-src="{{ article.header_image | thumb: imgSizeSm }}"
                             data-srcset="{{ article.header_image | thumb: imgSizeSm }} 1x, {{ article.header_image | thumb: imgSizeSm | thumb: '@2x' }} 2x"
-                            class="lazy d-block mx-auto img-fluid aspect-ratio-item">
+                            class="lazy d-block mx-auto img-fluid aspect-ratio-item{% if settings.articleImageAspectRatioFit == 'cover' %} aspect-ratio-item-cover{% endif %}">
                     </picture>
 
                 {%- else -%}
@@ -108,7 +110,7 @@
                     {%- endcapture -%}
 
                     <img
-                        class="lazy d-block mx-auto img-fluid aspect-ratio-item svg-placeholder"
+                        class="lazy d-block mx-auto img-fluid aspect-ratio-item svg-placeholder{% if settings.articleImageAspectRatioFit == 'cover' %} aspect-ratio-item-cover{% endif %}"
                         alt="{{ article.title }}"
                         data-src="{{- placeholderSrc | strip_newlines -}}">
 

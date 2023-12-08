@@ -44,13 +44,14 @@ export default class Slider {
             spaceBetween: slidesGap,
             slidesPerView: slidesPerView !== 'auto' && slidesPerView > 1 && this.opts.swiperCenteredSlides !== 'true'  ? 2 : 'auto',
             slidesPerGroup: slidesPerView !== 'auto' && slidesPerView > 1 && this.opts.swiperCenteredSlides !== 'true' ? 2 : 1,
-            grabCursor: true,
+            grabCursor: this.opts.swiperNoSwiping !== 'true' ? true : false,
+            allowTouchMove: this.opts.swiperNoSwiping !== 'true' ? true : false,
             autoplay: false,
             speed: parseInt(this.opts.swiperSpeed || 300, 10),
             loop: this.opts.swiperLoop === 'true' ? true : false,
             pagination: {
                 el: '.swiper-pagination',
-                clickable: true
+                clickable: this.opts.swiperNoSwiping !== 'true' ? true : false
             },
             navigation: {
                 nextEl: '.swiper-button-next',
@@ -76,53 +77,52 @@ export default class Slider {
 
         if (this.opts.swiperEffect === 'fade') {
 
+            this.settings.effect = 'fade';
             this.settings.parallax = false;
             this.settings.modules.push(EffectFade);
 
-        } else if (this.opts.swiperEffect === 'slide') {
+        } else if (this.opts.swiperEffect === 'parallax') {
 
+            this.settings.effect = 'parallax';
             this.settings.parallax = true;
             this.settings.modules.push(Parallax);
         }
 
-        if (['fade', 'slide'].includes(this.opts.swiperEffect)) {
+        if (['fade', 'parallax'].includes(this.opts.swiperEffect)) {
 
             this.settings.on = {
                 init: function() {
 
-                    const swiper = this;
-                    let delay = 200;
+                    if (this.params.parallax) {
 
-                    if (swiper.params.effect === 'fade') {
-                        delay = 700;
-                    }
-
-                    if (swiper.el) {
-                        setTimeout(() => {
-                            swiper.el.classList.add('swiper-ready');
-                            theme.utils.animate(swiper.el.querySelector('.swiper-slide-active .slide-content'), 'fadeIn');
-                        }, delay);
-                    }
-
-                    if (swiper.params.parallax) {
-
-                        for (const slideEl of swiper.slides) {
+                        for (const slideEl of this.slides) {
        
                             const titleEl = slideEl.querySelector('.slide-title');
                             const descriptionEl = slideEl.querySelector('.slide-description');
                             const actionEl = slideEl.querySelector('.slide-action');
 
                             if (titleEl) {
-                                titleEl.setAttribute('data-swiper-parallax', 0.75 * swiper.width);
+                                titleEl.setAttribute('data-swiper-parallax', 0.75 * this.width);
                             }
 
                             if (descriptionEl) {
-                                descriptionEl.setAttribute('data-swiper-parallax', 0.65 * swiper.width);
+                                descriptionEl.setAttribute('data-swiper-parallax', 0.65 * this.width);
                             }
 
                             if (actionEl) {
-                                actionEl.setAttribute('data-swiper-parallax', 0.6 * swiper.width);
+                                actionEl.setAttribute('data-swiper-parallax', 0.6 * this.width);
                             }
+                        }
+                    }
+                },
+                activeIndexChange: function() {
+
+                    if (this.params.effect === 'fade') {
+
+                        const slideEl = this.slides[this.activeIndex];
+
+                        if (slideEl) {
+                            theme.utils.animate(slideEl.querySelector('.swiper-slide-inner'), 'fadeIn', '1s', 'slow');
                         }
                     }
                 }

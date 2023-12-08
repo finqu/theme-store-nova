@@ -67,8 +67,8 @@
         .product-wishlist-action-container {
             display: flex;
             position: absolute;
-            top: 5px;
-            right: 0;
+            top: .7em;
+            right: .7em;
             z-index: 1;
             
             .product-wishlist-action {
@@ -184,6 +184,10 @@
         }
 
         .product-name {
+
+            & + .product-rating {
+                margin-top: spacer(1);
+            }
 
             & + .product-price {
                 margin-top: spacer(2);
@@ -316,22 +320,12 @@
 }
 
 .product-badges {
-    display: flex;
-    align-items: flex-start;
+    display: grid;
+    gap: spacer(2);
     z-index: 2;
-    @include media-breakpoint-down(md) {
-        flex-direction: column;
-    }
 
     .product-badge {
-        flex: 0 0 auto;
-        margin-right: 5px;
-        margin-bottom: spacer(2);
-        white-space: nowrap;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
+        display: inline-flex;
 
         &.product-badge-new {
 
@@ -351,37 +345,36 @@
 
         .product-badge-content {
             font-size: 0.8rem;
-            padding: spacer(1);
-            line-height: 1rem;
-            font-weight: $font-weight-bold;
+            padding: .5em 1em;
+            line-height: 1;
             background-color: var(--style-badge-bg-color);
             color: var(--style-badge-text-color);
             border-radius: var(--style-border-radius);
         }
     }
 
-    &.product-badge-position-top-left {
+    &.product-badge-position-top-start {
         position: absolute;
-        top: 5px;
-        left: 5px;
+        top: .7em;
+        left: .7em;
     }
 
-    &.product-badge-position-top-right {
+    &.product-badge-position-top-end {
         position: absolute;
-        top: 5px;
-        right: 5px;
+        top: .7em;
+        right: .7em;
     }
 
-    &.product-badge-position-bottom-left {
+    &.product-badge-position-bottom-start {
         position: absolute;
-        left: 5px;
-        bottom: 5px;
+        left: .7em;
+        bottom: .7em;
     }
 
-    &.product-badge-position-bottom-right {
+    &.product-badge-position-bottom-end {
         position: absolute;
-        right: 5px;
-        bottom: 5px;
+        right: .7em;
+        bottom: .7em;
     }
 
     &.product-badge-position-inline {

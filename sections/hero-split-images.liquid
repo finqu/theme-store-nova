@@ -19,6 +19,11 @@
             transform: scale(1.0{{ section.settings.imgBlur | divided_by: 2 | plus: 2 }});
             filter: blur({{ section.settings.imgBlur }}px);
         }
+        @media screen and (max-width: {{ settings.styleGridBreakpointLg }}) {
+            #finqu-section-{{ section.id }} .section-inner {
+                --section-min-height: {{ section.settings.sectionMinHeight | divided_by: 2 }}vh
+            }
+        }
     {%- endcapture -%}
 
     <style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
@@ -55,13 +60,13 @@
 
     {%- endcapture -%}
 
-    <div class="flex-grow-1 position-relative overflow-hidden min-vh-{{ section.settings.sectionMinHeight }}{% if section.settings.imgMobileSrc %} d-none d-md-block{% endif %}">
+    <div class="flex-grow-1 position-relative overflow-hidden min-vh-{{ section.settings.sectionMinHeight | divided_by: 2 }} min-vh-lg-{{ section.settings.sectionMinHeight }}{% if section.settings.imgMobileSrc %} d-none d-md-block{% endif %}">
 
         <div class="lazy position-absolute top-0 start-0 w-100 h-100 bg-position-center{% if section.settings.imgStartSrc %} bg-size-cover{% endif %}" data-bg-set="{{- imgStartSrc | strip -}}"></div>
 
     </div>
 
-    <div class="flex-grow-1 position-relative overflow-hidden min-vh-{{ section.settings.sectionMinHeight }} d-none d-md-block">
+    <div class="flex-grow-1 position-relative overflow-hidden min-vh-{{ section.settings.sectionMinHeight | divided_by: 2 }} min-vh-lg-{{ section.settings.sectionMinHeight }} d-none d-md-block">
 
         <div class="lazy position-absolute top-0 start-0 w-100 h-100 bg-position-center{% if section.settings.imgStartSrc %} bg-size-cover{% endif %}" data-bg-set="{{- imgEndSrc | strip -}}"></div>
 
@@ -545,7 +550,7 @@
                             {
                                 "value": "dark",
                                 "label": {
-                                    "en": "Dark background / light content",
+                                    "en": "Dark background / Light content",
                                     "fi": "Tumma tausta / Vaalea sisältö"
                                 }
                             },

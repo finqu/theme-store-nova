@@ -35,6 +35,11 @@
             filter: blur({{ section.settings.imgBlur }}px);
         }
     {%- endif -%}
+    @media screen and (max-width: {{ settings.styleGridBreakpointLg }}) {
+        #finqu-section-{{ section.id }} .section-inner {
+            --section-min-height: {{ section.settings.sectionMinHeight | divided_by: 2 }}vh
+        }
+    }
 {%- endcapture -%}
 
 <style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
@@ -63,7 +68,7 @@
 
                 <div class="swiper-slide">
 
-                   <div class="swiper-slide-inner position-relative min-vh-{{ section.settings.sectionMinHeight }}">
+                   <div class="swiper-slide-inner position-relative min-vh-{{ section.settings.sectionMinHeight | divided_by: 2 }} min-vh-lg-{{ section.settings.sectionMinHeight }}">
 
                         <div class="lazy position-absolute top-0 start-0 w-100 h-100{% if item.settings.imgPos != '' %} bg-position-{{ item.settings.imgPos }}{% endif %}{% if item.settings.imgSrc %} bg-size-cover{% endif %}" data-bg-set="{{- imgSrc | strip -}}"></div>
 
@@ -151,7 +156,7 @@
 
     {%- endcapture -%}
 
-    {%- render 'swiper', slides: carouselSlides, pagination: section.settings.carouselPagination, navigation: section.settings.carouselNavigation, slidesPerView: 1, style: 2, paginationPosition: 'fixed', loop: section.settings.carouselLoop, evenHeightSlides: true, standalone: true, autoplaySpeed: section.settings.carouselAutoplaySpeed -%}
+    {%- render 'swiper', slides: carouselSlides, pagination: section.settings.carouselPagination, navigation: section.settings.carouselNavigation, slidesPerView: 1, style: 2, paginationPosition: 'fixed', loop: section.settings.carouselLoop, evenHeightSlides: true, standalone: true, autoplaySpeed: section.settings.carouselAutoplaySpeed, effect: section.settings.carouselEffect -%}
 
 {%- endcapture -%}
 
@@ -458,6 +463,31 @@
                             {
                                 "value": 10,
                                 "label": "10 s"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "carouselEffect",
+                        "label": {
+                            "en": "Effect",
+                            "fi": "Efekti"
+                        },
+                        "type": "radio-pill",
+                        "default": "slide",
+                        "options": [
+                            {
+                                "value": "slide",
+                                "label": {
+                                    "en": "Slide",
+                                    "fi": "Liuta"
+                                }
+                            },
+                            {
+                                "value": "fade",
+                                "label": {
+                                    "en": "Fade",
+                                    "fi": "Häivytä"
+                                }
                             }
                         ]
                     },
@@ -851,7 +881,7 @@
                             {
                                 "value": "dark",
                                 "label": {
-                                    "en": "Dark background / light content",
+                                    "en": "Dark background / Light content",
                                     "fi": "Tumma tausta / Vaalea sisältö"
                                 }
                             },

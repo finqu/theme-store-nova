@@ -166,7 +166,7 @@
 
 {%- endcapture -%}
 
-{% render 'section', section: section, sectionContent: sectionContent, sectionTitle: blogpost.title, sectionTitleTag: 'h1', sectionSubtitle: sectionSubtitle, sectionSubtitleTag: 'div' %}
+{% render 'section', section: section, sectionContent: sectionContent, sectionTitle: blogpost.title, sectionTitleTag: 'h1', sectionSubtitle: sectionSubtitle, sectionSubtitleTag: 'div', sectionHeaderGapScale: 1, sectionInnerGap: '2rem' %}
 
 {%- if settings.schemaBlogPosting -%}
     {% render 'schemas/blogposting', article: blogpost %}

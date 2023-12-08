@@ -1,18 +1,23 @@
-{%- assign sectionTitle = 'account.orders_title' | t -%}
-{%- assign dateFormat = 'general.date_format' | t -%}
+{% if customer.orders.size > 0 %}
 
-{%- capture sectionHeaderSecondaryAction -%}
+    {%- capture sectionHeaderSecondaryAction -%}
 
-	<a href="{{ routes.account_url }}">
+        <a href="{{ routes.account_url }}">
 
-		{%- render 'icon', icon: 'arrow-left', class: 'me-1' -%}
+            {%- render 'icon', icon: 'arrow-left', class: 'me-1' -%}
 
-		<span>
-			{{ 'general.back' | t }}
-		</span>
-	</a>
+            <span>
+                {{ 'general.back' | t }}
+            </span>
+        </a>
 
-{%- endcapture -%}
+    {%- endcapture -%}
+
+    {%- assign sectionTitle = 'account.orders_title' | t -%}
+    {%- assign sectionHeaderSecondaryAction = sectionHeaderSecondaryAction -%}
+    {%- assign dateFormat = 'general.date_format' | t -%}
+
+{% endif %}
 
 {%- capture sectionContent -%}
 
@@ -174,12 +179,28 @@
 
     {% else %}
 
-        {{ 'account.order.no_orders' | t}}
+        <div class="text-center">
+
+            {%- render 'icon', icon: 'order-details', class: 'svg-icon-5x mb-3' -%}
+
+            <span class="h5 d-block mb-3">
+                {{- 'account.orders_title' | t -}}
+            </span>
+
+            <p class="mb-6">
+                {{- 'account.order.no_orders' | t -}}
+            </p>
+
+            <a href="{{ routes.account_url }}" class="btn btn-primary">
+                {{- 'general.back' | t -}}
+            </a>
+
+        </div>
 
     {% endif %}
 
 {%- endcapture -%}
 
 <section class="section section-account-orders">
-    {% render 'section', sectionHandle: '.section-account-orders', sectionTitle: sectionTitle, sectionHeaderSecondaryAction: sectionHeaderSecondaryAction, sectionContent: sectionContent, sectionContainer: 'compact', sectionContentAnimation: false, sectionOverlay: settings.sectionOverlay %}
+    {% render 'section', sectionHandle: '.section-account-orders', sectionTitle: sectionTitle, sectionHeaderSecondaryAction: sectionHeaderSecondaryAction, sectionContent: sectionContent, sectionContainer: 'compact', sectionContentAnimation: false, sectionOverlay: settings.sectionOverlay, sectionInnerGap: '2rem' %}
 </section>

@@ -43,7 +43,7 @@
 
                     {% if section.settings.customDisplayInformation %}
 
-                        {%- render 'product-card-grid', product: item, productPerRow: section.settings.productPerRow, showProductName: section.settings.showProductName, showManufacturer: section.settings.showManufacturer, showPromotion: section.settings.showPromotion, section.settings.showPricing, showRating: section.settings.showRating, showNewBadge: section.settings.showNewBadge, showDiscountBadge: section.settings.showDiscountBadge, showOutOfStockBadge: section.settings.showOutOfStockBadge, showAddToCart: section.settings.showAddToCart, showStockBalance: section.settings.showStockBalance -%}
+                        {%- render 'product-card-grid', product: item, productPerRow: section.settings.productPerRow, showProductName: section.settings.showProductName, showManufacturer: section.settings.showManufacturer, showPromotion: section.settings.showPromotion, section.settings.showPricing, showRating: section.settings.showRating, showNewBadge: section.settings.showNewBadge, showPromotionBadge: section.settings.showPromotionBadge, showDiscountBadge: section.settings.showDiscountBadge, showOutOfStockBadge: section.settings.showOutOfStockBadge, showAddToCart: section.settings.showAddToCart, showStockBalance: section.settings.showStockBalance -%}
 
                     {% else %}
 
@@ -61,9 +61,9 @@
 
                 <div class="col" data-aos="{{ settings.sectionAnimation }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
 
-                    {% if section.settings.customDisplayInformation == true %}
+                    {% if section.settings.customDisplayInformation %}
 
-                        {%- render 'product-card-grid', productPerRow: section.settings.productPerRow, showProductName: section.settings.showProductName, showManufacturer: section.settings.showManufacturer, showPromotion: section.settings.showPromotion, showPricing: section.settings.showPricing, showRating: section.settings.showRating, showNewBadge: section.settings.showNewBadge, showDiscountBadge: section.settings.showDiscountBadge, showOutOfStockBadge: section.settings.showOutOfStockBadge, showAddToCart: section.settings.showAddToCart, showStockBalance: section.settings.showStockBalance -%}
+                        {%- render 'product-card-grid', productPerRow: section.settings.productPerRow, showProductName: section.settings.showProductName, showManufacturer: section.settings.showManufacturer, showPromotion: section.settings.showPromotion, showPricing: section.settings.showPricing, showRating: section.settings.showRating, showNewBadge: section.settings.showNewBadge, showPromotionBadge: section.settings.showPromotionBadge, showDiscountBadge: section.settings.showDiscountBadge, showOutOfStockBadge: section.settings.showOutOfStockBadge, showAddToCart: section.settings.showAddToCart, showStockBalance: section.settings.showStockBalance -%}
 
                     {% else %}
 
@@ -383,6 +383,16 @@
                         "conditions": ["customDisplayInformation eq true"]
                     },
                     {
+                        "id": "showPromotionBadge",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Promotion badge",
+                            "fi": "Kampanjamerkki"
+                        },
+                        "default": true,
+                        "conditions": ["customDisplayInformation eq true"]
+                    },
+                    {
                         "id": "showDiscountBadge",
                         "type": "checkbox",
                         "label": {
@@ -670,7 +680,7 @@
                             {
                                 "value": "dark",
                                 "label": {
-                                    "en": "Dark background / light content",
+                                    "en": "Dark background / Light content",
                                     "fi": "Tumma tausta / Vaalea sisältö"
                                 }
                             },

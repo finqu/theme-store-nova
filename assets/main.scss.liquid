@@ -12,6 +12,7 @@ $font-size-base: 1rem * {{- settings.textScale -}};
 $font-family-base: {{- settings.bodyTextFont -}};
 $font-style: {{- settings.bodyTextFontStyle -}};
 $letter-spacing: {{- settings.bodyLetterSpacing -}};
+$line-height-base: {{- settings.textLineHeight -}};
 
 $h1-font-size: 1.85rem * {{- settings.headingFontScale -}};
 $h2-font-size: 1.55rem * {{- settings.headingFontScale -}};
@@ -89,7 +90,6 @@ $aspect-ratios: (
 	'article': '{{- settings.articleImageAspectRatio -}}'
 );
 
-
 $product-image-aspect-ratio-fit: {{- settings.productImageAspectRatioFit -}};
 $article-image-aspect-ratio-fit: {{- settings.articleImageAspectRatioFit -}};
 
@@ -110,7 +110,8 @@ $spacers: (
 	7: ($spacer * 3.5),
 	8: ($spacer * 4.5),
 	9: ($spacer * 5),
-	'g': var(--style-grid-gutter-width)
+	'g': var(--style-grid-gutter-width),
+	'c': var(--style-grid-container-padding-x)
 );
 
 $body-bg: {{ settings.style_bg_color }};
@@ -245,11 +246,11 @@ $link-hover-color: {{ settings.style_link_color }};
 	--style-loader-faded-color: {{ settings.style_icon_color | color_modify: 'alpha', 0.1 }};
 
 	--style-border-radius: {{ settings.styleBorderRadius }};
-	--style-btn-border-radius: {{ settings.styleButtonBorderRadius | default: settings.styleBorderRadius }};
-	--style-input-border-radius: {{ settings.styleInputBorderRadius | default: settings.styleBorderRadius }};
-	--style-menu-border-radius: {{ settings.styleMenuBorderRadius | default: settings.styleBorderRadius }};
-	--style-image-border-radius: {{ settings.styleImageBorderRadius | default: settings.styleBorderRadius }};
-	--style-product-image-border-radius: {{ settings.styleProductImageBorderRadius | default: settings.styleBorderRadius }};
+	--style-btn-border-radius: {{ settings.styleButtonBorderRadius }};
+	--style-input-border-radius: {{ settings.styleInputBorderRadius }};
+	--style-component-border-radius: {{ settings.styleComponentBorderRadius }};
+	--style-image-border-radius: {{ settings.styleImageBorderRadius }};
+	--style-product-image-border-radius: {{ settings.styleProductImageBorderRadius }};
 
 	--style-announcement-height: {{ settings.styleAnnouncementHeight }};
 
@@ -257,7 +258,7 @@ $link-hover-color: {{ settings.style_link_color }};
 	--style-grid-gutter-width: {{ settings.styleGridGutterWidth }};
 	--style-grid-gutter-width-mobile: {{ settings.styleGridGutterWidth | replace: 'rem', '' | times: 0.5 | append: 'rem' }};
 
-	--style-icon-stroke-width: 1.2px;
+	--style-icon-stroke-width: {{ settings.styleIconStrokeWidth }};
 
 	@each $key, $val in $spacers {
 		--style-spacer-#{$key}: #{$val};

@@ -58,10 +58,10 @@
         }
     }
 
-    & > .form-floating {
+    &:has(.form-floating) {
 
-        & + .btn,
-        & + .input-group-text {
+        .btn,
+        .input-group-text {
             height: $form-floating-height;
             min-height: $form-floating-height;
             line-height: $form-floating-line-height;

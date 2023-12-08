@@ -137,32 +137,7 @@ body {
 			}
 		}
 	}
-
-	.product-badges {
-		flex-direction: column;
-		flex-wrap: wrap;
-
-		.product-badge {
-			margin-right: 0;
-		}
-
-		&.product-badge-position-top-left,
-		&.product-badge-position-bottom-left {
-
-			.product-badge {
-				align-self: flex-start;
-			}
-		}
-
-		&.product-badge-position-top-right,
-		&.product-badge-position-bottom-right {
-
-			.product-badge {
-				align-self: flex-end;
-			}
-		}
-	}
-
+	
 	.product-info {
 
 		.product-manufacturer {
@@ -235,19 +210,6 @@ body {
 			}
 		}
 
-		.product-bulk-discounts {
-
-			.product-bulk-discount-header {
-				border-bottom: 1px solid var(--style-border-color);
-				padding: spacer(2) spacer(3);
-			}
-
-			.product-bulk-discount-item {
-				border-bottom: 1px solid var(--style-border-color);
-				padding: spacer(2) spacer(3);
-			}
-		}
-
 		.product-related-items-container {
 			
 			.product-related-items {
@@ -282,18 +244,22 @@ body {
 
 		.product-form {
 
-			.product-wishlist-action {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				border-width: 2px;
-				border-style: solid;
-				text-align: center;
-				border-radius: $btn-border-radius;
+			.product-action-add-to-cart {
 
-				&[aria-pressed="true"],
-				&:hover {
-					border-color: var(--style-btn-bg-color);
+				.product-wishlist-action {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border-width: 2px;
+					border-style: solid;
+					text-align: center;
+					border-radius: $btn-border-radius;
+					width: 4em;
+	
+					&[aria-pressed="true"],
+					&:hover {
+						border-color: var(--style-btn-bg-color);
+					}
 				}
 			}
 		}
@@ -389,29 +355,18 @@ body {
 					}
 				}
 			}
-
-			.product-attachments {
-
-				.product-attachment-item {
-					margin-bottom: spacer(2);
-
-					&:last-child {
-						margin-bottom: 0;
-					}
-				}
-			}
 		}
 
 		.product-highlights {
 
 			div:first-child {
-				border-top-left-radius: var(--style-border-radius);
-				border-top-right-radius: var(--style-border-radius);
+				border-top-left-radius: var(--style-component-border-radius);
+				border-top-right-radius: var(--style-component-border-radius);
 			}
 
 			div:last-child {
-				border-bottom-left-radius: var(--style-border-radius);
-				border-bottom-right-radius: var(--style-border-radius);
+				border-top-left-radius: var(--style-component-border-radius);
+				border-top-right-radius: var(--style-component-border-radius);
 			}
 		}
 

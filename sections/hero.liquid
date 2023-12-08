@@ -1,7 +1,7 @@
+{%- assign sectionMinHeight = section.settings.sectionMinHeight | append: 'vh' -%}
 {%- assign cols = section.settings.cols | split: ',' -%}
 {%- assign leftColSize = cols[0] -%}
 {%- assign rightColSize = cols[1] -%}
-{%- assign sectionMinHeight = section.settings.sectionMinHeight | append: 'vh' -%}
 
 {%- if section.settings.sectionOverline -%}
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
@@ -14,6 +14,16 @@
 {%- if section.settings.sectionSubtitle -%}
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
 {%- endif -%}
+
+{%- capture sectionStyle -%}
+    @media screen and (max-width: {{ settings.styleGridBreakpointLg }}) {
+        #finqu-section-{{ section.id }} .section-inner {
+            --section-min-height: {{ section.settings.sectionMinHeight | divided_by: 2 | append: 'vh' }};
+        }
+    }
+{%- endcapture -%}
+
+<style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
 
 {%- capture imgColContent -%}
 
@@ -359,7 +369,7 @@
 
 {%- endcapture -%}
 
-{% render 'section', section: section, sectionContent: sectionContent, sectionContentAnimation: false, sectionHeader: false, sectionHeaderTextAlign: textHorizontalAlign, sectionMinHeight: sectionMinHeight %}
+{% render 'section', section: section, sectionContent: sectionContent, sectionContentAnimation: false, sectionHeader: false, sectionHeaderTextAlign: textHorizontalAlign %}
 
 {% schema %}
 {
@@ -865,7 +875,7 @@
                             {
                                 "value": "dark",
                                 "label": {
-                                    "en": "Dark background / light content",
+                                    "en": "Dark background / Light content",
                                     "fi": "Tumma tausta / Vaalea sisältö"
                                 }
                             },

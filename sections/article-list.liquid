@@ -12,8 +12,12 @@
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
 {%- endif -%}
 
+{%- unless section.settings.sectionQuickLinkResource.url -%}
+    {%- assign quickLinkUrl = routes.blog_url -%}
+{%- endunless -%}
+
 {%- capture sectionAction -%}
-    {% render 'section-quick-link', section: section %}
+    {% render 'section-quick-link', section: section, quickLinkUrl: quickLinkUrl %}
 {%- endcapture -%}
 
 {%- capture sectionContent -%}
@@ -162,6 +166,15 @@
                                 "label": "3"
                             }
                         ],
+                        "conditions": ["!sectionQuickLinkText eq blank"]
+                    },
+                    {
+                        "id": "sectionQuickLinkResource",
+                        "type": "url",
+                        "label": {
+                            "en": "Quick link",
+                            "fi": "Pikalinkki"
+                        },
                         "conditions": ["!sectionQuickLinkText eq blank"]
                     },
                     {
@@ -470,7 +483,7 @@
                             {
                                 "value": "dark",
                                 "label": {
-                                    "en": "Dark background / light content",
+                                    "en": "Dark background / Light content",
                                     "fi": "Tumma tausta / Vaalea sisältö"
                                 }
                             },
@@ -652,7 +665,8 @@
     "presets": [
         {
             "settings": {
-                "sectionTitle": "Featured articles"
+                "sectionTitle": "Featured articles",
+                "sectionQuickLinkText": "See all articles"
             }
         }
     ]

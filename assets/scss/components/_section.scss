@@ -11,7 +11,6 @@
 		color: var(--style-text-color);
 		height: var(--section-height, auto);
 		min-height: var(--section-min-height, auto);
-		text-align: var(--section-text-align, left);
 		padding-top: calc(var(--section-padding-top) / 2);
 		padding-bottom: calc(var(--section-padding-bottom) / 2);
 
@@ -201,27 +200,27 @@
 		.action-container {
 
 			& + .breadcrumbs-container {
-				@include padding-top(spacer(3));
+				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
 			}
 
 			& + .overline-container {
-				@include padding-top(spacer(3));
+				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
 			}
 
 			& + .title-container {
-				@include padding-top(spacer(3));
+				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
 			}
 
 			& + .subtitle-container {
-				@include padding-top(spacer(1));
+				@include padding-top(calc(spacer(1) * var(--section-header-gap-scale)));
 
 				& + .description-container {
-					@include padding-top(spacer(6));
+					@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
 				}
 			}
 
 			& + .description-container {
-				@include padding-top(spacer(6));
+				@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
 			}
 		}
 
@@ -229,23 +228,23 @@
 			display: flex;
 
 			& + .overline-container {
-				@include padding-top(spacer(3));
+				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
 			}
 
 			& + .title-container {
-				@include padding-top(spacer(3));
+				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
 			}
 
 			& + .subtitle-container {
-				@include padding-top(spacer(1));
+				@include padding-top(calc(spacer(1) * var(--section-header-gap-scale)));
 
 				& + .description-container {
-					@include padding-top(spacer(6));
+					@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
 				}
 			}
 
 			& + .description-container {
-				@include padding-top(spacer(6));
+				@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
 			}
 
 			.breadcrumbs {
@@ -282,15 +281,15 @@
 			align-items: center;
 
 			& + .subtitle-container {
-				@include padding-top(spacer(3));
+				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
 
 				& + .description-container {
-					@include padding-top(spacer(6));
+					@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
 				}
 			}
 
 			& + .description-container {
-				@include padding-top(spacer(6));
+				@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
 			}
 
 			.title {
@@ -387,19 +386,19 @@
 		.overline-container {
 
 			& + .title-container {
-				@include padding-top(spacer(3));
+				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
 			}
 
 			& + .subtitle-container {
-				@include padding-top(spacer(1));
+				@include padding-top(calc(spacer(1) * var(--section-header-gap-scale)));
 
 				& + .description-container {
-					@include padding-top(spacer(6));
+					@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
 				}
 			}
 
 			& + .description-container {
-				@include padding-top(spacer(6));
+				@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
 			}
 
 			.overline {
@@ -616,6 +615,7 @@
 		flex-direction: column;
 		position: relative;
 		overflow: var(--section-content-overflow, visible);
+		text-align: var(--section-content-text-align);
 
 		.section-tab-content {
 			position: absolute;

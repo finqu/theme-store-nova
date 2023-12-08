@@ -13,15 +13,20 @@ export default function() {
     let catalogFiltersFormEl = null;
 
     if (matchMedia.matches) {
-        catalogFiltersFormEl = containerEl.querySelector('#catalog-filters-form');
+
+        const el = containerEl.querySelector('#catalog-filters-form');
+        catalogFiltersFormEl = el ? el : false;
+
     } else {
-        catalogFiltersFormEl = containerEl.querySelector('#catalog-filters-mobile-form');
+
+        const el = containerEl.querySelector('#catalog-filters-mobile-form');
+        catalogFiltersFormEl = el ? el : false;
     }
 
-    const catalogRangeSliderEls = catalogFiltersFormEl.querySelectorAll('.range-slider');
-    const catalogFilterInputEls = catalogFiltersFormEl.querySelectorAll('input');
-    const facetResultCountEls = catalogFiltersFormEl.querySelectorAll('[data-facet-result-count]');
-    const filtersMobileNavigationCtaEl = containerEl.querySelector('.filters-mobile-navigation-container .filters-mobile-navigation-footer-inner-cta');
+    const catalogRangeSliderEls = catalogFiltersFormEl ? catalogFiltersFormEl.querySelectorAll('.range-slider') : [];
+    const catalogFilterInputEls = catalogFiltersFormEl ? catalogFiltersFormEl.querySelectorAll('input') : [];
+    const facetResultCountEls = catalogFiltersFormEl ? catalogFiltersFormEl.querySelectorAll('[data-facet-result-count]'): [];
+    const filtersMobileNavigationCtaEl = catalogFiltersFormEl ? containerEl.querySelector('.filters-mobile-navigation-container .filters-mobile-navigation-footer-inner-cta') : null;
 
     let catalogDynamicContentEl = containerEl.querySelector('.catalog-dynamic-content');
     let catalogResetFiltersEls = catalogDynamicContentEl.querySelectorAll('.catalog-reset-filters');
@@ -99,9 +104,9 @@ export default function() {
                     });
                 }
 
-                if (itemCountEl) {
+                if (filtersMobileNavigationCtaEl) {
 
-                    const itemCount = itemCountEl.getAttribute('data-catalog-items-count');
+                    const itemCount = itemCountEl ? itemCountEl.getAttribute('data-catalog-items-count') : '0';
 
                     if (itemCount == 1) {
 
@@ -115,12 +120,6 @@ export default function() {
                             amount: itemCount
                         });
                     }
-
-                } else {
-
-                    filtersMobileNavigationCtaEl.innerText = theme.utils.t('filters.show_result_plural', {
-                        amount: '0'
-                    });
                 }
 
                 catalogDynamicContentEl.replaceWith(newCatalogDynamicContent);

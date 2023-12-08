@@ -540,7 +540,10 @@ export default function() {
         initCart();
     }
 
-    initSearch();
+    if (theme.store.accessibility.showSearch) {
+        initSearch();
+    }
+
     initNavigation();
     initMobileNavigation();
 }

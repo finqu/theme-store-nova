@@ -3,6 +3,9 @@
 
 	Accepts:
 	- section: {String} (Required)
+    - quickLinkStyle {String
+    - quickLinkText {String}
+    - quickLinkUrl {String}
 
 	Usage:
 	Render this snippet inside of liquid capture and pass it to section snippet as sectionAction.
@@ -10,30 +13,32 @@
 	{% render 'section-quick-link', section: section %}
 {% endcomment %}
 
-{%- if section.settings.sectionQuickLinkText | strip -%}
+{%- assign quickLinkStyle = quickLinkStyle | default: section.settings.sectionQuickLinkStyle -%}
+{%- assign quickLinkText = quickLinkText | default: section.settings.sectionQuickLinkText -%}
+{%- assign quickLinkUrl = quickLinkUrl | default: section.settings.sectionQuickLinkResource.url -%}
 
-    {%- if section.settings.sectionQuickLinkStyle == 'nil' -%}
-        {%- assign sectionQuickLinkStyle = settings.sectionQuickLinkStyle -%}
-    {%- else -%}
-        {%- assign sectionQuickLinkStyle = section.settings.sectionQuickLinkStyle -%}
+{%- if quickLinkText | strip -%}
+
+    {%- if quickLinkStyle == 'nil' -%}
+        {%- assign quickLinkStyle = settings.sectionQuickLinkStyle -%}
     {%- endif -%}
 
-     {%- case sectionQuickLinkStyle -%}
+     {%- case quickLinkStyle -%}
         {% when 'primary' %}
-            {%- assign sectionQuickLinkClass = 'btn btn-primary btn-sm' -%}
+            {%- assign quickLinkClass = 'btn btn-primary btn-sm' -%}
         {% when 'secondary' %}
-            {%- assign sectionQuickLinkClass = 'btn btn-secondary btn-sm' -%}
+            {%- assign quickLinkClass = 'btn btn-secondary btn-sm' -%}
         {% when 'link' %}
-            {%- assign sectionQuickLinkClass = 'text-reset text-underline-indicator fw-bold' -%}
+            {%- assign quickLinkClass = 'text-reset text-underline-indicator fw-bold' -%}
         {% when 'link-with-icon' %}
-            {%- assign sectionQuickLinkClass = 'text-reset text-icon-with-underline-indicator fw-bold' -%}
+            {%- assign quickLinkClass = 'text-reset text-icon-with-underline-indicator fw-bold' -%}
     {%- endcase -%}
 
-    <a href="{{ section.settings.sectionQuickLinkResource.url | default: '#' }}" class="{{ sectionQuickLinkClass }}">
+    <a href="{{ quickLinkUrl | default: '#' }}" class="{{ quickLinkClass }}">
 
-        {{- section.settings.sectionQuickLinkText -}}
+        {{- quickLinkText -}}
 
-        {%- if sectionQuickLinkStyle == 'link-with-icon' -%}
+        {%- if quickLinkStyle == 'link-with-icon' -%}
             {%- render 'icon', icon: 'arrow-right' -%}
         {%- endif -%}
 

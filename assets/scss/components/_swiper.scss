@@ -68,7 +68,7 @@
 			}
 
 			@include media-breakpoint-up(md) {
-				--swiper-visible-slides: calc(100 / var(--swiper-slide-width-md, var(--swiper-slide-width-sm, var(--swiper-slide-width))) );
+				--swiper-visible-slides: calc(100 / var(--swiper-slide-width-md, var(--swiper-slide-width-sm, var(--swiper-slide-width))));
 				--swiper-slide-width-in-percentage: calc(var(--swiper-slide-width-md, var(--swiper-slide-width-sm, var(--swiper-slide-width))) / 100);
 			}
 

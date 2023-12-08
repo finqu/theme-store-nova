@@ -50,7 +50,6 @@
         "shipping_price": "Shipping costs",
         "vat_included": "VAT included",
         "cart": "Cart",
-        "wishlist": "Wishlist",
         "login_or_signup": "Login / Signup",
         "policies": {
             "terms_and_conditions": "Terms & Conditions",
@@ -59,7 +58,8 @@
             "privacy_policy": "Privacy policy"
         },
         "collapse_show_more": "Read more",
-        "collapse_show_less": "Show less"
+        "collapse_show_less": "Show less",
+        "favourites": "Favourites"
     },
     "klarna": {
         "enable_klarna_from_settings": "Enable Klarna On-Site messaging from theme settings to view this content."
@@ -82,7 +82,7 @@
             "receipt": "Receipt",
             "account": "Account",
             "edit_account": "Edit account information",
-            "wishlist": "Wishlist",
+            "wishlist": "Favorites",
             "orders": "Orders",
             "confirmation": "Confirmation page",
             "password": "Coming soon",
@@ -146,10 +146,11 @@
         "attachments": "Attachments",
         "bulk_discount": "Bulkrate discount",
         "discount_rate": "Discount rate",
+        "sale": "Sale",
         "new": "New",
         "in_stock": "In stock",
         "low_on_stock_dynamic": "Only {{ amount }} left in stock",
-        "out_of_stock": "Ouf ot stock",
+        "out_of_stock": "Ouf of stock",
         "write_review": "Write a review",
         "write_product_review": "Write a product review",
         "reviews": "Reviews",
@@ -174,6 +175,7 @@
     "cart": {
         "title": "Your cart",
         "add": "Add to cart",
+        "buy_now": "Buy now",
         "empty_title": "Your cart is empty",
         "empty_description": "You have no items in your shopping cart.",
         "proceed_to_checkout": "Proceed to checkout",
@@ -187,10 +189,12 @@
         "remove": "Remove"
     },
     "wishlist": {
-        "title": "Your wishlist",
-        "empty_title": "Your wishlist is empty",
-        "empty_description": "You have no items in your wishlist.",
-        "continue_browsing": "Continue browsing"
+        "title": "Your favorites",
+        "empty_title": "Your favourites list is empty",
+        "empty_description": "You have no items in your favourites.",
+        "continue_browsing": "Continue browsing",
+        "add": "Add to favourites",
+        "remove": "Remove from favourites"
     },
     "error": {
         "general": "An error occurred",
@@ -216,7 +220,7 @@
         "rating": "Invalid rating for review.",
         "not_reviewed": "Review cannot be removed because you have not reviewed this product yet.",
         "username_taken": "Email address is already taken.",
-        "stock": "Not enough products in storage.",
+        "stock": "Not enough products in stock.",
         "terms_of_use": "You must agree to terms of use.",
         "min_length": "characters minimum.",
         "privacy_policy": "You must accept handling of personal information and be at least 16 years old.",

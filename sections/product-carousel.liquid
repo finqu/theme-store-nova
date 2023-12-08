@@ -72,7 +72,7 @@
             {%- capture promotionImgSrc -%}
 
                 {%- capture placeholderSvg -%}
-                    {%- render 'placeholder-svg', type: 'image', base64: true -%}
+                    {%- render 'placeholder-svg', type: 'image', base64: true, width: 500, height: 500 -%}
                 {%- endcapture -%}
 
                 {%- if section.settings.promotionImgSrc -%}
@@ -83,9 +83,9 @@
 
             {%- endcapture -%}
 
-            <div class="swiper-slide promotion-slide">
+            <div class="swiper-slide promotion-slide{% if carouselProducts.size < 1 and request.design_mode == false %} min-h-px-350 min-h-px-md-500{% endif %}">
 
-                <div class="d-flex flex-column border-radius justify-content-end p-4 h-100 lazy {% if section.settings.promotionImgSrc %}bg-size-cover{% else %}bg-accent{% endif %}{% if section.settings.promotionImgPos != 'nil' %} bg-position-{{ section.settings.promotionImgPos }}{% endif %}" data-bg-set="{{- promotionImgSrc | strip -}}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ carouselSlideIndex }}">
+                <div class="d-flex flex-column border-radius justify-content-end p-4 h-100 lazy {% if tab.settings.promotionImgSrc %}bg-size-cover{% else %}bg-accent{% if tab.settings.promotionImgPos == 'nil' %} bg-position-center-center{% endif %}{% endif %}{% if section.settings.promotionImgPos != 'nil' %} bg-position-{{ section.settings.promotionImgPos }}{% endif %}" data-bg-set="{{- promotionImgSrc | strip -}}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ carouselSlideIndex }}">
 
                     {% if section.settings.promotionText %}
 
@@ -127,7 +127,7 @@
 
                         {% if section.settings.customDisplayInformation %}
 
-                            {%- render 'product-card-grid', product: product, productPerRow: productPerRow, showDiscountBadge: section.settings.showDiscountBadge, showOutOfStockBadge: section.settings.showOutOfStockBadge, showNewBadge: section.settings.showNewBadge, showManufacturer: section.settings.showManufacturer, showName: section.settings.showProductName, showPricing: section.settings.showPricing, showAddToCart: section.settings.showAddToCart, showStockBalance: section.settings.showStockBalance -%}
+                            {%- render 'product-card-grid', product: product, productPerRow: productPerRow, showDiscountBadge: section.settings.showDiscountBadge, showOutOfStockBadge: section.settings.showOutOfStockBadge, showNewBadge: section.settings.showNewBadge, showPromotionBadge: section.settings.showPromotionBadge, showManufacturer: section.settings.showManufacturer, showName: section.settings.showProductName, showPricing: section.settings.showPricing, showAddToCart: section.settings.showAddToCart, showStockBalance: section.settings.showStockBalance -%}
 
                         {% else %}
 
@@ -151,7 +151,7 @@
 
                         {% if section.settings.customDisplayInformation %}
 
-                            {%- render 'product-card-grid', productPerRow: productPerRow, productPerRow: productPerRow, showDiscountBadge: section.settings.showDiscountBadge, showOutOfStockBadge: section.settings.showOutOfStockBadge, showNewBadge: section.settings.showNewBadge, showManufacturer: section.settings.showManufacturer, showName: section.settings.showProductName, showPricing: section.settings.showPricing, showAddToCart: section.settings.showAddToCart, showStockBalance: section.settings.showStockBalance -%}
+                            {%- render 'product-card-grid', productPerRow: productPerRow, productPerRow: productPerRow, showDiscountBadge: section.settings.showDiscountBadge, showOutOfStockBadge: section.settings.showOutOfStockBadge, showNewBadge: section.settings.showNewBadge, showPromotionBadge: section.settings.showPromotionBadge, showManufacturer: section.settings.showManufacturer, showName: section.settings.showProductName, showPricing: section.settings.showPricing, showAddToCart: section.settings.showAddToCart, showStockBalance: section.settings.showStockBalance -%}
 
                         {% else %}
 
@@ -470,6 +470,16 @@
                         "label": {
                             "en": "New badge",
                             "fi": "Uutuusmerkki"
+                        },
+                        "default": true,
+                        "conditions": ["customDisplayInformation eq true"]
+                    },
+                    {
+                        "id": "showPromotionBadge",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Promotion badge",
+                            "fi": "Kampanjamerkki"
                         },
                         "default": true,
                         "conditions": ["customDisplayInformation eq true"]
@@ -1044,7 +1054,7 @@
                             {
                                 "value": "dark",
                                 "label": {
-                                    "en": "Dark background / light content",
+                                    "en": "Dark background / Light content",
                                     "fi": "Tumma tausta / Vaalea sisältö"
                                 }
                             },

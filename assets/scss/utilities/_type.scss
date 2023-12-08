@@ -249,3 +249,7 @@ a.text-reset:focus {
 	--bs-secondary-color: var(--style-text-muted-color);
 	--style-text-color: var(--style-text-muted-color);
 }
+
+.text-align-auto {
+	text-align: var(--section-content-text-align);
+}

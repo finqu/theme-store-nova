@@ -90,7 +90,6 @@
 		{%- if request.design_mode == false and session.cookie_policy == nil -%}cookie-policy-visible,{%- endif -%}
 		{%- if request.design_mode == false and session.cookie_policy == nil and settings.cookiesPolicyPosition == 'middle' -%}disable-scroll,{%- endif -%}
 		{{- 'template-' | append: request.page_type | handle | append: ',' -}}
-		{{- 'layout-theme' }}
 	{%- endcapture -%}
 
 	<body class="{{ bodyClasses | strip_newlines | split: ',' | compact | join: ' ' }}">

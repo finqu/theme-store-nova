@@ -82,7 +82,15 @@
                 {% if item.settings.description %}
 
                     <div class="mb-g text-muted">
-                        {{ item.settings.description }}
+
+                        {%- if section.settings.showQuotes -%}
+                            <span class="d-block text-start">
+                                {%- render 'icon', icon: 'quote-open', class: 'svg-icon-2x' -%}
+                            </span>
+                        {%- endif -%}
+
+                        {{- item.settings.description | strip -}}
+
                     </div>
 
                 {% endif %}
@@ -234,6 +242,15 @@
                                 "label": "5"
                             }
                         ]
+                    },
+                    {
+                        "id": "showQuotes",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Show quotes",
+                            "fi": "Näytä lainausmerkit"
+                        },
+                        "default": true
                     }
                 ]
             },
@@ -698,7 +715,7 @@
                             {
                                 "value": "dark",
                                 "label": {
-                                    "en": "Dark background / light content",
+                                    "en": "Dark background / Light content",
                                     "fi": "Tumma tausta / Vaalea sisältö"
                                 }
                             },
@@ -880,14 +897,12 @@
     "presets": [
         {
             "settings": {
-                "sectionTitle": "Testimonials",
+                "sectionTitle": "Our customers feedback",
                 "setting_blocks": {
                     "items": [
                         {
                             "type": "image",
                             "settings": {
-                                "rating": 4,
-                                "heading": "Heading",
                                 "description": "Write a testimonial here.",
                                 "author": "Author",
                                 "authorInfo": "Additional information"
@@ -896,8 +911,6 @@
                         {
                             "type": "image",
                             "settings": {
-                                "rating": 3,
-                                "heading": "Heading",
                                 "description": "Write a testimonial here.",
                                 "author": "Author",
                                 "authorInfo": "Additional information"
@@ -906,8 +919,6 @@
                         {
                             "type": "image",
                             "settings": {
-                                "rating": 5,
-                                "heading": "Heading",
                                 "description": "Write a testimonial here.",
                                 "author": "Author",
                                 "authorInfo": "Additional information"

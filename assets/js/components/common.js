@@ -268,6 +268,7 @@ export default {
 
     	document.querySelectorAll('[data-wishlist-toggle]').forEach(el => { el.addEventListener('click', e => {
 
+            const textEl = el.querySelector('.text');
             const iconEl = el.querySelector('.svg-icon');
     		const id = el.getAttribute('data-wishlist-toggle');
     		const itemEl = document.querySelector('[data-wishlist-item="'+id+'"]');
@@ -317,6 +318,10 @@ export default {
                         theme.utils.animate(iconEl, 'pulse');
                     }
 
+                    if (textEl) {
+                        textEl.textContent = theme.utils.t('wishlist.add');
+                    }
+
                     el.setAttribute('aria-pressed', false);
 
                     document.dispatchEvent(new CustomEvent('theme:wishlist:removeItem', {
@@ -350,6 +355,10 @@ export default {
 
                     if (iconEl) {
                         theme.utils.animate(iconEl, 'pulse');
+                    }
+
+                    if (textEl) {
+                        textEl.textContent = theme.utils.t('wishlist.remove');
                     }
 
 	                el.setAttribute('aria-pressed', true);

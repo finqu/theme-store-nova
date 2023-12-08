@@ -154,6 +154,12 @@
             {%- assign showNewBadge = true -%}
         {%- endif -%}
 
+        {%- if section.settings.customDisplayInformation == true and section.settings.showPromotionBadge -%}
+            {%- assign showPromotionBadge = true -%}
+        {%- elsif settings.productShowPromotionBadge == true -%}
+            {%- assign showPromotionBadge = true -%}
+        {%- endif -%}
+
         {%- if section.settings.customDisplayInformation == true and section.settings.showDiscountBadge -%}
             {%- assign showDiscountBadge = true -%}
         {%- elsif settings.productShowDiscountBadge == true -%}
@@ -403,7 +409,7 @@
 
                             <div id="product-main-media-swiper" class="swiper swiper-navigation-hide-on-desktop gallery col">
 
-                                {% render 'product-badges', product: product, position: 'top-left', showNew: showNewBadge, showDiscount: showDiscountBadge, showOutOfStock: showOutOfStockBadge %}
+                                {% render 'product-badges', product: product, showNew: showNewBadge, showPromotion: showPromotionBadge, showDiscount: showDiscountBadge, showOutOfStock: showOutOfStockBadge %}
 
                                 <div class="swiper-wrapper">
 
@@ -901,7 +907,7 @@
 
                             <div class="product-bulk-discounts mt-4">
 
-                                <div class="product-bulk-discount-header row g-0">
+                                <div class="product-bulk-discount-header row g-0 border-bottom py-2">
 
                                     <div class="col-6">
 
@@ -925,7 +931,7 @@
 
                                     {% if rate.is_percentage %}
 
-                                        <div class="product-bulk-discount-item row g-0">
+                                        <div class="product-bulk-discount-item row g-0 border-bottom py-2">
 
                                             <div class="col-6">
 
@@ -1114,17 +1120,17 @@
 
                                             {% endif %}
 
-                                            <div class="product-action-add-to-cart d-flex">
+                                            <div class="product-action-add-to-cart d-flex mt-5">
 
                                                 <button
                                                     type="button"
-                                                    class="btn btn-primary d-block w-100"
+                                                    class="btn {{ section.settings.showBuyNowButton | yepnope: 'btn-secondary', btn-primary' }} d-block w-100"
                                                     data-cart-add
                                                     data-cart-form>
                                                     {{- 'cart.add' | t -}}
                                                 </button>
 
-                                                {% if session.logged_in %}
+                                                {% if session.logged_in and section.settings.showBuyNowButton == false %}
 
                                                     <button
                                                         type="button"
@@ -1137,6 +1143,47 @@
                                                 {% endif %}
 
                                             </div>
+
+                                            {% if section.settings.showBuyNowButton %}
+
+                                                <div class="product-action-buy-now d-flex mt-2">
+
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-primary d-block w-100"
+                                                        data-cart-add
+                                                        data-cart-checkout
+                                                        data-cart-form>
+                                                        {{- 'cart.buy_now' | t -}}
+                                                    </button>
+
+                                                </div>
+
+                                                {% if session.logged_in %}
+
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-text text-underline-indicator mt-g product-wishlist-action"
+                                                        data-wishlist-toggle="{{ product.id }}"
+                                                        aria-pressed="{{ product.in_customers_wishlist | yepnope: 'true', 'false' }}">
+                                                        
+                                                            {%- render 'icon', icon: 'like', class: 'svg-icon-lg svg-icon-fw' -%}
+                                                            
+                                                            <span class="text">
+
+                                                                {%- if product.in_customers_wishlist -%}
+                                                                    {{- 'wishlist.remove' | t -}}
+                                                                {%- else -%}
+                                                                    {{- 'wishlist.add' | t -}}
+                                                                {%- endif -%}
+
+                                                            </span>
+
+                                                    </button>
+
+                                                {% endif %}
+
+                                            {% endif %}
 
                                             {% render 'form-error', error: form.error, class: 'mt-4' %}
 
@@ -1235,7 +1282,7 @@
 
                                     <div id="accordion-product-description" class="collapse{% if section.settings.openProductDescriptionByDefault %} show{% endif %}" aria-labelledby="accordion-product-description-header" data-bs-parent="#accordion-product-details">
 
-                                        <div class="product-description accordion-body">
+                                        <div class="product-description accordion-body text-richtext">
                                             {{ product.description }}
                                         </div>
 
@@ -1273,12 +1320,17 @@
 
                                             {% for attachment in product.attachments %}
 
-                                                <a href="{{ attachment.href }}" class="product-attachment-item d-flex align-items-center">
+                                                <div{% unless forloop.last == true %} class="mb-3"{% endunless %}> 
 
-                                                    {%- render 'icon', icon: 'download', class: 'svg-icon-2x' -%}
+                                                    <a href="{{ attachment.href }}" class="inline-flex align-items-center">
 
-                                                    <span class="ms-3">{{ attachment.name }}</span>
-                                                </a>
+                                                        {%- render 'icon', icon: 'download', class: 'svg-icon-fw' -%}
+
+                                                        <span>{{ attachment.name }}</span>
+
+                                                    </a>
+
+                                                </div>
 
                                             {% endfor %}
 
@@ -1565,15 +1617,19 @@
 
                                                     </div>
 
-                                                    <div class="product-review-content">
+                                                    {%- if review.title or review.review -%}
 
-                                                        <p class="mb-0">
-                                                            <strong>{{ review.title }}</strong>
-                                                        </p>
+                                                        <div class="product-review-content">
 
-                                                        {{ review.review }}
+                                                            <p class="mb-0">
+                                                                <strong>{{ review.title }}</strong>
+                                                            </p>
 
-                                                    </div>
+                                                            {{ review.review }}
+
+                                                        </div>
+
+                                                    {% endif %}
 
                                                 </div>
 
@@ -1724,7 +1780,7 @@
     {%- assign sectionTitle = 'product.write_product_review' | t -%}
     {%- assign sectionSubtitle = product.name -%}
 
-    {% render 'section', section: section, sectionTitle: sectionTitle, sectionSubtitle: sectionSubtitle, sectionContent: sectionContent, sectionContainer: 'tiny', sectionContentOverflow: 'hidden'  %}
+    {% render 'section', section: section, sectionTitle: sectionTitle, sectionSubtitle: sectionSubtitle, sectionContent: sectionContent, sectionContainer: 'tiny', sectionContentOverflow: 'hidden', sectionInnerGap: '2rem' %}
 
 {% else %}
 
@@ -1732,7 +1788,7 @@
         {%- assign sectionBreadcrumbs = product.breadcrumbs -%}
     {% endif %}
 
-    {% render 'section', section: section, sectionContent: sectionContent, sectionBreadcrumbs: sectionBreadcrumbs, sectionContentAnimation: false %}
+    {% render 'section', section: section, sectionContent: sectionContent, sectionBreadcrumbs: sectionBreadcrumbs, sectionContentAnimation: false, sectionInnerGap: '2rem' %}
 
 {% endif %}
 
@@ -1768,6 +1824,15 @@
                         "label": {
                             "en": "Show breadcrumbs",
                             "fi": "Näytä leivänmuru"
+                        },
+                        "default": true
+                    },
+                    {
+                        "id": "showBuyNowButton",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Show Buy now button",
+                            "fi": "Näytä Osta nyt -painike"
                         },
                         "default": true
                     },
@@ -1860,6 +1925,16 @@
                         "label": {
                             "en": "Show new badge",
                             "fi": "Näytä uutuusmerkki"
+                        },
+                        "default": true,
+                        "conditions": ["customDisplayInformation eq true"]
+                    },
+                    {
+                        "id": "showPromotionBadge",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Promotion badge",
+                            "fi": "Kampanjamerkki"
                         },
                         "default": true,
                         "conditions": ["customDisplayInformation eq true"]

@@ -50,7 +50,6 @@
         "shipping_price": "Toimituskulut",
         "vat_included": "sis. ALV",
         "cart": "Ostoskori",
-        "wishlist": "Toivelista",
         "login_or_signup": "Kirjaudu / Rekisteröidy",
         "policies": {
             "terms_and_conditions": "Käyttöehdot",
@@ -59,7 +58,8 @@
             "privacy_policy": "Tietosuojaseloste"
         },
         "collapse_show_more": "Lue lisää",
-        "collapse_show_less": "Näytä vähemmän"
+        "collapse_show_less": "Näytä vähemmän",
+        "favourites": "Suosikit"
     },
     "klarna": {
         "enable_klarna_from_settings": "Ota Klarna On-Site messaging käyttöön teeman asetuksista nähdäksesi tämän sisällön."
@@ -82,7 +82,7 @@
             "receipt": "Kuitti",
             "account": "Asiakastili",
             "edit_account": "Muokkaa asiakastilin tietoja",
-            "wishlist": "Toivelista",
+            "wishlist": "Suosikit",
             "orders": "Tilaukset",
             "confirmation": "Vahvistussivu",
             "password": "Tulossa pian",
@@ -146,6 +146,7 @@
         "attachments": "Liitteet",
         "bulk_discount": "Määräalennus",
         "discount_rate": "Alennusprosentti",
+        "sale": "Ale",
         "new": "Uutuus",
         "in_stock": "Varastossa",
         "low_on_stock_dynamic": "Vain {{ amount }} jäljellä varastossa",
@@ -174,6 +175,7 @@
     "cart": {
         "title": "Ostoskorisi",
         "add": "Lisää ostoskoriin",
+        "buy_now": "Osta nyt",
         "empty_title": "Ostoskorisi on tyhjä",
         "empty_description": "Sinulla ei ole tuotteita ostoskorissasi.",
         "proceed_to_checkout": "Jatka kassalle",
@@ -187,10 +189,12 @@
         "remove": "Poista"
     },
     "wishlist": {
-        "title": "Toivelistasi",
-        "empty_title": "Toivelistasi on tyhjä",
-        "empty_description": "Sinulla ei ole tuotteita toivelistassasi.",
-        "continue_browsing": "Jatka selaamista"
+        "title": "Omat suosikit",
+        "empty_title": "Suosikkilista on tyhjä",
+        "empty_description": "Sinulla ei ole tuotteita suosikeissa.",
+        "continue_browsing": "Jatka selaamista",
+        "add": "Lisää suosikkeihin",
+        "remove": "Poista suosikeista"
     },
     "blog": {
         "title": "Blogi",
