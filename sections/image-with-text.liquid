@@ -104,7 +104,7 @@
                 {% when 4 %}
                     {%- assign imgSizeLg = '447,5628' -%}
                 {% when 8 %}
-                    {%- assign imgSizeLg = '894,12373' -%}
+                    {%- assign imgSizeLg = '894,1273' -%}
                 {% when 5 %}
                     {%- assign imgSizeLg = '559,789' -%}
                 {% when 7 %}
@@ -247,7 +247,7 @@
 
                     <img
                         alt="{{ section.settings.imgAlt }}"
-                        data-src="{{ section.settings.imgSrc | section: imgSizeSm }}"
+                        data-src="{{ section.settings.imgSrc | thumb: imgSizeSm }}"
                         data-srcset="{{ section.settings.imgSrc | thumb: imgSizeSm }} 1x,{{ section.settings.imgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
                         class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}">
 

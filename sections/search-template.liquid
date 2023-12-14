@@ -1,5 +1,6 @@
 {%- assign searchTerm = search.search_term | rstrip -%}
 {%- assign activeSortOption = search.sort_by | default: search.default_sort_by -%}
+{%- assign animatedItemsCount = settings.productPerRow | times: 2 -%}
 
 {%- if search.results.size > 0 -%}
     {%- assign itemCount = search.results.size -%}
@@ -71,7 +72,7 @@
 
                 {% for product in search.results %}
 
-                    <div class="col" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
+                    <div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}"{% endif %}>
 
                         {%- render 'product-card-grid', product: product -%}
 
@@ -83,7 +84,7 @@
 
                 {% for num in (1..itemCount) %}
 
-                    <div class="col" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
+                    <div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}"{% endif %}>
 
                         {%- render 'product-card-grid' -%}
 

@@ -1,4 +1,5 @@
 {%- assign activeSortOption = category.sort_by | default: category.default_sort_by -%}
+{%- assign animatedItemsCount = settings.productPerRow | times: 2 -%}
 
 {%- if section.settings.showCategoryList and settings.productPerRow > 3 -%}
     {%- assign productPerRow = settings.productPerRow | minus: 1 -%}
@@ -446,7 +447,7 @@
 
                             {% assign url = product | within: category %}
 
-                            <div class="col" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
+                            <div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}"{% endif %}>
 
                                 {%- render 'product-card-grid', product: product, url: url -%}
 
@@ -458,7 +459,7 @@
 
                         {% for num in (1..itemCount) %}
 
-                            <div class="col" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
+                            <div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}"{% endif %}>
 
                                 {%- render 'product-card-grid' -%}
 

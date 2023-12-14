@@ -1,5 +1,6 @@
 {%- assign sectionTitle = 'general.product_catalog' | t -%}
 {%- assign activeSortOption = catalog.sort_by | default: catalog.default_sort_by -%}
+{%- assign animatedItemsCount = settings.productPerRow | times: 2 -%}
 
 {%- if section.settings.showCategoryList and settings.productPerRow > 3 -%}
     {%- assign productPerRow = settings.productPerRow | minus: 1 -%}
@@ -360,7 +361,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right">
 
-                                {% for option in catalog.sort_optionsv %}
+                                {% for option in catalog.sort_options %}
 
                                     <button type="button" class="sort-by-action dropdown-item" value="{{ option }}">
                                         {{ option | prepend: 'filters.sort-by.' | t }}
@@ -382,7 +383,7 @@
 
                         {% for product in catalog.products %}
 
-                            <div class="col" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
+                            <div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}"{% endif %}>
 
                                 {%- render 'product-card-grid', product: product -%}
 
@@ -394,7 +395,7 @@
 
                         {% for num in (1..itemCount) %}
 
-                            <div class="col" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
+                            <div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}"{% endif %}>
 
                                 {%- render 'product-card-grid' -%}
 

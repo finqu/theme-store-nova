@@ -1,5 +1,6 @@
 {%- assign activeSortOption = manufacturer.sort_by | default: manufacturer.default_sort_by -%}
 {%- assign sortOptions = manufacturer.sort_options -%}
+{%- assign animatedItemsCount = settings.productPerRow | times: 2 -%}
 
 {%- if manufacturer.products.size > 0 -%}
     {%- assign itemCount = manufacturer.products.size -%}
@@ -71,7 +72,7 @@
 
                 {% for product in manufacturer.products %}
 
-                    <div class="col" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
+                    <div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}"{% endif %}>
 
                         {%- render 'product-card-grid', product: product -%}
 
@@ -83,7 +84,7 @@
 
                 {% for num in (1..itemCount) %}
 
-                    <div class="col" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
+                    <div class="col"{% if forloop.index <= animatedItemsCount %} data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}"{% endif %}>
 
                         {%- render 'product-card-grid' -%}
 

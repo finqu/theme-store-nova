@@ -56,7 +56,7 @@
 
                 {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
 
-                {% render 'section-header', sectionTitle: section.settings.sectionTitle, sectionTitleTag: section.settings.sectionTitleTag, sectionSubtitle: section.settings.sectionSubtitle, sectionSubtitleTag: section.settings.sectionSubtitleTag, sectionOverline: section.settings.sectionOverline, sectionOverlineTag: section.settings.sectionOverlineTag, sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle %}
+                {% render 'section-header', sectionTitle: section.settings.sectionTitle, sectionTitleTag: section.settings.sectionTitleTag, sectionSubtitle: section.settings.sectionSubtitle, sectionSubtitleTag: section.settings.sectionSubtitleTag, sectionOverline: section.settings.sectionOverline, sectionOverlineTag: section.settings.sectionOverlineTag, sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle, sectionHeaderGapScale: 0.5 %}
 
                 {% if section.settings.btnLabel %}
 
@@ -438,11 +438,11 @@
                         ]
                     },
                     {
-                        "id": "sectionHeaderTextAlign",
+                        "id": "sectionTextAlign",
                         "type": "radio-pill",
                         "label": {
-                            "en": "Heading text align",
-                            "fi": "Otsikon tekstin tasaus"
+                            "en": "Content text align",
+                            "fi": "Sisllön tekstin tasaus"
                         },
                         "default": "nil",
                         "options": [

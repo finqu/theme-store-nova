@@ -122,8 +122,6 @@
     
     {%- if section.settings.sectionHeaderTextAlign and section.settings.sectionHeaderTextAlign != 'nil' -%}
         {%- assign sectionHeaderTextAlign = section.settings.sectionHeaderTextAlign -%}
-    {%- elsif section.id != 'footer' and section.id != 'header' and section.settings.sectionTextAlign != 'nil' -%}
-        {%- assign sectionHeaderTextAlign = section.settings.sectionTextAlign -%}
     {%- elsif section.id != 'footer' and section.id != 'header' -%}
         {%- assign sectionHeaderTextAlign = sectionTextAlign -%}
     {%- endif -%}
@@ -133,8 +131,6 @@
 {%- if sectionContentTextAlign == nil -%}
 
     {%- if section.settings.sectionContentTextAlign and section.settings.sectionContentTextAlign != 'nil' -%}
-        {%- assign sectionContentTextAlign = section.settings.sectionContentTextAlign -%}
-    {%- elsif section.id != 'footer' and section.id != 'header' and section.settings.sectionContentTextAlign != 'nil' -%}
         {%- assign sectionContentTextAlign = section.settings.sectionContentTextAlign -%}
     {%- elsif section.id != 'footer' and section.id != 'header' -%}
         {%- assign sectionContentTextAlign = sectionTextAlign -%}

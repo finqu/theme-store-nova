@@ -44,7 +44,7 @@ export default function() {
         catalogResetFiltersEls = catalogDynamicContentEl.querySelectorAll('.catalog-reset-filters');
         catalogPaginateItemPreviousEl = catalogDynamicContentEl.querySelector('.paginate-item-previous');
         catalogPaginateItemNextEl = catalogDynamicContentEl.querySelector('.paginate-item-next');
-        catalogSortByActionEls = catalogDynamicContentElv.querySelectorAll('.sort-by-action');
+        catalogSortByActionEls = catalogDynamicContentEl.querySelectorAll('.sort-by-action');
         catalogRemoveFilterEls = catalogDynamicContentEl.querySelectorAll('.catalog-remove-filter');
         isProcessing = true;
 
@@ -127,7 +127,7 @@ export default function() {
                 catalogResetFiltersEls = catalogDynamicContentEl.querySelectorAll('.catalog-reset-filters');
                 catalogPaginateItemPreviousEl = catalogDynamicContentEl.querySelector('.paginate-item-previous');
                 catalogPaginateItemNextEl = catalogDynamicContentEl.querySelector('.paginate-item-next');
-                catalogSortByActionEls = catalogDynamicContentElv.querySelectorAll('.sort-by-action');
+                catalogSortByActionEls = catalogDynamicContentEl.querySelectorAll('.sort-by-action');
                 catalogRemoveFilterEls = catalogDynamicContentEl.querySelectorAll('.catalog-remove-filter');
 
                 if (history.pushState) {
