@@ -3,9 +3,11 @@
 
 	Accepts:
 	- section: {String} (Required)
-    - quickLinkStyle {String
-    - quickLinkText {String}
-    - quickLinkUrl {String}
+    - style {String
+    - text {String}
+    - url {String}
+    - openInNewTab {Boolean}
+    - class {String}
 
 	Usage:
 	Render this snippet inside of liquid capture and pass it to section snippet as sectionAction.
@@ -13,35 +15,61 @@
 	{% render 'section-quick-link', section: section %}
 {% endcomment %}
 
-{%- assign quickLinkStyle = quickLinkStyle | default: section.settings.sectionQuickLinkStyle -%}
-{%- assign quickLinkText = quickLinkText | default: section.settings.sectionQuickLinkText -%}
-{%- assign quickLinkUrl = quickLinkUrl | default: section.settings.sectionQuickLinkResource.url -%}
+{%- assign style = style | default: section.settings.sectionQuickLinkStyle -%}
+{%- assign text = text | default: section.settings.sectionQuickLinkText -%}
+{%- assign url = url | default: section.settings.sectionQuickLinkResource.url -%}
 
-{%- if quickLinkText | strip -%}
+{%- if text | strip -%}
 
-    {%- if quickLinkStyle == 'nil' -%}
-        {%- assign quickLinkStyle = settings.sectionQuickLinkStyle -%}
+    {%- if style == 'nil' -%}
+        {%- assign style = settings.sectionQuickLinkStyle -%}
     {%- endif -%}
 
-     {%- case quickLinkStyle -%}
+     {%- case style -%}
         {% when 'primary' %}
-            {%- assign quickLinkClass = 'btn btn-primary btn-sm' -%}
+            {%- assign classes = 'btn btn-primary btn-sm' -%}
         {% when 'secondary' %}
-            {%- assign quickLinkClass = 'btn btn-secondary btn-sm' -%}
+            {%- assign classes = 'btn btn-secondary btn-sm' -%}
         {% when 'link' %}
-            {%- assign quickLinkClass = 'text-reset text-underline-indicator fw-bold' -%}
+            {%- assign classes = 'text-reset text-underline-indicator fw-bold' -%}
         {% when 'link-with-icon' %}
-            {%- assign quickLinkClass = 'text-reset text-icon-with-underline-indicator fw-bold' -%}
+            {%- assign classes = 'text-reset text-icon-with-underline-indicator fw-bold' -%}
     {%- endcase -%}
 
-    <a href="{{ quickLinkUrl | default: '#' }}" class="{{ quickLinkClass }}">
+    {%- if class -%}
+        {%- assign classes = classes | append: ' ' | append: class -%}
+    {%- endif -%}
 
-        {{- quickLinkText -}}
+    {%- capture content -%}
 
-        {%- if quickLinkStyle == 'link-with-icon' -%}
+        {{- text -}}
+
+        {%- if style == 'link-with-icon' -%}
             {%- render 'icon', icon: 'arrow-right' -%}
         {%- endif -%}
 
-    </a>
+    {%- endcapture -%}
+
+    {%- if style == 'link-with-icon' -%}
+        <div class="text-icon-with-underline-indicator-container">
+    {%- endif -%}
+
+    {%- if url -%}
+
+        <a href="{{ url | default: '#' }}" class="{{ classes }}"{% if openInNewTab %} target="_blank"{% endif %}>
+            {{- content -}}
+        </a>
+
+    {%- else -%}
+
+        <span class="{{ classes }}">
+            {{- content -}}
+        </span>
+
+    {% endif %}
+
+    {%- if style == 'link-with-icon' -%}
+        </div>
+    {%- endif -%}
 
 {%- endif -%}

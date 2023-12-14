@@ -14,11 +14,11 @@
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
 {%- endif -%}
 
-{%- if section.settings.sectionHighlightItems == 'nil' and settings.sectionHighlightItems == true -%}
-    {%- assign globalSectionHighlightItems = true -%}
+{%- if section.settings.sectionHighlightItems == 'nil' and settings.sectionHighlightItems == true or section.settings.sectionHighlightItems == true -%}
+    {%- assign sectionHighlightItems = true -%}
 {%- endif -%}
 
-{%- if section.settings.sectionHighlightItems == true or globalSectionHighlightItems == true -%}
+{%- if sectionHighlightItems and section.settings.imgEffect -%}
 
     {%- capture sectionStyle -%}
         #finqu-section-{{ section.id }} .text-container {
@@ -226,7 +226,7 @@
 
     {% endif %}
 
-    <div class="aspect-ratio-{{ section.settings.imgAspectRatio | replace: ':', '-' }} justify-content-{{ section.settings.imgHorizontalAlign }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+    <div class="aspect-ratio-{{ section.settings.imgAspectRatio | replace: ':', '-' }} justify-content-{{ section.settings.imgHorizontalAlign }}" data-aos="{% if section.settings.imgPosition == 'start' %}animate__fadeInLeft{% else %}animate__fadeInRight{% endif %}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
         <div class="aspect-ratio-container">
 
@@ -238,8 +238,8 @@
                         {{- section.settings.imgSrc | thumb: imgSizeLg | thumb:'@2x' }} 2x">
 
                     <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
-                        {{- section.settings.imgSrc | thumb: imgSizeLg }} 1x,
-                        {{- section.settings.imgSrc | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+                        {{- section.settings.imgSrc | thumb: imgSizeMg }} 1x,
+                        {{- section.settings.imgSrc | thumb: imgSizeMd | thumb:'@2x' }} 2x">
 
                     <source data-srcset="
                         {{- section.settings.imgSrc | thumb: imgSizeSm }} 1x,
@@ -288,7 +288,7 @@
             {%- assign textHorizontalAlignClass = 'text-end' -%}
     {%- endcase -%}
 
-    <div class="section-highlight-item section-highlight-item-md {{ textHorizontalAlignClass }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}"  data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+    <div class="section-highlight-item section-highlight-item-md {{ textHorizontalAlignClass }} text-richtext" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
         {{ section.settings.richtext }}
 
@@ -296,31 +296,7 @@
 
             <div class="mt-3">
 
-                {% if section.settings.btnStyle == 'primary' %}
-
-                    <a href="{{- section.settings.btnLink.url -}}" class="btn btn-primary">
-                        {{- section.settings.btnLabel -}}
-                    </a>
-
-                {% elsif section.settings.btnStyle == 'secondary' %}
-
-                    <a href="{{- section.settings.btnLink.url -}}" class="btn btn-secondary">
-                        {{- section.settings.btnLabel -}}
-                    </a>
-
-                {% elsif section.settings.btnStyle == 'link' %}
-
-                    <a href="{{- section.settings.btnLink.url -}}" class="btn btn-link text-underline-indicator fw-bold">
-
-                        <span class="me-2">
-                            {{- section.settings.btnLabel -}}
-                        </span>
-
-                        {%- render 'icon', icon: 'arrow-right', class: 'svg-icon-fw' -%}
-                        
-                    </a>
-
-                {% endif %}
+                {%- render 'section-quick-link', style: section.settings.btnStyle, text: section.settings.btnLabel, url: section.settings.btnLink.url, openInNewTab: section.settings.btnLinkOpenInNewTab -%}
 
             </div>
 
@@ -606,7 +582,17 @@
                             "en": "Image area fill",
                             "fi": "Kuva-alueen täyttö"
                         },
-                        "default": false,
+                        "default": true,
+                        "conditions": ["!imgAspectRatio eq auto"]
+                    },
+                    {
+                        "id": "imgEffect",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Image effect",
+                            "fi": "Kuvaefekti"
+                        },
+                        "default": true,
                         "conditions": ["!imgAspectRatio eq auto"]
                     },
                     {

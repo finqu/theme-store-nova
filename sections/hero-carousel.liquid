@@ -84,31 +84,7 @@
 
                                         <div class="mt-7">
 
-                                            {% if section.settings.btnStyle == 'primary' %}
-
-                                                <a href="{{- item.settings.btnLink.url -}}" class="btn btn-primary">
-                                                    {{- item.settings.btnLabel -}}
-                                                </a>
-
-                                            {% elsif section.settings.btnStyle == 'secondary' %}
-
-                                                <a href="{{- item.settings.btnLink.url -}}" class="btn btn-secondary">
-                                                    {{- item.settings.btnLabel -}}
-                                                </a>
-
-                                            {% elsif section.settings.btnStyle == 'link' %}
-
-                                                <a href="{{- item.settings.btnLink.url -}}" class="btn btn-link text-underline-indicator fw-bold">
-
-                                                    <span class="me-2">
-                                                        {{- item.settings.btnLabel -}}
-                                                    </span>
-
-                                                    {%- render 'icon', icon: 'arrow-right', class: 'svg-icon-fw' -%}
-                                                    
-                                                </a>
-
-                                            {% endif %}
+                                            {%- render 'section-quick-link', style: item.settings.btnStyle, text: item.settings.btnLabel, url: item.settings.btnLink.url, openInNewTab: item.settings.btnLinkOpenInNewTab -%}
 
                                         </div>
 

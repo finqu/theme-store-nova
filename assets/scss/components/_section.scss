@@ -184,6 +184,9 @@
 	.section-header {
 		display: flex;
 		text-align: var(--section-header-text-align, var(--section-text-align, inherit));
+		@include rfs(spacer(1), --style-spacer-1);
+		@include rfs(spacer(3), --style-spacer-3);
+		@include rfs(spacer(6), --style-spacer-6);
 
 		& + .section-tabs,
 		& + .section-content {
@@ -200,27 +203,27 @@
 		.action-container {
 
 			& + .breadcrumbs-container {
-				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-1) * var(--section-header-gap-scale));
 			}
 
 			& + .overline-container {
-				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-3) * var(--section-header-gap-scale));
 			}
 
 			& + .title-container {
-				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-3) * var(--section-header-gap-scale));
 			}
 
 			& + .subtitle-container {
-				@include padding-top(calc(spacer(1) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-1) * var(--section-header-gap-scale));
 
 				& + .description-container {
-					@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
+					padding-top: calc(var(--style-spacer-6) * var(--section-header-gap-scale));
 				}
 			}
 
 			& + .description-container {
-				@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-6) * var(--section-header-gap-scale));
 			}
 		}
 
@@ -228,23 +231,23 @@
 			display: flex;
 
 			& + .overline-container {
-				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-3) * var(--section-header-gap-scale));
 			}
 
 			& + .title-container {
-				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-3) * var(--section-header-gap-scale));
 			}
 
 			& + .subtitle-container {
-				@include padding-top(calc(spacer(1) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-1) * var(--section-header-gap-scale));
 
 				& + .description-container {
-					@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
+					padding-top: calc(var(--style-spacer-6) * var(--section-header-gap-scale));
 				}
 			}
 
 			& + .description-container {
-				@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-6) * var(--section-header-gap-scale));
 			}
 
 			.breadcrumbs {
@@ -281,15 +284,15 @@
 			align-items: center;
 
 			& + .subtitle-container {
-				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-3) * var(--section-header-gap-scale));
 
 				& + .description-container {
-					@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
+					padding-top: calc(var(--style-spacer-6) * var(--section-header-gap-scale));
 				}
 			}
 
 			& + .description-container {
-				@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-6) * var(--section-header-gap-scale));
 			}
 
 			.title {
@@ -386,19 +389,19 @@
 		.overline-container {
 
 			& + .title-container {
-				@include padding-top(calc(spacer(3) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-3) * var(--section-header-gap-scale));
 			}
 
 			& + .subtitle-container {
-				@include padding-top(calc(spacer(1) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-1) * var(--section-header-gap-scale));
 
 				& + .description-container {
-					@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
+					padding-top: calc(var(--style-spacer-6) * var(--section-header-gap-scale));
 				}
 			}
 
 			& + .description-container {
-				@include padding-top(calc(spacer(6) * var(--section-header-gap-scale)));
+				padding-top: calc(var(--style-spacer-6) * var(--section-header-gap-scale));
 			}
 
 			.overline {

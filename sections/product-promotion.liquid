@@ -8,7 +8,8 @@
 {%- assign productRating = product.rating -%}
 {%- assign productMaxRating = product.max_rating -%}
 {%- assign productHasDiscount = product.has_discount | default: false -%}
-{%- assign productUrl = product | link | default: '' -%}
+{%- assign productLinkUrl = product | link | default: '' -%}
+{%- assign productLinkText = 'product.view' | t -%}
 
 {%- if product.description.size > 0 -%}
     {%- assign productDescription = product.description | strip_html | strip | truncate: 300 -%}
@@ -61,12 +62,12 @@
             <div class="product-title" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
                 {%- if product -%}
-                    <a href="{{ productUrl }}">
+                    <a href="{{ productLinkUrl }}">
                 {%- endif -%}
 
-                <span class="display-6 text-title">
+                <{{ section.settings.sectionTitleTag }} class="display-6 text-title">
                     {{- productName -}}
-                </span>
+                </{{ section.settings.sectionTitleTag }}>
 
                 {%- if product -%}
                     </a>
@@ -156,19 +157,7 @@
 
             <div class="product-action mt-4" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
-                {%- if product -%}
-
-                    <a href="{{ productUrl }}" class="btn btn-primary">
-                        {{- 'product.view' | t -}}
-                    </a>
-
-                {%- else -%}
-
-                    <span class="btn btn-primary">
-                        {{- 'product.view' | t -}}
-                    </span>
-
-                {%- endif -%}
+                {%- render 'section-quick-link', style: section.settings.btnStyle, text: productLinkText, url: productLinkUrl -%}
 
             </div>
 
@@ -177,7 +166,7 @@
         <div class="col-12 col-md-6 order-1 order-md-2 position-relative">
 
             {%- if product -%}
-                <a href="{{ productUrl }}">
+                <a href="{{ productLinkUrl }}">
             {%- endif -%}
 
             <div class="product-media d-flex">
@@ -454,6 +443,102 @@
                     {
                         "type": "title",
                         "label": {
+                            "en": "Content",
+                            "fi": "Sisältö"
+                        }
+                    },
+                    {
+                        "id": "sectionTextAlign",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Content align",
+                            "fi": "Sisällön tasaus"
+                        },
+                        "default": "nil",
+                        "options": [
+                            {
+                                "value": "nil",
+                                "label": "Auto"
+                            },
+                            {
+                                "value": "start",
+                                "label": "{# icon.align-start #}"
+                            },
+                            {
+                                "value": "center",
+                                "label": "{# icon.align-center #}"
+                            },
+                            {
+                                "value": "end",
+                                "label": "{# icon.align-end #}"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sectionTitleTag",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Article title SEO priority",
+                            "fi": "Artikkelin otsikon SEO-prioriteetti"
+                        },
+                        "default": "h3",
+                        "options": [
+                            {
+                                "value": "h1",
+                                "label": "H1"
+                            },
+                            {
+                                "value": "h2",
+                                "label": "H2"
+                            },
+                            {
+                                "value": "h3",
+                                "label": "H3"
+                            },
+                            {
+                                "value": "span",
+                                "label": {
+                                    "en": "Text",
+                                    "fi": "Teksti"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "btnStyle",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Button style",
+                            "fi": "Painikkeen tyyli"
+                        },
+                        "default": "primary",
+                        "options": [
+                            {
+                                "value": "primary",
+                                "label": {
+                                    "en": "Style 1",
+                                    "fi": "Tyyli 1"
+                                }
+                            },
+                            {
+                                "value": "secondary",
+                                "label": {
+                                    "en": "Style 2",
+                                    "fi": "Tyyli 2"
+                                }
+                            },
+                            {
+                                "value": "link",
+                                "label": {
+                                    "en": "Style 3",
+                                    "fi": "Tyyli 3"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "title",
+                        "label": {
                             "en": "Section",
                             "fi": "Osio"
                         }
@@ -696,13 +781,6 @@
                 ]
             }
         ]
-    },
-    "presets": [
-        {
-            "settings": {
-                "sectionTitle": "Product promotion"
-            }
-        }
-    ]
+    }
 }
 {% endschema %}

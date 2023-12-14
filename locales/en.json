@@ -238,7 +238,8 @@
         "comment_login": "{{ link }} in order to write a comment.",
         "comment_login_link_text": "Sign in",
         "leave_comment": "Leave a comment",
-        "comment_publish_pending": "Thank you for your comment! We are still reviewing the content before we publish it."
+        "comment_publish_pending": "Thank you for your comment! We are still reviewing the content before we publish it.",
+        "read_article": "Read article"
     },
     "account": {
         "title": "My account",

@@ -270,6 +270,16 @@
 
                             {{- item.settings.richtext -}}
 
+                            {% if item.settings.btnLabel %}
+
+                                <div class="mt-4">
+
+                                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLabel, url: item.settings.btnLink.url, openInNewTab: item.settings.btnLinkOpenInNewTab -%}
+
+                                </div>
+
+                            {% endif %}
+
                         </div>
 
                     </div>
@@ -428,6 +438,31 @@
                                     "en": "Text",
                                     "fi": "Teksti"
                                 }
+                            },
+                            {
+                                "id": "btnLabel",
+                                "type": "text",
+                                "label": {
+                                    "en": "Button text",
+                                    "fi": "Painikkeen teksti"
+                                }
+                            },
+                            {
+                                "id": "btnLink",
+                                "type": "url",
+                                "label": {
+                                    "en": "Button link",
+                                    "fi": "Painikkeen linkki"
+                                }
+                            },
+                            {
+                                "id": "btnLinkOpenInNewTab",
+                                "type": "checkbox",
+                                "label": {
+                                    "en": "Open link in a new tab",
+                                    "fi": "Avaa linkki uudessa välilehdessä"
+                                },
+                                "default": false
                             },
                             {
                                 "id": "imgSrc",
@@ -591,6 +626,38 @@
                         },
                         "default": false,
                         "conditions": ["!imgAspectRatio eq auto"]
+                    },
+                    {
+                        "id": "btnStyle",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Button style",
+                            "fi": "Painikkeen tyyli"
+                        },
+                        "default": "primary",
+                        "options": [
+                            {
+                                "value": "primary",
+                                "label": {
+                                    "en": "Style 1",
+                                    "fi": "Tyyli 1"
+                                }
+                            },
+                            {
+                                "value": "secondary",
+                                "label": {
+                                    "en": "Style 2",
+                                    "fi": "Tyyli 2"
+                                }
+                            },
+                            {
+                                "value": "link",
+                                "label": {
+                                    "en": "Style 3",
+                                    "fi": "Tyyli 3"
+                                }
+                            }
+                        ]
                     },
                     {
                         "type": "title",

@@ -74,11 +74,11 @@
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
 {%- endif -%}
 
-{%- if section.settings.sectionHighlightItems == 'nil' and settings.sectionHighlightItems == true -%}
-    {%- assign globalSectionHighlightItems = true -%}
+{%- if section.settings.sectionHighlightItems == 'nil' and settings.sectionHighlightItems == true or section.settings.sectionHighlightItems == true -%}
+    {%- assign sectionHighlightItems = true -%}
 {%- endif -%}
 
-{%- if section.settings.sectionHighlightItems == true or globalSectionHighlightItems == true -%} 
+{%- if sectionHighlightItems -%} 
 
     {%- capture sectionStyle -%}
         #finqu-section-{{ section.id }} .text-container {
@@ -181,30 +181,11 @@
 
                     {% if section.settings.btnLabel %}
 
-                        {% if section.settings.btnStyle == 'primary' %}
+                        <div class="mt-3">
 
-                            <a href="{{- section.settings.btnLink.url -}}" class="btn btn-primary">
-                                {{- section.settings.btnLabel -}}
-                            </a>
+                            {%- render 'section-quick-link', style: section.settings.btnStyle, text: section.settings.btnLabel, url: section.settings.btnLink.url, openInNewTab: section.settings.btnLinkOpenInNewTab -%}
 
-                        {% elsif section.settings.btnStyle == 'secondary' %}
-
-                            <a href="{{- section.settings.btnLink.url -}}" class="btn btn-secondary">
-                                {{- section.settings.btnLabel -}}
-                            </a>
-
-                        {% elsif section.settings.btnStyle == 'link' %}
-
-                            <a href="{{- section.settings.btnLink.url -}}" class="btn btn-link text-underline-indicator fw-bold">
-
-                                <span class="me-2">
-                                    {{- section.settings.btnLabel -}}
-                                </span>
-
-                                {%- render 'icon', icon: 'arrow-right', class: 'svg-icon-fw' -%}
-                            </a>
-
-                        {% endif %}
+                        </div>
 
                     {% endif %}
 
@@ -234,30 +215,11 @@
 
                     {% if section.settings.btnLabel %}
 
-                        {% if section.settings.btnStyle == 'primary' %}
+                        <div class="mt-3">
 
-                            <a href="{{- section.settings.btnLink.url -}}" class="btn btn-primary">
-                                {{- section.settings.btnLabel -}}
-                            </a>
+                            {%- render 'section-quick-link', style: section.settings.btnStyle, text: section.settings.btnLabel, url: section.settings.btnLink.url, openInNewTab: section.settings.btnLinkOpenInNewTab -%}
 
-                        {% elsif section.settings.btnStyle == 'secondary' %}
-
-                            <a href="{{- section.settings.btnLink.url -}}" class="btn btn-secondary">
-                                {{- section.settings.btnLabel -}}
-                            </a>
-
-                        {% elsif section.settings.btnStyle == 'link' %}
-
-                            <a href="{{- section.settings.btnLink.url -}}" class="btn btn-link text-underline-indicator fw-bold">
-
-                                <span class="me-2">
-                                    {{- section.settings.btnLabel -}}
-                                </span>
-
-                                {%- render 'icon', icon: 'arrow-right', class: 'svg-icon-fw' -%}
-                            </a>
-
-                        {% endif %}
+                        </div>
 
                     {% endif %}
 
@@ -346,30 +308,11 @@
 
             {% if section.settings.btnLabel %}
 
-                {% if section.settings.btnStyle == 'primary' %}
+                <div class="mt-3">
 
-                    <a href="{{- section.settings.btnLink.url -}}" class="btn btn-primary">
-                        {{- section.settings.btnLabel -}}
-                    </a>
+                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: section.settings.btnLabel, url: section.settings.btnLink.url, openInNewTab: section.settings.btnLinkOpenInNewTab -%}
 
-                {% elsif section.settings.btnStyle == 'secondary' %}
-
-                    <a href="{{- section.settings.btnLink.url -}}" class="btn btn-secondary">
-                        {{- section.settings.btnLabel -}}
-                    </a>
-
-                {% elsif section.settings.btnStyle == 'link' %}
-
-                    <a href="{{- section.settings.btnLink.url -}}" class="btn btn-link text-underline-indicator fw-bold">
-
-                        <span class="me-2">
-                            {{- section.settings.btnLabel -}}
-                        </span>
-
-                        {%- render 'icon', icon: 'arrow-right', class: 'svg-icon-fw' -%}
-                    </a>
-
-                {% endif %}
+                </div>
 
             {% endif %}
 
@@ -451,30 +394,11 @@
 
                 {% if section.settings.btnLabel %}
 
-                    {% if section.settings.btnStyle == 'primary' %}
+                    <div class="mt-3">
 
-                        <a href="{{- section.settings.btnLink.url -}}" class="btn btn-primary">
-                            {{- section.settings.btnLabel -}}
-                        </a>
+                        {%- render 'section-quick-link', style: section.settings.btnStyle, text: section.settings.btnLabel, url: section.settings.btnLink.url, openInNewTab: section.settings.btnLinkOpenInNewTab -%}
 
-                    {% elsif section.settings.btnStyle == 'secondary' %}
-
-                        <a href="{{- section.settings.btnLink.url -}}" class="btn btn-secondary">
-                            {{- section.settings.btnLabel -}}
-                        </a>
-
-                    {% elsif section.settings.btnStyle == 'link' %}
-
-                        <a href="{{- section.settings.btnLink.url -}}" class="btn btn-link text-underline-indicator fw-bold">
-
-                            <span class="me-2">
-                                {{- section.settings.btnLabel -}}
-                            </span>
-
-                            {%- render 'icon', icon: 'arrow-right', class: 'svg-icon-fw' -%}
-                        </a>
-
-                    {% endif %}
+                    </div>
 
                 {% endif %}
 

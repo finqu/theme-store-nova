@@ -277,31 +277,7 @@
 
             <div class="mt-7" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
-                {% if section.settings.btnStyle == 'primary' %}
-
-                    <a href="{{- section.settings.btnLink.url -}}" class="btn btn-primary">
-                        {{- section.settings.btnLabel -}}
-                    </a>
-
-                {% elsif section.settings.btnStyle == 'secondary' %}
-
-                    <a href="{{- section.settings.btnLink.url -}}" class="btn btn-secondary">
-                        {{- section.settings.btnLabel -}}
-                    </a>
-
-                {% elsif section.settings.btnStyle == 'link' %}
-
-                    <a href="{{- section.settings.btnLink.url -}}" class="btn btn-link text-underline-indicator fw-bold">
-
-                        <span class="me-2">
-                            {{- section.settings.btnLabel -}}
-                        </span>
-
-                        {%- render 'icon', icon: 'arrow-right', class: 'svg-icon-fw' -%}
-                        
-                    </a>
-
-                {% endif %}
+                {%- render 'section-quick-link', style: section.settings.btnStyle, text: section.settings.btnLabel, url: section.settings.btnLink.url, openInNewTab: section.settings.btnLinkOpenInNewTab -%}
 
             </div>
 

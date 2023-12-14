@@ -1,5 +1,3 @@
-{% assign sectionAnimationOrder = 0 %}
-
 {%- if section.settings.sectionOverline -%}
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
 {%- endif -%}
@@ -12,168 +10,171 @@
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
 {%- endif -%}
 
-{% assign textAlign = section.settings.sectionTextAlign %}
+{%- if section.settings.sectionHighlightItems == 'nil' and settings.sectionHighlightItems == true or section.settings.sectionHighlightItems == true -%}
+    {%- assign sectionHighlightItems = true -%}
+{%- endif -%}
 
-{% if textAlign == 'nil' %}
-    {% assign textAlign = settings.sectionTextAlign %}
+{% if section.settings.imgAspectRatio == '16:9' %}
+
+    {%- assign imgSizeSm = '414,251' -%}
+    {%- assign imgSizeMd = '360,220' -%}
+    {%- assign imgSizeLg = '670,395' -%}
+
+{% elsif section.settings.imgAspectRatio == '9:13' %}
+
+    {%- assign imgSizeSm = '414,581' -%}
+    {%- assign imgSizeMd = '360,503' -%}
+    {%- assign imgSizeLg = '670,950' -%}
+
+{% elsif section.settings.imgAspectRatio == '4:3' %}
+
+    {%- assign imgSizeSm = '414,321' -%}
+    {%- assign imgSizeMd = '360,280' -%}
+    {%- assign imgSizeLg = '670,513' -%}
+
+{% elsif section.settings.imgAspectRatio == '1:1' %}
+
+    {%- assign imgSizeSm = '414,414' -%}
+    {%- assign imgSizeMd = '360,360' -%}
+    {%- assign imgSizeLg = '670,670' -%}
+
+{% elsif section.settings.imgAspectRatio == 'auto' %}
+
+    {%- assign imgSizeSm = '414,414' -%}
+    {%- assign imgSizeMd = '360,360' -%}
+    {%- assign imgSizeLg = '670,670' -%}
+
 {% endif %}
-
-{%- capture sectionStyle -%}
-    #finqu-section-{{ section.id }} {
-        --style-grid-gutter-width: {{ settings.styleGridGutterWidth }};
-    }
-    #finqu-section-{{ section.id }} .swiper-slide {
-        --swiper-slide-width: 45;
-        --swiper-slide-width-sm: 40;
-        --swiper-slide-width-md: 35;
-        --swiper-slide-width-lg: 20;
-    }
-    {%- if section.settings.unevenImageSizes -%}
-        #finqu-section-{{ section.id }} .article-card-grid-item {
-            justify-content: center;
-        }
-    {%- endif -%}
-{%- endcapture -%}
-
-<style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
 
 {%- capture sectionContent -%}
 
-    {%- case section.settings.listType -%}
-        {% when 'recent' %}
-            {%- assign items = blog.recent -%}
-        {% when 'last-updated' %}
-            {%- assign items = blog.last_updated -%}
-        {% when 'all' %}
-            {%- assign items = blog.articles -%}
-    {%- endcase -%}
+    <div class="row gy-5 gx-lg-10">
 
-    {%- assign items = items | slice: 0, section.settings.itemAmount -%}
-    
-    {%- capture slides -%}
+        <div class="col-12 col-md-6 d-flex flex-column">
 
-        {% if items.size > 0 %}
+            <div class="section-highlight-item p-md-8 d-flex flex-column my-auto">
 
-            {% for article in items %}
+                {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
 
-                {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+                {% render 'section-header', sectionTitle: section.settings.sectionTitle, sectionTitleTag: section.settings.sectionTitleTag, sectionSubtitle: section.settings.sectionSubtitle, sectionSubtitleTag: section.settings.sectionSubtitleTag, sectionOverline: section.settings.sectionOverline, sectionOverlineTag: section.settings.sectionOverlineTag, sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle %}
 
-                {%- if section.settings.unevenImageSizes -%}
-
-                    {%- assign index = forloop.index | modulo: 2 -%}
-
-                    {% if index == 1 %}
-
-                        {%- assign aspectRatio = '1:1' -%}
-
-                    {% else %}
-
-                        {%- assign aspectRatio = '9:13' -%}
-
-                    {% endif %}   
-
-                {%- else -%}
-
-                    {%- assign aspectRatio = settings.articleImageAspectRatio -%}
-
-                {%- endif -%}
-
-                <div class="swiper-slide">
-
-                    <div class="swiper-slide-inner" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
-
-                        {%- render 'article-card-grid', article: article, articlePerRow: 3, aspectRatio: aspectRatio -%}
-
-                    </div>
-
-                </div>
-
-            {% endfor %}
-
-        {% elsif request.design_mode %}
-
-            {% for num in (1..section.settings.itemAmount) %}
-
-                {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-
-                {%- if section.settings.unevenImageSizes -%}
-
-                    {%- assign index = forloop.index | modulo: 2 -%}
-
-                    {% if index == 1 %}
-
-                        {%- assign aspectRatio = '1:1' -%}
-
-                    {% else %}
-
-                        {%- assign aspectRatio = '9:13' -%}
-
-                    {% endif %}   
-
-                {%- else -%}
-
-                    {%- assign aspectRatio = settings.articleImageAspectRatio -%}
-
-                {%- endif -%}
-
-                <div class="swiper-slide">
-
-                    <div class="swiper-slide-inner" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
-
-                        {%- render 'article-card-grid', article: article, articlePerRow: 3, aspectRatio: aspectRatio -%}
-
-                    </div>
-
-                </div>
-
-            {% endfor %}
-
-        {% endif %}
-
-    {%- endcapture -%}
-
-    <div class="row gy-g">
-
-        <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-{{ textAlign }}">
-
-            {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
-
-            {% render 'section-header', sectionTitle: section.settings.sectionTitle, sectionTitleTag: section.settings.sectionTitleTag, sectionSubtitle: section.settings.sectionSubtitle, sectionSubtitleTag: section.settings.sectionSubtitleTag, sectionOverline: section.settings.sectionOverline, sectionOverlineTag: section.settings.sectionOverlineTag, sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle %}
-
-            {% if section.settings.sectionQuickLinkText %}
-
-                <div class="d-none d-lg-block mt-lg-6" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+                {% if section.settings.btnLabel %}
 
                     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-                    {%- assign sectionQuickLinkAnimationOrder = sectionAnimationOrder -%}
 
-                    {%- unless section.settings.sectionQuickLinkResource.url -%}
-                        {%- assign quickLinkUrl = routes.blog_url -%}
-                    {%- endunless -%}
+                    <div class="mt-g mt-lg-6" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
-                    {%- render 'section-quick-link', section: section, url: quickLinkUrl -%}
+                        {%- render 'section-quick-link', style: section.settings.btnStyle, text: section.settings.btnLabel, url: section.settings.btnLink.url, openInNewTab: section.settings.btnLinkOpenInNewTab -%}
 
-                </div>
+                    </div>
 
-            {% endif %}
-
-        </div>
-
-        <div class="col-12 col-lg-8">
-
-            {%- render 'swiper', slides: slides, slidesPerView: 'auto', style: 2, evenHeightSlides: true, standalone: true, freemode: true, navigation: 'hover' -%}
-
-        </div>
-
-        {% if section.settings.sectionQuickLinkText %}
-
-            <div class="col-12 d-lg-none" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionQuickLinkAnimationOrder }}">
-
-                {% render 'section-quick-link', section: section, url: quickLinkUrl %}
+                {% endif %}
 
             </div>
 
-        {% endif %}
+            {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+
+            <div class="aspect-ratio-{{ section.settings.imgAspectRatio | replace: ':', '-' }} {% if sectionHighlightItems %}mt-10{% else %}mt-6{% endif %}" data-aos="animate__fadeInLeft" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+
+                <div class="aspect-ratio-container">
+
+                    {%- if section.settings.img1Src -%}
+
+                        <picture>
+                            <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
+                                {{- section.settings.img1Src | thumb: imgSizeLg }} 1x,
+                                {{- section.settings.img1Src | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                            <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
+                                {{- section.settings.img1Src | thumb: imgSizeMd }} 1x,
+                                {{- section.settings.img1Src | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+
+                            <source data-srcset="
+                                {{- section.settings.img1Src | thumb: imgSizeSm }} 1x,
+                                {{- section.settings.img1Src | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+
+                            <img
+                                alt="{{ section.settings.img1Alt }}"
+                                data-src="{{ section.settings.img1Src | section: imgSizeSm }}"
+                                data-srcset="{{ section.settings.img1Src | thumb: imgSizeSm }} 1x,{{ section.settings.img1Src | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}">
+
+                        </picture>
+
+                    {%- elsif request.design_mode -%}
+
+                        {%- capture class -%}
+                            aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}
+                        {%- endcapture -%}
+
+                        {% render 'placeholder-svg', type: 'image', class: class %}
+            
+                    {%- endif -%}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-6 d-flex flex-column">
+
+            {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+
+            <div class="aspect-ratio-{{ section.settings.imgAspectRatio | replace: ':', '-' }}" data-aos="animate__fadeInRight" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+
+                <div class="aspect-ratio-container">
+
+                    {%- if section.settings.img2Src -%}
+
+                        <picture>
+                            <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
+                                {{- section.settings.img2Src | thumb: imgSizeLg }} 1x,
+                                {{- section.settings.img2Src | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                            <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
+                                {{- section.settings.img2Src | thumb: imgSizeMd }} 1x,
+                                {{- section.settings.img2Src | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+
+                            <source data-srcset="
+                                {{- section.settings.img2Src | thumb: imgSizeSm }} 1x,
+                                {{- section.settings.img2Src | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+
+                            <img
+                                alt="{{ section.settings.img2Alt }}"
+                                data-src="{{ section.settings.img2Src | section: imgSizeSm }}"
+                                data-srcset="{{ section.settings.img2Src | thumb: imgSizeSm }} 1x,{{ section.settings.img2Src | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}">
+
+                        </picture>
+
+                    {%- elsif request.design_mode -%}
+
+                        {%- capture class -%}
+                            aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}
+                        {%- endcapture -%}
+
+                        {% render 'placeholder-svg', type: 'image', class: class %}
+            
+                    {%- endif -%}
+
+                </div>
+
+            </div>
+
+            {%- if section.settings.richtext -%}
+
+                {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+
+                <div class="text-richtext text-muted section-highlight-item p-md-8 d-flex flex-column my-auto" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}"  data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+
+                    {{- section.settings.richtext -}}
+
+                </div>
+
+            {%- endif -%}
+
+        </div>
 
     </div>
 
@@ -184,12 +185,12 @@
 {% schema %}
 {
     "name": {
-        "en": "Article carousel",
-        "fi": "Artikkelikaruselli"
+        "en": "Images with text",
+        "fi": "Kuvia tekstin kanssa"
     },
     "tag": "section",
-    "class": "section section-article-carousel",
-    "category": "theme-blog",
+    "class": "section section-images-with-text",
+    "category": "theme-basic",
     "settings": {
         "list_type": "tabs",
         "groups": [
@@ -231,106 +232,82 @@
                         }
                     },
                     {
-                        "id": "sectionQuickLinkText",
-                        "type": "text",
+                        "type": "title",
                         "label": {
-                            "en": "Quick link text",
-                            "fi": "Pikalinkin teksti"
+                            "en": "Text",
+                            "fi": "Teksti"
                         }
                     },
                     {
-                        "id": "sectionQuickLinkStyle",
-                        "type": "radio-pill",
+                        "id": "richtext",
+                        "type": "richtext",
                         "label": {
-                            "en": "Quick link style",
-                            "fi": "Pikalinkkin tyyli"
-                        },
-                        "default": "primary",
-                        "options": [
-                            {
-                                "value": "primary",
-                                "label": "1"
-                            },
-                            {
-                                "value": "secondary",
-                                "label": "2"
-                            },
-                            {
-                                "value": "link",
-                                "label": "3"
-                            }
-                        ],
-                        "conditions": ["!sectionQuickLinkText eq blank"]
+                            "en": "Text",
+                            "fi": "Teksti"
+                        }
                     },
                     {
-                        "id": "sectionQuickLinkResource",
+                        "id": "btnLabel",
+                        "type": "text",
+                        "label": {
+                            "en": "Button text",
+                            "fi": "Painikkeen teksti"
+                        }
+                    },
+                    {
+                        "id": "btnLink",
                         "type": "url",
                         "label": {
-                            "en": "Quick link",
-                            "fi": "Pikalinkki"
+                            "en": "Button link",
+                            "fi": "Painikkeen linkki"
+                        }
+                    },
+                    {
+                        "id": "btnLinkOpenInNewTab",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Open link in a new tab",
+                            "fi": "Avaa linkki uudessa välilehdessä"
                         },
-                        "conditions": ["!sectionQuickLinkText eq blank"]
+                        "default": false
                     },
                     {
                         "type": "title",
                         "label": {
-                            "en": "View",
-                            "fi": "Näkymä"
+                            "en": "Image 1",
+                            "fi": "Kuva 1"
                         }
                     },
                     {
-                        "id": "listType",
-                        "type": "select",
-                        "label": {
-                            "en": "Articles",
-                            "fi": "Artikkelit"
-                        },
-                        "default": "recent",
-                        "options": [
-                            {
-                                "value": "recent",
-                                "label": {
-                                    "en": "New articles",
-                                    "fi": "Uusimmat artikkelit"
-                                }
-                            },
-                            {
-                                "value": "last-updated",
-                                "label": {
-                                    "en": "Last updated articles",
-                                    "fi": "Viimeksi päivitetyt artikkelit"
-                                }
-                            },
-                            {
-                                "value": "all",
-                                "label": {
-                                    "en": "All articles",
-                                    "fi": "Kaikki artikkelit"
-                                }
-                            }
-                        ]
+                        "id": "img1Src",
+                        "type": "image-picker"
                     },
                     {
-                        "id": "itemAmount",
+                        "id": "img1Alt",
+                        "type": "text",
                         "label": {
-                            "en": "Article amount",
-                            "fi": "Artikkelimäärä"
-                        },
-                        "type": "range",
-                        "min": 1,
-                        "max": 30,
-                        "step": 1,
-                        "default": 9,
-                        "unit": " "
+                            "en": "Image alt",
+                            "fi": "Kuvan alt-teksti"
+                        }
                     },
                     {
-                        "id": "unevenImageSizes",
-                        "type": "checkbox",
+                        "type": "title",
                         "label": {
-                            "en": "Show images in uneven sizes",
-                            "fi": "Näytä kuvat erikokoisina"
-                        },
-                        "default": true
+                            "en": "Image 2",
+                            "fi": "Kuva 2"
+                        }
+                    },
+                    {
+                        "id": "img2Src",
+                        "type": "image-picker"
+                    },
+                    {
+                        "id": "img2Alt",
+                        "type": "text",
+                        "label": {
+                            "en": "Image alt",
+                            "fi": "Kuvan alt-teksti"
+                        }
                     }
                 ]
             },
@@ -340,6 +317,96 @@
                     "fi": "Asetukset"
                 },
                 "settings": [
+                    {
+                        "type": "title",
+                        "label": {
+                            "en": "Image",
+                            "fi": "Kuva"
+                        }
+                    },
+                    {
+                        "id": "imgAspectRatio",
+                        "type": "select",
+                        "label": {
+                            "en": "Aspect ratio",
+                            "fi": "Kuvasuhde"
+                        },
+                        "default": "1:1",
+                        "options": [
+                            {
+                                "value": "auto",
+                                "label": {
+                                    "en": "Original",
+                                    "fi": "Alkuperäinen"
+                                }
+                            },
+                            {
+                                "value": "16:9",
+                                "label": "16:9"
+                            },
+                            {
+                                "value": "9:13",
+                                "label": "9:13"
+                            },
+                            {
+                                "value": "4:3",
+                                "label": "4:3"
+                            },
+                            {
+                                "value": "1:1",
+                                "label": "1:1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "imgFit",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Image area fill",
+                            "fi": "Kuva-alueen täyttö"
+                        },
+                        "default": true,
+                        "conditions": ["!imgAspectRatio eq auto"]
+                    },
+                    {
+                        "type": "title",
+                        "label": {
+                            "en": "Text",
+                            "fi": "Teksti"
+                        }
+                    },
+                    {
+                        "id": "btnStyle",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Button style",
+                            "fi": "Painikkeen tyyli"
+                        },
+                        "default": "primary",
+                        "options": [
+                            {
+                                "value": "primary",
+                                "label": {
+                                    "en": "Style 1",
+                                    "fi": "Tyyli 1"
+                                }
+                            },
+                            {
+                                "value": "secondary",
+                                "label": {
+                                    "en": "Style 2",
+                                    "fi": "Tyyli 2"
+                                }
+                            },
+                            {
+                                "value": "link",
+                                "label": {
+                                    "en": "Style 3",
+                                    "fi": "Tyyli 3"
+                                }
+                            }
+                        ]
+                    },
                     {
                         "type": "title",
                         "label": {
@@ -371,11 +438,11 @@
                         ]
                     },
                     {
-                        "id": "sectionTextAlign",
+                        "id": "sectionHeaderTextAlign",
                         "type": "radio-pill",
                         "label": {
-                            "en": "Content text align",
-                            "fi": "Sisällön tekstin tasaus"
+                            "en": "Heading text align",
+                            "fi": "Otsikon tekstin tasaus"
                         },
                         "default": "nil",
                         "options": [
@@ -468,8 +535,7 @@
                             {
                                 "value": "h3",
                                 "label": "H3"
-                            },
-                            {
+                            }, {
                                 "value": "span",
                                 "label": {
                                     "en": "Text",
@@ -727,8 +793,8 @@
     "presets": [
         {
             "settings": {
-                "sectionTitle": "Featured articles",
-                "sectionQuickLinkText": "See all articles"
+                "sectionTitle": "Pair images with a fitting heading",
+                "richtext": "<p>Pair images with text to focus on your chosen product, article or brand and tell your customers about it.<\/p>"
             }
         }
     ]

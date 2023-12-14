@@ -1,195 +1,80 @@
-{% assign sectionAnimationOrder = 0 %}
-
-{%- if section.settings.sectionOverline -%}
-    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-{%- endif -%}
-
-{%- if section.settings.sectionTitle -%}
-    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-{%- endif -%}
-
-{%- if section.settings.sectionSubtitle -%}
-    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-{%- endif -%}
-
-{% assign textAlign = section.settings.sectionTextAlign %}
-
-{% if textAlign == 'nil' %}
-    {% assign textAlign = settings.sectionTextAlign %}
-{% endif %}
-
-{%- capture sectionStyle -%}
-    #finqu-section-{{ section.id }} {
-        --style-grid-gutter-width: {{ settings.styleGridGutterWidth }};
-    }
-    #finqu-section-{{ section.id }} .swiper-slide {
-        --swiper-slide-width: 45;
-        --swiper-slide-width-sm: 40;
-        --swiper-slide-width-md: 35;
-        --swiper-slide-width-lg: 20;
-    }
-    {%- if section.settings.unevenImageSizes -%}
-        #finqu-section-{{ section.id }} .article-card-grid-item {
-            justify-content: center;
-        }
-    {%- endif -%}
-{%- endcapture -%}
-
-<style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
-
 {%- capture sectionContent -%}
 
-    {%- case section.settings.listType -%}
-        {% when 'recent' %}
-            {%- assign items = blog.recent -%}
-        {% when 'last-updated' %}
-            {%- assign items = blog.last_updated -%}
-        {% when 'all' %}
-            {%- assign items = blog.articles -%}
-    {%- endcase -%}
+     <div id="accordion-{{ section.id }}" class="accordion accordion-flush">
 
-    {%- assign items = items | slice: 0, section.settings.itemAmount -%}
-    
-    {%- capture slides -%}
+        {% for item in section.settings.setting_blocks.items %}
 
-        {% if items.size > 0 %}
+            <div class="accordion-item" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
 
-            {% for article in items %}
+                <div id="accordion-{{ section.id }}-{{ forloop.index }}-header" class="accordion-header">
 
-                {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+                    <button
+                        class="btn d-block w-100 btn-text d-flex align-items-center"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#accordion-{{ section.id }}-{{ forloop.index }}"
+                        aria-controls="accordion-{{ section.id }}-{{ forloop.index }}"
+                        aria-expanded="false">
 
-                {%- if section.settings.unevenImageSizes -%}
+                        <span class="fw-bold fs-4 my-3">
+                            {{- item.settings.title -}}
+                        </span>
 
-                    {%- assign index = forloop.index | modulo: 2 -%}
+                        <span class="accordion-indicator"></span>
 
-                    {% if index == 1 %}
+                    </button>
 
-                        {%- assign aspectRatio = '1:1' -%}
+                </div>
 
-                    {% else %}
+                <div id="accordion-{{ section.id }}-{{ forloop.index }}" class="collapse" aria-labelledby="accordion-{{ section.id }}-{{ forloop.index }}-header" data-bs-parent="#accordion-{{ section.id }}">
 
-                        {%- assign aspectRatio = '9:13' -%}
-
-                    {% endif %}   
-
-                {%- else -%}
-
-                    {%- assign aspectRatio = settings.articleImageAspectRatio -%}
-
-                {%- endif -%}
-
-                <div class="swiper-slide">
-
-                    <div class="swiper-slide-inner" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
-
-                        {%- render 'article-card-grid', article: article, articlePerRow: 3, aspectRatio: aspectRatio -%}
-
+                    <div class="accordion-body">
+                        {{- item.settings.richtext -}}
                     </div>
 
                 </div>
-
-            {% endfor %}
-
-        {% elsif request.design_mode %}
-
-            {% for num in (1..section.settings.itemAmount) %}
-
-                {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-
-                {%- if section.settings.unevenImageSizes -%}
-
-                    {%- assign index = forloop.index | modulo: 2 -%}
-
-                    {% if index == 1 %}
-
-                        {%- assign aspectRatio = '1:1' -%}
-
-                    {% else %}
-
-                        {%- assign aspectRatio = '9:13' -%}
-
-                    {% endif %}   
-
-                {%- else -%}
-
-                    {%- assign aspectRatio = settings.articleImageAspectRatio -%}
-
-                {%- endif -%}
-
-                <div class="swiper-slide">
-
-                    <div class="swiper-slide-inner" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
-
-                        {%- render 'article-card-grid', article: article, articlePerRow: 3, aspectRatio: aspectRatio -%}
-
-                    </div>
-
-                </div>
-
-            {% endfor %}
-
-        {% endif %}
-
-    {%- endcapture -%}
-
-    <div class="row gy-g">
-
-        <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-{{ textAlign }}">
-
-            {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
-
-            {% render 'section-header', sectionTitle: section.settings.sectionTitle, sectionTitleTag: section.settings.sectionTitleTag, sectionSubtitle: section.settings.sectionSubtitle, sectionSubtitleTag: section.settings.sectionSubtitleTag, sectionOverline: section.settings.sectionOverline, sectionOverlineTag: section.settings.sectionOverlineTag, sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle %}
-
-            {% if section.settings.sectionQuickLinkText %}
-
-                <div class="d-none d-lg-block mt-lg-6" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
-
-                    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-                    {%- assign sectionQuickLinkAnimationOrder = sectionAnimationOrder -%}
-
-                    {%- unless section.settings.sectionQuickLinkResource.url -%}
-                        {%- assign quickLinkUrl = routes.blog_url -%}
-                    {%- endunless -%}
-
-                    {%- render 'section-quick-link', section: section, url: quickLinkUrl -%}
-
-                </div>
-
-            {% endif %}
-
-        </div>
-
-        <div class="col-12 col-lg-8">
-
-            {%- render 'swiper', slides: slides, slidesPerView: 'auto', style: 2, evenHeightSlides: true, standalone: true, freemode: true, navigation: 'hover' -%}
-
-        </div>
-
-        {% if section.settings.sectionQuickLinkText %}
-
-            <div class="col-12 d-lg-none" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionQuickLinkAnimationOrder }}">
-
-                {% render 'section-quick-link', section: section, url: quickLinkUrl %}
 
             </div>
 
-        {% endif %}
+        {% endfor %}
 
     </div>
 
+    {% if section.settings.setting_blocks.items.size > 0 and section.settings.includeFaqSchema %}
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org/",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {%- for item in section.settings.setting_blocks.items -%}
+                {
+                    "@type": "Question",
+                    "name": {{ item.settings.title | json }},
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": {{ item.settings.richtext | strip_html | json }}
+                    }
+                }{% unless forloop.last %},{% endunless %}
+                {%- endfor -%}
+            ]
+        }
+        </script>
+
+    {% endif %}
+
 {%- endcapture -%}
 
-{% render 'section', section: section, sectionContent: sectionContent, sectionContentAnimation: false, sectionHeader: false %}
+{% render 'section', section: section, sectionContent: sectionContent, sectionTextAlign: 'start', sectionContentAnimation: false %}
 
 {% schema %}
 {
     "name": {
-        "en": "Article carousel",
-        "fi": "Artikkelikaruselli"
+        "en": "Accordion tabs",
+        "fi": "Välilehdet"
     },
     "tag": "section",
-    "class": "section section-article-carousel",
-    "category": "theme-blog",
+    "class": "section section-accordion-tabs",
+    "category": "theme-basic",
     "settings": {
         "list_type": "tabs",
         "groups": [
@@ -231,106 +116,64 @@
                         }
                     },
                     {
-                        "id": "sectionQuickLinkText",
-                        "type": "text",
-                        "label": {
-                            "en": "Quick link text",
-                            "fi": "Pikalinkin teksti"
-                        }
-                    },
-                    {
-                        "id": "sectionQuickLinkStyle",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Quick link style",
-                            "fi": "Pikalinkkin tyyli"
-                        },
-                        "default": "primary",
-                        "options": [
-                            {
-                                "value": "primary",
-                                "label": "1"
-                            },
-                            {
-                                "value": "secondary",
-                                "label": "2"
-                            },
-                            {
-                                "value": "link",
-                                "label": "3"
-                            }
-                        ],
-                        "conditions": ["!sectionQuickLinkText eq blank"]
-                    },
-                    {
-                        "id": "sectionQuickLinkResource",
-                        "type": "url",
-                        "label": {
-                            "en": "Quick link",
-                            "fi": "Pikalinkki"
-                        },
-                        "conditions": ["!sectionQuickLinkText eq blank"]
-                    },
-                    {
                         "type": "title",
+                        "label": "Schema"
+                    },
+                    {
+                        "type": "label",
                         "label": {
-                            "en": "View",
-                            "fi": "Näkymä"
+                            "en": "Enable this setting only in the section which content is ment to be shown as FAQ in search engine results.",
+                            "fi": "Ota käyttöön asetus vain siinä osiossa, jonka sisällön haluat näkyvän UKK:na hakukoneiden tuloksissa."
                         }
                     },
                     {
-                        "id": "listType",
-                        "type": "select",
+                        "id": "includeFaqSchema",
+                        "type": "checkbox",
                         "label": {
-                            "en": "Articles",
-                            "fi": "Artikkelit"
+                            "en": "Show content as FAQ in search engines",
+                            "fi": "Näytä sisältö UKK:na hakukoneissa"
                         },
-                        "default": "recent",
-                        "options": [
+                        "default": false
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "en": "Tabs",
+                    "fi": "Välilehdet"
+                },
+                "id": "items",
+                "call_to_action": {
+                    "en": "Add a tab",
+                    "fi": "Lisää välilehti"
+                },
+                "is_sortable": true,
+                "display_icons": true,
+                "setting_blocks": [
+                    {
+                        "type": "text",
+                        "title": {
+                            "en": "Tab",
+                            "fi": "Välilehti"
+                        },
+                        "settings": [
                             {
-                                "value": "recent",
+                                "id": "title",
+                                "type": "text",
                                 "label": {
-                                    "en": "New articles",
-                                    "fi": "Uusimmat artikkelit"
+                                    "en": "Title",
+                                    "fi": "Otsikko"
                                 }
                             },
                             {
-                                "value": "last-updated",
+                                "id": "richtext",
+                                "type": "richtext",
                                 "label": {
-                                    "en": "Last updated articles",
-                                    "fi": "Viimeksi päivitetyt artikkelit"
-                                }
-                            },
-                            {
-                                "value": "all",
-                                "label": {
-                                    "en": "All articles",
-                                    "fi": "Kaikki artikkelit"
+                                    "en": "Text",
+                                    "fi": "Teksti"
                                 }
                             }
                         ]
-                    },
-                    {
-                        "id": "itemAmount",
-                        "label": {
-                            "en": "Article amount",
-                            "fi": "Artikkelimäärä"
-                        },
-                        "type": "range",
-                        "min": 1,
-                        "max": 30,
-                        "step": 1,
-                        "default": 9,
-                        "unit": " "
-                    },
-                    {
-                        "id": "unevenImageSizes",
-                        "type": "checkbox",
-                        "label": {
-                            "en": "Show images in uneven sizes",
-                            "fi": "Näytä kuvat erikokoisina"
-                        },
-                        "default": true
                     }
                 ]
             },
@@ -348,34 +191,11 @@
                         }
                     },
                     {
-                        "id": "sectionHighlightItems",
+                        "id": "sectionHeaderTextAlign",
                         "type": "radio-pill",
                         "label": {
-                            "en": "Content highlight",
-                            "fi": "Sisällön korostaminen"
-                        },
-                        "default": "nil",
-                        "options": [
-                            {
-                                "value": "nil",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": false,
-                                "label": "Off"
-                            },
-                            {
-                                "value": true,
-                                "label": "On"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "sectionTextAlign",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Content text align",
-                            "fi": "Sisällön tekstin tasaus"
+                            "en": "Heading text align",
+                            "fi": "Otsikon tekstin tasaus"
                         },
                         "default": "nil",
                         "options": [
@@ -727,8 +547,45 @@
     "presets": [
         {
             "settings": {
-                "sectionTitle": "Featured articles",
-                "sectionQuickLinkText": "See all articles"
+                "setting_blocks": {
+                    "items": [
+                        {
+                            "type": "text",
+                            "settings": {
+                                "title": "Tab 1",
+                                "richtext": "<p>This is the content for tab 1.<\/p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "settings": {
+                                "title": "Tab 2",
+                                "richtext": "<p>This is the content for tab 2.<\/p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "settings": {
+                                "title": "Tab 3",
+                                "richtext": "<p>This is the content for tab 3.<\/p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "settings": {
+                                "title": "Tab 4",
+                                "richtext": "<p>This is the content for tab 4.<\/p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "settings": {
+                                "title": "Tab 5",
+                                "richtext": "<p>This is the content for tab 5.<\/p>"
+                            }
+                        }
+                    ]
+                }
             }
         }
     ]

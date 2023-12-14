@@ -13,6 +13,7 @@
 	- sectionBreadcrumbs: {Object} Breadcrumbs Liquid object
 	- sectionHeaderClass: {String}
 	- sectionHeaderContainer {String}
+	- sectionHeaderGapScale: {Float}
 	- sectionHeaderAction: {String}
 	- sectionHeaderSecondaryAction: {String}
 	- sectionAnimation: {String}
@@ -34,6 +35,20 @@
 {%- endunless -%}
 
 {% assign sectionAnimationOrder = 0 %}
+
+{%- if sectionHandle and sectionHeaderGapScale -%}
+
+    {%- capture sectionHeaderStyle -%}
+        {{ sectionHandle }} .section-header {
+            --section-header-gap-scale: {{ sectionHeaderGapScale -}};
+		}
+	{%- endcapture -%}
+
+	{%- assign sectionHeaderStyle = sectionHeaderStyle | strip_newlines -%}
+
+	<style>{{ sectionHeaderStyle | strip | replace: '  ', '' | strip_newlines }}</style>
+
+{%- endif -%}
 
 <div class="section-header{% if sectionHeaderClass %} {{ sectionHeaderClass }}{% endif %}{% if sectionHeaderContainer == 'none' %} d-block{% endif %}">
 

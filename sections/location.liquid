@@ -1,133 +1,98 @@
-{%- assign sectionMinHeight = section.settings.sectionMinHeight | append: 'vh' -%}
+{% assign sectionAnimationOrder = 0 %}
 
 {%- if section.settings.sectionOverline -%}
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+    {%- unless hasHeader -%}{%- assign hasHeader = true -%}{%- endunless -%}
 {%- endif -%}
 
 {%- if section.settings.sectionTitle -%}
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+    {%- unless hasHeader -%}{%- assign hasHeader = true -%}{%- endunless -%}
 {%- endif -%}
 
 {%- if section.settings.sectionSubtitle -%}
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+    {%- unless hasHeader -%}{%- assign hasHeader = true -%}{%- endunless -%}
 {%- endif -%}
 
-{%- if section.settings.imgBlur != '0' -%}
+{%- if section.settings.richtext -%}
+    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+    {%- unless hasHeader -%}{%- assign hasHeader = true -%}{%- endunless -%}
+{%- endif -%}
 
-    {%- capture sectionStyle -%}
-        #finqu-section-{{ section.id }} .lazy {
-            transform: scale(1.0{{ section.settings.imgBlur | divided_by: 2 | plus: 2 }});
-            filter: blur({{ section.settings.imgBlur }}px);
+{%- capture sectionStyle -%}
+    #finqu-section-{{ section.id }} iframe {
+        aspect-ratio: 16 / 9;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    #finqu-section-{{ section.id }} .iframe-container {
+        height: {{ section.settings.iframeHeight | append: 'vh'}};
+    }
+    @media screen and (max-width: {{ settings.styleGridBreakpointLg }}) {
+        #finqu-section-{{ section.id }} .iframe-container {
+           height: {{ section.settings.iframeHeight | divided_by: 2 | append: 'vh' }};
         }
-    {%- endcapture -%}
-
-    <style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
-
-{%- endif -%}
-
-{%- capture imgContent -%}
-
-    {%- capture imgSrc -%}
-
-        {%- capture placeholderSvg -%}
-            {%- render 'placeholder-svg', type: 'background', base64: true -%}
-        {%- endcapture -%}
-
-        {%- if section.settings.imgSrc -%}
-            {% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%), rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%)) | {% endif %}url('{{- section.settings.imgSrc | thumb: '1920,1080' -}}') 1x, url('{{- section.settings.imgSrc | thumb: '1920,1080' | thumb: '@2x' -}}') 2x
-        {%- else -%}
-            {% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%), rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%)) | {% endif %}url('{{ placeholderSvg | strip }}') 1x
-        {%- endif -%}
-
-    {%- endcapture -%}
-
-    <div class="lazy position-absolute top-0 start-0 w-100 h-100 bg-position-center{% if section.settings.imgSrc %} bg-size-cover{% endif %}" data-bg-set="{{- imgSrc | strip -}}"></div>
-
+    }
 {%- endcapture -%}
 
-{%- capture textContent -%}
+<style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
 
-    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-    {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
-    
-    {%- if section.settings.sectionTextAlign == 'nil' -%}
-        {%- assign textHorizontalAlign = settings.sectionTextAlign -%}
-    {%- else -%}
-        {%- assign textHorizontalAlign = section.settings.sectionTextAlign -%}
+{%- capture sectionCustomContent -%}
+
+    {%- if hasHeader -%}
+
+        <div class="container mb-g mb-lg-6">
+
+            {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
+
+            {% render 'section-header', sectionTitle: section.settings.sectionTitle, sectionTitleTag: section.settings.sectionTitleTag, sectionSubtitle: section.settings.sectionSubtitle, sectionSubtitleTag: section.settings.sectionSubtitleTag, sectionOverline: section.settings.sectionOverline, sectionOverlineTag: section.settings.sectionOverlineTag, sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle, sectionDescription: section.settings.richtext, sectionHeaderGapScale: 0.512 %}
+
+        </div>
+
     {%- endif -%}
 
-    {%- case textHorizontalAlign -%}
-        {% when 'start' %}
-            {%- assign textHorizontalAlignClass = 'text-start' -%}
-        {% when 'center' %}
-            {%- assign textHorizontalAlignClass = 'text-center' -%}
-        {% when 'end' %}
-            {%- assign textHorizontalAlignClass = 'text-end' -%}
-    {%- endcase -%}
+    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
 
-    <div class="d-flex align-items-center position-absolute top-0 start-0 w-100 h-100">
+    <div class="iframe-container{% unless section.settings.iframeFullscreen %} container{% endunless %}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
-        <div class="d-flex flex-grow-1 justify-content-{{ textHorizontalAlign }} py-4">
+        {%- if section.settings.iframe -%}
 
-            <div class="text-container container-fluid max-w-lg-80">
+            {{- section.settings.iframe -}}
 
-                <div class="{{ textHorizontalAlignClass }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+        {%- else -%}
 
-                    {% render 'section-header', sectionTitle: section.settings.sectionTitle, sectionTitleTag: section.settings.sectionTitleTag, sectionSubtitle: section.settings.sectionSubtitle, sectionSubtitleTag: section.settings.sectionSubtitleTag, sectionOverline: section.settings.sectionOverline, sectionOverlineTag: section.settings.sectionOverlineTag, sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle %}
+            <div class="aspect-ratio-16-9">
 
-                    {% if section.settings.btnLabel %}
+                <div class="aspect-ratio-container">
 
-                        {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+                    {%- capture class -%}
+                        aspect-ratio-item aspect-ratio-item-cover
+                    {%- endcapture -%}
 
-                        <div class="mt-7" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
-
-                            {%- render 'section-quick-link', style: section.settings.btnStyle, text: section.settings.btnLabel, url: section.settings.btnLink.url, openInNewTab: section.settings.btnLinkOpenInNewTab -%}
-
-                        </div>
-
-                    {% endif %}
+                    {% render 'placeholder-svg', type: 'background', class: class %}
 
                 </div>
 
             </div>
 
-        </div>
+        {%- endif -%}
 
     </div>
 
 {%- endcapture -%}
 
-{%- capture sectionContent -%}
-
-    <div class="d-flex flex-column flex-md-row">
-
-        <div class="flex-grow-1 position-relative overflow-hidden min-vh-{{ section.settings.sectionMinHeight | divided_by: 2 }} min-vh-lg-{{ section.settings.sectionMinHeight }}">
-
-            {{- textContent -}}
-
-        </div>
-
-        <div class="flex-grow-1 position-relative overflow-hidden min-vh-{{ section.settings.sectionMinHeight | divided_by: 2 }} min-vh-lg-{{ section.settings.sectionMinHeight }}">
-
-            {{- imgContent -}}
-
-        </div>
-
-    </div>
-
-{%- endcapture -%}
-
-{% render 'section', section: section, sectionContent: sectionContent, sectionContentAnimation: false, sectionHeader: false, sectionHeaderTextAlign: textHorizontalAlign, sectionMinHeight: sectionMinHeight, sectionContainer: 'none', sectionPaddingMode: 'custom', sectionPaddingTop: 0, sectionPaddingBottom: 0 %}
+{% render 'section', section: section, sectionCustomContent: sectionCustomContent, sectionHeader: false %}
 
 {% schema %}
 {
     "name": {
-        "en": "Hero split content",
-        "fi": "Hero jaettu sisältö"
+        "en": "Location",
+        "fi": "Sijainti"
     },
     "tag": "section",
-    "class": "section section-hero-split-content",
-    "category": "theme-hero",
+    "class": "section section-location",
+    "category": "theme-basic",
     "settings": {
         "list_type": "tabs",
         "groups": [
@@ -140,8 +105,8 @@
                     {
                         "type": "title",
                         "label": {
-                            "en": "Text",
-                            "fi": "Teksti"
+                            "en": "Titles",
+                            "fi": "Otsikot"
                         }
                     },
                     {
@@ -169,40 +134,78 @@
                         }
                     },
                     {
-                        "id": "btnLabel",
-                        "type": "text",
-                        "label": {
-                            "en": "Button text",
-                            "fi": "Painikkeen teksti"
-                        }
-                    },
-                    {
-                        "id": "btnLink",
-                        "type": "url",
-                        "label": {
-                            "en": "Button link",
-                            "fi": "Painikkeen linkki"
-                        }
-                    },
-                    {
-                        "id": "btnLinkOpenInNewTab",
-                        "type": "checkbox",
-                        "label": {
-                            "en": "Open link in a new tab",
-                            "fi": "Avaa linkki uudessa välilehdessä"
-                        },
-                        "default": false
-                    },
-                    {
                         "type": "title",
                         "label": {
-                            "en": "Image",
-                            "fi": "Kuva"
+                            "en": "View",
+                            "fi": "Näkymä"
                         }
                     },
                     {
-                        "id": "imgSrc",
-                        "type": "image-picker"
+                        "id": "richtext",
+                        "type": "richtext",
+                        "label": {
+                            "en": "Text",
+                            "fi": "Teksti"
+                        }
+                    },
+                    {
+                        "id": "iframe",
+                        "type": "text",
+                        "label": {
+                            "en": "Google Maps iframe code",
+                            "fi": "Google Maps iframe upotuskoodi"
+                        }
+                    },
+                    {
+                        "id": "iframeFullscreen",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Show iframe as full-width",
+                            "fi": "Näytä iframe täysleveänä"
+                        },
+                        "default": true
+                    },
+                    {
+                        "type": "label",
+                        "label": {
+                            "en": "Copy iframe code from Google Maps by following these steps:",
+                            "fi": "Kopioi iframe-koodi Google Mapsista seuraavasti:"
+                        }
+                    },
+                    {
+                        "type": "label",
+                        "label": {
+                            "en": "1. Go to the Google Maps website (https://www.google.com/maps).",
+                            "fi": "1. Siirry Google Mapsin verkkosivustolle (https://www.google.com/maps)."
+                        }
+                    },
+                    {
+                        "type": "label",
+                        "label": {
+                            "en": "2. Search for the location you want to feature in your embedded map.",
+                            "fi": "2. Etsi sijainti, jonka haluat näkyvän upotetussa kartassa."
+                        }
+                    },
+                    {
+                        "type": "label",
+                        "label": {
+                            "en": "3. Click Share button.",
+                            "fi": "3. Paina Jaa -painiketta."
+                        }
+                    },
+                    {
+                        "type": "label",
+                        "label": {
+                            "en": "4. Click Embed a map button.",
+                            "fi": "4. Paina Upota kartta -painiketta."
+                        }
+                    },
+                    {
+                        "type": "label",
+                        "label": {
+                            "en": "5. Click Copy HTML button and paste the HTML code to the iframe field.",
+                            "fi": "5. Paina Kopioi HTML -painiketta ja liitä HTML-koodi iframe-kenttään."
+                        }
                     }
                 ]
             },
@@ -215,51 +218,32 @@
                     {
                         "type": "title",
                         "label": {
-                            "en": "Image",
-                            "fi": "Kuva"
+                            "en": "Content",
+                            "fi": "Sisältö"
                         }
                     },
                     {
-                        "id": "imgDimming",
+                        "id": "iframeHeight",
+                        "type": "select",
                         "label": {
-                            "en": "Image dimming",
-                            "fi": "Kuvan tummennus"
+                            "en": "iframe height",
+                            "fi": "iframe korkeus"
                         },
                         "type": "range",
-                        "min": 0,
-                        "max": 90,
+                        "min": 30,
+                        "max": 100,
                         "step": 5,
-                        "default": "0",
-                        "unit": "%"
-                    },
-                    {
-                        "id": "imgBlur",
-                        "label": {
-                            "en": "Image blur",
-                            "fi": "Kuvan sumentaminen"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 10,
-                        "step": 1,
-                        "default": "0",
-                        "unit": " "
-                    },
-                    {
-                        "type": "title",
-                        "label": {
-                            "en": "Text",
-                            "fi": "Teksti"
-                        }
+                        "default": "50",
+                        "unit": "vh"
                     },
                     {
                         "id": "sectionTextAlign",
                         "type": "radio-pill",
                         "label": {
-                            "en": "Text align",
-                            "fi": "Tekstin tasaus"
+                            "en": "Content text align",
+                            "fi": "Sisällön tekstin tasaus"
                         },
-                        "default": "center",
+                        "default": "nil",
                         "options": [
                             {
                                 "value": "nil",
@@ -278,59 +262,6 @@
                                 "label": "{# icon.align-end #}"
                             }
                         ]
-                    },
-                    {
-                        "id": "btnStyle",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Button style",
-                            "fi": "Painikkeen tyyli"
-                        },
-                        "default": "primary",
-                        "options": [
-                            {
-                                "value": "primary",
-                                "label": {
-                                    "en": "Style 1",
-                                    "fi": "Tyyli 1"
-                                }
-                            },
-                            {
-                                "value": "secondary",
-                                "label": {
-                                    "en": "Style 2",
-                                    "fi": "Tyyli 2"
-                                }
-                            },
-                            {
-                                "value": "link",
-                                "label": {
-                                    "en": "Style 3",
-                                    "fi": "Tyyli 3"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "type": "title",
-                        "label": {
-                            "en": "Content",
-                            "fi": "Sisältö"
-                        }
-                    },
-                    {
-                        "id": "sectionMinHeight",
-                        "type": "select",
-                        "label": {
-                            "en": "Minimum height",
-                            "fi": "Minimi korkeus"
-                        },
-                        "type": "range",
-                        "min": 40,
-                        "max": 100,
-                        "step": 5,
-                        "default": "60",
-                        "unit": "vh"
                     },
                     {
                         "type": "title",
@@ -403,7 +334,8 @@
                             {
                                 "value": "h3",
                                 "label": "H3"
-                            }, {
+                            },
+                            {
                                 "value": "span",
                                 "label": {
                                     "en": "Text",
@@ -491,6 +423,56 @@
                                 }
                             }
                         ]
+                    },
+                    {
+                        "id": "sectionPaddingMode",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Padding",
+                            "fi": "Välit"
+                        },
+                        "default": "auto",
+                        "options": [
+                            {
+                                "value": "auto",
+                                "label": "Auto"
+                            },
+                            {
+                                "value": "custom",
+                                "label": {
+                                    "en": "Custom",
+                                    "fi": "Mukautettu"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sectionPaddingTop",
+                        "label": {
+                            "en": "Padding top",
+                            "fi": "Väli ylhäällä"
+                        },
+                        "type": "range",
+                        "min": 0,
+                        "max": 15,
+                        "step": 1,
+                        "default": "0",
+                        "unit": "rem",
+                        "conditions": ["sectionPaddingMode eq custom"]
+                    },
+                    {
+                        "id": "sectionPaddingBottom",
+                        "label": {
+                            "en": "Padding bottom",
+                            "fi": "Väli alhaalla"
+                        },
+                        "type": "range",
+                        "min": 0,
+                        "max": 15,
+                        "step": 1,
+                        "default": "0",
+                        "unit": "rem",
+                        "conditions": ["sectionPaddingMode eq custom"]
                     }
                 ]
             }
@@ -499,9 +481,7 @@
     "presets": [
         {
             "settings": {
-                "sectionTitle": "New amazing Hero title!",
-                "sectionSubtitle": "Tell your customers about this Hero section.",
-                "btnLabel": "Shop now"
+                "sectionTitle": "Location"
             }
         }
     ]

@@ -206,7 +206,8 @@
         "comment_login": "{{ link }} kirjoittaaksesi kommentin.",
         "comment_login_link_text": "Kirjaudu sisään",
         "leave_comment": "Jätä kommentti",
-        "comment_publish_pending": "Kiitos kommentistasi! Tarkistamme vielä sisällön ennen kuin julkaisemme sen."
+        "comment_publish_pending": "Kiitos kommentistasi! Tarkistamme vielä sisällön ennen kuin julkaisemme sen.",
+        "read_article": "Lue artikkeli"
     },
     "account": {
         "title": "Oma tili",
