@@ -4,31 +4,83 @@
 $utilities: map-merge(
     $utilities,
     (
+        "place-content": (
+            property: place-content,
+            class: place-content,
+            responsive: true,
+            values: (
+                "center-start": center start,
+                "start-center": start center,
+                "center-normal": center normal,
+                "end": end,
+                "end-center": end center,
+                "end-left": end left,
+                "end-space-between": end space-between,
+                "flex-start-center": flex-start center,
+                "flex-end-center": flex-end center,
+                "baseline-center": baseline center,
+                "first-baseline-space-evenly": first baseline space-evenly,
+                "last-baseline-right": last baseline right,
+                "space-between-space-evenly": space-between space-evenly,
+                "space-around-space-evenly": space-around space-evenly,
+                "space-around-start": space-around start,
+                "space-evenly-stretch": space-evenly stretch,
+                "stretch-space-evenly": stretch space-evenly
+            )
+        ),
+        "place-items": (
+            property: place-items,
+            class: place-items,
+            responsive: true,
+            values: (
+                "center": center,
+                "center-stretch": center stretch,
+                "center-start": center start,
+                "normal-start": normal start,
+                "center-normal": center normal,
+                "start-end": start end,
+                "start-legacy": start legacy,
+                "end-center": end center,
+                "end-normal": end normal,
+                "self-start-legacy": self-start legacy,
+                "self-end-normal": self-end normal,
+                "flex-start-legacy": flex-start legacy,
+                "flex-end-normal": flex-end normal,
+                "baseline-normal": baseline normal,
+                "first-baseline-legacy": first baseline legacy,
+                "last-baseline-normal": last baseline normal,
+                "stretch-legacy": stretch legacy
+            )
+        ),
+        "place-self": (
+            property: place-self,
+            class: place-self,
+            responsive: true,
+            values: (
+                "center": center,
+                "auto-center": auto center,
+                "normal-start": normal start,
+                "center-normal": center normal,
+                "start-auto": start auto,
+                "start-end": start end,
+                "end-normal": end normal,
+                "end-center": end center,
+                "self-start-auto": self-start auto,
+                "self-end-normal": self-end normal,
+                "flex-start-auto": flex-start auto,
+                "flex-end-normal": flex-end normal,
+                "baseline-normal": baseline normal,
+                "first-baseline-auto": first baseline auto,
+                "last-baseline-normal": last baseline normal,
+                "stretch-auto": stretch auto,
+                "stretch-center": stretch center
+            )
+        ),
         "cursor": (
             property: cursor,
             class: cursor,
             responsive: true,
             values: auto pointer grab zoom-in
-        ),
-        "bg-position": (
-            property: background-position,
-            class: bg-position,
-            values: (
-                "left-top": left top,
-                "left-center": left center,
-                "left-bottom": left bottom,
-                "right-top": right top,
-                "right-center": right center,
-                "right-bottom": right bottom,
-                "center-top": center top,
-                "center-center": center center,
-                "center-bottom": center bottom,
-            )
-        ),
-        "bg-size": (
-            property: background-size,
-            class: bg-size,
-            values: cover contain
         ),
         "background-color": map-merge(
             map-get($utilities, "background-color"),

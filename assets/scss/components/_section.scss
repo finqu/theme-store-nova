@@ -184,6 +184,7 @@
 	.section-header {
 		display: flex;
 		text-align: var(--section-header-text-align, var(--section-text-align, inherit));
+		color: var(--style-text-color);
 		@include rfs(spacer(1), --style-spacer-1);
 		@include rfs(spacer(3), --style-spacer-3);
 		@include rfs(spacer(6), --style-spacer-6);
@@ -654,7 +655,7 @@
 			background-repeat: no-repeat;
 	    	pointer-events: none;
 	    	z-index: -1;
-			background-position: var(--section-bg-img-pos);
+			background-position: var(--section-bg-img-pos, 50% 50%);
 		}
 	}
 }

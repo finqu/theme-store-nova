@@ -28,7 +28,7 @@
     - sectionContent: {String}
     - sectionContentTextAlign: {String} 'start', 'center', 'end'
     - sectionCustomContent: {String}
-    - sectionBgImgSrc: {String}
+    - sectionBgImg: {String}
     - sectionBgImgPos: {String}
     - sectionBgImgDimming: {String}
     - sectionBgImgBlur: {String}
@@ -61,7 +61,7 @@
 {%- assign sectionBgImgPos = section.settings.sectionBgImgPos | default: settings.sectionBgImgPos -%}
 {%- assign sectionBgImgDimming = section.settings.sectionBgImgDimming | default: '0' -%}
 {%- assign sectionBgImgBlur = section.settings.sectionBgImgBlur | default: '0' -%}
-{%- assign sectionBgImgSrc = section.settings.sectionBgImgSrc -%}
+{%- assign sectionBgImg = section.settings.sectionBgImg -%}
 {%- assign sectionColorScheme = sectionColorScheme | default: section.settings.sectionColorScheme -%}
 {%- assign sectionTitle = sectionTitle | default: section.settings.sectionTitle -%}
 {%- assign sectionTitleClass = sectionTitleClass | default: section.settings.sectionTitleClass -%}
@@ -533,12 +533,6 @@
 
             {%- endif -%}
         }
-        {%- if sectionBgImgBlur != '0' -%}
-           {{ sectionHandle }} .section-bg {
-                transform: scale(1.0{{ sectionBgImgBlur | divided_by: 2 | plus: 2 }});
-                filter: blur({{ sectionBgImgBlur }}px);
-            }
-        {%- endif -%}
     {%- endcapture -%}
 
     <style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
@@ -569,6 +563,6 @@
 
     {%- endif -%}
 
-    {%- render 'section-bg' section: section, sectionBgImgSrc: sectionBgImgSrc, sectionBgImgDimming: sectionBgImgDimming, sectionBgImgBlur: sectionBgImgBlur -%}
+    {%- render 'section-bg'sectionBgImg: sectionBgImg, sectionBgImgDimming: sectionBgImgDimming, sectionBgImgBlur: sectionBgImgBlur -%}
 
 </div>

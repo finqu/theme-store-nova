@@ -181,6 +181,10 @@ a.text-accent {
 	color: currentColor !important
 }
 
+.text-inherit {
+	color: var(--style-text-color);
+}
+
 a.text-reset:hover,
 a.text-reset:focus {
 	color: currentColor;

@@ -307,16 +307,16 @@
 
                                     <div class="site-footer-payment-methods-container">
 
-                                        {% if section.settings.footerPaymentMethodsImgSrc %}
+                                        {% if section.settings.footerPaymentMethodsimg %}
 
-                                            {%- assign imgSrc = section.settings.footerPaymentMethodsImgSrc -%}
+                                            {%- assign img = section.settings.footerPaymentMethodsimg -%}
                                             {%- assign imgSize = '540,190' -%}
 
                                             <picture>
                                                 <img
                                                     alt=""
-                                                    data-src="{{ imgSrc | thumb: imgSize }}"
-                                                    data-srcset="{{ imgSrc | thumb: imgSize }} 1x, {{ imgSrc | thumb: imgSize | thumb:'@2x' }} 2x"
+                                                    data-src="{{ img | thumb: imgSize }}"
+                                                    data-srcset="{{ img | thumb: imgSize }} 1x, {{ img | thumb: imgSize | thumb:'@2x' }} 2x"
                                                     class="lazy d-block mx-auto img-fluid mt-4 mt-md-0">
                                             </picture>
 
@@ -328,9 +328,9 @@
 
                                             {% for payment_method in store.payment_methods %}
 
-                                                {%- assign imgSrc = payment_method.image -%}
+                                                {%- assign img = payment_method.image -%}
 
-                                                {% if imgSrc %}
+                                                {% if img %}
 
                                                     {%- assign imgSize = '85,70' -%}
 
@@ -339,8 +339,8 @@
                                                         <picture>
                                                             <img
                                                                 alt="{{ payment_method.name }}"
-                                                                data-src="{{ imgSrc | thumb: imgSize }}"
-                                                                data-srcset="{{ imgSrc | thumb: imgSize }} 1x, {{ imgSrc | thumb: imgSize | thumb:'@2x' }} 2x"
+                                                                data-src="{{ img | thumb: imgSize }}"
+                                                                data-srcset="{{ img | thumb: imgSize }} 1x, {{ img | thumb: imgSize | thumb:'@2x' }} 2x"
                                                                 class="lazy d-block mx-auto img-fluid">
                                                         </picture>
 

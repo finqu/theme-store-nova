@@ -50,13 +50,13 @@
 
                                 <div class="aspect-ratio-container max-w-px-40">
 
-                                    {% if item.settings.imgSrc %}
+                                    {% if item.settings.img %}
 
                                         <img
                                             alt="{{ item.settings.title }}"
-                                            data-src="{{ item.settings.imgSrc | thumb: '40,40' }}"
-                                            data-srcset="{{ item.settings.imgSrc | thumb: '40,40' }} 1x,{{ item.settings.imgSrc | thumb: '40,40' | thumb:'@2x' }} 2x"
-                                            class="lazy aspect-ratio-item">
+                                            data-src="{{ item.settings.img | thumb: '40,40' }}"
+                                            data-srcset="{{ item.settings.img | thumb: '40,40' }} 1x,{{ item.settings.img | thumb: '40,40' | thumb:'@2x' }} 2x"
+                                            class="lazy aspect-ratio-item"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
 
                                     {% else %}
 
@@ -130,13 +130,13 @@
 
                                     <div class="aspect-ratio-container max-w-px-40">
 
-                                        {% if item.settings.imgSrc %}
+                                        {% if item.settings.img %}
 
                                             <img
                                                 alt="{{ item.settings.title }}"
-                                                data-src="{{ item.settings.imgSrc | thumb: '40,40' }}"
-                                                data-srcset="{{ item.settings.imgSrc | thumb: '40,40' }} 1x,{{ item.settings.imgSrc | thumb: '40,40' | thumb:'@2x' }} 2x"
-                                                class="lazy aspect-ratio-item">
+                                                data-src="{{ item.settings.img | thumb: '40,40' }}"
+                                                data-srcset="{{ item.settings.img | thumb: '40,40' }} 1x,{{ item.settings.img | thumb: '40,40' | thumb:'@2x' }} 2x"
+                                                class="lazy aspect-ratio-item"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
 
                                         {% else %}
 
@@ -314,12 +314,13 @@
                                 ]
                             },
                             {
-                                "id": "imgSrc",
+                                "id": "img",
                                 "type": "image-picker",
                                 "label": {
                                     "en": "Image",
                                     "fi": "Kuva"
-                                },
+                                }, 
+                                "adjustments": true,
                                 "conditions": ["iconFormat eq img"]
                             },
                             {
@@ -612,90 +613,13 @@
                         "conditions": ["sectionPaddingMode eq custom"]
                     },
                     {
-                        "id": "sectionBgImgSrc",
+                        "id": "sectionBgImg",
                         "type": "image-picker",
                         "label": {
                             "en": "Background image",
                             "fi": "Taustakuva"
-                        }
-                    },
-                    {
-                        "id": "sectionBgImgPos",
-                        "type": "select",
-                        "label": {
-                            "en": "Image position",
-                            "fi": "Kuvan sijainti"
                         },
-                        "default": "",
-                        "options": [
-                            {
-                                "value": "",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": "left-top",
-                                "label": {
-                                    "en": "Left Top",
-                                    "fi": "Vasemmalla ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "left-center",
-                                "label": {
-                                    "en": "Left Center",
-                                    "fi": "Vasemmalla"
-                                }
-                            },
-                            {
-                                "value": "left-bottom",
-                                "label": {
-                                    "en": "Left Bottom",
-                                    "fi": "Vasemmalla alhaalla"
-                                }
-                            },
-                            {
-                                "value": "right-top",
-                                "label": {
-                                    "en": "Right Top",
-                                    "fi": "Oikealla ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "right-center",
-                                "label": {
-                                    "en": "Right Center",
-                                    "fi": "Oikealla"
-                                }
-                            },
-                            {
-                                "value": "right-bottom",
-                                "label": {
-                                    "en": "Right Bottom",
-                                    "fi": "Oikealla alhaalla"
-                                }
-                            },
-                            {
-                                "value": "center-top",
-                                "label": {
-                                    "en": "Center Top",
-                                    "fi": "Keskellä ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "center-center",
-                                "label": {
-                                    "en": "Center Center",
-                                    "fi": "Keskellä"
-                                }
-                            },
-                            {
-                                "value": "center-bottom",
-                                "label": {
-                                    "en": "Center Bottom",
-                                    "fi": "Keskellä alhaalla"
-                                }
-                            }
-                        ]
+                        "adjustments": true
                     },
                     {
                         "id": "sectionBgImgDimming",

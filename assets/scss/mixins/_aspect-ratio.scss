@@ -57,14 +57,44 @@
         }
 
         .aspect-ratio-item {
-            object-fit: #{$fit};
+            object-fit: var(--object-fit, #{$fit});
 
             @if $border-radius {
                 border-radius: $border-radius;
             }
 
             @if $position {
-                object-position: $position;
+                object-position: var(--object-position, $position);
+            } @else {
+                object-position: var(--object-position, 50% 50%);
+            }
+
+            &.aspect-ratio-item-position-start {
+                --object-position: left;
+            }
+
+            &.aspect-ratio-item-position-top {
+                --object-position: top;
+            }
+
+            &.aspect-ratio-item-position-end {
+                --object-position: right;
+            }
+
+            &.aspect-ratio-item-position-bottom {
+                --object-position: bottom;
+            }
+
+            &.aspect-ratio-item-position-center {
+                --object-position: center;
+            }
+
+            &.aspect-ratio-item-cover {
+                --object-fit: cover;
+            }
+
+            &.aspect-ratio-item-contain {
+                --object-fit: contain;
             }
             
             &:not(:has(:not(.svg-placeholder.has-width))) {
@@ -84,34 +114,6 @@
                 &:not(.has-height) {
                     height: 100%;
                 }
-            }
-
-            &.aspect-ratio-item-cover {
-                object-fit: cover;
-            }
-
-            &.aspect-ratio-item-contain {
-                object-fit: contain;
-            }
-
-            &.aspect-ratio-item-position-start {
-                object-position: left;
-            }
-
-            &.aspect-ratio-item-position-top {
-                object-position: top;
-            }
-
-            &.aspect-ratio-item-position-end {
-                object-position: right;
-            }
-
-            &.aspect-ratio-item-position-bottom {
-                object-position: bottom;
-            }
-
-            &.aspect-ratio-item-position-center {
-                object-position: center;
             }
         }
     }

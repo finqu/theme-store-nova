@@ -78,26 +78,26 @@
 
                 <div class="aspect-ratio-container">
 
-                    {%- if section.settings.img1Src -%}
+                    {%- if section.settings.img1 -%}
 
                         <picture>
                             <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
-                                {{- section.settings.img1Src | thumb: imgSizeLg }} 1x,
-                                {{- section.settings.img1Src | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+                                {{- section.settings.img1 | thumb: imgSizeLg }} 1x,
+                                {{- section.settings.img1 | thumb: imgSizeLg | thumb:'@2x' }} 2x">
 
                             <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
-                                {{- section.settings.img1Src | thumb: imgSizeMd }} 1x,
-                                {{- section.settings.img1Src | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+                                {{- section.settings.img1 | thumb: imgSizeMd }} 1x,
+                                {{- section.settings.img1 | thumb: imgSizeMd | thumb:'@2x' }} 2x">
 
                             <source data-srcset="
-                                {{- section.settings.img1Src | thumb: imgSizeSm }} 1x,
-                                {{- section.settings.img1Src | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+                                {{- section.settings.img1 | thumb: imgSizeSm }} 1x,
+                                {{- section.settings.img1 | thumb: imgSizeSm | thumb:'@2x' }} 2x">
 
                             <img
                                 alt="{{ section.settings.img1Alt }}"
-                                data-src="{{ section.settings.img1Src | section: imgSizeSm }}"
-                                data-srcset="{{ section.settings.img1Src | thumb: imgSizeSm }} 1x,{{ section.settings.img1Src | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}">
+                                data-src="{{ section.settings.img1 | thumb: imgSizeSm }}"
+                                data-srcset="{{ section.settings.img1 | thumb: imgSizeSm }} 1x,{{ section.settings.img1 | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}"{% if section.settings.img1.offset_left or section.settings.img1.offset_top %} style="--object-position: {{ section.settings.img1.offset_left }}% {{ section.settings.img1.offset_top }}%"{% endif %}>
 
                         </picture>
 
@@ -125,26 +125,26 @@
 
                 <div class="aspect-ratio-container">
 
-                    {%- if section.settings.img2Src -%}
+                    {%- if section.settings.img2 -%}
 
                         <picture>
                             <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
-                                {{- section.settings.img2Src | thumb: imgSizeLg }} 1x,
-                                {{- section.settings.img2Src | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+                                {{- section.settings.img2 | thumb: imgSizeLg }} 1x,
+                                {{- section.settings.img2 | thumb: imgSizeLg | thumb:'@2x' }} 2x">
 
                             <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
-                                {{- section.settings.img2Src | thumb: imgSizeMd }} 1x,
-                                {{- section.settings.img2Src | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+                                {{- section.settings.img2 | thumb: imgSizeMd }} 1x,
+                                {{- section.settings.img2 | thumb: imgSizeMd | thumb:'@2x' }} 2x">
 
                             <source data-srcset="
-                                {{- section.settings.img2Src | thumb: imgSizeSm }} 1x,
-                                {{- section.settings.img2Src | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+                                {{- section.settings.img2 | thumb: imgSizeSm }} 1x,
+                                {{- section.settings.img2 | thumb: imgSizeSm | thumb:'@2x' }} 2x">
 
                             <img
                                 alt="{{ section.settings.img2Alt }}"
-                                data-src="{{ section.settings.img2Src | section: imgSizeSm }}"
-                                data-srcset="{{ section.settings.img2Src | thumb: imgSizeSm }} 1x,{{ section.settings.img2Src | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}">
+                                data-src="{{ section.settings.img2 | thumb: imgSizeSm }}"
+                                data-srcset="{{ section.settings.img2 | thumb: imgSizeSm }} 1x,{{ section.settings.img2 | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}"{% if section.settings.img2.offset_left or section.settings.img2.offset_top %} style="--object-position: {{ section.settings.img2.offset_left }}% {{ section.settings.img2.offset_top }}%"{% endif %}>
 
                         </picture>
 
@@ -279,8 +279,9 @@
                         }
                     },
                     {
-                        "id": "img1Src",
-                        "type": "image-picker"
+                        "id": "img1",
+                        "type": "image-picker",
+                        "adjustments": true
                     },
                     {
                         "id": "img1Alt",
@@ -298,8 +299,9 @@
                         }
                     },
                     {
-                        "id": "img2Src",
-                        "type": "image-picker"
+                        "id": "img2",
+                        "type": "image-picker",
+                        "adjustments": true
                     },
                     {
                         "id": "img2Alt",
@@ -675,90 +677,13 @@
                         "conditions": ["sectionPaddingMode eq custom"]
                     },
                     {
-                        "id": "sectionBgImgSrc",
+                        "id": "sectionBgImg",
                         "type": "image-picker",
                         "label": {
                             "en": "Background image",
                             "fi": "Taustakuva"
-                        }
-                    },
-                    {
-                        "id": "sectionBgImgPos",
-                        "type": "select",
-                        "label": {
-                            "en": "Image position",
-                            "fi": "Kuvan sijainti"
                         },
-                        "default": "",
-                        "options": [
-                            {
-                                "value": "",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": "left-top",
-                                "label": {
-                                    "en": "Left Top",
-                                    "fi": "Vasemmalla ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "left-center",
-                                "label": {
-                                    "en": "Left Center",
-                                    "fi": "Vasemmalla"
-                                }
-                            },
-                            {
-                                "value": "left-bottom",
-                                "label": {
-                                    "en": "Left Bottom",
-                                    "fi": "Vasemmalla alhaalla"
-                                }
-                            },
-                            {
-                                "value": "right-top",
-                                "label": {
-                                    "en": "Right Top",
-                                    "fi": "Oikealla ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "right-center",
-                                "label": {
-                                    "en": "Right Center",
-                                    "fi": "Oikealla"
-                                }
-                            },
-                            {
-                                "value": "right-bottom",
-                                "label": {
-                                    "en": "Right Bottom",
-                                    "fi": "Oikealla alhaalla"
-                                }
-                            },
-                            {
-                                "value": "center-top",
-                                "label": {
-                                    "en": "Center Top",
-                                    "fi": "Keskellä ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "center-center",
-                                "label": {
-                                    "en": "Center Center",
-                                    "fi": "Keskellä"
-                                }
-                            },
-                            {
-                                "value": "center-bottom",
-                                "label": {
-                                    "en": "Center Bottom",
-                                    "fi": "Keskellä alhaalla"
-                                }
-                            }
-                        ]
+                        "adjustments": true
                     },
                     {
                         "id": "sectionBgImgDimming",

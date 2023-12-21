@@ -1,3 +1,4 @@
+{%- assign sectionMinHeight = section.settings.sectionMinHeight | append: 'vh' -%}
 {%- assign cols = section.settings.cols | split: ',' -%}
 {%- assign leftColSize = cols[0] -%}
 {%- assign rightColSize = cols[1] -%}
@@ -14,30 +15,15 @@
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
 {%- endif -%}
 
-{%- if section.settings.richtext -%}
-    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-{%- endif -%}
-
-{%- if section.settings.sectionHighlightItems == 'nil' and settings.sectionHighlightItems == true or section.settings.sectionHighlightItems == true -%}
-    {%- assign sectionHighlightItems = true -%}
-{%- endif -%}
-
-{%- if sectionHighlightItems and section.settings.imgEffect -%}
-
-    {%- capture sectionStyle -%}
-        #finqu-section-{{ section.id }} .text-container {
-            z-index: 1;
-            {%- if section.settings.imgPosition == 'start' -%}
-                transform: translateX(-15%);
-            {%- elsif section.settings.imgPosition == 'end' -%}
-                transform: translateX(15%);
-            {%- endif -%}
+{%- capture sectionStyle -%}
+    @media screen and (max-width: {{ settings.styleGridBreakpointLg }}) {
+        #finqu-section-{{ section.id }} .section-inner {
+            --section-min-height: {{ section.settings.sectionMinHeight | divided_by: 2 | append: 'vh' }};
         }
-    {%- endcapture -%}
+    }
+{%- endcapture -%}
 
-    <style media="screen and (min-width: {{ settings.styleGridBreakpointLg }})">{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
-
-{%- endif -%}
+<style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
 
 {%- capture imgColContent -%}
 
@@ -108,7 +94,7 @@
                 {% when 4 %}
                     {%- assign imgSizeLg = '447,5628' -%}
                 {% when 8 %}
-                    {%- assign imgSizeLg = '894,1273' -%}
+                    {%- assign imgSizeLg = '894,12373' -%}
                 {% when 5 %}
                     {%- assign imgSizeLg = '559,789' -%}
                 {% when 7 %}
@@ -230,21 +216,20 @@
 
     {% endif %}
 
-    <div class="aspect-ratio-{{ section.settings.imgAspectRatio | replace: ':', '-' }} justify-content-{{ section.settings.imgHorizontalAlign }}" data-aos="{% if section.settings.imgPosition == 'start' %}animate__fadeInLeft{% else %}animate__fadeInRight{% endif %}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+    <div class="aspect-ratio-{{ section.settings.imgAspectRatio | replace: ':', '-' }} justify-content-{{ section.settings.imgHorizontalAlign }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
         <div class="aspect-ratio-container">
 
             {%- if section.settings.img -%}
-
+                
                 <picture>
-
                     <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
                         {{- section.settings.img | thumb: imgSizeLg }} 1x,
                         {{- section.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
 
                     <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
-                        {{- section.settings.img | thumb: imgSizeMd }} 1x,
-                        {{- section.settings.img | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+                        {{- section.settings.img | thumb: imgSizeLg }} 1x,
+                        {{- section.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
 
                     <source data-srcset="
                         {{- section.settings.img | thumb: imgSizeSm }} 1x,
@@ -256,17 +241,17 @@
                         data-srcset="{{ section.settings.img | thumb: imgSizeSm }} 1x,{{ section.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
                         class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}"{% if section.settings.img.offset_left or section.settings.img.offset_top %} style="--object-position: {{ section.settings.img.offset_left }}% {{ section.settings.img.offset_top }}%"{% endif %}>
 
-                </picture>
+                 {%- elsif request.design_mode -%}
 
-            {%- elsif request.design_mode -%}
+                    {%- capture class -%}
+                        aspect-ratio-item aspect-ratio-item-cover
+                    {%- endcapture -%}
 
-                {%- capture class -%}
-                    aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}
-                {%- endcapture -%}
+                    {% render 'placeholder-svg', type: 'image', class: class %}
+        
+                {%- endif -%}
 
-                {% render 'placeholder-svg', type: 'image', class: class %}
-    
-            {%- endif -%}
+            </picture>
 
         </div>
 
@@ -277,6 +262,7 @@
 {%- capture textColContent -%}
 
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+    {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
     
     {%- if section.settings.textHorizontalAlign == 'nil' -%}
         {%- assign textHorizontalAlign = settings.sectionTextAlign -%}
@@ -293,15 +279,15 @@
             {%- assign textHorizontalAlignClass = 'text-end' -%}
     {%- endcase -%}
 
-    <div class="section-highlight-item section-highlight-item-md {{ textHorizontalAlignClass }}">
+    <div class="{{ textHorizontalAlignClass }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
-        {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
-
-        {% render 'section-header', sectionTitle: section.settings.sectionTitle, sectionTitleTag: section.settings.sectionTitleTag, sectionSubtitle: section.settings.sectionSubtitle, sectionSubtitleTag: section.settings.sectionSubtitleTag, sectionOverline: section.settings.sectionOverline, sectionOverlineTag: section.settings.sectionOverlineTag, sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionDescription: section.settings.richtext, sectionHandle: sectionHandle, sectionHeaderGapScale: 0.5 %}
+        {% render 'section-header', sectionTitle: section.settings.sectionTitle, sectionTitleTag: section.settings.sectionTitleTag, sectionSubtitle: section.settings.sectionSubtitle, sectionSubtitleTag: section.settings.sectionSubtitleTag, sectionOverline: section.settings.sectionOverline, sectionOverlineTag: section.settings.sectionOverlineTag, sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle %}
 
         {% if section.settings.btnLabel %}
 
-            <div class="mt-3" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+            {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+
+            <div class="mt-7" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
                 {%- render 'section-quick-link', style: section.settings.btnStyle, text: section.settings.btnLabel, url: section.settings.btnLink.url, openInNewTab: section.settings.btnLinkOpenInNewTab -%}
 
@@ -337,21 +323,21 @@
 
         {%- if section.settings.imgPosition == 'start' -%}
 
-            <div class="img-container col-12 col-md-6 col-lg-{{ leftColSize }} {{ imgVerticalAlignClass }}">
+            <div class="img-container col-12 col-md-6 col-lg-{{ leftColSize }} {{ imgVerticalAlignClass }} order-2 order-md-1">
                 {{- imgColContent -}}
             </div>
 
-            <div class="text-container col-12 col-md-6 col-lg-{{ rightColSize }} {{ textVerticalAlignClass }}">
+            <div class="text-container col-12 col-md-6 col-lg-{{ rightColSize }} {{ textVerticalAlignClass }} order-1 order-md-2">
                 {{- textColContent -}}
             </div>
 
         {%- elsif section.settings.imgPosition == 'end' -%}
 
-            <div class="text-container col-12 col-md-6 col-lg-{{ leftColSize }} {{ textVerticalAlignClass }} order-2 order-md-1">
+            <div class="text-container col-12 col-md-6 col-lg-{{ leftColSize }} {{ textVerticalAlignClass }}">
                 {{- textColContent -}}
             </div>
-
-            <div class="img-container col-12 col-md-6 col-lg-{{ rightColSize }} {{ imgVerticalAlignClass }} order-1 order-md-2">
+            
+            <div class="img-container col-12 col-md-6 col-lg-{{ rightColSize }} {{ imgVerticalAlignClass }}">
                 {{- imgColContent -}}
             </div>
 
@@ -361,17 +347,17 @@
 
 {%- endcapture -%}
 
-{% render 'section', section: section, sectionContent: sectionContent, sectionContentAnimation: false, sectionHeader: false %}
+{% render 'section', section: section, sectionContent: sectionContent, sectionContentAnimation: false, sectionHeader: false, sectionHeaderTextAlign: textHorizontalAlign %}
 
 {% schema %}
 {
     "name": {
-        "en": "Image with text",
-        "fi": "Kuva tekstin kanssa"
+        "en": "Hero with image",
+        "fi": "Hero kuvalla"
     },
     "tag": "section",
-    "class": "section section-image-with-text",
-    "category": "theme-basic",
+    "class": "section section-hero-with-image",
+    "category": "theme-hero",
     "settings": {
         "list_type": "tabs",
         "groups": [
@@ -384,8 +370,8 @@
                     {
                         "type": "title",
                         "label": {
-                            "en": "Titles",
-                            "fi": "Otsikot"
+                            "en": "Text",
+                            "fi": "Teksti"
                         }
                     },
                     {
@@ -410,21 +396,6 @@
                         "label": {
                             "en": "Subtitle",
                             "fi": "Alaotsikko"
-                        }
-                    },
-                    {
-                        "type": "title",
-                        "label": {
-                            "en": "Text",
-                            "fi": "Teksti"
-                        }
-                    },
-                    {
-                        "id": "richtext",
-                        "type": "richtext",
-                        "label": {
-                            "en": "Text",
-                            "fi": "Teksti"
                         }
                     },
                     {
@@ -494,12 +465,13 @@
                             "en": "Image position",
                             "fi": "Kuvan sijainti"
                         },
-                        "default": "start",
+                        "default": "end",
                         "options": [
                             {
                                 "value": "start",
                                 "label": "{# icon.align-start #}"
-                            }, {
+                            },
+                            {
                                 "value": "end",
                                 "label": "{# icon.align-end #}"
                             }
@@ -556,7 +528,7 @@
                             "en": "Aspect ratio",
                             "fi": "Kuvasuhde"
                         },
-                        "default": "1:1",
+                        "default": "auto",
                         "options": [
                             {
                                 "value": "auto",
@@ -590,18 +562,8 @@
                             "en": "Image area fill",
                             "fi": "Kuva-alueen täyttö"
                         },
-                        "default": true,
-                        "conditions": ["!imgAspectRatio eq auto"]
-                    },
-                    {
-                        "id": "imgEffect",
-                        "type": "checkbox",
-                        "label": {
-                            "en": "Image effect",
-                            "fi": "Kuvaefekti"
-                        },
-                        "default": true,
-                        "conditions": ["!imgAspectRatio eq auto"]
+                        "default": false,
+                        "conditions": [ "!imgAspectRatio eq auto"]
                     },
                     {
                         "type": "title",
@@ -617,7 +579,7 @@
                             "en": "Text horizontal align",
                             "fi": "Tekstin tasaus vaakasuunnassa"
                         },
-                        "default": "nil",
+                        "default": "start",
                         "options": [
                             {
                                 "value": "nil",
@@ -700,6 +662,20 @@
                         }
                     },
                     {
+                        "id": "sectionMinHeight",
+                        "type": "select",
+                        "label": {
+                            "en": "Minimum height",
+                            "fi": "Minimi korkeus"
+                        },
+                        "type": "range",
+                        "min": 40,
+                        "max": 100,
+                        "step": 5,
+                        "default": "40",
+                        "unit": "vh"
+                    },
+                    {
                         "id": "cols",
                         "type": "select",
                         "label": {
@@ -728,57 +704,8 @@
                                 "value": "7,5",
                                 "label": "60 % | 40 %"
                             }
-                        ]
-                    },
-                    {
-                        "id": "sectionHighlightItems",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Content highlight",
-                            "fi": "Sisällön korostaminen"
-                        },
-                        "default": "nil",
-                        "options": [
-                            {
-                                "value": "nil",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": false,
-                                "label": "Off"
-                            },
-                            {
-                                "value": true,
-                                "label": "On"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "sectionHeaderTextAlign",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Heading text align",
-                            "fi": "Otsikon tekstin tasaus"
-                        },
-                        "default": "nil",
-                        "options": [
-                            {
-                                "value": "nil",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": "start",
-                                "label": "{# icon.align-start #}"
-                            },
-                            {
-                                "value": "center",
-                                "label": "{# icon.align-center #}"
-                            },
-                            {
-                                "value": "end",
-                                "label": "{# icon.align-end #}"
-                            }
-                        ]
+                        ],
+                        "conditions": ["!imgSrc eq blank"]
                     },
                     {
                         "type": "title",
@@ -1032,7 +959,9 @@
     "presets": [
         {
             "settings": {
-                "richtext": "<p>Pair image with text to focus on your chosen product, article or brand and tell your customers about it.<\/p>"
+                "sectionTitle": "New amazing Hero title!",
+                "sectionSubtitle": "Tell your customers about this Hero section.",
+                "btnLabel": "Shop now"
             }
         }
     ]

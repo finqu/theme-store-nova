@@ -1,0 +1,1468 @@
+{% assign sectionAnimationOrder = 0 %}
+
+{%- if section.settings.sectionOverline -%}
+    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+{%- endif -%}
+
+{%- if section.settings.sectionTitle -%}
+    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+{%- endif -%}
+
+{%- if section.settings.sectionSubtitle -%}
+    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+{%- endif -%}
+
+{%- capture sectionContent -%}
+
+    {%- if section.settings.collageLayout == 1 -%}
+
+        {%- capture sectionStyle -%}
+            #finqu-section-{{ section.id }} .section-content .collage-grid {
+                display: grid;
+                grid-gap: var(--style-grid-gutter-width);
+            }
+            #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(1) {
+                grid-column: 1 / span 1;
+                grid-row: 1 / span 1;
+            }
+            #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(2) { 
+                grid-column: 2 / span 1;
+                grid-row: 1 / span 1;
+            }
+            #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(3) {
+                grid-column: 1 / span 1;
+                grid-row: 2 / span 1;
+            }
+            #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(4) {
+                grid-column: 2 / span 1;
+                grid-row: 2 / span 1;
+            }
+            #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(5) {
+                grid-column: 1 / span 2;
+                grid-row: 3 / span 2;
+            }
+            @media screen and (min-width: {{ settings.styleGridBreakpointMd }}) {
+                #finqu-section-{{ section.id }} .section-content .collage-grid {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(5) {
+                    grid-column: 3 / span 2;
+                    grid-row: 1 / span 2;
+                }
+            }
+            {% if section.settings.sectionPaddingBottom == 0 %}
+                #finqu-section-{{ section.id }} + .section-promotion-collage {
+                    --section-padding-top: var(--style-grid-gutter-width);
+                }
+            {%- endif -%}
+            {%- for item in section.settings.setting_blocks.items -%}
+                {%- assign colorShemeBrightness = item.settings.colorScheme | color_brightness -%}
+                {%- if colorShemeBrightness > 190 -%}
+                    {%- assign accentTextColor = '#000' -%}
+                {%- else -%}
+                    {%- assign accentTextColor = '#fff' -%}
+                {%- endif -%}
+                #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child({{ forloop.index}}) {
+                    --style-heading-color: {{ item.settings.colorScheme }};
+                    --style-subheading-color: {{ item.settings.colorScheme }};
+                    --style-text-color: {{ item.settings.colorScheme }};
+                    --style-link-color: {{ item.settings.colorScheme }};
+                    --style-icon-color: {{ item.settings.colorScheme }};
+                    --style-btn-bg-color: {{ item.settings.colorScheme }};
+                    --style-btn-text-color: {{ accentTextColor }};
+                    --style-btn-border-color: {{ item.settings.colorScheme }};
+                    --style-border-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 15 }};
+                    --style-border-focus-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 20 }};
+                    --style-border-accent-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 50 }};
+                    --style-accent-color: {{ item.settings.colorScheme }};
+                    --style-accent-text-color: {{ accentTextColor }};
+                    {%- if colorShemeBrightness > 190 -%}
+                        --style-btn-bg-active-color: {{ item.settings.colorScheme | color_darken: 10 }};
+                        --style-btn-bg-hover-color: {{ item.settings.colorScheme | color_darken: 8 }};
+                        --style-btn-border-hover-color: {{ item.settings.colorScheme | color_darken: 8 }};
+                        --style-btn-border-active-color: {{ item.settings.colorScheme | color_darken: 13 }};
+                    {%- else -%}
+                        --style-btn-bg-active-color: {{ item.settings.colorScheme | color_lighten: 10 }};
+                        --style-btn-bg-hover-color: {{ item.settings.colorScheme | color_lighten: 8 }};
+                        --style-btn-border-hover-color: {{ item.settings.colorScheme | color_lighten: 8 }};
+                        --style-btn-border-active-color: {{ item.settings.colorScheme | color_lighten: 13 }};
+                    {%- endif -%}
+                }
+            {%- endfor -%}
+        {%- endcapture -%}
+
+        <style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
+
+        <div class="collage-grid">
+
+            {% for item in section.settings.setting_blocks.items %}
+
+                {% assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 %}
+                {% assign everyFive = forloop.index | modulo: 5 %}
+
+                {% if everyFive == 0 %}
+
+                    {%- assign imgSizeSm = '414,414' -%}
+                    {%- assign imgSizeMd = '560,560' -%}
+                    {%- assign imgSizeLg = '650,650' -%}
+
+                {% else %}
+
+                    {%- assign imgSizeSm = '414,414' -%}
+                    {%- assign imgSizeMd = '275,275' -%}
+                    {%- assign imgSizeLg = '320,320' -%}
+
+                {% endif %}
+
+                <div class="position-relative img-indicator-zoom text-inherit">
+
+                    {%- if item.settings.link.url %}
+                        <a href="{{ item.settings.link.url | link }}"{% if section.settings.linkOpenInNewTab %} target="_blank"{% endif %}>
+                    {%- endif %}
+
+                    <div class="aspect-ratio-1-1">
+
+                        <div class="aspect-ratio-container">
+
+                            {%- if item.settings.img -%}
+
+                                <picture>
+
+                                    <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeLg }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                                    <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeLg }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                                    <source data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeSm }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+
+                                    <img
+                                        alt="{{ item.settings.imgAlt }}"
+                                        data-src="{{ item.settings.img | thumb: imgSizeSm }}"
+                                        data-srcset="{{ item.settings.img | thumb: imgSizeSm }} 1x, {{ item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                        class="lazy aspect-ratio-item aspect-ratio-item-cover"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
+
+                                </picture>
+
+                            {%- elsif request.design_mode -%}
+
+                                {%- capture class -%}
+                                    aspect-ratio-item aspect-ratio-item-cover
+                                {%- endcapture -%}
+
+                                {% render 'placeholder-svg', type: 'image', class: class %}
+                    
+                            {%- endif -%}
+
+                        </div>
+
+                    </div>
+
+                    <div class="grid g-0 position-absolute top-0 start-0 w-100 h-100 p-g p-md-5" style="--bs-gap: 0">
+
+                        <div class="g-col-12 place-self-end-center" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+
+                            {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLabel -%}
+
+                        </div>
+                    
+                    </div>
+
+                    {%- if item.settings.link.url %}
+                        </a>
+                    {%- endif %}
+                
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {%- elsif section.settings.collageLayout == 2 -%}
+
+        {%- assign imgSizeSm = '400,229' -%}
+        {%- assign imgSizeMd = '560,319' -%}
+        {%- assign imgSizeLg = '650,370' -%}
+
+        {%- capture sectionStyle -%}
+            {% if section.settings.sectionPaddingBottom == 0 %}
+                #finqu-section-{{ section.id }} + .section-promotion-collage {
+                    --section-padding-top: var(--style-grid-gutter-width);
+                }
+            {%- endif -%}
+            {%- for item in section.settings.setting_blocks.items -%}
+                {%- assign colorShemeBrightness = item.settings.colorScheme | color_brightness -%}
+                {%- if colorShemeBrightness > 190 -%}
+                    {%- assign accentTextColor = '#000' -%}
+                {%- else -%}
+                    {%- assign accentTextColor = '#fff' -%}
+                {%- endif -%}
+                #finqu-section-{{ section.id }} .section-content .grid > div:nth-child({{ forloop.index}}) {
+                    --style-heading-color: {{ item.settings.colorScheme }};
+                    --style-subheading-color: {{ item.settings.colorScheme }};
+                    --style-text-color: {{ item.settings.colorScheme }};
+                    --style-link-color: {{ item.settings.colorScheme }};
+                    --style-icon-color: {{ item.settings.colorScheme }};
+                    --style-btn-bg-color: {{ item.settings.colorScheme }};
+                    --style-btn-text-color: {{ accentTextColor }};
+                    --style-btn-border-color: {{ item.settings.colorScheme }};
+                    --style-border-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 15 }};
+                    --style-border-focus-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 20 }};
+                    --style-border-accent-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 50 }};
+                    --style-accent-color: {{ item.settings.colorScheme }};
+                    --style-accent-text-color: {{ accentTextColor }};
+                    {%- if colorShemeBrightness > 190 -%}
+                        --style-btn-bg-active-color: {{ item.settings.colorScheme | color_darken: 10 }};
+                        --style-btn-bg-hover-color: {{ item.settings.colorScheme | color_darken: 8 }};
+                        --style-btn-border-hover-color: {{ item.settings.colorScheme | color_darken: 8 }};
+                        --style-btn-border-active-color: {{ item.settings.colorScheme | color_darken: 13 }};
+                    {%- else -%}
+                        --style-btn-bg-active-color: {{ item.settings.colorScheme | color_lighten: 10 }};
+                        --style-btn-bg-hover-color: {{ item.settings.colorScheme | color_lighten: 8 }};
+                        --style-btn-border-hover-color: {{ item.settings.colorScheme | color_lighten: 8 }};
+                        --style-btn-border-active-color: {{ item.settings.colorScheme | color_lighten: 13 }};
+                    {%- endif -%}
+                }
+            {%- endfor -%}
+        {%- endcapture -%}
+
+        <style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
+
+        <div class="collage-grid grid">
+
+            {% for item in section.settings.setting_blocks.items %}
+
+                {% assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 %}
+
+                <div class="g-col-12 g-col-md-6 position-relative img-indicator-zoom text-inherit">
+
+                    {%- if item.settings.link.url %}
+                        <a href="{{ item.settings.link.url | link }}"{% if section.settings.linkOpenInNewTab %} target="_blank"{% endif %}>
+                    {%- endif %}
+
+                    <div class="aspect-ratio-16-9">
+
+                        <div class="aspect-ratio-container">
+
+                            {%- if item.settings.img -%}
+
+                                <picture>
+
+                                    <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeLg }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                                    <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeLg }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                                    <source data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeSm }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+
+                                    <img
+                                        alt="{{ item.settings.imgAlt }}"
+                                        data-src="{{ item.settings.img | thumb: imgSizeSm }}"
+                                        data-srcset="{{ item.settings.img | thumb: imgSizeSm }} 1x, {{ item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                        class="lazy aspect-ratio-item aspect-ratio-item-cover"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
+
+                                </picture>
+
+                            {%- elsif request.design_mode -%}
+
+                                {%- capture class -%}
+                                    aspect-ratio-item aspect-ratio-item-cover
+                                {%- endcapture -%}
+
+                                {% render 'placeholder-svg', type: 'image', class: class %}
+                    
+                            {%- endif -%}
+
+                        </div>
+
+                    </div>
+
+                    <div class="grid g-0 position-absolute top-0 start-0 w-100 h-100 p-g p-md-5" style="--bs-gap: 0">
+
+                        <div class="g-col-12 place-self-center">
+
+                            {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
+
+                            {% render 'section-header', sectionTitle: item.settings.title, sectionTitleTag: 'span', sectionSubtitle: item.settings.subtitle, sectionSubtitleTag: 'span', sectionOverline: item.settings.overline, sectionOverlineTag: 'span', sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle, sectionHeaderGapScale: 0.5, sectionHeaderTextAlign: section.settings.sectionContentTextAlign %}
+
+                        </div>
+                    
+                    </div>
+
+                    {%- if item.settings.link.url %}
+                        </a>
+                    {%- endif %}
+                
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {%- elsif section.settings.collageLayout == 3 -%}
+
+        {%- assign imgSizeSm = '400,229' -%}
+        {%- assign imgSizeMd = '370,280' -%}
+        {%- assign imgSizeLg = '430,325' -%}
+
+        {%- capture sectionStyle -%}
+            {% if section.settings.sectionPaddingBottom == 0 %}
+                #finqu-section-{{ section.id }} + .section-promotion-collage {
+                    --section-padding-top: var(--style-grid-gutter-width);
+                }
+            {%- endif -%}
+            {%- for item in section.settings.setting_blocks.items -%}
+                {%- assign colorShemeBrightness = item.settings.colorScheme | color_brightness -%}
+                {%- if colorShemeBrightness > 190 -%}
+                    {%- assign accentTextColor = '#000' -%}
+                {%- else -%}
+                    {%- assign accentTextColor = '#fff' -%}
+                {%- endif -%}
+                #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child({{ forloop.index}}) {
+                    --style-heading-color: {{ item.settings.colorScheme }};
+                    --style-subheading-color: {{ item.settings.colorScheme }};
+                    --style-text-color: {{ item.settings.colorScheme }};
+                    --style-link-color: {{ item.settings.colorScheme }};
+                    --style-icon-color: {{ item.settings.colorScheme }};
+                    --style-btn-bg-color: {{ item.settings.colorScheme }};
+                    --style-btn-text-color: {{ accentTextColor }};
+                    --style-btn-border-color: {{ item.settings.colorScheme }};
+                    --style-border-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 15 }};
+                    --style-border-focus-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 20 }};
+                    --style-border-accent-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 50 }};
+                    --style-accent-color: {{ item.settings.colorScheme }};
+                    --style-accent-text-color: {{ accentTextColor }};
+                    {%- if colorShemeBrightness > 190 -%}
+                        --style-btn-bg-active-color: {{ item.settings.colorScheme | color_darken: 10 }};
+                        --style-btn-bg-hover-color: {{ item.settings.colorScheme | color_darken: 8 }};
+                        --style-btn-border-hover-color: {{ item.settings.colorScheme | color_darken: 8 }};
+                        --style-btn-border-active-color: {{ item.settings.colorScheme | color_darken: 13 }};
+                    {%- else -%}
+                        --style-btn-bg-active-color: {{ item.settings.colorScheme | color_lighten: 10 }};
+                        --style-btn-bg-hover-color: {{ item.settings.colorScheme | color_lighten: 8 }};
+                        --style-btn-border-hover-color: {{ item.settings.colorScheme | color_lighten: 8 }};
+                        --style-btn-border-active-color: {{ item.settings.colorScheme | color_lighten: 13 }};
+                    {%- endif -%}
+                }
+            {%- endfor -%}
+        {%- endcapture -%}
+
+        <style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
+
+        <div class="collage-grid grid">
+
+            {% for item in section.settings.setting_blocks.items %}
+
+                {% assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 %}
+
+                <div class="g-col-12 g-col-md-4 position-relative img-indicator-zoom text-inherit">
+
+                    {%- if item.settings.link.url %}
+                        <a href="{{ item.settings.link.url | link }}"{% if section.settings.linkOpenInNewTab %} target="_blank"{% endif %}>
+                    {%- endif %}
+
+                    <div class="aspect-ratio-16-9 aspect-ratio-md-4-3">
+
+                        <div class="aspect-ratio-container">
+
+                            {%- if item.settings.img -%}
+
+                                <picture>
+
+                                    <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeLg }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                                    <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeLg }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                                    <source data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeSm }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+
+                                    <img
+                                        alt="{{ item.settings.imgAlt }}"
+                                        data-src="{{ item.settings.img | thumb: imgSizeSm }}"
+                                        data-srcset="{{ item.settings.img | thumb: imgSizeSm }} 1x, {{ item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                        class="lazy aspect-ratio-item aspect-ratio-item-cover"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
+
+                                </picture>
+
+                            {%- elsif request.design_mode -%}
+
+                                {%- capture class -%}
+                                    aspect-ratio-item aspect-ratio-item-cover
+                                {%- endcapture -%}
+
+                                {% render 'placeholder-svg', type: 'image', class: class %}
+                    
+                            {%- endif -%}
+
+                        </div>
+
+                    </div>
+
+                    <div class="grid g-0 position-absolute top-0 start-0 w-100 h-100 p-g p-md-5" style="--bs-gap: 0">
+
+                        <div class="g-col-12">
+
+                            {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
+
+                            {% render 'section-header', sectionTitle: item.settings.title, sectionTitleTag: 'span', sectionDescription: item.settings.subtitle, sectionSubtitleTag: 'span', sectionOverline: item.settings.overline, sectionOverlineTag: 'span', sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle, sectionHeaderGapScale: 0.5, sectionHeaderTextAlign: section.settings.sectionContentTextAlign %}
+
+                            {%- if item.settings.btnLabel -%}
+
+                                <div class="d-flex mt-4 justify-content-{{ section.settings.sectionContentTextAlign }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+
+                                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLabel -%}
+
+                                </div>
+
+                            {%- endif -%}
+
+                        </div>
+                    
+                    </div>
+
+                    {%- if item.settings.link.url %}
+                        </a>
+                    {%- endif %}
+                
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {%- elsif section.settings.collageLayout == 4 -%}
+
+        {%- capture sectionStyle -%}
+            #finqu-section-{{ section.id }} .section-content .collage-grid {
+                display: grid;
+                grid-gap: var(--style-grid-gutter-width);
+            }
+            @media screen and (min-width: {{ settings.styleGridBreakpointMd }}) {
+                #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(1) {
+                    grid-column: 1 / span 1;
+                    grid-row: 1 / span 1;
+                }
+                #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(2) { 
+                    grid-column: 1 / span 1;
+                    grid-row: 2 / span 1;
+                }
+                #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(3) {
+                    grid-column: 2 / span 1;
+                    grid-row: 1 / span 1;
+                }
+                #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(4) {
+                    grid-column: 4 / span 1;
+                    grid-row: 1 / span 1;
+                }
+                #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(5) {
+                    grid-column: 4 / span 1;
+                    grid-row: 2 / span 1;
+                }
+                #finqu-section-{{ section.id }} .section-content .collage-grid {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child(3) {
+                    grid-column: 2 / span 2;
+                    grid-row: 1 / span 2;
+                }
+            }
+            {%- if section.settings.sectionPaddingBottom == 0 -%}
+                #finqu-section-{{ section.id }} + .section-promotion-collage {
+                    --section-padding-top: var(--style-grid-gutter-width);
+                }
+            {%- endif -%}
+            {%- for item in section.settings.setting_blocks.items -%}
+                {%- assign colorShemeBrightness = item.settings.colorScheme | color_brightness -%}
+                {%- if colorShemeBrightness > 190 -%}
+                    {%- assign accentTextColor = '#000' -%}
+                {%- else -%}
+                    {%- assign accentTextColor = '#fff' -%}
+                {%- endif -%}
+                #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child({{ forloop.index}}) {
+                    --style-heading-color: {{ item.settings.colorScheme }};
+                    --style-subheading-color: {{ item.settings.colorScheme }};
+                    --style-text-color: {{ item.settings.colorScheme }};
+                    --style-link-color: {{ item.settings.colorScheme }};
+                    --style-icon-color: {{ item.settings.colorScheme }};
+                    --style-btn-bg-color: {{ item.settings.colorScheme }};
+                    --style-btn-text-color: {{ accentTextColor }};
+                    --style-btn-border-color: {{ item.settings.colorScheme }};
+                    --style-border-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 15 }};
+                    --style-border-focus-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 20 }};
+                    --style-border-accent-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 50 }};
+                    --style-accent-color: {{ item.settings.colorScheme }};
+                    --style-accent-text-color: {{ accentTextColor }};
+                    {%- if colorShemeBrightness > 190 -%}
+                        --style-btn-bg-active-color: {{ item.settings.colorScheme | color_darken: 10 }};
+                        --style-btn-bg-hover-color: {{ item.settings.colorScheme | color_darken: 8 }};
+                        --style-btn-border-hover-color: {{ item.settings.colorScheme | color_darken: 8 }};
+                        --style-btn-border-active-color: {{ item.settings.colorScheme | color_darken: 13 }};
+                    {%- else -%}
+                        --style-btn-bg-active-color: {{ item.settings.colorScheme | color_lighten: 10 }};
+                        --style-btn-bg-hover-color: {{ item.settings.colorScheme | color_lighten: 8 }};
+                        --style-btn-border-hover-color: {{ item.settings.colorScheme | color_lighten: 8 }};
+                        --style-btn-border-active-color: {{ item.settings.colorScheme | color_lighten: 13 }};
+                    {%- endif -%}
+                }
+            {%- endfor -%}
+        {%- endcapture -%}
+
+        <style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
+
+        <div class="collage-grid">
+
+            {% for item in section.settings.setting_blocks.items %}
+
+                {% assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 %}
+                {% assign everyThird = forloop.index | modulo: 3 %}
+
+                {% if everyThird == 0 %}
+
+                    {%- assign aspectRatioClass = 'aspect-ratio-1-1 aspect-ratio-md-9-11' -%}
+                    {%- assign imgSizeSm = '400,400' -%}
+                    {%- assign imgSizeMd = '560,682' -%}
+                    {%- assign imgSizeLg = '650,792' -%}
+
+                {% else %}
+
+                    {%- assign aspectRatioClass = 'aspect-ratio-16-9 aspect-ratio-md-cover' -%}
+                    {%- assign imgSizeSm = '400,229' -%}
+                    {%- assign imgSizeMd = '275,336' -%}
+                    {%- assign imgSizeLg = '320,391' -%}
+
+                {% endif %}
+
+                <div class="position-relative img-indicator-zoom text-inherit">
+
+                    {%- if item.settings.link.url %}
+                        <a href="{{ item.settings.link.url | link }}"{% if section.settings.linkOpenInNewTab %} target="_blank"{% endif %}>
+                    {%- endif %}
+
+                    <div class="{{ aspectRatioClass }}">
+
+                        <div class="aspect-ratio-container">
+
+                            {%- if item.settings.img -%}
+
+                                <picture>
+
+                                    <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeLg }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                                    <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeLg }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                                    <source data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeSm }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+
+                                    <img
+                                        alt="{{ item.settings.imgAlt }}"
+                                        data-src="{{ item.settings.img | thumb: imgSizeSm }}"
+                                        data-srcset="{{ item.settings.img | thumb: imgSizeSm }} 1x, {{ item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                        class="lazy aspect-ratio-item aspect-ratio-item-cover"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
+
+                                </picture>
+
+                            {%- elsif request.design_mode -%}
+
+                                {%- capture class -%}
+                                    aspect-ratio-item aspect-ratio-item-cover
+                                {%- endcapture -%}
+
+                                {% render 'placeholder-svg', type: 'image', class: class %}
+                    
+                            {%- endif -%}
+
+                        </div>
+
+                    </div>
+
+                    <div class="grid g-0 position-absolute top-0 start-0 w-100 h-100 p-g p-md-5" style="--bs-gap: 0">
+
+                       <div class="g-col-12">
+
+                            {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
+
+                            {% render 'section-header', sectionTitle: item.settings.title, sectionTitleTag: 'span', sectionDescription: item.settings.subtitle, sectionSubtitleTag: 'span', sectionOverline: item.settings.overline, sectionOverlineTag: 'span', sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle, sectionHeaderGapScale: 0.5, sectionHeaderTextAlign: section.settings.sectionContentTextAlign %}
+
+                            {%- if item.settings.btnLabel -%}
+
+                                <div class="d-flex mt-4 justify-content-{{ section.settings.sectionContentTextAlign }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+
+                                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLabel -%}
+
+                                </div>
+
+                            {%- endif -%}
+
+                        </div>
+                    
+                    </div>
+
+                    {%- if item.settings.link.url %}
+                        </a>
+                    {%- endif %}
+                
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {%- elsif section.settings.collageLayout == 5 -%}
+
+        {%- assign imgSizeSm = '400,229' -%}
+        {%- assign imgSizeMd = '560,319' -%}
+        {%- assign imgSizeLg = '650,792' -%}
+
+        {%- capture sectionStyle -%}
+            {% if section.settings.sectionPaddingBottom == 0 %}
+                #finqu-section-{{ section.id }} + .section-promotion-collage {
+                    --section-padding-top: var(--style-grid-gutter-width);
+                }
+            {%- endif -%}
+            {%- for item in section.settings.setting_blocks.items -%}
+                {%- assign colorShemeBrightness = item.settings.colorScheme | color_brightness -%}
+                {%- if colorShemeBrightness > 190 -%}
+                    {%- assign accentTextColor = '#000' -%}
+                {%- else -%}
+                    {%- assign accentTextColor = '#fff' -%}
+                {%- endif -%}
+                #finqu-section-{{ section.id }} .section-content .collage-grid > div:nth-child({{ forloop.index}}) {
+                    --style-heading-color: {{ item.settings.colorScheme }};
+                    --style-subheading-color: {{ item.settings.colorScheme }};
+                    --style-text-color: {{ item.settings.colorScheme }};
+                    --style-link-color: {{ item.settings.colorScheme }};
+                    --style-icon-color: {{ item.settings.colorScheme }};
+                    --style-btn-bg-color: {{ item.settings.colorScheme }};
+                    --style-btn-text-color: {{ accentTextColor }};
+                    --style-btn-border-color: {{ item.settings.colorScheme }};
+                    --style-border-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 15 }};
+                    --style-border-focus-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 20 }};
+                    --style-border-accent-color: {{ accentTextColor | color_mix: item.settings.colorScheme, 50 }};
+                    --style-accent-color: {{ item.settings.colorScheme }};
+                    --style-accent-text-color: {{ accentTextColor }};
+                    {%- if colorShemeBrightness > 190 -%}
+                        --style-btn-bg-active-color: {{ item.settings.colorScheme | color_darken: 10 }};
+                        --style-btn-bg-hover-color: {{ item.settings.colorScheme | color_darken: 8 }};
+                        --style-btn-border-hover-color: {{ item.settings.colorScheme | color_darken: 8 }};
+                        --style-btn-border-active-color: {{ item.settings.colorScheme | color_darken: 13 }};
+                    {%- else -%}
+                        --style-btn-bg-active-color: {{ item.settings.colorScheme | color_lighten: 10 }};
+                        --style-btn-bg-hover-color: {{ item.settings.colorScheme | color_lighten: 8 }};
+                        --style-btn-border-hover-color: {{ item.settings.colorScheme | color_lighten: 8 }};
+                        --style-btn-border-active-color: {{ item.settings.colorScheme | color_lighten: 13 }};
+                    {%- endif -%}
+                }
+            {%- endfor -%}
+        {%- endcapture -%}
+
+        <style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
+
+        <div class="collage-grid grid">
+
+            {% for item in section.settings.setting_blocks.items %}
+
+                {% assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 %}
+
+                <div class="g-col-12 g-col-md-4 position-relative img-indicator-zoom text-inherit">
+
+                    {%- if item.settings.link.url %}
+                        <a href="{{ item.settings.link.url | link }}"{% if section.settings.linkOpenInNewTab %} target="_blank"{% endif %}>
+                    {%- endif %}
+
+                    <div class="aspect-ratio-1-1">
+
+                        <div class="aspect-ratio-container">
+
+                            {%- if item.settings.img -%}
+
+                                <picture>
+
+                                    <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeLg }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                                    <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeLg }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                                    <source data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeSm }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+
+                                    <img
+                                        alt="{{ item.settings.imgAlt }}"
+                                        data-src="{{ item.settings.img | thumb: imgSizeSm }}"
+                                        data-srcset="{{ item.settings.img | thumb: imgSizeSm }} 1x, {{ item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                        class="lazy aspect-ratio-item aspect-ratio-item-cover"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
+
+                                </picture>
+
+                            {%- elsif request.design_mode -%}
+
+                                {%- capture class -%}
+                                    aspect-ratio-item aspect-ratio-item-cover
+                                {%- endcapture -%}
+
+                                {% render 'placeholder-svg', type: 'image', class: class %}
+                    
+                            {%- endif -%}
+
+                        </div>
+
+                    </div>
+
+                    <div class="grid g-0 position-absolute top-0 start-0 w-100 h-100 p-g p-md-5" style="--bs-gap: 0">
+
+                        <div class="g-col-12 place-self-center">
+
+                            {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
+
+                            {% render 'section-header', sectionTitle: item.settings.title, sectionTitleTag: 'span', sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle, sectionHeaderGapScale: 0.5, sectionHeaderTextAlign: section.settings.sectionContentTextAlign %}
+
+                            {%- if item.settings.btnLabel -%}
+
+                                <div class="d-flex mt-4 justify-content-{{ section.settings.sectionContentTextAlign }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+
+                                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLabel -%}
+
+                                </div>
+
+                            {%- endif -%}
+
+                        </div>
+                    
+                    </div>
+
+                    {%- if item.settings.link.url %}
+                        </a>
+                    {%- endif %}
+                
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {%- endif -%}
+
+{%- endcapture -%}
+
+{% render 'section', section: section, sectionContent: sectionContent, sectionContentAnimation: false %}
+
+{% schema %}
+{
+    "name": {
+        "en": "Promotion collage",
+        "fi": "Mainoskollaasi"
+    },
+    "tag": "section",
+    "class": "section section-promotion-collage",
+    "category": "theme-basic",
+    "settings": {
+        "list_type": "tabs",
+        "groups": [
+            {
+                "title": {
+                    "en": "Content",
+                    "fi": "Sisältö"
+                },
+                "settings": [
+                    {
+                        "type": "hidden",
+                        "id": "collageLayout"
+                    },
+                    {
+                        "type": "title",
+                        "label": {
+                            "en": "Titles",
+                            "fi": "Otsikot"
+                        }
+                    },
+                    {
+                        "id": "sectionOverline",
+                        "type": "text",
+                        "label": {
+                            "en": "Top title",
+                            "fi": "Yläotsikko"
+                        }
+                    },
+                    {
+                        "id": "sectionTitle",
+                        "type": "text",
+                        "label": {
+                            "en": "Main title",
+                            "fi": "Pääotsikko"
+                        }
+                    },
+                    {
+                        "id": "sectionSubtitle",
+                        "type": "text",
+                        "label": {
+                            "en": "Subtitle",
+                            "fi": "Alaotsikko"
+                        }
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "en": "Promotions",
+                    "fi": "Mainokset"
+                },
+                "id": "items",
+                "call_to_action": {
+                    "en": "Add a promotion",
+                    "fi": "Lisää mainos"
+                },
+                "is_sortable": true,
+                "display_icons": true,
+                "setting_blocks": [
+                    {
+                        "type": "image",
+                        "title": {
+                            "en": "Promotion",
+                            "fi": "Mainos"
+                        },
+                        "settings": [
+                            {
+                                "id": "colorScheme",
+                                "type": "color",
+                                "label": {
+                                    "en": "Color scheme",
+                                    "fi": "Väriskeema"
+                                },
+                                "default": "#ffffff"
+                            },
+                            {
+                                "id": "overline",
+                                "type": "text",
+                                "label": {
+                                    "en": "Top title",
+                                    "fi": "Yläotsikko"
+                                },
+                                "conditions": ["collageLayout in 2,3"]
+                            },
+                            {
+                                "id": "title",
+                                "type": "text",
+                                "label": {
+                                    "en": "Main title",
+                                    "fi": "Pääotsikko"
+                                },
+                                "conditions": ["collageLayout in 2,3,4,5"]
+                            },
+                            {
+                                "id": "subtitle",
+                                "type": "text",
+                                "label": {
+                                    "en": "Subtitle",
+                                    "fi": "Alaotsikko"
+                                },
+                                "conditions": ["collageLayout in 2,3,4"]
+                            },
+                            {
+                                "id": "btnLabel",
+                                "type": "text",
+                                "label": {
+                                    "en": "Button text",
+                                    "fi": "Painikkeen teksti"
+                                },
+                                "conditions": ["collageLayout in 1,3,4,5"]
+                            },
+                            {
+                                "id": "link",
+                                "type": "url",
+                                "label": {
+                                    "en": "Link",
+                                    "fi": "Linkki"
+                                }
+                            },
+                            {
+                                "id": "img",
+                                "type": "image-picker",
+                                "adjustments": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "en": "Settings",
+                    "fi": "Asetukset"
+                },
+                "settings": [
+                    {
+                        "type": "title",
+                        "label": {
+                            "en": "Content",
+                            "fi": "Sisältö"
+                        }
+                    },
+                    {
+                        "id": "sectionHeaderTextAlign",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Heading text align",
+                            "fi": "Otsikon tekstin tasaus"
+                        },
+                        "default": "nil",
+                        "options": [
+                            {
+                                "value": "nil",
+                                "label": "Auto"
+                            },
+                            {
+                                "value": "start",
+                                "label": "{# icon.align-start #}"
+                            },
+                            {
+                                "value": "center",
+                                "label": "{# icon.align-center #}"
+                            },
+                            {
+                                "value": "end",
+                                "label": "{# icon.align-end #}"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sectionContentTextAlign",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Content text align",
+                            "fi": "Sisällön tekstin tasaus"
+                        },
+                        "default": "nil",
+                        "options": [
+                            {
+                                "value": "nil",
+                                "label": "Auto"
+                            },
+                            {
+                                "value": "start",
+                                "label": "{# icon.align-start #}"
+                            },
+                            {
+                                "value": "center",
+                                "label": "{# icon.align-center #}"
+                            },
+                            {
+                                "value": "end",
+                                "label": "{# icon.align-end #}"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "btnStyle",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Button style",
+                            "fi": "Painikkeen tyyli"
+                        },
+                        "default": "primary",
+                        "options": [
+                            {
+                                "value": "primary",
+                                "label": {
+                                    "en": "Style 1",
+                                    "fi": "Tyyli 1"
+                                }
+                            },
+                            {
+                                "value": "secondary",
+                                "label": {
+                                    "en": "Style 2",
+                                    "fi": "Tyyli 2"
+                                }
+                            },
+                            {
+                                "value": "link",
+                                "label": {
+                                    "en": "Style 3",
+                                    "fi": "Tyyli 3"
+                                }
+                            }
+                        ],
+                        "conditions": ["collageLayout eq in 1,3,4,5"]
+                    },
+                    {
+                        "id": "linkOpenInNewTab",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Open links in a new tab",
+                            "fi": "Avaa linkit uudessa välilehdessä"
+                        },
+                        "default": false
+                    },
+                    {
+                        "type": "title",
+                        "label": {
+                            "en": "SEO",
+                            "fi": "SEO"
+                        }
+                    },
+                    {
+                        "id": "sectionOverlineTag",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Top title SEO priority",
+                            "fi": "Yläotsikon SEO-prioriteetti"
+                        },
+                        "default": "h3",
+                        "options": [
+                            {
+                                "value": "h3",
+                                "label": "H3"
+                            },
+                            {
+                                "value": "span",
+                                "label": {
+                                    "en": "Text",
+                                    "fi": "Teksti"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sectionTitleTag",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Main title SEO priority",
+                            "fi": "Pääotsikon SEO-prioriteetti"
+                        },
+                        "default": "h2",
+                        "options": [
+                            {
+                                "value": "h1",
+                                "label": "H1"
+                            },
+                            {
+                                "value": "h2",
+                                "label": "H2"
+                            },
+                            {
+                                "value": "h3",
+                                "label": "H3"
+                            },
+                            {
+                                "value": "span",
+                                "label": {
+                                    "en": "Text",
+                                    "fi": "Teksti"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sectionSubtitleTag",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Subtitle SEO priority",
+                            "fi": "Alaotsikon SEO-prioriteetti"
+                        },
+                        "default": "h3",
+                        "options": [
+                            {
+                                "value": "h3",
+                                "label": "H3"
+                            },
+                            {
+                                "value": "span",
+                                "label": {
+                                    "en": "Text",
+                                    "fi": "Teksti"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "title",
+                        "label": {
+                            "en": "Section",
+                            "fi": "Osio"
+                        }
+                    },
+                    {
+                        "id": "sectionColorScheme",
+                        "type": "select",
+                        "label": {
+                            "en": "Color color scheme",
+                            "fi": "Värityyli"
+                        },
+                        "options": [
+                            {
+                                "value": false,
+                                "label": {
+                                    "en": "Disabled",
+                                    "fi": "Pois käytöstä"
+                                }
+                            },
+                            {
+                                "value": "1",
+                                "label": {
+                                    "en": "Color scheme 1",
+                                    "fi": "Värityyli 1"
+                                }
+                            },
+                            {
+                                "value": "2",
+                                "label": {
+                                    "en": "Color scheme 2",
+                                    "fi": "Värityyli 2"
+                                }
+                            },
+                            {
+                                "value": "3",
+                                "label": {
+                                    "en": "Color scheme 3",
+                                    "fi": "Värityyli 3"
+                                }
+                            },
+                            {
+                                "value": "4",
+                                "label": {
+                                    "en": "Color scheme 4",
+                                    "fi": "Värityyli 4"
+                                }
+                            },
+                            {
+                                "value": "5",
+                                "label": {
+                                    "en": "Color scheme 5",
+                                    "fi": "Värityyli 5"
+                                }
+                            },
+                            {
+                                "value": "light",
+                                "label": {
+                                    "en": "Light background / Dark content",
+                                    "fi": "Vaalea tausta / Tumma sisältö"
+                                }
+                            },
+                            {
+                                "value": "dark",
+                                "label": {
+                                    "en": "Dark background / Light content",
+                                    "fi": "Tumma tausta / Vaalea sisältö"
+                                }
+                            },
+                            {
+                                "value": "accent",
+                                "label": {
+                                    "en": "Accent background / Adaptive content",
+                                    "fi": "Korostus tausta / Mukautuva sisältö"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sectionPaddingMode",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Padding",
+                            "fi": "Välit"
+                        },
+                        "default": "auto",
+                        "options": [
+                            {
+                                "value": "auto",
+                                "label": "Auto"
+                            },
+                            {
+                                "value": "custom",
+                                "label": {
+                                    "en": "Custom",
+                                    "fi": "Mukautettu"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "sectionPaddingTop",
+                        "label": {
+                            "en": "Padding top",
+                            "fi": "Väli ylhäällä"
+                        },
+                        "type": "range",
+                        "min": 0,
+                        "max": 15,
+                        "step": 1,
+                        "default": "0",
+                        "unit": "rem",
+                        "conditions": ["sectionPaddingMode eq custom"]
+                    },
+                    {
+                        "id": "sectionPaddingBottom",
+                        "label": {
+                            "en": "Padding bottom",
+                            "fi": "Väli alhaalla"
+                        },
+                        "type": "range",
+                        "min": 0,
+                        "max": 15,
+                        "step": 1,
+                        "default": "0",
+                        "unit": "rem",
+                        "conditions": ["sectionPaddingMode eq custom"]
+                    },
+                    {
+                        "id": "sectionBgImg",
+                        "type": "image-picker",
+                        "label": {
+                            "en": "Background image",
+                            "fi": "Taustakuva"
+                        },
+                        "adjustments": true
+                    },
+                    {
+                        "id": "sectionBgImgDimming",
+                        "label": {
+                            "en": "Image dimming",
+                            "fi": "Kuvan tummennus"
+                        },
+                        "type": "range",
+                        "min": 0,
+                        "max": 90,
+                        "step": 5,
+                        "default": "0",
+                        "unit": "%"
+                    },
+                    {
+                        "id": "sectionBgImgBlur",
+                        "label": {
+                            "en": "Image blur",
+                            "fi": "Kuvan sumentaminen"
+                        },
+                        "type": "range",
+                        "min": 0,
+                        "max": 10,
+                        "step": 1,
+                        "default": "0",
+                        "unit": " "
+                    }
+                ]
+            }
+        ]
+    },
+    "presets": [
+        {
+            "settings": {
+                "collageLayout": 1,
+                "setting_blocks": {
+                    "items": [
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "btnLabel": "Women"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "btnLabel": "Men"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "btnLabel": "Accessies"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "btnLabel": "Shoes"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "btnLabel": "Watch collections"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "settings": {
+                "collageLayout": 2,
+                "sectionContentTextAlign": "center",
+                "setting_blocks": {
+                    "items": [
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "Lookbook 2022",
+                                "subtitle": "Make love this look"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "overline": "Huge sale",
+                                "title": "50 % Off",
+                                "subtitle": "Hurry up"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "settings": {
+                "collageLayout": 3,
+                "sectionContentTextAlign": "start",
+                "setting_blocks": {
+                    "items": [
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "OLED TVs",
+                                "subtitle": "Exclusive offers on TVs until Dec 31. $100 off on every purchase",
+                                "btnLabel": "Shop OLED TVs"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "Speakers",
+                                "subtitle": "Explore our range of high-quality speakers.",
+                                "btnLabel": "Shop Speakers"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "Headphones",
+                                "subtitle": "Discover our new headphones. Up to 25% Off !",
+                                "btnLabel": "Shop Headphones"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "settings": {
+                "collageLayout": 4,
+                "sectionContentTextAlign": "start",
+                "setting_blocks": {
+                    "items": [
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "Bluetooth",
+                                "subtitle": "Feel the freedom with our Bluetooth headphones and speakers.",
+                                "btnLabel": "Shop now"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "Professional Audio",
+                                "subtitle": "Get the best deals for professional audio equipment.",
+                                "btnLabel": "Shop Now"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "Headphones",
+                                "subtitle": "Our selection of premium headphones to enjoy your favorite playlist with an incredible sound.",
+                                "btnLabel": "Shop Now"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "Accessories",
+                                "subtitle": "Our various accessories to have the best experience.",
+                                "btnLabel": "Shop Now"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "Projectors",
+                                "subtitle": "Play or watch your favorites TV shows with these projectors.",
+                                "btnLabel": "Shop Now"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "settings": {
+                "collageLayout": 5,
+                "sectionContentTextAlign": "center",
+                "btnStyle": "link",
+                "setting_blocks": {
+                    "items": [
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "Staff Picks",
+                                "btnLabel": "Shop now"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "Date Night Bags",
+                                "btnLabel": "Shop Now"
+                            }
+                        },
+                        {
+                            "type": "image",
+                            "settings": {
+                                "colorScheme": "#ffffff",
+                                "title": "Easy Mules",
+                                "btnLabel": "Shop Now"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
+{% endschema %}

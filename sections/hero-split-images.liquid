@@ -38,8 +38,8 @@
             {%- render 'placeholder-svg', type: 'background', base64: true -%}
         {%- endcapture -%}
 
-        {%- if section.settings.imgStartSrc -%}
-            {% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%), rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%)) | {% endif %}url('{{- section.settings.imgStartSrc | thumb: '1920,1080' -}}') 1x, url('{{- section.settings.imgStartSrc | thumb: '1920,1080' | thumb: '@2x' -}}') 2x
+        {%- if section.settings.imgStart -%}
+            {% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%), rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%)) | {% endif %}url('{{- section.settings.imgStart | thumb: '1920,1080' -}}') 1x, url('{{- section.settings.imgStart | thumb: '1920,1080' | thumb: '@2x' -}}') 2x
         {%- else -%}
             {% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%), rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%)) | {% endif %}url('{{ placeholderSvg | strip }}') 1x
         {%- endif -%}
@@ -52,31 +52,31 @@
             {%- render 'placeholder-svg', type: 'background', base64: true -%}
         {%- endcapture -%}
 
-        {%- if section.settings.imgEndSrc -%}
-            {% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%), rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%)) | {% endif %}url('{{- section.settings.imgEndSrc | thumb: '1920,1080' -}}') 1x, url('{{- section.settings.imgEndSrc | thumb: '1920,1080' | thumb: '@2x' -}}') 2x
+        {%- if section.settings.imgEnd -%}
+            {% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%), rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%)) | {% endif %}url('{{- section.settings.imgEnd | thumb: '1920,1080' -}}') 1x, url('{{- section.settings.imgEnd | thumb: '1920,1080' | thumb: '@2x' -}}') 2x
         {%- else -%}
             {% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%), rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%)) | {% endif %}url('{{ placeholderSvg | strip }}') 1x
         {%- endif -%}
 
     {%- endcapture -%}
 
-    <div class="flex-grow-1 position-relative overflow-hidden min-vh-{{ section.settings.sectionMinHeight | divided_by: 2 }} min-vh-lg-{{ section.settings.sectionMinHeight }}{% if section.settings.imgMobileSrc %} d-none d-md-block{% endif %}">
+    <div class="flex-grow-1 position-relative overflow-hidden min-vh-{{ section.settings.sectionMinHeight | divided_by: 2 }} min-vh-lg-{{ section.settings.sectionMinHeight }}{% if section.settings.imgMobile %} d-none d-md-block{% endif %}">
 
-        <div class="lazy position-absolute top-0 start-0 w-100 h-100 bg-position-center{% if section.settings.imgStartSrc %} bg-size-cover{% endif %}" data-bg-set="{{- imgStartSrc | strip -}}"></div>
+        <div class="lazy position-absolute top-0 start-0 w-100 h-100{% if section.settings.imgStart %} bg-size-cover{% endif %}" data-bg-set="{{- imgStartSrc | strip -}}"{% if section.settings.imgStart.offset_left or section.settings.imgStart.offset_top %} style="--bg-position: {{ section.settings.imgStart.offset_left }}% {{ section.settings.imgStart.offset_top }}%"{% endif %}></div>
 
     </div>
 
     <div class="flex-grow-1 position-relative overflow-hidden min-vh-{{ section.settings.sectionMinHeight | divided_by: 2 }} min-vh-lg-{{ section.settings.sectionMinHeight }} d-none d-md-block">
 
-        <div class="lazy position-absolute top-0 start-0 w-100 h-100 bg-position-center{% if section.settings.imgStartSrc %} bg-size-cover{% endif %}" data-bg-set="{{- imgEndSrc | strip -}}"></div>
+        <div class="lazy position-absolute top-0 start-0 w-100 h-100{% if section.settings.imgStart %} bg-size-cover{% endif %}" data-bg-set="{{- imgEndSrc | strip -}}"{% if section.settings.imgEnd.offset_left or section.settings.imgEnd.offset_top %} style="--bg-position: {{ section.settings.imgEnd.offset_left }}% {{ section.settings.imgEnd.offset_top }}%"{% endif %}></div>
 
     </div>
 
-    {% if section.settings.imgMobileSrc %}
+    {% if section.settings.imgMobile %}
 
         <div class="flex-grow-1 position-relative overflow-hidden min-vh-{{ section.settings.sectionMinHeight }} d-md-none">
 
-            <div class="lazy position-absolute top-0 start-0 w-100 h-100 bg-position-center bg-size-cover" data-bg-set="{% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming -}}%), rgb(0,0,0, {{- section.settings.imgDimming -}}%)) | {% endif %}url('{{- section.settings.imgMobileSrc | thumb: '1920,1080' -}}') 1x, url('{{- section.settings.imgMobileSrc | thumb: '1920,1080' | thumb: '@2x' -}}') 2x"></div>
+            <div class="lazy position-absolute top-0 start-0 w-100 h-100 bg-size-cover" data-bg-set="{% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming -}}%), rgb(0,0,0, {{- section.settings.imgDimming -}}%)) | {% endif %}url('{{- section.settings.imgMobile | thumb: '1920,1080' -}}') 1x, url('{{- section.settings.imgMobile | thumb: '1920,1080' | thumb: '@2x' -}}') 2x"{% if section.settings.imgMobile.offset_left or section.settings.imgMobile.offset_top %} style="--bg-position: {{ section.settings.imgMobile.offset_left }}% {{ section.settings.imgMobile.offset_top }}%"{% endif %}></div>
 
         </div>
 
@@ -228,28 +228,31 @@
                         }
                     },
                     {
-                        "id": "imgStartSrc",
+                        "id": "imgStart",
                         "type": "image-picker",
                         "label": {
                             "en": "Image on left",
                             "fi": "Kuva vasemmalla"
-                        }
+                        },
+                        "adjustments": true
                     },
                     {
-                        "id": "imgEndSrc",
+                        "id": "imgEnd",
                         "type": "image-picker",
                         "label": {
                             "en": "Image on right",
                             "fi": "Kuva oikealla"
-                        }
+                        },
+                        "adjustments": true
                     },
                     {
-                        "id": "imgMobileSrc",
+                        "id": "imgMobile",
                         "type": "image-picker",
                         "label": {
                             "en": "Image on mobile view",
                             "fi": "Kuva mobiilinäkymässä"
-                        }
+                        },
+                        "adjustments": true
                     }
                 ]
             },

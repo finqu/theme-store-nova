@@ -63,26 +63,26 @@
 
         <div class="aspect-ratio-container">
 
-            {% if block.settings.imgSrc %}
+            {% if block.settings.img %}
 
                 <picture>
                     <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
-                        {{- block.settings.imgSrc | thumb: imgSizeLg }} 1x,
-                        {{- block.settings.imgSrc | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+                        {{- block.settings.img | thumb: imgSizeLg }} 1x,
+                        {{- block.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
 
                     <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
-                        {{- block.settings.imgSrc | thumb: imgSizeMd }} 1x,
-                        {{- block.settings.imgSrc | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+                        {{- block.settings.img | thumb: imgSizeMd }} 1x,
+                        {{- block.settings.img | thumb: imgSizeMd | thumb:'@2x' }} 2x">
 
                     <source data-srcset="
-                        {{- block.settings.imgSrc | thumb: imgSizeSm }} 1x,
-                        {{- block.settings.imgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+                        {{- block.settings.img | thumb: imgSizeSm }} 1x,
+                        {{- block.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
 
                     <img
                         alt="{{ block.settings.imgAlt }}"
-                        data-src="{{ block.settings.imgSrc | thumb: imgSizeSm }}"
-                        data-srcset="{{ block.settings.imgSrc | thumb: imgSizeSm }} 1x, {{ block.settings.imgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                        class="lazy aspect-ratio-item{% if block.settings.imgFit %} aspect-ratio-item-cover{% endif %}">
+                        data-src="{{ block.settings.img | thumb: imgSizeSm }}"
+                        data-srcset="{{ block.settings.img | thumb: imgSizeSm }} 1x, {{ block.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                        class="lazy aspect-ratio-item{% if block.settings.imgFit %} aspect-ratio-item-cover{% endif %}"{% if block.settings.img.offset_left or block.settings.img.offset_top %} style="--object-position: {{ block.settings.img.offset_left }}% {{ block.settings.img.offset_top }}%"{% endif %}>
                 </picture>
 
             {% elsif request.design_mode %}
@@ -116,12 +116,13 @@
                 },
                 "settings": [
                     {
-                        "id": "imgSrc",
+                        "id": "img",
                         "type": "image-picker",
                         "label": {
                             "en": "Image",
                             "fi": "Kuva"
-                        }
+                        },
+                        "adjustments": true
                     },
                     {
                         "id": "imgAlt",

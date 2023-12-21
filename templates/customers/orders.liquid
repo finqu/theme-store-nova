@@ -46,7 +46,7 @@
 
                                             {% if item.image %}
 
-                                                {%- assign imgSrc = item.image -%}
+                                                {%- assign img = item.image -%}
 
                                                 {% if settings.productImageAspectRatio == '9:13' %}
 
@@ -65,21 +65,21 @@
                                                 <picture>
                                                     <img
                                                         alt="{{ item.name }}"
-                                                        data-src="{{ imgSrc | thumb: imgSize }}"
-                                                        data-srcset="{{ imgSrc | thumb: imgSize }} 1x, {{ imgSrc | thumb: imgSize | thumb:'@2x' }} 2x"
+                                                        data-src="{{ img | thumb: imgSize }}"
+                                                        data-srcset="{{ img | thumb: imgSize }} 1x, {{ img | thumb: imgSize | thumb:'@2x' }} 2x"
                                                         class="lazy d-block mx-auto img-fluid aspect-ratio-item">
                                                 </picture>
 
                                             {% else %}
 
-                                                {%- capture imgSrc -%}
+                                                {%- capture img -%}
                                                     {%- render 'placeholder-svg', type: 'image', base64: true -%}
                                                 {%- endcapture -%}
 
                                                 <img
                                                     class="lazy d-block mx-auto img-fluid aspect-ratio-item svg-placeholder"
                                                     alt="{{ item.name }}"
-                                                    data-src="{{- imgSrc | strip_newlines -}}">
+                                                    data-src="{{- img | strip_newlines -}}">
 
                                             {% endif %}
 

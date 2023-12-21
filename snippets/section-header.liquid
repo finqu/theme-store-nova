@@ -16,6 +16,7 @@
 	- sectionHeaderGapScale: {Float}
 	- sectionHeaderAction: {String}
 	- sectionHeaderSecondaryAction: {String}
+	- sectionHeaderTextAlign: {String}
 	- sectionAnimation: {String}
 	- sectionAnimationRepeat: {Boolean}
 	- sectionHandle: {String}
@@ -36,17 +37,26 @@
 
 {% assign sectionAnimationOrder = 0 %}
 
-{%- if sectionHandle and sectionHeaderGapScale -%}
+{%- if sectionHandle -%}
 
-    {%- capture sectionHeaderStyle -%}
-        {{ sectionHandle }} .section-header {
-            --section-header-gap-scale: {{ sectionHeaderGapScale -}};
-		}
-	{%- endcapture -%}
+	{%- if sectionHeaderGapScale or sectionHeaderTextAlign -%}
 
-	{%- assign sectionHeaderStyle = sectionHeaderStyle | strip_newlines -%}
+		{%- capture sectionHeaderStyle -%}
+			{{ sectionHandle }} .section-header {
+				{% if sectionHeaderGapScale -%}
+					--section-header-gap-scale: {{ sectionHeaderGapScale }};
+				{%- endif -%}
+				{% if sectionHeaderTextAlign -%}
+					--section-header-text-align: {{ sectionHeaderTextAlign }};
+				{%- endif -%}
+			}
+		{%- endcapture -%}
 
-	<style>{{ sectionHeaderStyle | strip | replace: '  ', '' | strip_newlines }}</style>
+		{%- assign sectionHeaderStyle = sectionHeaderStyle | strip_newlines -%}
+
+		<style>{{ sectionHeaderStyle | strip | replace: '  ', '' | strip_newlines }}</style>
+
+	{%- endif -%}
 
 {%- endif -%}
 

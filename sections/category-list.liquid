@@ -220,10 +220,10 @@
 
                 {%- if itemCategory -%}
 
-                    {%- if item.settings.imgSrc -%}
-                        {%- assign imgSrc = item.settings.imgSrc -%}
+                    {%- if item.settings.img -%}
+                        {%- assign img = item.settings.img -%}
                     {%- else -%}
-                        {%- assign imgSrc = itemCategory.image -%}
+                        {%- assign img = itemCategory.image -%}
                     {%- endif -%}
 
                     {%- assign imgAlt = item.settings.imgAlt | default: itemCategory.title -%}
@@ -233,7 +233,7 @@
 
                 {%- else -%}
 
-                    {%- assign imgSrc = item.settings.imgSrc -%}
+                    {%- assign img = item.settings.img -%}
                     {%- assign imgAlt = item.settings.imgAlt -%}
                     {%- assign resourceUrl = item.settings.resource.url -%}
                     {%- assign openResourceInNewWindow = item.settings.resourceOpenInNewTab -%}
@@ -259,26 +259,26 @@
 
                         <div class="aspect-ratio-container">
 
-                            {% if imgSrc %}
+                            {% if img %}
 
                                  <picture>
                                     <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
-                                        {{- imgSrc | thumb: imgSizeLg }} 1x,
-                                        {{- imgSrc | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+                                        {{- img | thumb: imgSizeLg }} 1x,
+                                        {{- img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
 
                                     <source media="(min-width: {{ settings.styleGridBreakpointSm }})" data-srcset="
-                                        {{- imgSrc | thumb: imgSizeMd }} 1x,
-                                        {{- imgSrc | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+                                        {{- img | thumb: imgSizeMd }} 1x,
+                                        {{- img | thumb: imgSizeMd | thumb:'@2x' }} 2x">
 
                                     <source data-srcset="
-                                        {{- imgSrc | thumb: imgSizeSm }} 1x,
-                                        {{- imgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+                                        {{- img | thumb: imgSizeSm }} 1x,
+                                        {{- img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
 
                                     <img
                                         alt="{{ imgAlt }}" 
-                                        data-src="{{ imgSrc | thumb: imgSizeSm }}"
-                                        data-srcset="{{ imgSrc | thumb: imgSizeSm }} 1x, {{ imgSrc | thumb: imgSizeSm | thumb:'@2x' }} 2x"
-                                        class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}">
+                                        data-src="{{ img | thumb: imgSizeSm }}"
+                                        data-srcset="{{ img | thumb: imgSizeSm }} 1x, {{ img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                        class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}"{% if img.offset_left or img.offset_top %} style="--object-position: {{ img.offset_left }}% {{ img.offset_top }}%"{% endif %}>
                                 </picture>
 
                             {% else %}
@@ -567,12 +567,13 @@
                                 }
                             },
                             {
-                                "id": "imgSrc",
+                                "id": "img",
                                 "type": "image-picker",
                                 "label": {
                                     "en": "Image",
                                     "fi": "Kuva"
-                                }
+                                },
+                                "adjustments": true
                             },
                             {
                                 "id": "imgAlt",
@@ -912,90 +913,13 @@
                         "conditions": ["sectionPaddingMode eq custom"]
                     },
                     {
-                        "id": "sectionBgImgSrc",
+                        "id": "sectionBgImg",
                         "type": "image-picker",
                         "label": {
                             "en": "Background image",
                             "fi": "Taustakuva"
-                        }
-                    },
-                    {
-                        "id": "sectionBgImgPos",
-                        "type": "select",
-                        "label": {
-                            "en": "Image position",
-                            "fi": "Kuvan sijainti"
                         },
-                        "default": "",
-                        "options": [
-                            {
-                                "value": "",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": "left-top",
-                                "label": {
-                                    "en": "Left Top",
-                                    "fi": "Vasemmalla ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "left-center",
-                                "label": {
-                                    "en": "Left Center",
-                                    "fi": "Vasemmalla"
-                                }
-                            },
-                            {
-                                "value": "left-bottom",
-                                "label": {
-                                    "en": "Left Bottom",
-                                    "fi": "Vasemmalla alhaalla"
-                                }
-                            },
-                            {
-                                "value": "right-top",
-                                "label": {
-                                    "en": "Right Top",
-                                    "fi": "Oikealla ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "right-center",
-                                "label": {
-                                    "en": "Right Center",
-                                    "fi": "Oikealla"
-                                }
-                            },
-                            {
-                                "value": "right-bottom",
-                                "label": {
-                                    "en": "Right Bottom",
-                                    "fi": "Oikealla alhaalla"
-                                }
-                            },
-                            {
-                                "value": "center-top",
-                                "label": {
-                                    "en": "Center Top",
-                                    "fi": "Keskellä ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "center-center",
-                                "label": {
-                                    "en": "Center Center",
-                                    "fi": "Keskellä"
-                                }
-                            },
-                            {
-                                "value": "center-bottom",
-                                "label": {
-                                    "en": "Center Bottom",
-                                    "fi": "Keskellä alhaalla"
-                                }
-                            }
-                        ]
+                        "adjustments": true
                     },
                     {
                         "id": "sectionBgImgDimming",

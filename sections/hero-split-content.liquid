@@ -33,15 +33,15 @@
             {%- render 'placeholder-svg', type: 'background', base64: true -%}
         {%- endcapture -%}
 
-        {%- if section.settings.imgSrc -%}
-            {% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%), rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%)) | {% endif %}url('{{- section.settings.imgSrc | thumb: '1920,1080' -}}') 1x, url('{{- section.settings.imgSrc | thumb: '1920,1080' | thumb: '@2x' -}}') 2x
+        {%- if section.settings.img -%}
+            {% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%), rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%)) | {% endif %}url('{{- section.settings.img | thumb: '1920,1080' -}}') 1x, url('{{- section.settings.img | thumb: '1920,1080' | thumb: '@2x' -}}') 2x
         {%- else -%}
             {% if section.settings.imgDimming > 0 %}linear-gradient(0deg, rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%), rgb(0,0,0, {{- section.settings.imgDimming > 0 -}}%)) | {% endif %}url('{{ placeholderSvg | strip }}') 1x
         {%- endif -%}
 
     {%- endcapture -%}
 
-    <div class="lazy position-absolute top-0 start-0 w-100 h-100 bg-position-center{% if section.settings.imgSrc %} bg-size-cover{% endif %}" data-bg-set="{{- imgSrc | strip -}}"></div>
+    <div class="lazy position-absolute top-0 start-0 w-100 h-100 bg-position-center{% if section.settings.img %} bg-size-cover{% endif %}" data-bg-set="{{- imgSrc | strip -}}"{% if section.settings.img.offset_left or section.settings.img.offset_top %} style="--bg-position: {{ section.settings.img.offset_left }}% {{ section.settings.img.offset_top }}%"{% endif %}>></div>
 
 {%- endcapture -%}
 
@@ -201,8 +201,9 @@
                         }
                     },
                     {
-                        "id": "imgSrc",
-                        "type": "image-picker"
+                        "id": "img",
+                        "type": "image-picker",
+                        "adjustments": true
                     }
                 ]
             },

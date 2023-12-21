@@ -409,6 +409,10 @@
                 },
                 "settings": [
                     {
+                        "id": "contactLayout",
+                        "type": "hidden"
+                    },
+                    {
                         "type": "title",
                         "label": {
                             "en": "Titles",
@@ -453,25 +457,6 @@
                             "en": "Content",
                             "fi": "Sisältö"
                         }
-                    },
-                    {
-                        "id": "contactLayout",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Style",
-                            "fi": "Tyyli"
-                        },
-                        "default": 1,
-                        "options": [
-                            {
-                                "value": 1,
-                                "label": "1"
-                            },
-                            {
-                                "value": 2,
-                                "label": "2"
-                            }
-                        ]
                     },
                     {
                         "id": "showPhonenumber",
@@ -777,90 +762,13 @@
                         "conditions": ["sectionPaddingMode eq custom"]
                     },
                     {
-                        "id": "sectionBgImgSrc",
+                        "id": "sectionBgImg",
                         "type": "image-picker",
                         "label": {
                             "en": "Background image",
                             "fi": "Taustakuva"
-                        }
-                    },
-                    {
-                        "id": "sectionBgImgPos",
-                        "type": "select",
-                        "label": {
-                            "en": "Image position",
-                            "fi": "Kuvan sijainti"
                         },
-                        "default": "",
-                        "options": [
-                            {
-                                "value": "",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": "left-top",
-                                "label": {
-                                    "en": "Left Top",
-                                    "fi": "Vasemmalla ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "left-center",
-                                "label": {
-                                    "en": "Left Center",
-                                    "fi": "Vasemmalla"
-                                }
-                            },
-                            {
-                                "value": "left-bottom",
-                                "label": {
-                                    "en": "Left Bottom",
-                                    "fi": "Vasemmalla alhaalla"
-                                }
-                            },
-                            {
-                                "value": "right-top",
-                                "label": {
-                                    "en": "Right Top",
-                                    "fi": "Oikealla ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "right-center",
-                                "label": {
-                                    "en": "Right Center",
-                                    "fi": "Oikealla"
-                                }
-                            },
-                            {
-                                "value": "right-bottom",
-                                "label": {
-                                    "en": "Right Bottom",
-                                    "fi": "Oikealla alhaalla"
-                                }
-                            },
-                            {
-                                "value": "center-top",
-                                "label": {
-                                    "en": "Center Top",
-                                    "fi": "Keskellä ylhäällä"
-                                }
-                            },
-                            {
-                                "value": "center-center",
-                                "label": {
-                                    "en": "Center Center",
-                                    "fi": "Keskellä"
-                                }
-                            },
-                            {
-                                "value": "center-bottom",
-                                "label": {
-                                    "en": "Center Bottom",
-                                    "fi": "Keskellä alhaalla"
-                                }
-                            }
-                        ]
+                        "adjustments": true
                     },
                     {
                         "id": "sectionBgImgDimming",
@@ -895,6 +803,14 @@
     "presets": [
         {
             "settings": {
+                "contactLayout": 1,
+                "sectionTitle": "Contact us",
+                "richtext": "<p>Want to get in touch with us? Just fill out the form below and we'll get back to you as soon as possible.<\/p>"
+            }
+        },
+        {
+            "settings": {
+                "contactLayout": 2,
                 "sectionTitle": "Contact us",
                 "richtext": "<p>Want to get in touch with us? Just fill out the form below and we'll get back to you as soon as possible.<\/p>"
             }
