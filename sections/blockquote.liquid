@@ -1,66 +1,34 @@
-{%- assign sectionMinHeight = section.settings.sectionMinHeight | append: 'vh' -%}
-
-{%- if section.settings.sectionOverline -%}
-    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-{%- endif -%}
-
-{%- if section.settings.sectionTitle -%}
-    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-{%- endif -%}
-
-{%- if section.settings.sectionSubtitle -%}
-    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-{%- endif -%}
-
-{%- if section.settings.sectionTextAlign == 'nil' -%}
-    {%- assign textAlign = settings.sectionTextAlign -%}
-{%- else -%}
-    {%- assign textAlign = section.settings.sectionTextAlign -%}
-{%- endif -%}
-
 {%- capture sectionContent -%}
 
-    <div class="row gy-5 justify-content-{{ textAlign }}">
+    <blockquote class="blockquote">
+    
+        <div class="d-inline-flex flex-column aling-self-{{ section.settings.sectionTextAlign }}">
 
-        <div class="text-container col align-self-center max-w-lg-60">
-            
-            <div class="text-{{ textAlign }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+            {%- if section.settings.showQuotes -%}
+                <span class="d-block text-start">
+                    {%- render 'icon', icon: 'quote-open', class: 'svg-icon-2x' -%}
+                </span>
+            {%- endif -%}
 
-                {%- assign sectionHandle = '#finqu-section-' | append: section.id -%}
-
-                {% render 'section-header', sectionTitle: section.settings.sectionTitle, sectionTitleTag: section.settings.sectionTitleTag, sectionSubtitle: section.settings.sectionSubtitle, sectionSubtitleTag: section.settings.sectionSubtitleTag, sectionOverline: section.settings.sectionOverline, sectionOverlineTag: section.settings.sectionOverlineTag, sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle %}
-
-                {% if section.settings.btnLabel %}
-
-                    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
-
-                    <div class="mt-7" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
-
-                        {%- render 'section-quick-link', style: section.settings.btnStyle, text: section.settings.btnLabel, url: section.settings.btnLink.url, openInNewTab: section.settings.btnLinkOpenInNewTab -%}
-
-                    </div>
-
-                {% endif %}
-
-            </div>
+            {{- section.settings.richtext -}}
 
         </div>
 
-    </div>
+    </blockquote>
 
 {%- endcapture -%}
 
-{% render 'section', section: section, sectionContent: sectionContent, sectionContentAnimation: false, sectionHeader: false, sectionHeaderTextAlign: textAlign, sectionMinHeight: sectionMinHeight %}
+{% render 'section', section: section, sectionContent: sectionContent %}
 
 {% schema %}
 {
     "name": {
-        "en": "Hero",
-        "fi": "Hero"
+        "en": "Quote block",
+        "fi": "Lainauslohko"
     },
     "tag": "section",
-    "class": "section section-hero",
-    "category": "theme-hero",
+    "class": "section section-blockquote",
+    "category": "theme-basic",
     "settings": {
         "list_type": "tabs",
         "groups": [
@@ -73,8 +41,8 @@
                     {
                         "type": "title",
                         "label": {
-                            "en": "Text",
-                            "fi": "Teksti"
+                            "en": "Titles",
+                            "fi": "Otsikot"
                         }
                     },
                     {
@@ -102,67 +70,28 @@
                         }
                     },
                     {
-                        "id": "btnLabel",
-                        "type": "text",
-                        "label": {
-                            "en": "Button text",
-                            "fi": "Painikkeen teksti"
-                        }
-                    },
-                    {
-                        "id": "btnLink",
-                        "type": "url",
-                        "label": {
-                            "en": "Button link",
-                            "fi": "Painikkeen linkki"
-                        }
-                    },
-                    {
-                        "id": "btnLinkOpenInNewTab",
-                        "type": "checkbox",
-                        "label": {
-                            "en": "Open link in a new tab",
-                            "fi": "Avaa linkki uudessa välilehdessä"
-                        },
-                        "default": false
-                    },
-                    {
                         "type": "title",
                         "label": {
-                            "en": "Image",
-                            "fi": "Kuva"
+                            "en": "View",
+                            "fi": "Näkymä"
                         }
                     },
                     {
-                        "id": "sectionBgImg",
-                        "type": "image-picker",
-                        "adjustments": true
+                        "id": "richtext",
+                        "type": "richtext",
+                        "label": {
+                            "en": "Content",
+                            "fi": "Sisältö"
+                        }
                     },
                     {
-                        "id": "sectionBgImgDimming",
+                        "id": "showQuotes",
+                        "type": "checkbox",
                         "label": {
-                            "en": "Image dimming",
-                            "fi": "Kuvan tummennus"
+                            "en": "Show quotes",
+                            "fi": "Näytä lainausmerkit"
                         },
-                        "type": "range",
-                        "min": 0,
-                        "max": 90,
-                        "step": 5,
-                        "default": "0",
-                        "unit": "%"
-                    },
-                    {
-                        "id": "sectionBgImgBlur",
-                        "label": {
-                            "en": "Image blur",
-                            "fi": "Kuvan sumentaminen"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 10,
-                        "step": 1,
-                        "default": "0",
-                        "unit": " "
+                        "default": true
                     }
                 ]
             },
@@ -175,18 +104,18 @@
                     {
                         "type": "title",
                         "label": {
-                            "en": "Text",
-                            "fi": "Teksti"
+                            "en": "Content",
+                            "fi": "Sisältö"
                         }
                     },
                     {
                         "id": "sectionTextAlign",
                         "type": "radio-pill",
                         "label": {
-                            "en": "Text align",
-                            "fi": "Tekstin tasaus"
+                            "en": "Content text align",
+                            "fi": "Sisällön tekstin tasaus"
                         },
-                        "default": "center",
+                        "default": "nil",
                         "options": [
                             {
                                 "value": "nil",
@@ -205,59 +134,6 @@
                                 "label": "{# icon.align-end #}"
                             }
                         ]
-                    },
-                    {
-                        "id": "btnStyle",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Button style",
-                            "fi": "Painikkeen tyyli"
-                        },
-                        "default": "primary",
-                        "options": [
-                            {
-                                "value": "primary",
-                                "label": {
-                                    "en": "Style 1",
-                                    "fi": "Tyyli 1"
-                                }
-                            },
-                            {
-                                "value": "secondary",
-                                "label": {
-                                    "en": "Style 2",
-                                    "fi": "Tyyli 2"
-                                }
-                            },
-                            {
-                                "value": "link",
-                                "label": {
-                                    "en": "Style 3",
-                                    "fi": "Tyyli 3"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "type": "title",
-                        "label": {
-                            "en": "Content",
-                            "fi": "Sisältö"
-                        }
-                    },
-                    {
-                        "id": "sectionMinHeight",
-                        "type": "select",
-                        "label": {
-                            "en": "Minimum height",
-                            "fi": "Minimi korkeus"
-                        },
-                        "type": "range",
-                        "min": 40,
-                        "max": 100,
-                        "step": 5,
-                        "default": "60",
-                        "unit": "vh"
                     },
                     {
                         "type": "title",
@@ -330,7 +206,8 @@
                             {
                                 "value": "h3",
                                 "label": "H3"
-                            }, {
+                            },
+                            {
                                 "value": "span",
                                 "label": {
                                     "en": "Text",
@@ -468,6 +345,41 @@
                         "default": "0",
                         "unit": "rem",
                         "conditions": ["sectionPaddingMode eq custom"]
+                    },
+                    {
+                        "id": "sectionBgImg",
+                        "type": "image-picker",
+                        "label": {
+                            "en": "Background image",
+                            "fi": "Taustakuva"
+                        },
+                        "adjustments": true
+                    },
+                    {
+                        "id": "sectionBgImgDimming",
+                        "label": {
+                            "en": "Image dimming",
+                            "fi": "Kuvan tummennus"
+                        },
+                        "type": "range",
+                        "min": 0,
+                        "max": 90,
+                        "step": 5,
+                        "default": "0",
+                        "unit": "%"
+                    },
+                    {
+                        "id": "sectionBgImgBlur",
+                        "label": {
+                            "en": "Image blur",
+                            "fi": "Kuvan sumentaminen"
+                        },
+                        "type": "range",
+                        "min": 0,
+                        "max": 10,
+                        "step": 1,
+                        "default": "0",
+                        "unit": " "
                     }
                 ]
             }
@@ -476,18 +388,7 @@
     "presets": [
         {
             "settings": {
-                "sectionTitle": "New amazing Hero title!",
-                "sectionSubtitle": "Tell your customers about this Hero section.",
-                "btnLabel": "Shop now",
-                "sectionColorScheme": "dark",
-                "sectionBgImg": {
-                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/sumaid-pal-singh-bakshi-dyevz2nitaw-unsplash_1920_1080.jpg",
-                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/sumaid-pal-singh-bakshi-dyevz2nitaw-unsplash_1920_1080.jpg",
-                    "offset_top": "50",
-                    "offset_left": "50",
-                    "width": "1920",
-                    "height": "1080"
-                }
+                "richtext": "Write a super awesome quote here."
             }
         }
     ]

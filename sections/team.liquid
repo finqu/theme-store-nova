@@ -1,163 +1,236 @@
-{%- if section.settings.layout == 1 -%}
 
-    {%- assign aspectRatio = '16-9' -%}
-    {%- assign imgSizeSm = '193,113' -%}
-    {%- assign imgSizeMd = '310,178' -%}
-    {%- assign imgSizeLg = '430,246' -%}
+{%- capture sectionStyle -%}
+    #finqu-section-{{ section.id }} {
+        --style-grid-gutter-width: {{ settings.styleGridGutterWidth }};
+    }
+{%- endcapture -%}
 
-{%- elsif section.settings.layout == 2 -%}
-
-    {%- assign aspectRatio = '9-13' -%}
-    {%- assign imgSizeSm = '386,550' -%}
-    {%- assign imgSizeMd = '620,886' -%}
-    {%- assign imgSizeLg = '860,1232' -%}
-
-{%- elsif section.settings.layout == 3 -%}
-
-    {%- assign aspectRatio = '4-3' -%}
-    {%- assign imgSizeSm = '193,147' -%}
-    {%- assign imgSizeMd = '310,235' -%}
-    {%- assign imgSizeLg = '430,325' -%}
-
-{%- elsif section.settings.layout == 4 -%}
-
-    {%- assign aspectRatio = '1-1' -%}
-    {%- assign imgSizeSm = '193,193' -%}
-    {%- assign imgSizeMd = '310,310' -%}
-    {%- assign imgSizeLg = '430,430' -%}
-
-{%- endif -%}
+<style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
 
 {%- capture sectionContent -%}
 
-     <div class="row gy-g masonry gallery">
+    {% if section.settings.imgAspectRatio == '16:9' %}
 
-        {% for item in section.settings.setting_blocks.items %}
+        {%- assign imgSizeSm = '175,103' -%}
+        {%- assign imgSizeMd = '206,220' -%}
 
-            {%- if section.settings.layout == 5 -%}
+        {%- case section.settings.memberPerRow -%}
+            {% when '3' %}
+                {%- assign imgSizeLg = '430,246' -%}
+            {% when '4' %}
+                {%- assign imgSizeLg = '320,184' -%}
+            {% when '5' %}
+                {%- assign imgSizeLg = '254,147' -%}
+            {% when '6' %}
+                {%- assign imgSizeLg = '210,122' -%}
+            {% when '7' %}
+                {%- assign imgSizeLg = '178,104' -%}
+            {% when '8' %}
+                {%- assign imgSizeLg = '155,91' -%}
+        {%- endcase -%}
 
-                {%- capture aspectRatio -%}{%- cycle '9-13', '4-3', '1-1', '1-1', '4-3', '1-1' -%}{%- endcapture -%}
-                {%- assign aspectRatio = aspectRatio -%}
+    {% elsif section.settings.imgAspectRatio == '9:13' %}
 
-            {%- elsif section.settings.layout == 6 -%}
+        {%- assign imgSizeSm = '175,248' -%}
+        {%- assign imgSizeMd = '206,293' -%}
 
-                {%- capture aspectRatio -%}{%- cycle '4-3', '1-1', '9-13', '4-3', '4-3', '1-1' -%}{%- endcapture -%}
-                {%- assign aspectRatio = aspectRatio -%}
+        {%- case section.settings.memberPerRow -%}
+            {% when '3' %}
+                {%- assign imgSizeLg = '430,616' -%}
+            {% when '4' %}
+                {%- assign imgSizeLg = '320,457' -%}
+            {% when '5' %}
+                {%- assign imgSizeLg = '254,362' -%}
+            {% when '6' %}
+                {%- assign imgSizeLg = '210,298' -%}
+            {% when '7' %}
+                {%- assign imgSizeLg = '178,253' -%}
+            {% when '8' %}
+                {%- assign imgSizeLg = '155,219' -%}
+        {%- endcase -%}
 
-            {%- elsif section.settings.layout == 7 -%}
+    {% elsif section.settings.imgAspectRatio == '4:3' %}
 
-                {%- capture aspectRatio -%}{%- cycle '1-1', '1-1', '1-1', '4-3', '16-9', '9-13' -%}{%- endcapture -%}
-                {%- assign aspectRatio = aspectRatio -%}
+        {%- assign imgSizeSm = '175,134' -%}
+        {%- assign imgSizeMd = '206,157' -%}
 
-            {%- elsif section.settings.layout == 8 -%}
+        {%- case section.settings.memberPerRow -%}
+            {% when '3' %}
+                {%- assign imgSizeLg = '430,325' -%}
+            {% when '4' %}
+                {%- assign imgSizeLg = '320,242' -%}
+            {% when '5' %}
+                {%- assign imgSizeLg = '254,193' -%}
+            {% when '6' %}
+                {%- assign imgSizeLg = '210,160' -%}
+            {% when '7' %}
+                {%- assign imgSizeLg = '178,136' -%}
+            {% when '8' %}
+                {%- assign imgSizeLg = '155,118' -%}
+        {%- endcase -%}
 
-                {%- capture aspectRatio -%}{%- cycle '1-1', '9-13', '4-3', '1-1', '16-9', '1-1' -%}{%- endcapture -%}
-                {%- assign aspectRatio = aspectRatio -%}
+    {% elsif section.settings.imgAspectRatio == '1:1' %}
 
-            {%- elsif section.settings.layout == 9 -%}
+        {%- assign imgSizeSm = '175,175' -%}
+        {%- assign imgSizeMd = '206,206' -%}
 
-                {%- capture aspectRatio -%}{%- cycle '1-1', '9-13', '4-3', '1-1', '4-3', '9-13' -%}{%- endcapture -%}
-                {%- assign aspectRatio = aspectRatio -%}
+        {%- case section.settings.memberPerRow -%}
+            {% when '3' %}
+                {%- assign imgSizeLg = '430,430' -%}
+            {% when '4' %}
+                {%- assign imgSizeLg = '320,320' -%}
+            {% when '5' %}
+                {%- assign imgSizeLg = '254,254' -%}
+            {% when '6' %}
+                {%- assign imgSizeLg = '210,210' -%}
+            {% when '7' %}
+                {%- assign imgSizeLg = '178,178' -%}
+            {% when '8' %}
+                {%- assign imgSizeLg = '155,155' -%}
+        {%- endcase -%}
 
-            {%- elsif section.settings.layout == 'random' -%}
+    {% endif %}
 
-                {%- assign aspectRatio = '16-9,9-13,4-3,1-1' | split: ',' | random -%}
+    {% if section.settings.setting_blocks.items.size == 0 and request.design_mode == 'edit' %}
 
-            {%- endif -%}
+        <div class="row gy-g row-cols-2 row-cols-lg-{{ section.settings.memberPerRow }}">
 
-            {%- if section.settings.layout > 5 -%}
+            {% for num in (1..section.settings.memberPerRow) %}
 
-                {%- if aspectRatio == '16-9' -%}
+                <div class="col position-relative" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
 
-                    {%- assign imgSizeSm = '193,113' -%}
-                    {%- assign imgSizeMd = '310,178' -%}
-                    {%- assign imgSizeLg = '430,246' -%}
-        
-                {%- elsif aspectRatio == '9-13' -%}
-        
-                    {%- assign imgSizeSm = '386,550' -%} 
-                    {%- assign imgSizeMd = '620,886' -%}
-                    {%- assign imgSizeLg = '860,1232' -%}
-        
-                {%- elsif aspectRatio == '4-3' -%}
-        
-                    {%- assign imgSizeSm = '193,147' -%}
-                    {%- assign imgSizeMd = '310,235' -%}
-                    {%- assign imgSizeLg = '430,325' -%}
-        
-                {%- elsif aspectRatio == '1-1' -%}
-        
-                    {%- assign imgSizeSm = '193,193' -%}
-                    {%- assign imgSizeMd = '310,310' -%}
-                    {%- assign imgSizeLg = '430,430' -%}
-        
-                {%- endif -%}
+                    <div class="aspect-ratio-{{ section.settings.imgAspectRatio | replace: ':', '-' }}{% if section.settings.imgAspectRatio == '1:1' and section.settings.imgFit and section.settings.imgCircle %} rounded-circle{% endif %}">
 
-            {%- endif -%}
+                        <div class="aspect-ratio-container">
 
-            <div class="col-6 col-md-4 gallery-item">
-
-                <div class="aspect-ratio-{{ aspectRatio }}">
-
-                    <div class="aspect-ratio-container{% if item.settings.img %} img-indicator-zoom{% endif %}" data-gallery-init>
-
-                        {% if item.settings.img %}
-
-                            <picture>
-                                <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
-                                    {{- item.settings.img | thumb: imgSizeLg }} 1x,
-                                    {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
-
-                                <source media="(min-width: {{ settings.styleGridBreakpointSm }})" data-srcset="
-                                    {{- item.settings.img | thumb: imgSizeMd }} 1x,
-                                    {{- item.settings.img | thumb: imgSizeMd | thumb:'@2x' }} 2x">
-
-                                <source data-srcset="
-                                    {{- item.settings.img | thumb: imgSizeSm }} 1x,
-                                    {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
-
-                                <img
-                                    class="lazy d-block mx-auto img-fluid aspect-ratio-item aspect-ratio-item-cover cursor-zoom-in"
-                                    alt="{{ item.settings.imgAlt }}"
-                                    data-gallery-img-src="{{ item.settings.img | thumb: '1920,1080' }}"
-                                    src="{{ item.settings.img | thumb: imgSizeSm }}"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
-                            </picture>
-
-                        {% else %}
-
-                            {%- capture imgSrc -%}
-                                {% render 'placeholder-svg', type: 'image', base64: true %}
+                            {%- capture class -%}
+                                aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}
                             {%- endcapture -%}
 
-                            <img
-                                class="lazy d-block mx-auto img-fluid aspect-ratio-item cursor-zoom-in svg-placeholder"
-                                alt="{{ item.settings.imgAlt }}"
-                                data-src="{{- imgSrc | strip_newlines -}}">
+                            {% render 'placeholder-svg', type: 'image', class: class %}
 
-                        {% endif %}
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex flex-column mt-g gap-1">
+
+                        <h4 class="d-block mb-0">
+                            {{- 'placeholder.member' | t -}} {{ forloop.index }}
+                        </h4>
+
+                        <span class="d-block text-muted">
+                            {{- 'placeholder.role' | t -}}
+                        </span>
 
                     </div>
 
                 </div>
 
-            </div>
+            {% endfor %}
 
-        {% endfor %}
+        </div>
 
-    </div>
+    {% else %}
+
+        <div class="row gy-g row-cols-2 row-cols-lg-{{ section.settings.memberPerRow }}">
+
+            {% for item in section.settings.setting_blocks.items %}
+
+                <div class="col position-relative" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
+
+                    <div class="aspect-ratio-{{ section.settings.imgAspectRatio | replace: ':', '-' }}{% if section.settings.imgAspectRatio == '1:1' and section.settings.imgFit and section.settings.imgCircle %} rounded-circle{% endif %}">
+
+                        <div class="aspect-ratio-container">
+
+                            {% if item.settings.img %}
+
+                                 <picture>
+                                    <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeLg }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                                    <source media="(min-width: {{ settings.styleGridBreakpointSm }})" data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeMd }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+
+                                    <source data-srcset="
+                                        {{- item.settings.img | thumb: imgSizeSm }} 1x,
+                                        {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+
+                                    <img
+                                        alt="{{ item.settings.imgAlt }}" 
+                                        data-src="{{ item.settings.img | thumb: imgSizeSm }}"
+                                        data-srcset="{{ item.settings.img | thumb: imgSizeSm }} 1x, {{ item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                                        class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
+                                </picture>
+
+                            {% else %}
+
+                                {%- capture class -%}
+                                    aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}
+                                {%- endcapture -%}
+
+                                {% render 'placeholder-svg', type: 'image', class: class %}
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    {% if item.settings.name or item.settings.role or item.settings.additionalInformation %}
+
+                        <div class="d-flex flex-column mt-g gap-1">
+
+                            {% if item.settings.name %}
+
+                                <h4 class="d-block mb-0">
+                                    {{- item.settings.name -}}
+                                </h4>
+
+                            {% endif %}
+
+                            {% if item.settings.role %}
+
+                                <span class="d-block text-muted">
+                                    {{- item.settings.role -}}
+                                </span>
+
+                            {% endif %}
+
+                            {% if item.settings.additionalInformation %}
+
+                                <small class="d-block mt-2">
+                                    {{- item.settings.additionalInformation -}}
+                                </small>
+
+                            {% endif %}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
 
 {%- endcapture -%}
 
-{% render 'section', section: section, sectionContent: sectionContent, sectionContentAnimation: false %}
+{% render 'section', section: section, sectionAction: sectionAction, sectionContent: sectionContent, sectionContentAnimation: false %}
 
 {% schema %}
 {
     "name": {
-        "en": "Image gallery",
-        "fi": "Kuvagalleria"
+        "en": "Team",
+        "fi": "Tiimi"
     },
     "tag": "section",
-    "class": "section section-image-gallery",
+    "class": "section section-team",
     "category": "theme-basic",
     "settings": {
         "list_type": "tabs",
@@ -207,56 +280,37 @@
                         }
                     },
                     {
-                        "id": "layout",
-                        "type": "select",
+                        "id": "memberPerRow",
                         "label": {
-                            "en": "Layout",
-                            "fi": "Asettelu"
+                            "en": "Member per row",
+                            "fi": "Jäseniä per rivi"
                         },
-                        "default": 1,
+                        "type": "radio-pill",
+                        "default": 3,
                         "options": [
                             {
-                                "value": 1,
-                                "label": "16:9"
-                            },
-                            {
-                                "value": 2,
-                                "label": "9:13"
-                            },
-                            {
                                 "value": 3,
-                                "label": "4:3"
+                                "label": "3"
                             },
                             {
                                 "value": 4,
-                                "label": "1:1"
+                                "label": "4"
                             },
                             {
                                 "value": 5,
-                                "label": "9:13 | 4:3 | 1:1 | 1:1 | 4:3 | 1:1"
+                                "label": "5"
                             },
                             {
                                 "value": 6,
-                                "label": "4:3 | 1:1 | 9:13 | 4:3 | 4:3 | 1:1"
+                                "label": "6"
                             },
                             {
                                 "value": 7,
-                                "label": "1:1 | 1:1 | 1:1 | 4:3 | 16:9 | 9:13"
+                                "label": "7"
                             },
                             {
                                 "value": 8,
-                                "label": "1:1 | 9:13 | 4:3 | 1:1 | 16:9 | 1:1"
-                            },
-                            {
-                                "value": 9,
-                                "label": "1:1 | 9:13 | 4:3 | 1:1 | 4:3 | 9:13"
-                            },
-                            {
-                                "value": "random",
-                                "label": {
-                                    "en": "Random",
-                                    "fi": "Satunnainen"
-                                }
+                                "label": "8"
                             }
                         ]
                     }
@@ -264,27 +318,30 @@
             },
             {
                 "title": {
-                    "en": "Images",
-                    "fi": "Kuvat"
+                    "en": "Members",
+                    "fi": "Jäsenet"
                 },
                 "id": "items",
                 "call_to_action": {
-                    "en": "Add a image",
-                    "fi": "Lisää kuva"
+                    "en": "Add a member",
+                    "fi": "Lisää jäsen"
                 },
                 "is_sortable": true,
-                "display_icons": true,
                 "setting_blocks": [
                     {
                         "type": "image",
                         "title": {
-                            "en": "Image",
-                            "fi": "Kuva"
+                            "en": "Member",
+                            "fi": "Jäsen"
                         },
                         "settings": [
                             {
                                 "id": "img",
                                 "type": "image-picker",
+                                "label": {
+                                    "en": "Image",
+                                    "fi": "Kuva"
+                                },
                                 "adjustments": true
                             },
                             {
@@ -293,6 +350,30 @@
                                 "label": {
                                     "en": "Image alt",
                                     "fi": "Kuvan alt-teksti"
+                                }
+                            },
+                            {
+                                "id": "name",
+                                "type": "text",
+                                "label": {
+                                    "en": "Name",
+                                    "fi": "Nimi"
+                                }
+                            },
+                            {
+                                "id": "role",
+                                "type": "text",
+                                "label": {
+                                    "en": "Role",
+                                    "fi": "Rooli"
+                                }
+                            },
+                            {
+                                "id": "additionalInformation",
+                                "type": "text",
+                                "label": {
+                                    "en": "Additional information",
+                                    "fi": "Lisätiedot"
                                 }
                             }
                         ]
@@ -313,11 +394,11 @@
                         }
                     },
                     {
-                        "id": "sectionHeaderTextAlign",
+                        "id": "sectionTextAlign",
                         "type": "radio-pill",
                         "label": {
-                            "en": "Heading text align",
-                            "fi": "Otsikon tekstin tasaus"
+                            "en": "Content align",
+                            "fi": "Sisällön tasaus"
                         },
                         "default": "nil",
                         "options": [
@@ -337,6 +418,55 @@
                                 "value": "end",
                                 "label": "{# icon.align-end #}"
                             }
+                        ]
+                    },
+                    {
+                        "id": "imgAspectRatio",
+                        "type": "select",
+                        "label": {
+                            "en": "Aspect ratio",
+                            "fi": "Kuvasuhde"
+                        },
+                        "default": "1:1",
+                        "options": [
+                            {
+                                "value": "16:9",
+                                "label": "16:9"
+                            },
+                            {
+                                "value": "9:13",
+                                "label": "9:13"
+                            },
+                            {
+                                "value": "4:3",
+                                "label": "4:3"
+                            },
+                            {
+                                "value": "1:1",
+                                "label": "1:1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "imgFit",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Image area fill",
+                            "fi": "Kuva-alueen täyttö"
+                        },
+                        "default": true
+                    },
+                    {
+                        "id": "imgCircle",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Circular shaped image",
+                            "fi": "Ympyrän muotoinen kuva"
+                        },
+                        "default": false,
+                        "conditions": [
+                            "imgAspectRatio eq 1:1",
+                            "imgFit eq true"
                         ]
                     },
                     {
@@ -592,113 +722,56 @@
     "presets": [
         {
             "settings": {
-                "layout": "2",
+                "sectionTitle": "Meet our team",
                 "setting_blocks": {
                     "items": [
                         {
                             "type": "image",
                             "settings": {
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/avery-klein-c-drtsnboqa-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/avery-klein-c-drtsnboqa-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1489980557514-251d61e3eeb6",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1489980557514-251d61e3eeb6",
+                                    "offset_top": "64",
+                                    "offset_left": "60",
                                     "width": "1080",
                                     "height": "1080"
-                                }
+                                },
+                                "name": "Member name",
+                                "role": "Member role",
+                                "additionalInformation": "Additional information"
                             }
                         },
                         {
                             "type": "image",
                             "settings": {
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/s-l-x3sv4zu2wry-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/s-l-x3sv4zu2wry-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1548819611-fc0f1732d402",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1548819611-fc0f1732d402",
+                                    "offset_top": "22",
+                                    "offset_left": "60",
                                     "width": "1080",
                                     "height": "1080"
-                                }
+                                },
+                                "name": "Member name",
+                                "role": "Member role",
+                                "additionalInformation": "Additional information"
                             }
                         },
                         {
                             "type": "image",
                             "settings": {
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/karolina-grabowska-jwz5iihb1cc-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/karolina-grabowska-jwz5iihb1cc-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1601909991205-542c47eac28c",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1601909991205-542c47eac28c",
+                                    "offset_top": "58",
+                                    "offset_left": "74",
                                     "width": "1080",
                                     "height": "1080"
-                                }
+                                },
+                                "name": "Member name",
+                                "role": "Member role",
+                                "additionalInformation": "Additional information"
                             }
-                        },
-                        {
-                            "type": "image",
-                            "settings": {
-                                "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/khloe-arledge-ypi0l7vp0vw-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/khloe-arledge-ypi0l7vp0vw-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                }
-                            }
-                        },
-                        {
-                            "type": "image",
-                            "settings": {
-                                "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/getty-images-i15zfjwp8ac-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/getty-images-i15zfjwp8ac-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                }
-                            }
-                        },
-                        {
-                            "type": "image",
-                            "settings": {
-                                "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/andrej-lisakov-46kdn0hwqpg-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/andrej-lisakov-46kdn0hwqpg-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                }
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "settings": {
-                "layout": "9",
-                "setting_blocks": {
-                    "items": [
-                        {
-                            "type": "image"
-                        },
-                        {
-                            "type": "image"
-                        },
-                        {
-                            "type": "image"
-                        },
-                        {
-                            "type": "image"
-                        },
-                        {
-                            "type": "image"
-                        },
-                        {
-                            "type": "image"
                         }
                     ]
                 }

@@ -31,9 +31,9 @@
 {% endif %}
 
 {%- if block.settings.imgScaleRatio < 1 -%}
-    {%- capture imgSizeSm -%}{{- imgSizeSm | split: ',' | first | times: block.settings.imgScaleRatio | round -}},{{- imgSizeSm | split: ',' | last | times: block.settings.imgScaleRatio | round -}}{%- endcapture %}
-    {%- capture imgSizeMd -%}{{- imgSizeMd | split: ',' | first | times: block.settings.imgScaleRatio | round -}},{{- imgSizeMd | split: ',' | last | times: block.settings.imgScaleRatio | round -}}{%- endcapture %}
-    {%- capture imgSizeLg -%}{{- imgSizeLg | split: ',' | first | times: block.settings.imgScaleRatio | round -}},{{- imgSizeLg | split: ',' | last | times: block.settings.imgScaleRatio | round -}}{%- endcapture %}
+    {%- capture imgSizeSm -%}{{- imgSizeSm | split: ',' | first | times: block.settings.imgScaleRatio | round -}},{{- imgSizeSm | split: ',' | last | times: block.settings.imgScaleRatio | round -}}{%- endcapture -%}
+    {%- capture imgSizeMd -%}{{- imgSizeMd | split: ',' | first | times: block.settings.imgScaleRatio | round -}},{{- imgSizeMd | split: ',' | last | times: block.settings.imgScaleRatio | round -}}{%- endcapture -%}
+    {%- capture imgSizeLg -%}{{- imgSizeLg | split: ',' | first | times: block.settings.imgScaleRatio | round -}},{{- imgSizeLg | split: ',' | last | times: block.settings.imgScaleRatio | round -}}{%- endcapture -%}
     {%- assign imgSizeSm = imgSizeSm -%}
     {%- assign imgSizeMd = imgSizeMd -%}
     {%- assign imgSizeLg = imgSizeLg -%}

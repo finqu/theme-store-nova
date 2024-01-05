@@ -18,7 +18,7 @@
                                 "url": ""
                             },
                             "btnLinkOpenInNewTab": false,
-                            "imgStartSrc": {
+                            "imgStart": {
                                 "string_value": "https:\/\/cdn.iamgroot.finqu.dev\/users\/1\/images\/uploads\/dawn-2_1080_1080.jpg",
                                 "src": "https:\/\/cdn.iamgroot.finqu.dev\/users\/1\/images\/uploads\/dawn-2_1080_1080.jpg",
                                 "offset_top": "50",
@@ -26,7 +26,7 @@
                                 "width": "1080",
                                 "height": "864"
                             },
-                            "imgEndSrc": {
+                            "imgEnd": {
                                 "string_value": "https:\/\/cdn.iamgroot.finqu.dev\/users\/1\/images\/uploads\/dawn-1_1080_1080.jpg",
                                 "src": "https:\/\/cdn.iamgroot.finqu.dev\/users\/1\/images\/uploads\/dawn-1_1080_1080.jpg",
                                 "offset_top": "50",
@@ -34,7 +34,7 @@
                                 "width": "989",
                                 "height": "1080"
                             },
-                            "imgMobileSrc": {
+                            "imgMobile": {
                                 "string_value": "",
                                 "src": "",
                                 "offset_top": "50",
@@ -641,14 +641,6 @@
             "addToCartNotification": true,
             "cookiesNotificationPosition": "middle",
             "blogShowAuthor": false,
-            "faviconImgSrc": {
-                "string_value": "",
-                "src": "",
-                "offset_top": "50",
-                "offset_left": "50",
-                "width": "",
-                "height": ""
-            },
             "sectionBgImgPosition": "center-center"
         },
         "sections": [
@@ -656,7 +648,7 @@
                 "id": "header",
                 "name": "header",
                 "settings": {
-                    "logoImgSrc": {
+                    "logoImg": {
                         "string_value": "",
                         "src": "",
                         "offset_top": "50",
@@ -684,12 +676,12 @@
                     "footerNewsletterContent": "<p>Subscribe to get notified about product launches, special offers and news.<\/p>",
                     "footerSocialMediaTitle": "Sosiaalinen media",
                     "footerSocialMediaContent": "",
-                    "footerPaymentMethodsImgSrc": {
-                        "string_value": "https:\/\/cdn.iamgroot.finqu.dev\/users\/1\/images\/uploads\/fi-payment-methods_1080_1080.png",
-                        "src": "https:\/\/cdn.iamgroot.finqu.dev\/users\/1\/images\/uploads\/fi-payment-methods_1080_1080.png",
+                    "footerPaymentMethodsImg": {
+                        "string_value": "https:\/\/cdn.finqu.dev\/users\/1\/images\/uploads\/paytrail-banneri-2023-kaikki-maksutavat_1080_1080.png",
+                        "src": "https:\/\/cdn.finqu.dev\/users\/1\/images\/uploads\/paytrail-banneri-2023-kaikki-maksutavat_1080_1080.png",
                         "offset_top": "50",
                         "offset_left": "50",
-                        "width": "270",
+                        "width": "215",
                         "height": "1080"
                     },
                     "footerMenu1Title": "QUICK LINKS",
@@ -702,7 +694,7 @@
                     "footerTextArea1Status": true,
                     "footerTextArea2Status": true,
                     "footerNewsletterStatus": true,
-                    "footerSocialMediaButtonsStatus": false,
+                    "footerSocialMediaButtonsStatus": true,
                     "footerPaymentMethodsStatus": true
                 }
             },
@@ -1128,14 +1120,6 @@
                 "addToCartNotification": true,
                 "cookiesNotificationPosition": "middle",
                 "blogShowAuthor": false,
-                "faviconImgSrc": {
-                    "string_value": "",
-                    "src": "",
-                    "offset_top": "50",
-                    "offset_left": "50",
-                    "width": "",
-                    "height": ""
-                },
                 "sectionBgImgPosition": "center-center"
             },
             "templates": {
@@ -1500,7 +1484,7 @@
                     "id": "header",
                     "name": "header",
                     "settings": {
-                        "logoImgSrc": {
+                        "logoImg": {
                             "string_value": "",
                             "src": "",
                             "offset_top": "50",
@@ -1555,13 +1539,13 @@
                         "footerSocialMediaContent": "",
                         "footerTextArea2Title": "",
                         "footerTextArea2Content": "",
-                        "footerPaymentMethodsImgSrc": {
-                            "string_value": "",
-                            "src": "",
+                        "footerPaymentMethodsImg": {
+                            "string_value": "https:\/\/cdn.finqu.dev\/users\/1\/images\/uploads\/paytrail-banneri-2023-kaikki-maksutavat_1080_1080.png",
+                            "src": "https:\/\/cdn.finqu.dev\/users\/1\/images\/uploads\/paytrail-banneri-2023-kaikki-maksutavat_1080_1080.png",
                             "offset_top": "50",
                             "offset_left": "50",
-                            "width": "",
-                            "height": ""
+                            "width": "215",
+                            "height": "1080"
                         },
                         "footerMenu1": "footer",
                         "footerMenu1Title": "",

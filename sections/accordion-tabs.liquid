@@ -1,10 +1,108 @@
-{%- capture sectionContent -%}
+{% assign sectionAnimationOrder = 0 %}
 
-     <div id="accordion-{{ section.id }}" class="accordion accordion-flush">
+{%- if section.settings.sectionOverline -%}
+    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+{%- endif -%}
+
+{%- if section.settings.sectionTitle -%}
+    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+{%- endif -%}
+
+{%- if section.settings.sectionSubtitle -%}
+    {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+{%- endif -%}
+
+{%- capture imgContent -%}
+
+    {%- if section.settings.accordionLayout == 2 -%}
+
+        {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
+
+        {% if section.settings.imgAspectRatio == '16:9' %}
+
+            {%- assign imgSizeSm = '414,251' -%}
+            {%- assign imgSizeMd = '360,220' -%}
+            {%- assign imgSizeLg = '670,395' -%}
+
+        {% elsif section.settings.imgAspectRatio == '9:13' %}
+
+            {%- assign imgSizeSm = '414,581' -%}
+            {%- assign imgSizeMd = '360,503' -%}
+            {%- assign imgSizeLg = '6370,9150' -%}
+
+        {% elsif section.settings.imgAspectRatio == '4:3' %}
+
+            {%- assign imgSizeSm = '414,321' -%}
+            {%- assign imgSizeMd = '360,280' -%}
+            {%- assign imgSizeLg = '670,513' -%}
+
+        {% elsif section.settings.imgAspectRatio == '1:1' %}
+
+            {%- assign imgSizeSm = '414,414' -%}
+            {%- assign imgSizeMd = '360,360' -%}
+            {%- assign imgSizeLg = '670,670' -%}
+
+        {% elsif section.settings.imgAspectRatio == 'auto' %}
+
+            {%- assign imgSizeSm = '414,414' -%}
+            {%- assign imgSizeMd = '360,360' -%}
+            {%- assign imgSizeLg = '670,670' -%}
+
+        {% endif %}
+
+        <div class="aspect-ratio-{{ section.settings.imgAspectRatio | replace: ':', '-' }} justify-content-{{ section.settings.imgHorizontalAlign }}" data-aos="{% if section.settings.imgPosition == 'start' %}animate__fadeInLeft{% else %}animate__fadeInRight{% endif %}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+
+            <div class="aspect-ratio-container">
+
+                {%- if section.settings.img -%}
+
+                    <picture>
+
+                        <source media="(min-width: {{ settings.styleGridBreakpointLg }})" data-srcset="
+                            {{- section.settings.img | thumb: imgSizeLg }} 1x,
+                            {{- section.settings.img | thumb: imgSizeLg | thumb:'@2x' }} 2x">
+
+                        <source media="(min-width: {{ settings.styleGridBreakpointMd }})" data-srcset="
+                            {{- section.settings.img | thumb: imgSizeMd }} 1x,
+                            {{- section.settings.img | thumb: imgSizeMd | thumb:'@2x' }} 2x">
+
+                        <source data-srcset="
+                            {{- section.settings.img | thumb: imgSizeSm }} 1x,
+                            {{- section.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
+
+                        <img
+                            alt="{{ section.settings.imgAlt }}"
+                            data-src="{{ section.settings.img | thumb: imgSizeSm }}"
+                            data-srcset="{{ section.settings.img | thumb: imgSizeSm }} 1x,{{ section.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
+                            class="lazy aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}"{% if section.settings.img.offset_left or section.settings.img.offset_top %} style="--object-position: {{ section.settings.img.offset_left }}% {{ section.settings.img.offset_top }}%"{% endif %}>
+
+                    </picture>
+
+                {%- elsif request.design_mode -%}
+
+                    {%- capture class -%}
+                        aspect-ratio-item{% if section.settings.imgFit %} aspect-ratio-item-cover{% endif %}
+                    {%- endcapture -%}
+
+                    {% render 'placeholder-svg', type: 'image', class: class %}
+        
+                {%- endif -%}
+
+            </div>
+
+        </div>
+
+    {%- endif -%}
+
+{%- endcapture -%}
+
+{%- capture accordionContent -%}
+
+    <div id="accordion-{{ section.id }}" class="accordion accordion-flush">
 
         {% for item in section.settings.setting_blocks.items %}
 
-            <div class="accordion-item" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ forloop.index }}">
+            <div class="accordion-item" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder | plus: forloop.index }}">
 
                 <div id="accordion-{{ section.id }}-{{ forloop.index }}-header" class="accordion-header">
 
@@ -39,6 +137,44 @@
 
     </div>
 
+{%- endcapture -%}
+
+{%- capture sectionContent -%}
+
+    {%- if section.settings.accordionLayout == 1 -%}
+
+        {{- accordionContent -}}
+
+    {%- elsif section.settings.accordionLayout == 2 -%}
+
+        <div class="row gy-g">
+
+            {%- if section.settings.imgPosition == 'start' -%}
+
+                <div class="col-12 col-md d-flex flex-column justify-content-center">
+                    {{- imgContent -}}
+                </div>
+
+                <div class="col-12 col-md d-flex flex-column justify-content-center">
+                    {{- accordionContent -}}
+                </div>
+
+            {%- elsif section.settings.imgPosition == 'end' -%}
+
+                <div class="col-12 col-md d-flex flex-column justify-content-center">
+                    {{- accordionContent -}}
+                </div>
+
+                <div class="col-12 col-md d-flex flex-column justify-content-center">
+                    {{- imgContent -}}
+                </div>
+
+            {%- endif -%} 
+
+        </div>
+
+    {%- endif -%}
+
     {% if section.settings.setting_blocks.items.size > 0 and section.settings.includeFaqSchema %}
 
         <script type="application/ld+json">
@@ -64,7 +200,7 @@
 
 {%- endcapture -%}
 
-{% render 'section', section: section, sectionContent: sectionContent, sectionTextAlign: 'start', sectionContentAnimation: false %}
+{% render 'section', section: section, sectionContent: sectionContent, sectionTextAlign: 'start', sectionContentAnimation: false, sectionGutterWidth: '4rem' %}
 
 {% schema %}
 {
@@ -84,6 +220,10 @@
                     "fi": "Sisältö"
                 },
                 "settings": [
+                    {
+                        "id": "accordionLayout",
+                        "type": "hidden"
+                    },
                     {
                         "type": "title",
                         "label": {
@@ -113,6 +253,26 @@
                         "label": {
                             "en": "Subtitle",
                             "fi": "Alaotsikko"
+                        }
+                    },
+                    {
+                        "type": "title",
+                        "label": {
+                            "en": "Image",
+                            "fi": "Kuva"
+                        }
+                    },
+                    {
+                        "id": "img",
+                        "type": "image-picker",
+                        "adjustments": true
+                    },
+                    {
+                        "id": "imgAlt",
+                        "type": "text",
+                        "label": {
+                            "en": "Image alt",
+                            "fi": "Kuvan alt-teksti"
                         }
                     },
                     {
@@ -148,7 +308,6 @@
                     "fi": "Lisää välilehti"
                 },
                 "is_sortable": true,
-                "display_icons": true,
                 "setting_blocks": [
                     {
                         "type": "text",
@@ -183,6 +342,76 @@
                     "fi": "Asetukset"
                 },
                 "settings": [
+                    {
+                        "type": "title",
+                        "label": {
+                            "en": "Image",
+                            "fi": "Kuva"
+                        }
+                    },
+                    {
+                        "id": "imgPosition",
+                        "type": "radio-pill",
+                        "label": {
+                            "en": "Image position",
+                            "fi": "Kuvan sijainti"
+                        },
+                        "default": "start",
+                        "options": [
+                            {
+                                "value": "start",
+                                "label": "{# icon.align-start #}"
+                            },
+                            {
+                                "value": "end",
+                                "label": "{# icon.align-end #}"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "imgAspectRatio",
+                        "type": "select",
+                        "label": {
+                            "en": "Aspect ratio",
+                            "fi": "Kuvasuhde"
+                        },
+                        "default": "1:1",
+                        "options": [
+                            {
+                                "value": "auto",
+                                "label": {
+                                    "en": "Original",
+                                    "fi": "Alkuperäinen"
+                                }
+                            },
+                            {
+                                "value": "16:9",
+                                "label": "16:9"
+                            },
+                            {
+                                "value": "9:13",
+                                "label": "9:13"
+                            },
+                            {
+                                "value": "4:3",
+                                "label": "4:3"
+                            },
+                            {
+                                "value": "1:1",
+                                "label": "1:1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "imgFit",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Image area fill",
+                            "fi": "Kuva-alueen täyttö"
+                        },
+                        "default": true,
+                        "conditions": ["!imgAspectRatio eq auto"]
+                    },
                     {
                         "type": "title",
                         "label": {
@@ -470,6 +699,59 @@
     "presets": [
         {
             "settings": {
+                "accordionLayout": "1",
+                "setting_blocks": {
+                    "items": [
+                        {
+                            "type": "text",
+                            "settings": {
+                                "title": "Tab 1",
+                                "richtext": "<p>This is the content for tab 1.<\/p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "settings": {
+                                "title": "Tab 2",
+                                "richtext": "<p>This is the content for tab 2.<\/p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "settings": {
+                                "title": "Tab 3",
+                                "richtext": "<p>This is the content for tab 3.<\/p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "settings": {
+                                "title": "Tab 4",
+                                "richtext": "<p>This is the content for tab 4.<\/p>"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "settings": {
+                                "title": "Tab 5",
+                                "richtext": "<p>This is the content for tab 5.<\/p>"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "settings": {
+                "accordionLayout": "2",
+                "img": {
+                    "string_value": "https:\/\/images.unsplash.com\/photo-1518384401463-d3876163c195",
+                    "src": "https:\/\/images.unsplash.com\/photo-1518384401463-d3876163c195",
+                    "offset_top": "50",
+                    "offset_left": "50",
+                    "width": "1080",
+                    "height": "1080"
+                },
                 "setting_blocks": {
                     "items": [
                         {

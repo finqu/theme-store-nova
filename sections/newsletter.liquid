@@ -123,7 +123,7 @@
             data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}"  data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}"
         {%- endcapture -%}
 
-        {% render 'social-media-buttons' class: class, attrs: attrs %}
+        {% render 'social-media-buttons' class: class, attrs: attrs, preview: request.design_mode %}
 
     {% endif %}
 
@@ -531,6 +531,25 @@
                 "sectionTextAlign": "center",
                 "sectionTitle": "Our newsletter",
                 "richtext": "<p>Subscribe to get notified about product launches, special offers and news.<\/p>"
+            }
+        },
+        {
+            "settings": {
+                "sectionTextAlign": "center",
+                "sectionTitle": "Our newsletter",
+                "richtext": "<p>Subscribe to get notified about product launches, special offers and news.<\/p>",
+                "sectionBgImg": {
+                    "string_value": "https:\/\/images.unsplash.com\/photo-1493606278519-11aa9f86e40a",
+                    "src": "https:\/\/images.unsplash.com\/photo-1493606278519-11aa9f86e40a",
+                    "offset_top": "72",
+                    "offset_left": "29",
+                    "width": "1980",
+                    "height": "1080"
+                },
+                "sectionBgImgDimming": "15",
+                "sectionColorScheme": "dark",
+                "sectionTextAlign": "start",
+                "showSocialMediaIcons": false
             }
         }
     ]

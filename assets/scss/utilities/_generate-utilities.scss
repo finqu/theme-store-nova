@@ -4,6 +4,12 @@
 $utilities: map-merge(
     $utilities,
     (
+        "gap": (
+            property: gap,
+            class: gap,
+            responsive: true,
+            values: $spacers
+        ),
         "place-content": (
             property: place-content,
             class: place-content,

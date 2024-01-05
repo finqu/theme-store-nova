@@ -35,11 +35,6 @@
             filter: blur({{ section.settings.imgBlur }}px);
         }
     {%- endif -%}
-    @media screen and (max-width: {{ settings.styleGridBreakpointLg }}) {
-        #finqu-section-{{ section.id }} .section-inner {
-            --section-min-height: {{ section.settings.sectionMinHeight | divided_by: 2 }}vh
-        }
-    }
 {%- endcapture -%}
 
 <style>{{ sectionStyle | strip | replace: '  ', '' | strip_newlines }}</style>
@@ -76,7 +71,7 @@
 
                             <div class="container-fluid py-4 {{ textVerticalAlignClass }}">
 
-                                <div class="{{ textHorizontalAlignClass }} animate__animated animate__fadeInUp animate__delay-2s animate__slow">
+                                <div class="{{ textHorizontalAlignClass }}{% if section.settings.carouselEffect == 'slide' %} animate__animated animate__fadeInUp animate__delay-2s animate__slow{% endif %}">
 
                                     {% render 'section-header', sectionTitle: item.settings.title, sectionTitleTag: section.settings.sectionTitleTag, sectionSubtitle: item.settings.subtitle, sectionSubtitleTag: section.settings.sectionSubtitleTag, sectionOverline: item.settings.overline, sectionOverlineTag: section.settings.sectionOverlineTag, sectionHeaderContainer: 'none', sectionAnimation: false %}
 
@@ -520,32 +515,6 @@
                         }
                     },
                     {
-                        "id": "imgDimming",
-                        "label": {
-                            "en": "Image dimming",
-                            "fi": "Kuvan tummennus"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 90,
-                        "step": 5,
-                        "default": "0",
-                        "unit": "%"
-                    },
-                    {
-                        "id": "imgBlur",
-                        "label": {
-                            "en": "Image blur",
-                            "fi": "Kuvan sumentaminen"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 10,
-                        "step": 1,
-                        "default": "0",
-                        "unit": " "
-                    },
-                    {
                         "type": "title",
                         "label": {
                             "en": "Text",
@@ -800,6 +769,8 @@
     "presets": [
         {
             "settings": {
+                "carouselEffect": "fade",
+                "sectionColorScheme": "dark",
                 "setting_blocks": {
                     "items": [
                         {
@@ -807,7 +778,15 @@
                             "settings": {
                                 "title": "New amazing Hero title!",
                                 "subtitle": "Tell your customers about this Hero section.",
-                                "btnLabel": "Shop now"
+                                "btnLabel": "Shop now",
+                                "img": {
+                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/toa-heftiba-0a24hjxucbi-unsplash_1080_1080.jpg",
+                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/toa-heftiba-0a24hjxucbi-unsplash_1080_1080.jpg",
+                                    "offset_top": "50",
+                                    "offset_left": "50",
+                                    "width": "1080",
+                                    "height": "1080"
+                                }
                             }
                         },
                         {
@@ -815,7 +794,15 @@
                             "settings": {
                                 "title": "New amazing Hero title!",
                                 "subtitle": "Tell your customers about this Hero section.",
-                                "btnLabel": "Shop now"
+                                "btnLabel": "Shop now",
+                                "img": {
+                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/toa-heftiba-fkefdzh-vho-unsplash_1080_1080.jpg",
+                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/toa-heftiba-fkefdzh-vho-unsplash_1080_1080.jpg",
+                                    "offset_top": "50",
+                                    "offset_left": "50",
+                                    "width": "1080",
+                                    "height": "1080"
+                                }
                             }
                         }
                     ]

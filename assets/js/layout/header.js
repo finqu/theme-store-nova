@@ -306,7 +306,34 @@ export default function() {
             if (siteSearchResetEl) {
 
                 siteSearchResetEl.addEventListener('click', () => {
-                    search(el, siteSearchResultsEl, null);
+
+                    if (!siteSearchQueryEl.value && siteHeaderSearchContainerEl.classList.contains('site-search-active')) {
+
+                        const searchOverlayEl = document.querySelector('#search-overlay');
+
+                        if (el.classList.contains('active')) {
+                            el.classList.remove('active');
+                        }
+                        
+                        if (document.body.classList.contains('site-search-autocomplete-visible')) {
+                            document.body.classList.remove('site-search-autocomplete-visible');
+                        }
+
+                        if (searchOverlayEl) {
+
+                            searchOverlayEl.click();
+
+                        } else {
+                            
+                            theme.utils.animate(siteHeaderSearchContainerEl, 'fadeOutUp').then(() => {
+                                siteHeaderSearchContainerEl.classList.remove('site-search-active');
+                            });
+                        }
+                        
+                    } else {
+
+                        search(el, siteSearchResultsEl, null);
+                    }
                 }, false);
             }
 
@@ -480,7 +507,7 @@ export default function() {
 
                         if (!isMegamenu) {
 
-                            const submenuWidth = submenuEl.querySelector('.container').getBoundingClientRect().width;
+                            const submenuWidth = submenuEl.querySelector('.site-header-submenu-item').getBoundingClientRect().width;
                             const bodyPosRight = document.body.getBoundingClientRect().right;
                             let submenuPosLeft = menuItemEl.getBoundingClientRect().left;
                             const submenuPosRight = submenuPosLeft + submenuWidth;

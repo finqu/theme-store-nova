@@ -299,11 +299,11 @@
 {% schema %}
 {
     "name": {
-        "en": "Text columns",
-        "fi": "Tekstisarakkeet"
+        "en": "Text columns with image",
+        "fi": "Tekstisarakkeet kuvalla"
     },
     "tag": "section",
-    "class": "section section-text-columns",
+    "class": "section section-text-columns-with-image",
     "category": "theme-basic",
     "settings": {
         "list_type": "tabs",
@@ -363,8 +363,12 @@
                             "fi": "Sarakkeita per rivi"
                         },
                         "type": "radio-pill",
-                        "default": 3,
+                        "default": 2,
                         "options": [
+                            {
+                                "value": 1,
+                                "label": "1"
+                            },
                             {
                                 "value": 2,
                                 "label": "2"
@@ -377,8 +381,7 @@
                                 "value": 4,
                                 "label": "4"
                             }
-                        ],
-                        "conditions": ["orientation eq horizontal"]
+                        ]
                     }
                 ]
             },
@@ -393,6 +396,7 @@
                     "fi": "Lisää sarake"
                 },
                 "is_sortable": true,
+                "display_icons": true,
                 "setting_blocks": [
                     {
                         "type": "text",
@@ -415,48 +419,6 @@
                                 "label": {
                                     "en": "Text",
                                     "fi": "Teksti"
-                                }
-                            },
-                            {
-                                "id": "btnLabel",
-                                "type": "text",
-                                "label": {
-                                    "en": "Button text",
-                                    "fi": "Painikkeen teksti"
-                                }
-                            },
-                            {
-                                "id": "btnLink",
-                                "type": "url",
-                                "label": {
-                                    "en": "Button link",
-                                    "fi": "Painikkeen linkki"
-                                }
-                            },
-                            {
-                                "id": "btnLinkOpenInNewTab",
-                                "type": "checkbox",
-                                "label": {
-                                    "en": "Open link in a new tab",
-                                    "fi": "Avaa linkki uudessa välilehdessä"
-                                },
-                                "default": false
-                            },
-                            {
-                                "id": "img",
-                                "type": "image-picker",
-                                "label": {
-                                    "en": "Image",
-                                    "fi": "Kuva"
-                                },
-                                "adjustments": true
-                            },
-                            {
-                                "id": "imgAlt",
-                                "type": "text",
-                                "label": {
-                                    "en": "Image alt",
-                                    "fi": "Kuvan alt-teksti"
                                 }
                             }
                         ]
@@ -561,42 +523,6 @@
                         ]
                     },
                     {
-                        "id": "imgScaleRatio",
-                        "label": {
-                            "en": "Image scaling",
-                            "fi": "Kuvan skaalaus"
-                        },
-                        "type": "range",
-                        "min": 0.1,
-                        "max": 1,
-                        "step": 0.1,
-                        "default": 1
-                    },
-                    {
-                        "id": "imgAlign",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Image align",
-                            "fi": "Kuvan tasaus"
-                        },
-                        "default": "center",
-                        "options": [
-                            {
-                                "value": "start",
-                                "label": "{# icon.align-start #}"
-                            },
-                            {
-                                "value": "center",
-                                "label": "{# icon.align-center #}"
-                            },
-                            {
-                                "value": "end",
-                                "label": "{# icon.align-end #}"
-                            }
-                        ],
-                        "conditions": ["!imgScaleRatio eq 1"]
-                    },
-                    {
                         "id": "imgFit",
                         "type": "checkbox",
                         "label": {
@@ -605,38 +531,6 @@
                         },
                         "default": true,
                         "conditions": ["!imgAspectRatio eq auto"]
-                    },
-                    {
-                        "id": "btnStyle",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Button style",
-                            "fi": "Painikkeen tyyli"
-                        },
-                        "default": "primary",
-                        "options": [
-                            {
-                                "value": "primary",
-                                "label": {
-                                    "en": "Style 1",
-                                    "fi": "Tyyli 1"
-                                }
-                            },
-                            {
-                                "value": "secondary",
-                                "label": {
-                                    "en": "Style 2",
-                                    "fi": "Tyyli 2"
-                                }
-                            },
-                            {
-                                "value": "link",
-                                "label": {
-                                    "en": "Style 3",
-                                    "fi": "Tyyli 3"
-                                }
-                            }
-                        ]
                     },
                     {
                         "type": "title",
@@ -891,77 +785,6 @@
     "presets": [
         {
             "settings": {
-                "orientation": "horizontal",
-                "colPerRow": "4",
-                "setting_blocks": {
-                    "items": [
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
-                                "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/getty-images-mqxxourw9ek-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/getty-images-mqxxourw9ek-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                }
-                            }
-                        },
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
-                                "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/sumaid-pal-singh-bakshi-dyevz2nitaw-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/sumaid-pal-singh-bakshi-dyevz2nitaw-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                }
-                            }
-                        },
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
-                                "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/toa-heftiba-use6x1fdizu-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/toa-heftiba-use6x1fdizu-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                }
-                            }
-                        },
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
-                                "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/kamran-abdullayev-ojiznh5vb5e-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/kamran-abdullayev-ojiznh5vb5e-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                }
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "settings": {
-                "orientation": "horizontal",
                 "colPerRow": "2",
                 "setting_blocks": {
                     "items": [
@@ -969,127 +792,9 @@
                             "type": "text",
                             "settings": {
                                 "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
-                                "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/getty-images-mqxxourw9ek-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/getty-images-mqxxourw9ek-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                }
-                            }
-                        },
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
-                                "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/sumaid-pal-singh-bakshi-dyevz2nitaw-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/sumaid-pal-singh-bakshi-dyevz2nitaw-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                }
-                            }
-                        },
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
-                                "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/toa-heftiba-use6x1fdizu-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/toa-heftiba-use6x1fdizu-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                }
-                            }
-                        },
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
-                                "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/kamran-abdullayev-ojiznh5vb5e-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/kamran-abdullayev-ojiznh5vb5e-unsplash_1080_1080.jpg",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "1080",
-                                    "height": "1080"
-                                }
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "settings": {
-                "orientation": "horizontal",
-                "setting_blocks": {
-                    "items": [
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
                                 "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>"
                             }
                         },
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>"
-                            }
-                        },
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>"
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "settings": {
-                "orientation": "horizontal",
-                "colPerRow": "2",
-                "setting_blocks": {
-                    "items": [
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
-                                "btnLabel": "Link"
-                            }
-                        },
-                        {
-                            "type": "text",
-                            "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
-                                "btnLabel": "Link"
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "settings": {
-                "orientation": "vertical",
-                "setting_blocks": {
-                    "items": [
                         {
                             "type": "text",
                             "settings": {

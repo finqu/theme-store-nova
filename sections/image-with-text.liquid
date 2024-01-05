@@ -1,6 +1,13 @@
-{%- assign cols = section.settings.cols | split: ',' -%}
+{%- assign cols = section.settings.rowLayout | split: ',' -%}
 {%- assign leftColSize = cols[0] -%}
 {%- assign rightColSize = cols[1] -%}
+{%- assign sectionAnimationOrder = 0 -%}
+
+{%- if section.settings.imgPosition == 'start' -%}
+    {%- assign imgColSize = leftColSize -%}
+{%- else -%}
+    {%- assign imgColSize = rightColSize -%}
+{%- endif -%}
 
 {%- if section.settings.sectionOverline -%}
     {%- assign sectionAnimationOrder = sectionAnimationOrder | plus: 1 -%}
@@ -28,9 +35,9 @@
         #finqu-section-{{ section.id }} .text-container {
             z-index: 1;
             {%- if section.settings.imgPosition == 'start' -%}
-                transform: translateX(-15%);
+                transform: translateX(-25%);
             {%- elsif section.settings.imgPosition == 'end' -%}
-                transform: translateX(15%);
+                transform: translateX(25%);
             {%- endif -%}
         }
     {%- endcapture -%}
@@ -48,185 +55,90 @@
         {%- assign imgSizeSm = '414,251' -%}
         {%- assign imgSizeMd = '360,220' -%}
 
-        {%- if section.settings.imgPosition == 'start' -%}
-
-            {%- case leftColSize -%}
-                {% when 6 %}
-                    {%- assign imgSizeLg = '670,395' -%}
-                {% when 4 %}
-                    {%- assign imgSizeLg = '447,269' -%}
-                {% when 8 %}
-                    {%- assign imgSizeLg = '894,520' -%}
-                {% when 5 %}
-                    {%- assign imgSizeLg = '559,332' -%}
-                {% when 7 %}
-                    {%- assign imgSizeLg = '782,458' -%}
-            {%- endcase -%}
-
-        {%- elsif section.settings.imgPosition == 'end' -%}
-
-            {%- case rightColSize -%}
-                {% when 6 %}
-                    {%- assign imgSizeLg = '670,950' -%}
-                {% when 4 %}
-                    {%- assign imgSizeLg = '447,628' -%}
-                {% when 8 %}
-                    {%- assign imgSizeLg = '894,1273' -%}
-                {% when 5 %}
-                    {%- assign imgSizeLg = '559,789' -%}
-                {% when 7 %}
-                    {%- assign imgSizeLg = '782,1112' -%}
-            {%- endcase -%}
-
-        {% endif %}
+        {%- case imgColSize -%}
+            {% when 6 %}
+                {%- assign imgSizeLg = '670,395' -%}
+            {% when 4 %}
+                {%- assign imgSizeLg = '447,269' -%}
+            {% when 8 %}
+                {%- assign imgSizeLg = '894,520' -%}
+            {% when 5 %}
+                {%- assign imgSizeLg = '559,332' -%}
+            {% when 7 %}
+                {%- assign imgSizeLg = '782,458' -%}
+        {%- endcase -%}
 
     {% elsif section.settings.imgAspectRatio == '9:13' %}
 
         {%- assign imgSizeSm = '414,581' -%}
         {%- assign imgSizeMd = '360,503' -%}
 
-        {%- if section.settings.imgPosition == 'start' -%}
-
-            {%- case leftColSize -%}
-                {% when 6 %}
-                    {%- assign imgSizeLg = '670,950' -%}
-                {% when 4 %}
-                    {%- assign imgSizeLg = '447,628' -%}
-                {% when 8 %}
-                    {%- assign imgSizeLg = '894,1273' -%}
-                {% when 5 %}
-                    {%- assign imgSizeLg = '559,789' -%}
-                {% when 7 %}
-                    {%- assign imgSizeLg = '782,1112' -%}
-            {%- endcase -%}
-
-        {%- elsif section.settings.imgPosition == 'end' -%}
-
-            {%- case rightColSize -%}
-                {% when 6 %}
-                    {%- assign imgSizeLg = '6370,9150' -%}
-                {% when 4 %}
-                    {%- assign imgSizeLg = '447,5628' -%}
-                {% when 8 %}
-                    {%- assign imgSizeLg = '894,1273' -%}
-                {% when 5 %}
-                    {%- assign imgSizeLg = '559,789' -%}
-                {% when 7 %}
-                    {%- assign imgSizeLg = '7482,1112' -%}
-            {%- endcase -%}
-
-        {% endif %}
+        {%- case imgColSize -%}
+            {% when 6 %}
+                {%- assign imgSizeLg = '670,950' -%}
+            {% when 4 %}
+                {%- assign imgSizeLg = '447,628' -%}
+            {% when 8 %}
+                {%- assign imgSizeLg = '894,1273' -%}
+            {% when 5 %}
+                {%- assign imgSizeLg = '559,789' -%}
+            {% when 7 %}
+                {%- assign imgSizeLg = '782,1112' -%}
+        {%- endcase -%}
 
     {% elsif section.settings.imgAspectRatio == '4:3' %}
 
         {%- assign imgSizeSm = '414,321' -%}
         {%- assign imgSizeMd = '360,280' -%}
 
-        {%- if section.settings.imgPosition == 'start' -%}
-
-            {%- case leftColSize -%}
-                {% when 6 %}
-                    {%- assign imgSizeLg = '670,513' -%}
-                {% when 4 %}
-                    {%- assign imgSizeLg = '447,345' -%}
-                {% when 8 %}
-                    {%- assign imgSizeLg = '894,680' -%}
-                {% when 5 %}
-                    {%- assign imgSizeLg = '559,429' -%}
-                {% when 7 %}
-                    {%- assign imgSizeLg = '782,597' -%}
-            {%- endcase -%}
-
-        {%- elsif section.settings.imgPosition == 'end' -%}
-
-            {%- case rightColSize -%}
-                {% when 6 %}
-                    {%- assign imgSizeLg = '670,513' -%}
-                {% when 4 %}
-                    {%- assign imgSizeLg = '447,345' -%}
-                {% when 8 %}
-                    {%- assign imgSizeLg = '894,680' -%}
-                {% when 5 %}
-                    {%- assign imgSizeLg = '559,429' -%}
-                {% when 7 %}
-                    {%- assign imgSizeLg = '782,597' -%}
-            {%- endcase -%}
-
-        {% endif %}
+        {%- case imgColSize -%}
+            {% when 6 %}
+                {%- assign imgSizeLg = '670,513' -%}
+            {% when 4 %}
+                {%- assign imgSizeLg = '447,345' -%}
+            {% when 8 %}
+                {%- assign imgSizeLg = '894,680' -%}
+            {% when 5 %}
+                {%- assign imgSizeLg = '559,429' -%}
+            {% when 7 %}
+                {%- assign imgSizeLg = '782,597' -%}
+        {%- endcase -%}
 
     {% elsif section.settings.imgAspectRatio == '1:1' %}
 
         {%- assign imgSizeSm = '414,414' -%}
         {%- assign imgSizeMd = '360,360' -%}
 
-        {%- if section.settings.imgPosition == 'start' -%}
-
-            {%- case leftColSize -%}
-                {% when 6 %}
-                    {%- assign imgSizeLg = '670,670' -%}
-                {% when 4 %}
-                    {%- assign imgSizeLg = '447,447' -%}
-                {% when 8 %}
-                    {%- assign imgSizeLg = '894,894' -%}
-                {% when 5 %}
-                    {%- assign imgSizeLg = '559,559' -%}
-                {% when 7 %}
-                    {%- assign imgSizeLg = '782,782' -%}
-            {%- endcase -%}
-
-        {%- elsif section.settings.imgPosition == 'end' -%}
-
-            {%- case rightColSize -%}
-                {% when 6 %}
-                    {%- assign imgSizeLg = '670,670' -%}
-                {% when 4 %}
-                    {%- assign imgSizeLg = '447,447' -%}
-                {% when 8 %}
-                    {%- assign imgSizeLg = '894,894' -%}
-                {% when 5 %}
-                    {%- assign imgSizeLg = '559,559' -%}
-                {% when 7 %}
-                    {%- assign imgSizeLg = '782,782' -%}
-            {%- endcase -%}
-
-        {% endif %}
+        {%- case imgColSize -%}
+            {% when 6 %}
+                {%- assign imgSizeLg = '670,670' -%}
+            {% when 4 %}
+                {%- assign imgSizeLg = '447,447' -%}
+            {% when 8 %}
+                {%- assign imgSizeLg = '894,894' -%}
+            {% when 5 %}
+                {%- assign imgSizeLg = '559,559' -%}
+            {% when 7 %}
+                {%- assign imgSizeLg = '782,782' -%}
+        {%- endcase -%}
 
     {% elsif section.settings.imgAspectRatio == 'auto' %}
 
         {%- assign imgSizeSm = '414,414' -%}
         {%- assign imgSizeMd = '360,360' -%}
 
-        {%- if section.settings.imgPosition == 'start' -%}
-
-            {%- case leftColSize -%}
-                {% when 6 %}
-                    {%- assign imgSizeLg = '670,670' -%}
-                {% when 4 %}
-                    {%- assign imgSizeLg = '447,447' -%}
-                {% when 8 %}
-                    {%- assign imgSizeLg = '894,894' -%}
-                {% when 5 %}
-                    {%- assign imgSizeLg = '559,559' -%}
-                {% when 7 %}
-                    {%- assign imgSizeLg = '782,782' -%}
-            {%- endcase -%}
-
-        {%- elsif section.settings.imgPosition == 'end' -%}
-
-            {%- case rightColSize -%}
-                {% when 6 %}
-                    {%- assign imgSizeLg = '670,670' -%}
-                {% when 4 %}
-                    {%- assign imgSizeLg = '447,447' -%}
-                {% when 8 %}
-                    {%- assign imgSizeLg = '894,894' -%}
-                {% when 5 %}
-                    {%- assign imgSizeLg = '559,559' -%}
-                {% when 7 %}
-                    {%- assign imgSizeLg = '782,782' -%}
-            {%- endcase -%}
-
-        {% endif %}
+        {%- case imgColSize -%}
+            {% when 6 %}
+                {%- assign imgSizeLg = '670,670' -%}
+            {% when 4 %}
+                {%- assign imgSizeLg = '447,447' -%}
+            {% when 8 %}
+                {%- assign imgSizeLg = '894,894' -%}
+            {% when 5 %}
+                {%- assign imgSizeLg = '559,559' -%}
+            {% when 7 %}
+                {%- assign imgSizeLg = '782,782' -%}
+        {%- endcase -%}
 
     {% endif %}
 
@@ -333,7 +245,7 @@
             {%- assign textVerticalAlignClass = 'align-self-end' -%}
     {%- endcase -%}
 
-    <div class="row gy-5">
+    <div class="row gy-5 gx-lg-10">
 
         {%- if section.settings.imgPosition == 'start' -%}
 
@@ -499,7 +411,8 @@
                             {
                                 "value": "start",
                                 "label": "{# icon.align-start #}"
-                            }, {
+                            },
+                            {
                                 "value": "end",
                                 "label": "{# icon.align-end #}"
                             }
@@ -540,10 +453,12 @@
                             {
                                 "value": "top",
                                 "label": "{# icon.align-top #}"
-                            }, {
+                            },
+                            {
                                 "value": "middle",
                                 "label": "{# icon.align-middle #}"
-                            }, {
+                            },
+                            {
                                 "value": "bottom",
                                 "label": "{# icon.align-bottom #}"
                             }
@@ -700,7 +615,7 @@
                         }
                     },
                     {
-                        "id": "cols",
+                        "id": "rowLayout",
                         "type": "select",
                         "label": {
                             "en": "Columns",
@@ -1032,7 +947,60 @@
     "presets": [
         {
             "settings": {
-                "richtext": "<p>Pair image with text to focus on your chosen product, article or brand and tell your customers about it.<\/p>"
+                "richtext": "<p>Pair image with text to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
+                "imgPosition": "start",
+                "img": {
+                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/olivie-strauss-cqaehel-ols-unsplash_1080_1080.jpg",
+                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/olivie-strauss-cqaehel-ols-unsplash_1080_1080.jpg",
+                    "offset_top": "50",
+                    "offset_left": "50",
+                    "width": "720",
+                    "height": "1080"
+                }
+            }
+        },
+        {
+            "settings": {
+                "richtext": "<p>Pair image with text to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
+                "imgPosition": "end",
+                "img": {
+                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/olivie-strauss-cqaehel-ols-unsplash_1080_1080.jpg",
+                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/olivie-strauss-cqaehel-ols-unsplash_1080_1080.jpg",
+                    "offset_top": "50",
+                    "offset_left": "50",
+                    "width": "720",
+                    "height": "1080"
+                }
+            }
+        },
+        {
+            "settings": {
+                "richtext": "<p>Pair image with text to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
+                "rowLayout": "4,8",
+                "imgPosition": "start",
+                "img": {
+                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/olivie-strauss-cqaehel-ols-unsplash_1080_1080.jpg",
+                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/olivie-strauss-cqaehel-ols-unsplash_1080_1080.jpg",
+                    "offset_top": "50",
+                    "offset_left": "50",
+                    "width": "720",
+                    "height": "1080"
+                }
+            }
+        },
+        {
+            "settings": {
+                "richtext": "<p>Pair image with text to focus on your chosen product, article or brand and tell your customers about it.<\/p>",
+                "rowLayout": "8,4",
+                "imgPosition": "end",
+                "img": {
+                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/olivie-strauss-cqaehel-ols-unsplash_1080_1080.jpg",
+                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/olivie-strauss-cqaehel-ols-unsplash_1080_1080.jpg",
+                    "offset_top": "50",
+                    "offset_left": "50",
+                    "width": "720",
+                    "height": "1080"
+                }
             }
         }
     ]

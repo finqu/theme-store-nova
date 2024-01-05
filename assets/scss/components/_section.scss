@@ -15,6 +15,7 @@
 		padding-bottom: calc(var(--section-padding-bottom) / 2);
 
 		@include media-breakpoint-down(lg) {
+			--section-min-height: --section-min-height-mobile;
 			--section-inner-gap: var(--section-inner-gap-mobile);
 		}
 

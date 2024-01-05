@@ -13,7 +13,6 @@
         --section-padding-bottom: 2.25rem;
 
         .site-footer {
-            border-top: 1px solid var(--style-border-color);
 
             .container {
                 padding-top: var(--section-padding-top);
@@ -36,9 +35,6 @@
             }
 
             .site-footer-menu-container {
-                @include media-breakpoint-down(lg) {
-                    margin-bottom: spacer(4);
-                }
 
                 .site-footer-menu {
                     display: flex;
@@ -98,38 +94,53 @@
                 display: flex;
             }
 
-            .site-footer-payment-methods-container {
-                display: flex;
-                justify-content: flex-end;
-                height: 100%;
-                align-items: center;
-                @include media-breakpoint-down(lg) {
-                    justify-content: flex-start;
-                }
+            .site-footer-top {
 
-                .site-footer-payment-method {
-                    display: inline-flex;
-                    margin: spacer(2);
+                .site-footer-payment-methods-container {
+                    display: flex;
 
-                    img {
-                        max-width: 100%;
-                        max-height: 50px;
+                    .site-footer-payment-method {
+                        display: inline-flex;
+                        margin: spacer(2);
+
+                        img {
+                            max-width: 100%;
+                            max-height: 50px;
+                        }
                     }
                 }
             }
 
             .site-footer-middle {
-                border-top: 1px solid var(--style-border-color);
 
                 .site-footer-social-media-buttons-container {
                     height: 100%;
                     align-items: center;
                 }
+
+                .site-footer-payment-methods-container {
+                    display: flex;
+                    justify-content: flex-end;
+                    height: 100%;
+                    align-items: center;
+                    @include media-breakpoint-down(lg) {
+                        justify-content: flex-start;
+                    }
+    
+                    .site-footer-payment-method {
+                        display: inline-flex;
+                        margin: spacer(2);
+    
+                        img {
+                            max-width: 100%;
+                            max-height: 50px;
+                        }
+                    }
+                }
             }
 
             .site-footer-bottom {
                 --section-padding-bottom: 4.5rem;
-                border-top: 1px solid var(--style-border-color);
             }
 
             .site-footer-localization {

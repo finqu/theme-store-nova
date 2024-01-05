@@ -454,6 +454,9 @@
         "unit": "kpl",
         "title": "Otsikko",
         "label": "Teksti",
-        "link": "Linkki"
+        "link": "Linkki",
+        "member": "Jäsen",
+        "role": "Rooli",
+        "button": "Painike"
     }
 }

@@ -65,11 +65,7 @@
 
         {%- else -%}
 
-            {%- capture placeholderSvg -%}
-                {%- render 'placeholder-svg', type: 'background', base64: true -%}
-            {%- endcapture -%}
-
-            <div class="lazy position-absolute top-0 start-0 w-100 h-100 bg-position-center bg-accent" data-bg-set="url('{{ placeholderSvg | strip }}') 1x"></div>
+            <div class="lazy position-absolute top-0 start-0 w-100 h-100 bg-position-center bg-accent" data-bg-set="url('https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?w=1920&h=1080&auto=enhance&dpr=1') 1x, url('https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?w=1920&h=1080&auto=enhance&dpr=2') 2x"></div>
 
         {%- endif -%}
 
@@ -476,7 +472,9 @@
     "presets": [
         {
             "settings": {
-                "sectionTitle": "Location"
+                "sectionPaddingMode": "custom",
+                "sectionPaddingTop": "0",
+                "sectionPaddingBottom": "0"
             }
         }
     ]

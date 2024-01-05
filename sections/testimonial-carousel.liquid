@@ -81,7 +81,7 @@
 
                 {% if item.settings.description %}
 
-                    <div class="mb-g text-muted">
+                    <div class="d-inline-flex flex-column align-self-{{ section.settings.sectionTextAlign }} mb-g text-muted">
 
                         {%- if section.settings.showQuotes -%}
                             <span class="d-block text-start">
@@ -265,10 +265,9 @@
                     "fi": "Lisää suosittelu"
                 },
                 "is_sortable": true,
-                "display_icons": true,
                 "setting_blocks": [
                     {
-                        "type": "image",
+                        "type": "text",
                         "title": {
                             "en": "Testimonial",
                             "fi": "Suosittelu"
@@ -825,7 +824,7 @@
                 "setting_blocks": {
                     "items": [
                         {
-                            "type": "image",
+                            "type": "text",
                             "settings": {
                                 "description": "Write a testimonial here.",
                                 "author": "Author",
@@ -833,7 +832,7 @@
                             }
                         },
                         {
-                            "type": "image",
+                            "type": "text",
                             "settings": {
                                 "description": "Write a testimonial here.",
                                 "author": "Author",
@@ -841,7 +840,42 @@
                             }
                         },
                         {
-                            "type": "image",
+                            "type": "text",
+                            "settings": {
+                                "description": "Write a testimonial here.",
+                                "author": "Author",
+                                "authorInfo": "Additional information"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "settings": {
+                "sectionTitle": "Our customers feedback",
+                "sectionTextAlign": "center",
+                "carouselItemsPerView": "1",
+                "setting_blocks": {
+                    "items": [
+                        {
+                            "type": "text",
+                            "settings": {
+                                "description": "Write a testimonial here.",
+                                "author": "Author",
+                                "authorInfo": "Additional information"
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "settings": {
+                                "description": "Write a testimonial here.",
+                                "author": "Author",
+                                "authorInfo": "Additional information"
+                            }
+                        },
+                        {
+                            "type": "text",
                             "settings": {
                                 "description": "Write a testimonial here.",
                                 "author": "Author",

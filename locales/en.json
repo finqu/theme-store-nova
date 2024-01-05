@@ -455,6 +455,9 @@
         "unit": "pc",
         "title": "Title",
         "label": "Label",
-        "link": "Link"
+        "link": "Link",
+        "member": "Member",
+        "role": "Role",
+        "button": "Button"
     }
 }

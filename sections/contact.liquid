@@ -44,7 +44,7 @@
                 data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}"
             {%- endcapture -%}
 
-            {% render 'social-media-buttons' class: class, attrs: attrs %}
+            {% render 'social-media-buttons' class: class, attrs: attrs, preview: request.design_mode %}
 
         {% endif %}
 
@@ -235,7 +235,7 @@
                         data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}"
                     {%- endcapture -%}
 
-                    {% render 'social-media-buttons' class: class, attrs: attrs %}
+                    {% render 'social-media-buttons' class: class, attrs: attrs, preview: request.design_mode %}
 
                 {% endif %}
 

@@ -247,6 +247,17 @@ a.text-reset:focus {
 	p:last-of-type {
 		margin-bottom: 0;
 	}
+
+	a:not(:has(> *)) {
+		transition: border .15s ease-in-out;
+		border-bottom: 2px solid transparent;
+		padding-bottom: 2px;
+		margin-bottom: -4px;
+	
+		&:hover {
+			border-bottom-color: var(--style-accent-color);
+		}
+	}
 }
 
 .text-muted {
@@ -256,4 +267,15 @@ a.text-reset:focus {
 
 .text-align-auto {
 	text-align: var(--section-content-text-align);
+}
+
+.blockquote {
+	display: block;
+    font-style: italic;
+    font-family: $accent-font-family;
+    padding: 2rem 4rem;
+    background-color: var(--style-bg-accent-color);
+	color: var(--style-text-accent-color);
+	border-radius: var(--style-component-border-radius);
+	--style-icon-color: var(--style-text-accent-color);
 }

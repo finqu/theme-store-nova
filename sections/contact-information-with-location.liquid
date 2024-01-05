@@ -54,7 +54,7 @@
                     data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}"
                 {%- endcapture -%}
 
-                {% render 'social-media-buttons' class: class, attrs: attrs %}
+                {% render 'social-media-buttons' class: class, attrs: attrs, preview: request.design_mode %}
 
             {% endif %}
 
@@ -78,11 +78,11 @@
 
                     <div class="aspect-ratio-container">
 
-                        {%- capture class -%}
-                            aspect-ratio-item aspect-ratio-item-cover
-                        {%- endcapture -%}
-
-                        {% render 'placeholder-svg', type: 'background', class: class %}
+                        <img
+                            alt=""
+                            data-src="https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?w=618h=352&auto=enhance&dpr=1"
+                            data-srcset="https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?w=618h=352&auto=enhance&dpr=1 1x, https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?w=618h=352&auto=enhance&dpr=2 2x"
+                            class="lazy aspect-ratio-item aspect-ratio-item-cover">
 
                     </div>
 
@@ -516,7 +516,8 @@
     "presets": [
         {
             "settings": {
-                "sectionTitle": "Contact information with location"
+                "sectionTitle": "Contact information",
+                "richtext": "<p>Pair your store location with a text to focus on your business and tell your customers helpful information about it.<\/p><p>Street address, zipcode city, country<\/p><p>Phonenumber<\/p><p>email@store.com<\/p><p>Opening hours 9:00-17:00<\/p>"
             }
         }
     ]
