@@ -4,56 +4,12 @@
 $mobile-navigation-width: 100%;
 $cart-offcanvas-width: 28rem;
 
-.template-frontpage {
-
-    .section-site-header {
-        height: 165px;
-
-        & + .section {
-            margin-top: -165px;
-        }
-
-        .site-header-container {
-
-            &:not(.site-header-container-show):not(.site-header-container-hide) {
-
-                .site-header-items-container,
-                .site-header-nav-container {
-                    background-color: transparent;
-                }
-            }
-
-            &.site-header-container-show,
-            &.site-header-container-hide {
-
-                .site-header-secondary-logo-img {
-
-                    &.has-multiple-logos {
-                        display: block !important;
-
-                        & + .site-header-logo-img {
-                            display: none !important;
-                        }
-                    }
-                }
-            }
-
-            .site-header-secondary-logo-img {
-
-                &.has-multiple-logos {
-                    display: none !important;
-                }
-            }
-        }
-    }
-}
-
 .section-site-header {
     position: sticky;
     top: 0;
     z-index: 6;
     top: -1px; // Fix sticky header gap on Chrome
-
+    
     .site-search-floating {
         position: fixed;
         left: 20%;
@@ -187,25 +143,13 @@ $cart-offcanvas-width: 28rem;
             transform: translateY(-100%);
         }
 
-        &.site-header-container-show {
-            
-            .site-header {
-                
-                .site-header-items-container {
-                    padding-top: spacer(3);
-                }
-
-                .site-header-nav-container {
-                    padding-top: 0;
-                }
-            }
-        }
-
         .site-header {
+            background-color: var(--style-bg-color);
             
             .site-header-items-container {
-                background-color: var(--style-bg-color);
-                padding-top: spacer(5);
+                border-bottom: 1px solid var(--style-border-color);
+                padding-top: spacer(3);
+                padding-bottom: spacer(3);
 
                 .site-header-items {
                     display: grid;
@@ -294,10 +238,6 @@ $cart-offcanvas-width: 28rem;
             .site-header-nav-container {
                 position: relative;
                 overflow: hidden;
-                border-bottom: 1px solid var(--style-border-color);
-                background-color: var(--style-bg-color);
-                padding-top: spacer(3);
-                padding-bottom: spacer(3);
 
                 .site-header-menu {
                     display: flex;
@@ -673,12 +613,14 @@ $cart-offcanvas-width: 28rem;
         position: fixed;
         left: 0;
         top: 0;
+        right: 0;
+        bottom: 0;
         width: $mobile-navigation-width;
         height: var(--site-mobile-navigation-container-height, 100%);
         visibility: hidden;
         opacity: 0;
         z-index: -1;
-        overflow: hidden;
+        overflow-x: hidden;
         color: var(--style-text-color);
 
         &.site-mobile-navigation-visible {

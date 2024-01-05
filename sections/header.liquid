@@ -4,11 +4,10 @@
 {%- assign headerBgColorBrightness = settings.style_header_bg_color | color_brightness -%}
 {%- assign headerContentColorBrightness = settings.style_header_text_color | color_brightness -%}
 {%- assign headerAccentColorBrightness = settings.style_header_accent_color | color_brightness -%}
-{%- assign headerSecondaryContentColorBrightness = section.settings.secondaryContentColor | color_brightness -%}
 
 {%- capture sectionStyle -%}
     #finqu-section-{{ section.id }} .site-header-items-container,
-    #finqu-section-{{ section.id }} .site-header-nav-container,
+    #finqu-section-{{ section.id }} .site-header-subnav-container,
     #finqu-section-{{ section.id }} .site-mobile-header-container {
         --style-bg-color: {{ settings.style_header_bg_color }};
         --style-heading-color: {{ settings.style_header_text_color }};
@@ -62,30 +61,6 @@
         {%- endif -%}
 
         --bs-body-bg: {{ settings.style_header_bg_color }};
-        --bs-body-bg-rgb: {{ settings.style_header_bg_color | color_to_rgb }};
-        --bs-body-color: {{ settings.style_header_text_color }};
-        --bs-body-color-rgb: {{ settings.style_header_text_color | color_to_rgb }};
-
-        --bs-secondary-bg: {{ settings.style_header_bg_color | color_darken: 30 }};
-        --bs-secondary-bg-rgb: {{ settings.style_header_bg_color | color_darken: 30 | color_to_rgb }};
-        --bs-secondary-color: {{ settings.style_header_text_color | color_modify: 'alpha', 0.75 | color_to_hex }};
-        --bs-secondary-color-rgb: {{ settings.style_header_text_color | color_modify: 'alpha', 0.75 }};
-
-        --bs-tertiary-bg: {{ settings.style_header_bg_color | color_darken: 10 }};
-        --bs-tertiary-bg-rgb: {{ settings.style_header_bg_color | color_darken: 10 | color_to_rgb }};
-        --bs-tertiary-color: {{ settings.style_header_text_color | color_modify: 'alpha', 0.5 | color_to_hex }};
-        --bs-tertiary-color-rgb: {{ settings.style_header_text_color | color_modify: 'alpha', 0.5 }};
-
-        --bs-emphasis-color: {{ settings.style_header_accent_color }};
-        --bs-emphasis-color-rgb: {{ settings.style_header_accent_color | color_to_rgb }};
-
-        --bs-link-color: {{ settings.style_header_text_color }};
-        --bs-link-color-rgb: {{ settings.style_header_text_color | color_to_rgb }};--bs-body-bg: {{ settings.style_header_bg_color }};
-        --bs-body-bg-rgb: {{ settings.style_header_bg_color | color_to_rgb }};
-        --bs-body-color: {{ settings.style_header_text_color }};
-        --bs-body-color-rgb: {{ settings.style_header_text_color | color_to_rgb }};
-
-        --bs-body-bg: {{ settings.style_header_bg_color }};
         --bs-body-bg-rgb: {{ settings.style_header_bg_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
         --bs-body-color: {{ settings.style_header_text_color }};
         --bs-body-color-rgb: {{ settings.style_header_text_color | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
@@ -113,10 +88,12 @@
     }
     #finqu-section-{{ section.id }} .site-header-container {
         {%- if section.settings.logoPosition == 'start'-%}
-            --site-header-template-columns: 1fr auto 1fr;
+            --site-header-template-columns: auto 1fr auto;
             --site-header-logo-position: items-start;
             --site-header-logo-items-align: start;
-            --site-header-logo-margin: 0 20px;
+            --site-header-logo-margin: 0 20px 0 0;
+            --site-header-nav-position: items-center;
+            --site-header-nav-items-align: {{ section.settings.menuItemsAlign }};
             --site-header-actions-position: items-end;
             --site-header-actions-items-align: end;
         {%- elsif section.settings.logoPosition == 'center'-%}
@@ -124,49 +101,11 @@
             --site-header-logo-position: items-center;
             --site-header-logo-items-align: center;
             --site-header-logo-margin: 0 20px;
+            --site-header-nav-position: items-start;
+            --site-header-nav-items-align: start;
             --site-header-actions-position: items-end;
             --site-header-actions-items-align: end;
         {%- endif -%}
-    }
-    .template-frontpage #finqu-section-{{ section.id }} .site-header-container:not(.site-header-container-show):not(.site-header-container-hide) .site-header-items-container,
-    .template-frontpage #finqu-section-{{ section.id }} .site-header-container:not(.site-header-container-show):not(.site-header-container-hide) .site-header-nav-container {
-        --style-border-color: transparent;
-        --style-text-color: {{ section.settings.secondaryContentColor }};
-        --style-link-color: {{ section.settings.secondaryContentColor }};
-        --style-icon-color: {{ section.settings.secondaryContentColor }};
-        --style-accent-color: {{ section.settings.secondaryContentColor }};
-
-        {%- if headerSecondaryContentColorBrightness | color_brightness > 190 -%}
-            --style-accent-text-color: #000;
-        {%- else -%}
-            --style-accent-text-color: #fff;
-        {%- endif -%}
-
-        --bs-body-bg: transparent;
-        --bs-body-bg-rgb: 0, 0, 0;
-        --bs-body-color: {{ section.settings.secondaryContentColor }};
-        --bs-body-color-rgb: {{ section.settings.secondaryContentColor | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
-
-        --bs-secondary-bg: transparent;
-        --bs-secondary-bg-rgb: 0, 0, 0;
-        --bs-secondary-color: {{ section.settings.secondaryContentColor | color_modify: 'alpha', 0.75 }};
-        --bs-secondary-color-rgb: {{ section.settings.secondaryContentColor | color_modify: 'alpha', 0.75 | replace: 'rgba(', '' | replace: ', 0.75)', '' }};
-
-        --bs-tertiary-bg: transparent;
-        --bs-tertiary-bg-rgb: 0, 0, 0;
-        --bs-tertiary-color: {{ section.settings.secondaryContentColor | color_modify: 'alpha', 0.5 }};
-        --bs-tertiary-color-rgb: {{ section.settings.secondaryContentColor | color_modify: 'alpha', 0.5 | replace: 'rgba(', '' | replace: ', 0.5)', '' }};
-
-        --bs-emphasis-color: {{ section.settings.secondaryContentColor }};
-        --bs-emphasis-color-rgb: {{ section.settings.secondaryContentColor | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
-
-        --bs-link-color: {{ section.settings.secondaryContentColor }};
-        --bs-link-color-rgb: {{ section.settings.secondaryContentColor | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
-        --bs-link-hover-color: {{ section.settings.secondaryContentColor }};
-        --bs-link-hover-color-rgb: {{ section.settings.secondaryContentColor | color_to_rgb | replace: 'rgb(', '' | replace: ')', '' }};
-
-        --bs-border-color: var(--style-border-color);
-        --bs-heading-color: var(--style-heading-color);
     }
     {%- if settings.styleCartVariant == 2 -%}
 
@@ -849,6 +788,87 @@
 
             <div class="site-header-items container">
 
+                <div class="site-header-items-nav-container">
+
+                    <div class="site-header-item">
+
+                        <nav class="site-header-nav-container">
+
+                            <ul class="site-header-menu">
+
+                                {% for item in mainMenu.links %}
+
+                                    {%- assign skipindex = false -%}
+                                    {%- assign mainMenuIndex = forloop.index %}
+                    
+                                    {% for megamenu in section.settings.setting_blocks.megamenus %}
+                
+                                        {% if megamenu.settings.index == mainMenuIndex %}
+
+                                            {%- assign skipindex = true -%}
+
+                                            <li class="site-header-menu-item{% if item.current %} site-header-menu-item-active{% endif %}" data-header-menu-child-id="{{ mainMenuIndex }}">
+
+                                                {%- if item.url -%}
+
+                                                    <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-menu-item-text text-underline-indicator">
+                                                        {{ item.title }}
+                                                    </a>
+
+                                                {%- else -%}
+
+                                                    <span class="site-header-menu-item-text text-underline-indicator">
+                                                        {{ item.title }}
+                                                    </span>
+
+                                                {%- endif -%}
+
+                                                {%- render 'icon', icon: 'angle-down', class: 'site-header-submenu-indicator' -%}
+
+                                            </li>
+
+                                        {% endif %}
+
+                                    {% endfor %}
+
+                                    {% if skipindex == false %}
+
+                                        <li class="site-header-menu-item{% if item.current %} site-header-menu-item-active{% endif %}"{% if item.links %} data-header-menu-child-id="{{ mainMenuIndex }}"{% endif %}>
+
+                                            {%- if item.url -%}
+
+                                                <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-menu-item-text text-underline-indicator">
+                                                    {{ item.title }}
+                                                </a>
+
+                                            {%- else -%}
+
+                                                <span class="site-header-menu-item-text text-underline-indicator">
+                                                    {{ item.title }}
+                                                </span>
+
+                                            {%- endif -%}
+
+                                            {% if item.links %}
+
+                                                {%- render 'icon', icon: 'angle-down', class: 'site-header-submenu-indicator' -%}
+
+                                            {% endif %}
+
+                                        </li>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </ul>
+
+                        </nav>
+
+                    </div>
+
+                </div>
+
                 <div class="site-header-items-logo-container">
 
                     <div class="site-header-item site-header-logo">
@@ -859,32 +879,21 @@
                                 {{- section.settings.logoSize -}},{{- section.settings.logoSize | times: 0.5 | ceil -}}
                             {%- endcapture -%}
 
-                            {% if section.settings.secondarylogoImg and request.page_type == 'frontpage' %}
-
-                                <img
-                                    alt="{{ store.name }}"
-                                    src="{{ section.settings.secondarylogoImg | thumb: imgSize }}"
-                                    srcset="{{ section.settings.secondarylogoImg | thumb: imgSize }} 1x, {{ section.settings.secondarylogoImg | thumb: imgSize | thumb:'@2x' }} 2x" class="d-block img-fluid site-header-secondary-logo-img{% if section.settings.logoImg %} has-multiple-logos{% endif %}">
-
-                            {% endif %}
-
                             {% if section.settings.logoImg %}
 
                                 <img
                                     alt="{{ store.name }}"
                                     src="{{ section.settings.logoImg | thumb: imgSize }}"
-                                    srcset="{{ section.settings.logoImg | thumb: imgSize }} 1x, {{ section.settings.logoImg | thumb: imgSize | thumb:'@2x' }} 2x"
+                                    srcset="{{ section.settings.logoImg | thumb: imgSize }} 1x, {{ section.settings.logoImgsection.settings.logoImg | thumb: imgSize | thumb:'@2x' }} 2x"
                                     class="d-block img-fluid site-header-logo-img">
 
-                            {% endif %}
-
-                            {% unless section.settings.logoImg or section.settings.secondarylogoImg %}
+                            {% else %}
 
                                 <span class="site-header-logo-text">
                                     {{ store.name }}
                                 </span>
 
-                            {% endunless %}
+                            {% endif %}
 
                         </a>
 
@@ -981,79 +990,6 @@
             </div>
 
         </div>
-
-        <nav class="site-header-nav-container">
-
-            <ul class="site-header-menu container">
-
-                {% for item in mainMenu.links %}
-
-                    {%- assign skipindex = false -%}
-                    {%- assign mainMenuIndex = forloop.index %}
-
-                    {% for megamenu in section.settings.setting_blocks.megamenus %}
-
-                        {% if megamenu.settings.index == mainMenuIndex %}
-
-                            {%- assign skipindex = true -%}
-
-                            <li class="site-header-menu-item{% if item.current %} site-header-menu-item-active{% endif %}" data-header-menu-child-id="{{ mainMenuIndex }}">
-
-                                {%- if item.url -%}
-
-                                    <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-menu-item-text text-underline-indicator">
-                                        {{ item.title }}
-                                    </a>
-
-                                {%- else -%}
-
-                                    <span class="site-header-menu-item-text text-underline-indicator">
-                                        {{ item.title }}
-                                    </span>
-
-                                {%- endif -%}
-
-                                {%- render 'icon', icon: 'angle-down', class: 'site-header-submenu-indicator' -%}
-
-                            </li>
-
-                        {% endif %}
-
-                    {% endfor %}
-
-                    {% if skipindex == false %}
-
-                        <li class="site-header-menu-item{% if item.current %} site-header-menu-item-active{% endif %}"{% if item.links %} data-header-menu-child-id="{{ mainMenuIndex }}"{% endif %}>
-
-                            {%- if item.url -%}
-
-                                <a href="{{ item.url }}" target="{{ item.target | default: '_self' }}" class="site-header-menu-item-text text-underline-indicator">
-                                    {{ item.title }}
-                                </a>
-
-                            {%- else -%}
-
-                                <span class="site-header-menu-item-text text-underline-indicator">
-                                    {{ item.title }}
-                                </span>
-
-                            {%- endif -%}
-
-                            {% if item.links %}
-
-                                {%- render 'icon', icon: 'angle-down', class: 'site-header-submenu-indicator' -%}
-
-                            {% endif %}
-
-                        </li>
-
-                    {% endif %}
-
-                {% endfor %}
-
-            </ul>
-
-        </nav>
 
         <nav class="site-header-subnav-container">
 
@@ -1707,14 +1643,6 @@
                             }
                         },
                         {
-                            "id": "secondarylogoImg",
-                            "type": "image-picker",
-                            "label": {
-                                "en": "Logo for transparent background",
-                                "fi": "Logo läpinäkyvälle taustalle"
-                            }
-                        },
-                        {
                             "id": "logoSize",
                             "label": {
                                 "en": "Logo size",
@@ -1751,15 +1679,6 @@
                                     }
                                 }
                             ]
-                        },
-                        {
-                            "id": "secondaryContentColor",
-                            "type": "color",
-                            "label": {
-                                "en": "Content color  for transparent background",
-                                "fi": "Sisällön väri läpinäkyvälle taustalle"
-                            },
-                            "default": "#000000"
                         }
                     ]
                 },
@@ -1784,6 +1703,32 @@
                                 "fi": "Päävalikko"
                             },
                             "default": "main"
+                        },
+                        {
+                            "id": "menuItemsAlign",
+                            "type": "radio-pill",
+                            "label": {
+                                "en": "Menu position",
+                                "fi": "Valikon sijainti"
+                            },
+                            "default": "start",
+                            "options": [
+                                {
+                                    "value": "start",
+                                    "label": {
+                                        "en": "Left",
+                                        "fi": "Vasemmalla"
+                                    }
+                                },
+                                {
+                                    "value": "center",
+                                    "label": {
+                                        "en": "Center",
+                                        "fi": "Keskellä"
+                                    }
+                                }
+                            ],
+                            "conditions": ["logoPosition eq start"]
                         },
                         {
                             "type": "title",
