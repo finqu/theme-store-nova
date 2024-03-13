@@ -53,7 +53,7 @@
                                     {% if item.settings.img %}
 
                                         <img
-                                            alt="{{ item.settings.title }}"
+                                            alt="{{ item.settings.img.alt }}"
                                             data-src="{{ item.settings.img | thumb: '40,40' }}"
                                             data-srcset="{{ item.settings.img | thumb: '40,40' }} 1x,{{ item.settings.img | thumb: '40,40' | thumb:'@2x' }} 2x"
                                             class="lazy aspect-ratio-item"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
@@ -78,7 +78,7 @@
 
                             {% if item.settings.title %}
 
-                                <span class="text-title d-block fw-bold{% if item.settings.richtext %} mb-2{% endif %}">
+                                <span class="text-title d-block fw-medium{% if item.settings.richtext %} mb-2{% endif %}">
                                     {{ item.settings.title }}
                                 </span>
 
@@ -133,7 +133,7 @@
                                         {% if item.settings.img %}
 
                                             <img
-                                                alt="{{ item.settings.title }}"
+                                                alt="{{ item.settings.img.alt }}"
                                                 data-src="{{ item.settings.img | thumb: '40,40' }}"
                                                 data-srcset="{{ item.settings.img | thumb: '40,40' }} 1x,{{ item.settings.img | thumb: '40,40' | thumb:'@2x' }} 2x"
                                                 class="lazy aspect-ratio-item"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
@@ -160,7 +160,7 @@
 
                             {% if item.settings.title %}
 
-                                <span class="text-title d-block fw-bold{% if item.settings.richtext %} mb-2{% endif %}">
+                                <span class="text-title d-block fw-medium{% if item.settings.richtext %} mb-2{% endif %}">
                                     {{ item.settings.title }}
                                 </span>
 
@@ -198,7 +198,7 @@
     },
     "tag": "section",
     "class": "section section-icons-with-text",
-    "category": "theme-basic",
+    "category": "theme-icon",
     "settings": {
         "list_type": "tabs",
         "groups": [
@@ -213,19 +213,13 @@
                         "type": "hidden"
                     },
                     {
-                        "type": "title",
-                        "label": {
-                            "en": "Titles",
-                            "fi": "Otsikot"
-                        }
-                    },
-                    {
                         "id": "sectionOverline",
                         "type": "text",
                         "label": {
                             "en": "Top title",
                             "fi": "Yläotsikko"
-                        }
+                        },
+                        "conditions": ["sectionAdditionalTitles eq true"]
                     },
                     {
                         "id": "sectionTitle",
@@ -295,15 +289,6 @@
                                 "conditions": ["iconFormat eq img"]
                             },
                             {
-                                "id": "imgAlt",
-                                "type": "text",
-                                "label": {
-                                    "en": "Image alt",
-                                    "fi": "Kuvan alt-teksti"
-                                },
-                                "conditions": ["iconFormat eq img"]
-                            },
-                            {
                                 "id": "svgContent",
                                 "type": "text",
                                 "label": {
@@ -323,6 +308,7 @@
                             {
                                 "id": "richtext",
                                 "type": "richtext",
+                                "mode": "simple",
                                 "label": {
                                     "en": "Text",
                                     "fi": "Teksti"
@@ -337,288 +323,317 @@
                     "en": "Settings",
                     "fi": "Asetukset"
                 },
-                "settings": [
-                    {
-                        "type": "title",
-                        "label": {
-                            "en": "Content",
-                            "fi": "Sisältö"
+                "settings": {
+                    "list_type": "list",
+                    "groups": [
+                        {
+                            "title": {
+                                "en": "Content",
+                                "fi": "Sisältö"
+                            },
+                            "settings": [
+                                {
+                                    "id": "sectionTextAlign",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Content align",
+                                        "fi": "Sisällön tasaus"
+                                    },
+                                    "default": "center",
+                                    "options": [
+                                        {
+                                            "value": "nil",
+                                            "label": "Auto"
+                                        },
+                                        {
+                                            "value": "start",
+                                            "label": "{# icon.align-start #}"
+                                        },
+                                        {
+                                            "value": "center",
+                                            "label": "{# icon.align-center #}"
+                                        },
+                                        {
+                                            "value": "end",
+                                            "label": "{# icon.align-end #}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": {
+                                "en": "SEO",
+                                "fi": "SEO"
+                            },
+                            "settings": [
+                                {
+                                    "id": "sectionOverlineTag",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Top title SEO priority",
+                                        "fi": "Yläotsikon SEO-prioriteetti"
+                                    },
+                                    "default": "h3",
+                                    "options": [
+                                        {
+                                            "value": "h3",
+                                            "label": "H3"
+                                        },
+                                        {
+                                            "value": "span",
+                                            "label": {
+                                                "en": "Text",
+                                                "fi": "Teksti"
+                                            }
+                                        }
+                                    ],
+                                    "conditions": ["sectionAdditionalTitles eq true"]
+                                },
+                                {
+                                    "id": "sectionTitleTag",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Main title SEO priority",
+                                        "fi": "Pääotsikon SEO-prioriteetti"
+                                    },
+                                    "default": "h2",
+                                    "options": [
+                                        {
+                                            "value": "h1",
+                                            "label": "H1"
+                                        },
+                                        {
+                                            "value": "h2",
+                                            "label": "H2"
+                                        },
+                                        {
+                                            "value": "h3",
+                                            "label": "H3"
+                                        },
+                                        {
+                                            "value": "span",
+                                            "label": {
+                                                "en": "Text",
+                                                "fi": "Teksti"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sectionSubtitleTag",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Subtitle SEO priority",
+                                        "fi": "Alaotsikon SEO-prioriteetti"
+                                    },
+                                    "default": "h3",
+                                    "options": [
+                                        {
+                                            "value": "h3",
+                                            "label": "H3"
+                                        },
+                                        {
+                                            "value": "span",
+                                            "label": {
+                                                "en": "Text",
+                                                "fi": "Teksti"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": {
+                                "en": "Section",
+                                "fi": "Osio"
+                            },
+                            "settings": [
+                                {
+                                    "id": "sectionColorScheme",
+                                    "type": "select",
+                                    "label": {
+                                        "en": "Color scheme",
+                                        "fi": "Värityyli"
+                                    },
+                                    "default": false,
+                                    "options": [
+                                        {
+                                            "value": false,
+                                            "label": {
+                                                "en": "Disabled",
+                                                "fi": "Pois käytöstä"
+                                            }
+                                        },
+                                        {
+                                            "value": "light",
+                                            "label": {
+                                                "en": "Light background / Dark content",
+                                                "fi": "Vaalea tausta / Tumma sisältö"
+                                            }
+                                        },
+                                        {
+                                            "value": "dark",
+                                            "label": {
+                                                "en": "Dark background / Light content",
+                                                "fi": "Tumma tausta / Vaalea sisältö"
+                                            }
+                                        },
+                                        {
+                                            "value": "accent",
+                                            "label": {
+                                                "en": "Accent background / Adaptive content",
+                                                "fi": "Korostus tausta / Mukautuva sisältö"
+                                            }
+                                        },
+                                        {
+                                            "value": "1",
+                                            "label": {
+                                                "en": "Color scheme 1",
+                                                "fi": "Värityyli 1"
+                                            }
+                                        },
+                                        {
+                                            "value": "2",
+                                            "label": {
+                                                "en": "Color scheme 2",
+                                                "fi": "Värityyli 2"
+                                            }
+                                        },
+                                        {
+                                            "value": "3",
+                                            "label": {
+                                                "en": "Color scheme 3",
+                                                "fi": "Värityyli 3"
+                                            }
+                                        },
+                                        {
+                                            "value": "4",
+                                            "label": {
+                                                "en": "Color scheme 4",
+                                                "fi": "Värityyli 4"
+                                            }
+                                        },
+                                        {
+                                            "value": "5",
+                                            "label": {
+                                                "en": "Color scheme 5",
+                                                "fi": "Värityyli 5"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sectionAdditionalTitles",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Show additional titles",
+                                        "fi": "Näytä lisäotsikot"
+                                    },
+                                    "default": false,
+                                    "options": [
+                                        {
+                                            "value": false,
+                                            "label": "Off"
+                                        },
+                                        {
+                                            "value": true,
+                                            "label": "On"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sectionPaddingMode",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Padding",
+                                        "fi": "Välit"
+                                    },
+                                    "default": "auto",
+                                    "options": [
+                                        {
+                                            "value": "auto",
+                                            "label": "Auto"
+                                        },
+                                        {
+                                            "value": "custom",
+                                            "label": {
+                                                "en": "Custom",
+                                                "fi": "Mukautettu"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sectionPaddingTop",
+                                    "label": {
+                                        "en": "Padding top",
+                                        "fi": "Väli ylhäällä"
+                                    },
+                                    "type": "range",
+                                    "min": 0,
+                                    "max": 15,
+                                    "step": 1,
+                                    "default": "0",
+                                    "unit": "rem",
+                                    "conditions": ["sectionPaddingMode eq custom"]
+                                },
+                                {
+                                    "id": "sectionPaddingBottom",
+                                    "label": {
+                                        "en": "Padding bottom",
+                                        "fi": "Väli alhaalla"
+                                    },
+                                    "type": "range",
+                                    "min": 0,
+                                    "max": 15,
+                                    "step": 1,
+                                    "default": "0",
+                                    "unit": "rem",
+                                    "conditions": ["sectionPaddingMode eq custom"]
+                                },
+                                {
+                                    "id": "sectionBgImg",
+                                    "type": "image-picker",
+                                    "label": {
+                                        "en": "Background image",
+                                        "fi": "Taustakuva"
+                                    },
+                                    "adjustments": true
+                                },
+                                {
+                                    "id": "sectionBgImgDimming",
+                                    "label": {
+                                        "en": "Image dimming",
+                                        "fi": "Kuvan tummennus"
+                                    },
+                                    "type": "range",
+                                    "min": 0,
+                                    "max": 90,
+                                    "step": 5,
+                                    "default": "0",
+                                    "unit": "%",
+                                    "conditions": ["!sectionBgImg eq false"]
+                                },
+                                {
+                                    "id": "sectionBgImgBlur",
+                                    "label": {
+                                        "en": "Image blur",
+                                        "fi": "Kuvan sumentaminen"
+                                    },
+                                    "type": "range",
+                                    "min": 0,
+                                    "max": 10,
+                                    "step": 1,
+                                    "default": "0",
+                                    "unit": " ",
+                                    "conditions": ["!sectionBgImg eq false"]
+                                }
+                            ]
                         }
-                    },
-                    {
-                        "id": "sectionTextAlign",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Content align",
-                            "fi": "Sisällön tasaus"
-                        },
-                        "default": "center",
-                        "options": [
-                            {
-                                "value": "nil",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": "start",
-                                "label": "{# icon.align-start #}"
-                            },
-                            {
-                                "value": "center",
-                                "label": "{# icon.align-center #}"
-                            },
-                            {
-                                "value": "end",
-                                "label": "{# icon.align-end #}"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "title",
-                        "label": {
-                            "en": "SEO",
-                            "fi": "SEO"
-                        }
-                    },
-                    {
-                        "id": "sectionOverlineTag",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Top title SEO priority",
-                            "fi": "Yläotsikon SEO-prioriteetti"
-                        },
-                        "default": "h3",
-                        "options": [
-                            {
-                                "value": "h3",
-                                "label": "H3"
-                            },
-                            {
-                                "value": "span",
-                                "label": {
-                                    "en": "Text",
-                                    "fi": "Teksti"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "sectionTitleTag",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Main title SEO priority",
-                            "fi": "Pääotsikon SEO-prioriteetti"
-                        },
-                        "default": "h2",
-                        "options": [
-                            {
-                                "value": "h1",
-                                "label": "H1"
-                            },
-                            {
-                                "value": "h2",
-                                "label": "H2"
-                            },
-                            {
-                                "value": "h3",
-                                "label": "H3"
-                            },
-                            {
-                                "value": "span",
-                                "label": {
-                                    "en": "Text",
-                                    "fi": "Teksti"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "sectionSubtitleTag",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Subtitle SEO priority",
-                            "fi": "Alaotsikon SEO-prioriteetti"
-                        },
-                        "default": "h3",
-                        "options": [
-                            {
-                                "value": "h3",
-                                "label": "H3"
-                            },
-                            {
-                                "value": "span",
-                                "label": {
-                                    "en": "Text",
-                                    "fi": "Teksti"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "type": "title",
-                        "label": {
-                            "en": "Section",
-                            "fi": "Osio"
-                        }
-                    },
-                    {
-                        "id": "sectionColorScheme",
-                        "type": "select",
-                        "label": {
-                            "en": "Color color scheme",
-                            "fi": "Värityyli"
-                        },
-                        "options": [
-                            {
-                                "value": false,
-                                "label": {
-                                    "en": "Disabled",
-                                    "fi": "Pois käytöstä"
-                                }
-                            },
-                            {
-                                "value": "1",
-                                "label": {
-                                    "en": "Color scheme 1",
-                                    "fi": "Värityyli 1"
-                                }
-                            },
-                            {
-                                "value": "2",
-                                "label": {
-                                    "en": "Color scheme 2",
-                                    "fi": "Värityyli 2"
-                                }
-                            },
-                            {
-                                "value": "3",
-                                "label": {
-                                    "en": "Color scheme 3",
-                                    "fi": "Värityyli 3"
-                                }
-                            },
-                            {
-                                "value": "4",
-                                "label": {
-                                    "en": "Color scheme 4",
-                                    "fi": "Värityyli 4"
-                                }
-                            },
-                            {
-                                "value": "5",
-                                "label": {
-                                    "en": "Color scheme 5",
-                                    "fi": "Värityyli 5"
-                                }
-                            },
-                            {
-                                "value": "light",
-                                "label": {
-                                    "en": "Light background / Dark content",
-                                    "fi": "Vaalea tausta / Tumma sisältö"
-                                }
-                            },
-                            {
-                                "value": "dark",
-                                "label": {
-                                    "en": "Dark background / Light content",
-                                    "fi": "Tumma tausta / Vaalea sisältö"
-                                }
-                            },
-                            {
-                                "value": "accent",
-                                "label": {
-                                    "en": "Accent background / Adaptive content",
-                                    "fi": "Korostus tausta / Mukautuva sisältö"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "sectionPaddingMode",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Padding",
-                            "fi": "Välit"
-                        },
-                        "default": "auto",
-                        "options": [
-                            {
-                                "value": "auto",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": "custom",
-                                "label": {
-                                    "en": "Custom",
-                                    "fi": "Mukautettu"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "sectionPaddingTop",
-                        "label": {
-                            "en": "Padding top",
-                            "fi": "Väli ylhäällä"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 15,
-                        "step": 1,
-                        "default": "0",
-                        "unit": "rem",
-                        "conditions": ["sectionPaddingMode eq custom"]
-                    },
-                    {
-                        "id": "sectionPaddingBottom",
-                        "label": {
-                            "en": "Padding bottom",
-                            "fi": "Väli alhaalla"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 15,
-                        "step": 1,
-                        "default": "0",
-                        "unit": "rem",
-                        "conditions": ["sectionPaddingMode eq custom"]
-                    },
-                    {
-                        "id": "sectionBgImg",
-                        "type": "image-picker",
-                        "label": {
-                            "en": "Background image",
-                            "fi": "Taustakuva"
-                        },
-                        "adjustments": true
-                    },
-                    {
-                        "id": "sectionBgImgDimming",
-                        "label": {
-                            "en": "Image dimming",
-                            "fi": "Kuvan tummennus"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 90,
-                        "step": 5,
-                        "default": "0",
-                        "unit": "%"
-                    },
-                    {
-                        "id": "sectionBgImgBlur",
-                        "label": {
-                            "en": "Image blur",
-                            "fi": "Kuvan sumentaminen"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 10,
-                        "step": 1,
-                        "default": "0",
-                        "unit": " "
-                    }
-                ]
+                    ]
+                }
             }
         ]
     },
@@ -631,32 +646,32 @@
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Otsikko",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "img"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Otsikko",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "img"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Otsikko",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "img"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Otsikko",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "img"
                             }
                         }
@@ -672,32 +687,32 @@
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Otsikko",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "img"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Otsikko",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "img"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Otsikko",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "img"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Otsikko",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "img"
                             }
                         }
@@ -713,37 +728,37 @@
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Toimitus",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "svg",
-                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" fill=\"none\" viewBox=\"0 0 14 14\"><g id=\"shipping-truck--truck-shipping-delivery-transfer\"><path id=\"Vector\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8.5 5.5h3c0.5304 0 1.0391 0.21071 1.4142 0.58579 0.3751 0.37507 0.5858 0.88378 0.5858 1.41421v4H12\" stroke-width=\"1\"><\/path><path id=\"Vector_2\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M1.5 11.5h-1v-7c0 -0.26522 0.105357 -0.51957 0.292893 -0.70711C0.98043 3.60536 1.23478 3.5 1.5 3.5h6c0.26522 0 0.51957 0.10536 0.70711 0.29289 0.18753 0.18754 0.29289 0.44189 0.29289 0.70711v7\" stroke-width=\"1\"><\/path><path id=\"Vector_3\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8 11.5H5.5\" stroke-width=\"1\"><\/path><path id=\"Vector_4\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M10.25 13.5c-0.9665 0 -1.75 -0.7835 -1.75 -1.75S9.2835 10 10.25 10s1.75 0.7835 1.75 1.75 -0.7835 1.75 -1.75 1.75Z\" stroke-width=\"1\"><\/path><path id=\"Vector_5\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3.5 13.5c-0.9665 0 -1.75 -0.7835 -1.75 -1.75S2.5335 10 3.5 10s1.75 0.7835 1.75 1.75 -0.7835 1.75 -1.75 1.75Z\" stroke-width=\"1\"><\/path><\/g><\/svg>"
+                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><g><path d=\"M19.67,14.87h1.51c.52-.04.91-.49.88-1.01v-7.47c.09-1.56-1.08-2.9-2.64-3.03h-5.27v11.5\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.67,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16h0c0,1.19.97,2.16,2.16,2.16,1.19,0,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16.97,2.16,2.16,2.16,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M17.03,3.37v3.47s0,.03,0,.04c.01.45.38.81.83.79h4.2\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87h6.95\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.71,11.03h2.36\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,1.94c0-.79.64-1.44,1.44-1.44h10.78c.79,0,1.44.64,1.44,1.44v8.14s-13.66,0-13.66,0V1.94Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,10.07v3.35c0,.79.64,1.44,1.44,1.44h2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><\/g><\/svg>"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Palautus",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "svg",
-                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" fill=\"none\" viewBox=\"0 0 14 14\"><g id=\"return-2--arrow-return-enter-keyboard\"><path id=\"Vector\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M0.5 9.5h9c1.0609 0 2.0783 -0.42143 2.8284 -1.17157C13.0786 7.57828 13.5 6.56087 13.5 5.5s-0.4214 -2.07828 -1.1716 -2.82843C11.5783 1.92143 10.5609 1.5 9.5 1.5h-3\" stroke-width=\"1\"><\/path><path id=\"Vector_2\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m3.5 6.5 -3 3 3 3\" stroke-width=\"1\"><\/path><\/g><\/svg>"
+                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"m5.03125 20.840875 -4.3125 -4.3125 4.3125 -4.3125\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M0.71875 16.528375h14.375a7.1875 7.1875 0 0 0 0 -14.375h-5.75\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Asiakaspalvelu",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "svg",
-                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" fill=\"none\" viewBox=\"0 0 14 14\"><g id=\"customer-support-1--customer-headset-help-microphone-phone-support\"><path id=\"Vector\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3 7.00002v-2.63c0.00781 -0.51697 0.11755 -1.02731 0.32294 -1.5018 0.20538 -0.47448 0.50238 -0.90377 0.87396 -1.26328 0.37158 -0.3595 0.81045 -0.642155 1.29146 -0.831758C5.96936 0.58358 6.48306 0.490753 7 0.500021 7.51694 0.490753 8.03064 0.58358 8.51164 0.773182c0.48101 0.189603 0.91988 0.472258 1.29146 0.831758 0.3716 0.35951 0.6686 0.7888 0.874 1.26328 0.2053 0.47449 0.3151 0.98483 0.3229 1.5018v2.63\" stroke-width=\"1\"><\/path><path id=\"Vector_2\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M1.5 5.5h1c0.13261 0 0.25979 0.05268 0.35355 0.14645C2.94732 5.74021 3 5.86739 3 6v3c0 0.13261 -0.05268 0.25979 -0.14645 0.35355C2.75979 9.44732 2.63261 9.5 2.5 9.5h-1c-0.26522 0 -0.51957 -0.10536 -0.707107 -0.29289C0.605357 9.01957 0.5 8.76522 0.5 8.5v-2c0 -0.26522 0.105357 -0.51957 0.292893 -0.70711C0.98043 5.60536 1.23478 5.5 1.5 5.5v0Z\" stroke-width=\"1\"><\/path><path id=\"Vector_3\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12.5 9.5h-1c-0.1326 0 -0.2598 -0.05268 -0.3536 -0.14645C11.0527 9.25979 11 9.13261 11 9V6c0 -0.13261 0.0527 -0.25979 0.1464 -0.35355 0.0938 -0.09377 0.221 -0.14645 0.3536 -0.14645h1c0.2652 0 0.5196 0.10536 0.7071 0.29289 0.1875 0.18754 0.2929 0.44189 0.2929 0.70711v2c0 0.26522 -0.1054 0.51957 -0.2929 0.70711 -0.1875 0.18753 -0.4419 0.29289 -0.7071 0.29289v0Z\" stroke-width=\"1\"><\/path><path id=\"Vector_4\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12.25c0.53043 0 1.0391 -0.2107 1.4142 -0.5858S11 10.7804 11 10.25V8\" stroke-width=\"1\"><\/path><path id=\"Vector_5\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12.25c0 0.3315 -0.1317 0.6495 -0.36612 0.8839 -0.23442 0.2344 -0.55236 0.3661 -0.88388 0.3661h-1.5c-0.33152 0 -0.64946 -0.1317 -0.88388 -0.3661C5.1317 12.8995 5 12.5815 5 12.25s0.1317 -0.6495 0.36612 -0.8839C5.60054 11.1317 5.91848 11 6.25 11h1.5c0.33152 0 0.64946 0.1317 0.88388 0.3661 0.23442 0.2344 0.36612 0.5524 0.36612 0.8839Z\" stroke-width=\"1\"><\/path><\/g><\/svg>"
+                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M4.3125 17.25h-0.71875a2.875 2.875 0 0 1 -2.875 -2.875v-2.875a2.875 2.875 0 0 1 2.875 -2.875h0.71875a0.71875 0.71875 0 0 1 0.71875 0.71875v7.1875a0.71875 0.71875 0 0 1 -0.71875 0.71875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M19.40625 17.25h-0.71875a0.71875 0.71875 0 0 1 -0.71875 -0.71875v-7.1875A0.71875 0.71875 0 0 1 18.6875 8.625h0.71875a2.875 2.875 0 0 1 2.875 2.875v2.875a2.875 2.875 0 0 1 -2.875 2.875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M3.59375 8.625A7.90625 7.90625 0 0 1 11.5 0.71875h0A7.90625 7.90625 0 0 1 19.40625 8.625\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M14.375 20.84375h2.15625a2.875 2.875 0 0 0 2.875 -2.875h0V17.25\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M12.9375 22.28125H11.5a1.4375 1.4375 0 0 1 -1.4375 -1.4375h0a1.4375 1.4375 0 0 1 1.4375 -1.4375h1.4375a1.4375 1.4375 0 0 1 1.4375 1.4375h0a1.4375 1.4375 0 0 1 -1.4375 1.4375Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Maksutavat",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "svg",
-                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" fill=\"none\" viewBox=\"0 0 14 14\"><g id=\"credit-card-1--credit-pay-payment-debit-card-finance-plastic-money-atm\"><path id=\"Vector\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12.5 2.25h-11c-0.552285 0 -1 0.44772 -1 1v7.5c0 0.5523 0.447715 1 1 1h11c0.5523 0 1 -0.4477 1 -1v-7.5c0 -0.55228 -0.4477 -1 -1 -1Z\" stroke-width=\"1\"><\/path><path id=\"Vector_2\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M0.5 5.75h13\" stroke-width=\"1\"><\/path><path id=\"Vector_3\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9.5 9.25H11\" stroke-width=\"1\"><\/path><\/g><\/svg>"
+                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M2.15625 3.59375h18.6875s1.4375 0 1.4375 1.4375v12.9375s0 1.4375 -1.4375 1.4375H2.15625s-1.4375 0 -1.4375 -1.4375V5.03125s0 -1.4375 1.4375 -1.4375\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m0.71875 7.90625 21.5625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 12.21875 7.90625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 15.09375 5.03125 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>"
                             }
                         }
                     ]
@@ -758,37 +773,37 @@
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Toimitus",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "svg",
-                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" fill=\"none\" viewBox=\"0 0 14 14\"><g id=\"shipping-truck--truck-shipping-delivery-transfer\"><path id=\"Vector\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8.5 5.5h3c0.5304 0 1.0391 0.21071 1.4142 0.58579 0.3751 0.37507 0.5858 0.88378 0.5858 1.41421v4H12\" stroke-width=\"1\"><\/path><path id=\"Vector_2\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M1.5 11.5h-1v-7c0 -0.26522 0.105357 -0.51957 0.292893 -0.70711C0.98043 3.60536 1.23478 3.5 1.5 3.5h6c0.26522 0 0.51957 0.10536 0.70711 0.29289 0.18753 0.18754 0.29289 0.44189 0.29289 0.70711v7\" stroke-width=\"1\"><\/path><path id=\"Vector_3\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8 11.5H5.5\" stroke-width=\"1\"><\/path><path id=\"Vector_4\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M10.25 13.5c-0.9665 0 -1.75 -0.7835 -1.75 -1.75S9.2835 10 10.25 10s1.75 0.7835 1.75 1.75 -0.7835 1.75 -1.75 1.75Z\" stroke-width=\"1\"><\/path><path id=\"Vector_5\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3.5 13.5c-0.9665 0 -1.75 -0.7835 -1.75 -1.75S2.5335 10 3.5 10s1.75 0.7835 1.75 1.75 -0.7835 1.75 -1.75 1.75Z\" stroke-width=\"1\"><\/path><\/g><\/svg>"
+                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><g><path d=\"M19.67,14.87h1.51c.52-.04.91-.49.88-1.01v-7.47c.09-1.56-1.08-2.9-2.64-3.03h-5.27v11.5\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.67,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16h0c0,1.19.97,2.16,2.16,2.16,1.19,0,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16.97,2.16,2.16,2.16,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M17.03,3.37v3.47s0,.03,0,.04c.01.45.38.81.83.79h4.2\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87h6.95\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.71,11.03h2.36\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,1.94c0-.79.64-1.44,1.44-1.44h10.78c.79,0,1.44.64,1.44,1.44v8.14s-13.66,0-13.66,0V1.94Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,10.07v3.35c0,.79.64,1.44,1.44,1.44h2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><\/g><\/svg>"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Palautus",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "svg",
-                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" fill=\"none\" viewBox=\"0 0 14 14\"><g id=\"return-2--arrow-return-enter-keyboard\"><path id=\"Vector\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M0.5 9.5h9c1.0609 0 2.0783 -0.42143 2.8284 -1.17157C13.0786 7.57828 13.5 6.56087 13.5 5.5s-0.4214 -2.07828 -1.1716 -2.82843C11.5783 1.92143 10.5609 1.5 9.5 1.5h-3\" stroke-width=\"1\"><\/path><path id=\"Vector_2\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m3.5 6.5 -3 3 3 3\" stroke-width=\"1\"><\/path><\/g><\/svg>"
+                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"m5.03125 20.840875 -4.3125 -4.3125 4.3125 -4.3125\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M0.71875 16.528375h14.375a7.1875 7.1875 0 0 0 0 -14.375h-5.75\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Asiakaspalvelu",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "svg",
-                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" fill=\"none\" viewBox=\"0 0 14 14\"><g id=\"customer-support-1--customer-headset-help-microphone-phone-support\"><path id=\"Vector\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M3 7.00002v-2.63c0.00781 -0.51697 0.11755 -1.02731 0.32294 -1.5018 0.20538 -0.47448 0.50238 -0.90377 0.87396 -1.26328 0.37158 -0.3595 0.81045 -0.642155 1.29146 -0.831758C5.96936 0.58358 6.48306 0.490753 7 0.500021 7.51694 0.490753 8.03064 0.58358 8.51164 0.773182c0.48101 0.189603 0.91988 0.472258 1.29146 0.831758 0.3716 0.35951 0.6686 0.7888 0.874 1.26328 0.2053 0.47449 0.3151 0.98483 0.3229 1.5018v2.63\" stroke-width=\"1\"><\/path><path id=\"Vector_2\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M1.5 5.5h1c0.13261 0 0.25979 0.05268 0.35355 0.14645C2.94732 5.74021 3 5.86739 3 6v3c0 0.13261 -0.05268 0.25979 -0.14645 0.35355C2.75979 9.44732 2.63261 9.5 2.5 9.5h-1c-0.26522 0 -0.51957 -0.10536 -0.707107 -0.29289C0.605357 9.01957 0.5 8.76522 0.5 8.5v-2c0 -0.26522 0.105357 -0.51957 0.292893 -0.70711C0.98043 5.60536 1.23478 5.5 1.5 5.5v0Z\" stroke-width=\"1\"><\/path><path id=\"Vector_3\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12.5 9.5h-1c-0.1326 0 -0.2598 -0.05268 -0.3536 -0.14645C11.0527 9.25979 11 9.13261 11 9V6c0 -0.13261 0.0527 -0.25979 0.1464 -0.35355 0.0938 -0.09377 0.221 -0.14645 0.3536 -0.14645h1c0.2652 0 0.5196 0.10536 0.7071 0.29289 0.1875 0.18754 0.2929 0.44189 0.2929 0.70711v2c0 0.26522 -0.1054 0.51957 -0.2929 0.70711 -0.1875 0.18753 -0.4419 0.29289 -0.7071 0.29289v0Z\" stroke-width=\"1\"><\/path><path id=\"Vector_4\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12.25c0.53043 0 1.0391 -0.2107 1.4142 -0.5858S11 10.7804 11 10.25V8\" stroke-width=\"1\"><\/path><path id=\"Vector_5\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12.25c0 0.3315 -0.1317 0.6495 -0.36612 0.8839 -0.23442 0.2344 -0.55236 0.3661 -0.88388 0.3661h-1.5c-0.33152 0 -0.64946 -0.1317 -0.88388 -0.3661C5.1317 12.8995 5 12.5815 5 12.25s0.1317 -0.6495 0.36612 -0.8839C5.60054 11.1317 5.91848 11 6.25 11h1.5c0.33152 0 0.64946 0.1317 0.88388 0.3661 0.23442 0.2344 0.36612 0.5524 0.36612 0.8839Z\" stroke-width=\"1\"><\/path><\/g><\/svg>"
+                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M4.3125 17.25h-0.71875a2.875 2.875 0 0 1 -2.875 -2.875v-2.875a2.875 2.875 0 0 1 2.875 -2.875h0.71875a0.71875 0.71875 0 0 1 0.71875 0.71875v7.1875a0.71875 0.71875 0 0 1 -0.71875 0.71875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M19.40625 17.25h-0.71875a0.71875 0.71875 0 0 1 -0.71875 -0.71875v-7.1875A0.71875 0.71875 0 0 1 18.6875 8.625h0.71875a2.875 2.875 0 0 1 2.875 2.875v2.875a2.875 2.875 0 0 1 -2.875 2.875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M3.59375 8.625A7.90625 7.90625 0 0 1 11.5 0.71875h0A7.90625 7.90625 0 0 1 19.40625 8.625\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M14.375 20.84375h2.15625a2.875 2.875 0 0 0 2.875 -2.875h0V17.25\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M12.9375 22.28125H11.5a1.4375 1.4375 0 0 1 -1.4375 -1.4375h0a1.4375 1.4375 0 0 1 1.4375 -1.4375h1.4375a1.4375 1.4375 0 0 1 1.4375 1.4375h0a1.4375 1.4375 0 0 1 -1.4375 1.4375Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>"
                             }
                         },
                         {
                             "type": "text",
                             "settings": {
-                                "title": "Heading",
-                                "richtext": "<p>Pair icon with a text.<\/p>",
+                                "title": "Maksutavat",
+                                "richtext": "<p>Kirjoita tähän lyhyt kuvaus.<\/p>",
                                 "iconFormat": "svg",
-                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" fill=\"none\" viewBox=\"0 0 14 14\"><g id=\"credit-card-1--credit-pay-payment-debit-card-finance-plastic-money-atm\"><path id=\"Vector\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12.5 2.25h-11c-0.552285 0 -1 0.44772 -1 1v7.5c0 0.5523 0.447715 1 1 1h11c0.5523 0 1 -0.4477 1 -1v-7.5c0 -0.55228 -0.4477 -1 -1 -1Z\" stroke-width=\"1\"><\/path><path id=\"Vector_2\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M0.5 5.75h13\" stroke-width=\"1\"><\/path><path id=\"Vector_3\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9.5 9.25H11\" stroke-width=\"1\"><\/path><\/g><\/svg>"
+                                "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M2.15625 3.59375h18.6875s1.4375 0 1.4375 1.4375v12.9375s0 1.4375 -1.4375 1.4375H2.15625s-1.4375 0 -1.4375 -1.4375V5.03125s0 -1.4375 1.4375 -1.4375\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m0.71875 7.90625 21.5625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 12.21875 7.90625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 15.09375 5.03125 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>"
                             }
                         }
                     ]

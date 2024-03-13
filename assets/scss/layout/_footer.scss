@@ -4,19 +4,19 @@
 .section-site-footer {  
 
     .section-inner {
-        --section-padding-top: 0;
-        --section-padding-bottom: 0;
+        --section-padding-top: var(--site-footer-padding-top);
+        --section-padding-bottom: var(--site-footer-padding-bottom);
     }
 
     .site-footer-container {
-        --section-padding-top: 2.25rem;
-        --section-padding-bottom: 2.25rem;
 
         .site-footer {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--site-footer-gap) * .5);
 
-            .container {
-                padding-top: var(--section-padding-top);
-                padding-bottom: var(--section-padding-bottom);
+            @include media-breakpoint-up(md) {
+                gap: var(--site-footer-gap);
             }
 
             .site-footer-title {
@@ -40,7 +40,9 @@
                     display: flex;
                     flex-direction: column;
                     margin-bottom: 0;
-                    @include list-unstyled();
+                    list-style: none;
+                    padding-left: 0;
+                    gap: spacer(3);
 
                     &.site-footer-menu-inline {
                         flex-direction: row;
@@ -54,31 +56,15 @@
 
                         .site-footer-menu-item {
                             padding: spacer(1) spacer(2);
-                            margin-bottom: 0;
                         }
                     }
 
                     .site-footer-menu-item {
                         display: flex;
                         justify-content: space-between;
-                        margin-bottom: spacer(3);
 
                         .site-footer-menu-item-text {
-                            font-family: $navigation-font-family;
-                            font-weight: $navigation-font-weight;
-                            font-style: $navigation-font-style;
-                            @include font-size($navigation-font-size);
                             color: var(--style-link-color);
-                            @if $navigation-letter-spacing != '0' {
-                                letter-spacing: $navigation-letter-spacing;
-                            }
-                            @if $navigation-text-transform != 'none' {
-                                text-transform: $navigation-text-transform;
-                            }
-                        }
-
-                        &:last-child {
-                            margin-bottom: 0;
                         }
                     }
                 }
@@ -137,10 +123,6 @@
                         }
                     }
                 }
-            }
-
-            .site-footer-bottom {
-                --section-padding-bottom: 4.5rem;
             }
 
             .site-footer-localization {

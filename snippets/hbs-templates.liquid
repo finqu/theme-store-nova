@@ -61,6 +61,10 @@
                                                         {{ assign 'imgSize' '110,93' }}
                                                     {{/ifCond}}
 
+                                                    {{#ifCond productImageAspectRatio '===' 3:4}}
+                                                        {{ assign 'imgSize' '110,147' }}
+                                                    {{/ifCond}}
+
                                                     {{#ifCond productImageAspectRatio '===' 1:1}}
                                                         {{ assign 'imgSize' '110,110' }}
                                                     {{/ifCond}}
@@ -129,7 +133,7 @@
                                                         {{#each item.attributes as |attribute|}}
 
                                                             <span class="cart-item-attribute">
-                                                                {{ t 'general.selection' }}: {{ attribute }}
+                                                                {{ attribute }}
                                                             </span>
 
                                                         {{/each}}
@@ -158,7 +162,7 @@
 
                                             </div>
 
-                                            <div class="col-12 col-md-auto mt-2 mt-lg-0">
+                                            <div class="col-12 col-md-auto mt-2 mt-md-0">
 
                                                 <div class="row">
 
@@ -548,6 +552,10 @@
                                                 {{ assign 'imgSize' '110,93' }}
                                             {{/ifCond}}
 
+                                            {{#ifCond productImageAspectRatio '===' 3:4}}
+                                                {{ assign 'imgSize' '110,147' }}
+                                            {{/ifCond}}
+
                                             {{#ifCond productImageAspectRatio '===' 1:1}}
                                                 {{ assign 'imgSize' '110,110' }}
                                             {{/ifCond}}
@@ -618,7 +626,7 @@
                                                 {{#each item.attributes as |attribute|}}
 
                                                     <span class="cart-item-attribute">
-                                                        {{ t 'general.selection' }}: {{ attribute }}
+                                                        {{ attribute }}
                                                     </span>
 
                                                 {{/each}}
@@ -839,6 +847,10 @@
                                                 {{ assign 'imgSize' '110,93' }}
                                             {{/ifCond}}
 
+                                            {{#ifCond productImageAspectRatio '===' 3:4}}
+                                                {{ assign 'imgSize' '110,147' }}
+                                            {{/ifCond}}
+
                                             {{#ifCond productImageAspectRatio '===' 1:1}}
                                                 {{ assign 'imgSize' '110,110' }}
                                             {{/ifCond}}
@@ -909,7 +921,7 @@
                                                 {{#each item.attributes as |attribute|}}
 
                                                     <span class="cart-item-attribute">
-                                                        {{ t 'general.selection' }}: {{ attribute }}
+                                                        {{ attribute }}
                                                     </span>
 
                                                 {{/each}}
@@ -1111,6 +1123,10 @@
                                     {{ assign 'imgSize' '50,33' }}
                                 {{/ifCond}}
 
+                                {{#ifCond productImageAspectRatio '===' 3:4}}
+                                    {{ assign 'imgSize' '50,67' }}
+                                {{/ifCond}}
+
                                 {{#ifCond productImageAspectRatio '===' 1:1}}
                                     {{ assign 'imgSize' '50,50' }}
                                 {{/ifCond}}
@@ -1165,4 +1181,87 @@
     </div>
 
 {% endraw %}
+</script>
+
+<script id="hbs-newsletter-popup" type="text/template">
+
+    <div class="modal fade" id="newsletter-popup-modal" tabindex="-1" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-body p-0">
+
+                    {% form 'customer', customer %}
+    
+                        {% if form.posted_successfully? %}
+
+                            <script type="application/javascript">
+                                document.addEventListener('theme:ready', function() {
+                                    document.dispatchEvent(new CustomEvent('theme:newsletter:subscribe', {
+                                        detail: {
+                                            email: {{ form.email | json }}
+                                        }
+                                    }));
+                                    theme.bs.Modal.getOrCreateInstance('#newsletter-popup-modal')?.show();
+                                    theme.utils.cookies.set(
+                                        'themeNewsletterPopup',
+                                        true,
+                                        Math.floor({{ settings.newsletterPopupCookieDuration }} / 86400)
+                                    )
+                                });
+                            </script>
+
+                            <p class="my-4">
+                            asd
+                                {{- 'product.question.success' | t -}}
+                            </p>
+
+                        {% else %}
+
+                            {% if form.error %}
+
+                                <script type="application/javascript">
+                                    document.addEventListener('theme:ready', function() {
+                                        theme.bs.Modal.getOrCreateInstance('#newsletter-popup-modal')?.show();
+                                    });
+                                </script>
+
+                            {% endif %}
+                                 
+                            <div class="form-floating">
+
+                                <input id="newsletters-popup-modal-input" class="form-control" type="email" name="email" value="" placeholder="{{ 'general.email' | t }}" required>
+
+                                <label for="newsletters-popup-modal-input">
+                                    {{- 'general.email' | t -}}
+                                </label>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-icon">
+
+                                <span class="text-hidden">
+                                    {{- 'general.subscribe' | t -}}
+                                </span>
+
+                                {% render 'icon', icon: 'angle-right' %}
+
+                            </button>
+
+                            {% render 'form-error', error: form.error, class: 'mb-4' %}
+
+                        {% endif %}
+
+                    {% endform %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </script>

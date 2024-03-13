@@ -1,327 +1,5 @@
 {
     "current": {
-        "templates": {
-            "frontpage": {
-                "sections": [
-                    {
-                        "id": "d867e9c27460fdad3ae1bca6a92ee964",
-                        "title": "Hero kahdella kuvalla",
-                        "name": "hero-split-images",
-                        "settings": {
-                            "sectionOverline": "",
-                            "sectionTitle": "Industrial design meets fashion.",
-                            "sectionSubtitle": "Atypical leather goods",
-                            "btnLabel": "Shop now",
-                            "btnLink": {
-                                "type": "url",
-                                "record_id": "",
-                                "url": ""
-                            },
-                            "btnLinkOpenInNewTab": false,
-                            "imgStart": {
-                                "string_value": "https:\/\/cdn.iamgroot.finqu.dev\/users\/1\/images\/uploads\/dawn-2_1080_1080.jpg",
-                                "src": "https:\/\/cdn.iamgroot.finqu.dev\/users\/1\/images\/uploads\/dawn-2_1080_1080.jpg",
-                                "offset_top": "50",
-                                "offset_left": "50",
-                                "width": "1080",
-                                "height": "864"
-                            },
-                            "imgEnd": {
-                                "string_value": "https:\/\/cdn.iamgroot.finqu.dev\/users\/1\/images\/uploads\/dawn-1_1080_1080.jpg",
-                                "src": "https:\/\/cdn.iamgroot.finqu.dev\/users\/1\/images\/uploads\/dawn-1_1080_1080.jpg",
-                                "offset_top": "50",
-                                "offset_left": "50",
-                                "width": "989",
-                                "height": "1080"
-                            },
-                            "imgMobile": {
-                                "string_value": "",
-                                "src": "",
-                                "offset_top": "50",
-                                "offset_left": "50",
-                                "width": "",
-                                "height": ""
-                            },
-                            "imgDimming": "15",
-                            "imgBlur": "1",
-                            "sectionTextAlign": "center",
-                            "btnStyle": "secondary",
-                            "sectionMinHeight": "100",
-                            "sectionOverlineTag": "h3",
-                            "sectionTitleTag": "h2",
-                            "sectionSubtitleTag": "h3",
-                            "sectionColorScheme": "dark"
-                        },
-                        "blocks": []
-                    },
-                    {
-                        "id": "1a464ef0549b7757f5fdfb62cac62547",
-                        "title": "Product list",
-                        "name": "product-list",
-                        "settings": {
-                            "sectionOverline": "",
-                            "sectionTitle": "Obsessive Attention. Intelligent Effort.",
-                            "sectionSubtitle": "Functional handbags made of luxurious materials to improve people's lives in small but mighty ways.",
-                            "sectionQuickLinkText": "",
-                            "sectionQuickLinkStyle": "nil",
-                            "sectionQuickLinkResource": {
-                                "type": "url",
-                                "record_id": "",
-                                "url": ""
-                            },
-                            "listType": "recent",
-                            "tagId": "",
-                            "category": {
-                                "type": "category",
-                                "id": "",
-                                "name": ""
-                            },
-                            "manufacturer": {
-                                "type": "manufacturer",
-                                "id": "",
-                                "name": ""
-                            },
-                            "productAmount": "8",
-                            "customDisplayInformation": false,
-                            "productPerRow": "3",
-                            "showProductName": true,
-                            "showManufacturer": true,
-                            "showPromotion": true,
-                            "showPricing": true,
-                            "showRating": true,
-                            "showNewBadge": true,
-                            "showDiscountBadge": true,
-                            "showOutOfStockBadge": true,
-                            "showAddToCart": true,
-                            "showStockBalance": true,
-                            "sectionHighlightItems": "nil",
-                            "sectionTextAlign": "nil",
-                            "sectionOverlineTag": "h3",
-                            "sectionTitleTag": "h2",
-                            "sectionSubtitleTag": "h3",
-                            "sectionColorScheme": false,
-                            "sectionPaddingMode": "auto",
-                            "sectionPaddingTop": "0",
-                            "sectionPaddingBottom": "0",
-                            "sectionBgImg": {
-                                "string_value": "",
-                                "src": "",
-                                "offset_top": "50",
-                                "offset_left": "50",
-                                "width": "",
-                                "height": ""
-                            },
-                            "sectionBgImgPos": "",
-                            "sectionBgImgDimming": "0",
-                            "sectionBgImgBlur": "0"
-                        },
-                        "blocks": []
-                    },
-                    {
-                        "id": "1fe5ecfcdd029c4cb9c04db86afd338e",
-                        "title": "Text columns",
-                        "name": "text-columns",
-                        "settings": {
-                            "sectionOverline": "",
-                            "sectionTitle": "",
-                            "sectionSubtitle": "",
-                            "orientation": "horizontal",
-                            "colPerRow": "2",
-                            "sectionHighlightItems": "nil",
-                            "sectionTextAlign": "nil",
-                            "imgAspectRatio": "1:1",
-                            "imgScaleRatio": "1",
-                            "imgAlign": "center",
-                            "imgFit": false,
-                            "sectionOverlineTag": "h3",
-                            "sectionTitleTag": "h2",
-                            "sectionSubtitleTag": "h3",
-                            "sectionColorScheme": false,
-                            "sectionPaddingMode": "auto",
-                            "sectionPaddingTop": "0",
-                            "sectionPaddingBottom": "0",
-                            "sectionBgImg": {
-                                "string_value": "",
-                                "src": "",
-                                "offset_top": "50",
-                                "offset_left": "50",
-                                "width": "",
-                                "height": ""
-                            },
-                            "sectionBgImgPos": "",
-                            "sectionBgImgDimming": "0",
-                            "sectionBgImgBlur": "0",
-                            "setting_blocks": {
-                                "items": [
-                                    {
-                                        "type": "image",
-                                        "settings": {
-                                            "title": "",
-                                            "richtext": "<p>\"The leather is sourced from environmentally friendly tanneries in Italy, France, and Turkey, where Rure is based and everything is assembled by hand.\"<\/p>",
-                                            "img": {
-                                                "string_value": "",
-                                                "src": "",
-                                                "offset_top": "50",
-                                                "offset_left": "50",
-                                                "width": "",
-                                                "height": ""
-                                            },
-                                            "imgAlt": ""
-                                        }
-                                    },
-                                    {
-                                        "type": "image",
-                                        "settings": {
-                                            "title": "",
-                                            "richtext": "<p>\"All too often, we're forced to pick: style, or sustainability. Recently, more designers have been making environmental impact a top priority\"<\/p>",
-                                            "img": {
-                                                "string_value": "",
-                                                "src": "",
-                                                "offset_top": "50",
-                                                "offset_left": "50",
-                                                "width": "",
-                                                "height": ""
-                                            },
-                                            "imgAlt": ""
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        "blocks": []
-                    }
-                ]
-            },
-            "cart": {
-                "sections": [
-                    {
-                        "name": "cart-template",
-                        "id": "cart-template",
-                        "blocks": [],
-                        "settings": [],
-                        "sticky": true
-                    }
-                ]
-            },
-            "search": {
-                "sections": [
-                    {
-                        "name": "search-template",
-                        "id": "search-template",
-                        "blocks": [],
-                        "settings": [],
-                        "sticky": true
-                    }
-                ]
-            },
-            "password": {
-                "sections": [
-                    {
-                        "name": "password-template",
-                        "id": "password-template",
-                        "blocks": [],
-                        "settings": [],
-                        "sticky": true
-                    }
-                ]
-            },
-            "manufacturer": {
-                "sections": [
-                    {
-                        "name": "manufacturer-template",
-                        "id": "manufacturer-template",
-                        "blocks": [],
-                        "settings": {
-                            "itemsPerRow": "4",
-                            "showDiscountBadge": true,
-                            "showOutOfStockBadge": true,
-                            "showNewBadge": true,
-                            "showManufacturer": true,
-                            "showProductName": true,
-                            "showPricing": true
-                        },
-                        "sticky": true
-                    }
-                ]
-            },
-            "blog": {
-                "sections": [
-                    {
-                        "name": "blog-template",
-                        "id": "blog-template",
-                        "blocks": [],
-                        "settings": [],
-                        "sticky": true
-                    }
-                ]
-            },
-            "category": {
-                "sections": [
-                    {
-                        "name": "category-template",
-                        "id": "category-template",
-                        "blocks": [],
-                        "settings": {
-                            "itemsPerRow": "3",
-                            "showDiscountBadge": true,
-                            "showOutOfStockBadge": true,
-                            "showNewBadge": true,
-                            "showManufacturer": true,
-                            "showProductName": true,
-                            "showPricing": true
-                        },
-                        "sticky": true
-                    }
-                ]
-            },
-            "product": {
-                "sections": [
-                    {
-                        "name": "product-template",
-                        "id": "product-template",
-                        "blocks": [],
-                        "settings": {
-                            "showBreadcrumbs": true,
-                            "showQuantitySelect": true,
-                            "showStockBalance": true,
-                            "showProductOptionPrice": true,
-                            "showProductOptionTotalPrice": false,
-                            "showProductOptionStockBalance": false,
-                            "showLowestPrice": true,
-                            "customDisplayInformation": false,
-                            "showManufacturer": true,
-                            "showPromotion": true,
-                            "showNewBadge": true,
-                            "showDiscountBadge": true,
-                            "showOutOfStockBadge": true
-                        },
-                        "sticky": true
-                    }
-                ]
-            },
-            "article": {
-                "sections": [
-                    {
-                        "name": "article-template",
-                        "id": "article-template",
-                        "blocks": [],
-                        "settings": [],
-                        "sticky": true
-                    }
-                ]
-            },
-            "catalog": {
-                "sections": [
-                    {
-                        "name": "catalog-template",
-                        "id": "catalog-template",
-                        "blocks": [],
-                        "settings": [],
-                        "sticky": true
-                    }
-                ]
-            }
-        },
         "settings": {
             "styleGridContainerMaxWidthSm": "540px",
             "styleGridContainerMaxWidthMd": "720px",
@@ -341,7 +19,7 @@
             "styleAnnouncementHeight": "2.6rem",
             "styleButtonPrimaryVariant": "1",
             "styleButtonSecondaryVariant": "1",
-            "styleBorderRadius": "4rem",
+            "styleBorderRadius": "0px",
             "styleButtonBorderRadius": "0px",
             "styleInputBorderRadius": "0px",
             "styleComponentBorderRadius": "0px",
@@ -357,7 +35,7 @@
             "sectionHighlightItems": "",
             "sectionHighlightItemBorder": "",
             "sectionTextAlign": "start",
-            "sectionQuickLinkStyle": "link-with-icon",
+            "sectionQuickLinkStyle": "primary",
             "sectionAnimation": "animate__fadeInUp",
             "style_link_color": "#333333",
             "style_accent_color": "#121212",
@@ -543,30 +221,30 @@
             },
             "textScale": "1",
             "textLineHeight": "1.85",
-            "bodyTextFont": "Roboto",
+            "bodyTextFont": "Assistant",
             "bodyLetterSpacing": "0.06rem",
             "bodyTextFontStyle": "normal",
-            "headingFont": "Montserrat",
+            "headingFont": "Assistant",
             "headingFontScale": "1",
             "headingLetterSpacing": "1px",
             "headingFontWeight": "700",
             "headingFontStyle": "normal",
             "headingTextTransform": "none",
-            "subheadingFont": "Montserrat",
+            "subheadingFont": "Assistant",
             "subheadingLetterSpacing": "3px",
             "subheadingFontWeight": "400",
             "subheadingFontStyle": "normal",
             "subheadingTextTransform": "none",
-            "buttonFont": "Roboto",
+            "buttonFont": "Assistant",
             "buttonLetterSpacing": "1px",
             "buttonFontWeight": "700",
             "buttonFontStyle": "normal",
             "buttonTextTransform": "none",
-            "accentFont": "Montserrat",
+            "accentFont": "Assistant",
             "accentFontWeight": "400",
             "accentFontStyle": "normal",
             "accentTextTransform": "none",
-            "navigationFont": "Roboto",
+            "navigationFont": "Assistant",
             "navigationFontScale": "1",
             "navigationLetterSpacing": "1px",
             "navigationFontWeight": "400",
@@ -576,12 +254,19 @@
             "accessibilityShowSearch": true,
             "accessibilityShowSearchAutocomplete": true,
             "accessibilityShowBackToTopButton": true,
+            "accessibilityShowWishlist": true,
             "cartShowAddNotification": true,
             "taxFreeShopping": false,
             "cookiesPolicyPosition": "middle",
             "productImageAspectRatio": "1:1",
             "productImageAspectRatioFit": "cover",
             "productPerRow": "4",
+            "productShowVariantOptionAsImage": false,
+            "productShowVariants": true,
+            "productShowVariantImgsOnHover": false,
+            "productShowVariantOption1": "color",
+            "productShowVariantOption2": "size",
+            "productShowVariantOption3": false,
             "productShowName": true,
             "productShowManufacturer": false,
             "productShowPromotion": true,
@@ -593,7 +278,7 @@
             "productShowOutOfStockBadge": true,
             "productShowDiscountPercentage": false,
             "productWrapName": false,
-            "productShowAddToCart": true,
+            "productShowAddToCart": false,
             "productShowStockBalance": false,
             "articleImageAspectRatio": "1:1",
             "articleImageAspectRatioFit": "cover",
@@ -603,12 +288,6 @@
             "registerAdditionalInformation": false,
             "showPolicyAgreementAsText": false,
             "klarnaClientId": "",
-            "schemaWebsite": true,
-            "schemaOrganization": true,
-            "schemaProduct": true,
-            "schemaBlogPosting": true,
-            "schemaBreadcrumbList": true,
-            "schemaItemList": true,
             "facebookPageUrl": "",
             "instagramPageUrl": "",
             "xPageUrl": "",
@@ -621,116 +300,72 @@
             "redditPageUrl": "",
             "tiktokPageUrl": "",
             "ravelryPageUrl": "",
-            "showAnimations": true,
-            "showSearchAutocomplete": true,
-            "taxFreePrices": false,
-            "policyAgreementMethod": "check",
-            "showBackToTopButton": true,
-            "klarnaPlacementsClientId": "",
-            "twitterPageUrl": "a",
-            "style_cookie_notice_bg_color": "#000000",
-            "style_cookie_notice_text_color": "#ffffff",
-            "articlesPerRow": "4",
-            "animations": true,
-            "searchAutocomplete": true,
-            "backToTopButton": true,
-            "aspectRatioProductImage": "1:1",
-            "aspectRatioProductImageFit": "cover",
-            "productsPerRow": "4",
-            "productNameWrap": true,
-            "addToCartNotification": true,
-            "cookiesNotificationPosition": "middle",
-            "blogShowAuthor": false,
-            "sectionBgImgPosition": "center-center"
+            "twitterPageUrl": "",
+            "newsletterPopup": true,
+            "newsletterPopupDelay": "5",
+            "newsletterPopupCookieDuration": "86400",
+            "newsletterPopupImg": {
+                "string_value": "https:\/\/images.unsplash.com\/photo-1469334031218-e382a71b716b",
+                "src": "https:\/\/images.unsplash.com\/photo-1469334031218-e382a71b716b",
+                "offset_top": "50",
+                "offset_left": "50",
+                "width": "800",
+                "height": "800"
+            },
+            "schemaWebsite": true,
+            "schemaOrganization": true,
+            "schemaProduct": true,
+            "schemaBlogPosting": true,
+            "schemaBreadcrumbList": true,
+            "schemaItemList": true
         },
         "sections": [
             {
                 "id": "header",
                 "name": "header",
                 "settings": {
+                    "headerItemsPaddingY": "2.2rem",
                     "logoImg": {
                         "string_value": "",
                         "src": "",
-                        "offset_top": "50",
-                        "offset_left": "50",
+                        "offset_top": "",
+                        "offset_left": "",
                         "width": "",
                         "height": ""
                     },
-                    "logoSize": "200",
+                    "logoSize": "120",
                     "logoPosition": "start",
+                    "mobileLogoPosition": "center",
                     "menu": "main",
+                    "menuItemsAlign": "start",
                     "mobileMenu": "main",
+                    "mobileMenuSecondaryTitle": "",
                     "mobileMenuSecondary": "",
-                    "socialMediaIconsStatus": true
-                }
-            },
-            {
-                "id": "footer",
-                "name": "footer",
-                "settings": {
-                    "footerTextArea1Title": "ABOUT THE STORE",
-                    "footerTextArea1Content": "<p id=\"isPasted\">Our mission statement is to provide the absolute best customer experience available in the Audio\/Video industry without exception.<\/p><p>A big thank you to HiDEF Lifestyle for allowing us to use their products in this demo store.<\/p>",
-                    "footerTextArea2Title": "",
-                    "footerTextArea2Content": "<p>\u00a9 2023 Nova<\/p>",
-                    "footerNewsletterTitle": "OUR NEWSLETTER",
-                    "footerNewsletterContent": "<p>Subscribe to get notified about product launches, special offers and news.<\/p>",
-                    "footerSocialMediaTitle": "Sosiaalinen media",
-                    "footerSocialMediaContent": "",
-                    "footerPaymentMethodsImg": {
-                        "string_value": "https:\/\/cdn.finqu.dev\/users\/1\/images\/uploads\/paytrail-banneri-2023-kaikki-maksutavat_1080_1080.png",
-                        "src": "https:\/\/cdn.finqu.dev\/users\/1\/images\/uploads\/paytrail-banneri-2023-kaikki-maksutavat_1080_1080.png",
-                        "offset_top": "50",
-                        "offset_left": "50",
-                        "width": "215",
-                        "height": "1080"
-                    },
-                    "footerMenu1Title": "QUICK LINKS",
-                    "footerMenu1": "main",
-                    "footerMenu2Title": "INFORMATION",
-                    "footerMenu2": "main",
-                    "footerMenu3Title": "",
-                    "footerMenu3": "main",
-                    "footerLayout": "3",
-                    "footerTextArea1Status": true,
-                    "footerTextArea2Status": true,
-                    "footerNewsletterStatus": true,
-                    "footerSocialMediaButtonsStatus": true,
-                    "footerPaymentMethodsStatus": true
-                }
-            },
-            {
-                "id": "category-template",
-                "name": "category-template",
-                "settings": {
-                    "itemsPerRow": "3",
-                    "showDiscountBadge": true,
-                    "showOutOfStockBadge": true,
-                    "showNewBadge": true,
-                    "showManufacturer": true,
-                    "showProductName": true,
-                    "showPricing": true
+                    "mobileNavigationSimple": false,
+                    "mobileShowSocialIconsInNavigation": true,
+                    "mobileShowSearchInNavigation": false
                 }
             },
             {
                 "id": "announcement",
                 "name": "announcement",
                 "settings": {
-                    "announcementTextAlign": "nil",
-                    "announcementVisibility": "all",
                     "announcementStatus": true,
-                    "carouselAutoplaySpeed": "10",
+                    "announcementTextAlign": "center",
+                    "announcementVisibility": "all",
+                    "carouselAutoplaySpeed": "3",
                     "setting_blocks": {
                         "items": {
-                            "077bc4b9-f627-4738-82a8-f53e1ccdcfa9": {
+                            "07acbdce-1a2b-4e24-b52e-4fade3565411": {
                                 "type": "text",
                                 "settings": {
-                                    "announcementText": "Tell your customers about your promotions",
                                     "announcementLink": {
                                         "type": "url",
                                         "record_id": "",
-                                        "url": ""
-                                    },
-                                    "announcementLinkOpenInNewWindowStatus": false
+                                        "text": "Luo ensimm\u00e4inen ilmoituksesi! Kerro asiakkaille tarjouksista ja tapahtumista.",
+                                        "url": "",
+                                        "target": "_self"
+                                    }
                                 }
                             }
                         }
@@ -738,67 +373,186 @@
                 }
             },
             {
-                "id": "product-list",
-                "name": "product-list",
+                "id": "footer",
+                "name": "footer",
                 "settings": {
-                    "sectionOverline": "",
-                    "sectionTitle": "",
-                    "sectionSubtitle": "",
-                    "sectionQuickLinkText": "",
-                    "sectionQuickLinkStyle": "primary",
-                    "sectionQuickLinkResource": {
-                        "type": "url",
-                        "record_id": "",
-                        "url": ""
-                    },
-                    "listType": "discounted",
-                    "tagId": "",
-                    "category": {
-                        "type": "category",
-                        "id": "",
-                        "name": ""
-                    },
-                    "manufacturer": {
-                        "type": "manufacturer",
-                        "id": "",
-                        "name": ""
-                    },
-                    "productAmount": "8",
-                    "customDisplayInformation": false,
-                    "productPerRow": "3",
-                    "showProductName": true,
-                    "showManufacturer": true,
-                    "showPromotion": true,
-                    "showPricing": true,
-                    "showRating": true,
-                    "showNewBadge": true,
-                    "showDiscountBadge": true,
-                    "showOutOfStockBadge": true,
-                    "showAddToCart": true,
-                    "showStockBalance": true,
-                    "sectionHighlightItems": "nil",
-                    "sectionTextAlign": "nil",
-                    "sectionOverlineTag": "h3",
-                    "sectionTitleTag": "h2",
-                    "sectionSubtitleTag": "h3",
-                    "sectionColorScheme": false,
-                    "sectionPaddingMode": "auto",
-                    "sectionPaddingTop": "0",
-                    "sectionPaddingBottom": "0",
-                    "sectionBgImg": {
+                    "footerGap": "3.6rem",
+                    "footerPaddingTop": "2.7rem",
+                    "footerPaddingBottom": "2.7rem",
+                    "footerTopBorder": true,
+                    "footerTopBorderFluid": true,
+                    "footerBottomBorder": true,
+                    "footerBottomBorderFluid": true,
+                    "footerTextArea1Title": "Meist\u00e4",
+                    "footerTextArea1Content": "<p>Tervetuloa verkkokauppaan! Olemme ylpeit\u00e4 tarjotessamme sinulle sujuvan ja ilahduttavan ostoskokemuksen. Sitoutuneina asiakastyytyv\u00e4isyyteen pyrimme tarjoamaan sinulle uusimmat trendit, ly\u00f6m\u00e4tt\u00f6m\u00e4t hinnat ja vertaansa vailla olevan palvelun.<\/p>",
+                    "footerTextArea2Content": "<p>\u00a9 2024 Nova<\/p>",
+                    "footerNewsletterTitle": "Uutiskirje",
+                    "footerNewsletterContent": "<p>Tilaa uutiskirje saadaksesi ilmoituksia uusista tuotteista, erikoistarjouksista ja tapahtumista.<\/p>",
+                    "footerSocialMediaTitle": "",
+                    "footerSocialMediaContent": "",
+                    "footerPaymentMethodsImg": {
                         "string_value": "",
                         "src": "",
-                        "offset_top": "50",
-                        "offset_left": "50",
+                        "offset_top": "",
+                        "offset_left": "",
                         "width": "",
                         "height": ""
                     },
-                    "sectionBgImgPos": "",
-                    "sectionBgImgDimming": "0",
-                    "sectionBgImgBlur": "0"
+                    "footerLogoImg": {
+                        "string_value": "",
+                        "src": "",
+                        "offset_top": "",
+                        "offset_left": "",
+                        "width": "",
+                        "height": ""
+                    },
+                    "footerMenu1Title": "Pikalinkit",
+                    "footerMenu1": "footer",
+                    "footerMenu2Title": "Tiedot",
+                    "footerMenu2": "footer",
+                    "footerMenu3Title": "",
+                    "footerMenu3": "",
+                    "footerLayout": "1",
+                    "footerTextArea1Status": true,
+                    "footerTextArea2Status": true,
+                    "footerNewsletterStatus": true,
+                    "footerSocialMediaButtonsStatus": true,
+                    "footerPaymentMethodsStatus": true,
+                    "footerLogoStatus": true
                 }
             }
-        ]
+        ],
+        "templates": {
+            "frontpage": {
+                "sections": [
+                    {
+                        "id": "8475dd8224ae26e72fe61f2a4269c429",
+                        "title": "Hero split images",
+                        "name": "hero-split-images",
+                        "settings": {
+                            "sectionTitle": "Uusi mahtava Hero-otsikko!",
+                            "sectionSubtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
+                            "sectionColorScheme": "dark",
+                            "btnLink": {
+                                "text": "Shoppaile nyt"
+                            },
+                            "imgStart": {
+                                "string_value": "https:\/\/images.unsplash.com\/photo-1586158291800-2665f07bba79",
+                                "src": "https:\/\/images.unsplash.com\/photo-1586158291800-2665f07bba79",
+                                "offset_top": "50",
+                                "offset_left": "50",
+                                "width": "1080",
+                                "height": "1080"
+                            },
+                            "imgEnd": {
+                                "string_value": "https:\/\/images.unsplash.com\/photo-1617104424032-b9bd6972d0e4",
+                                "src": "https:\/\/images.unsplash.com\/photo-1617104424032-b9bd6972d0e4",
+                                "offset_top": "50",
+                                "offset_left": "50",
+                                "width": "1080",
+                                "height": "1080"
+                            }
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "51810b6b3ff0eb0d6c6f8f7be8fb0f62",
+                        "title": "Product list",
+                        "name": "product-list",
+                        "settings": {
+                            "sectionTitle": "Suosituimmat tuotteet"
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "27f9db39c466c7bac217b098989cd0f7",
+                        "title": "Text columns",
+                        "name": "text-columns",
+                        "settings": {
+                            "orientation": "horizontal",
+                            "sectionOverline": "",
+                            "sectionTitle": "",
+                            "sectionSubtitle": "",
+                            "colPerRow": "2",
+                            "sectionHighlightItems": "nil",
+                            "sectionTextAlign": "center",
+                            "btnStyle": "nil",
+                            "imgAspectRatio": "1:1",
+                            "imgScaleRatio": "1",
+                            "imgAlign": "center",
+                            "imgFit": true,
+                            "sectionOverlineTag": "h3",
+                            "sectionTitleTag": "h2",
+                            "sectionSubtitleTag": "h3",
+                            "sectionColorScheme": false,
+                            "sectionAdditionalTitles": false,
+                            "sectionPaddingMode": "auto",
+                            "sectionPaddingTop": "0",
+                            "sectionPaddingBottom": "0",
+                            "sectionBgImg": {
+                                "string_value": "",
+                                "src": "",
+                                "offset_top": "",
+                                "offset_left": "",
+                                "width": "",
+                                "height": ""
+                            },
+                            "sectionBgImgDimming": "0",
+                            "sectionBgImgBlur": "0",
+                            "setting_blocks": {
+                                "items": [
+                                    {
+                                        "type": "text",
+                                        "settings": {
+                                            "title": "Otsikko",
+                                            "richtext": "<p>Lis\u00e4\u00e4 sopiva teksti jolla voit esimerkiksi keskitty\u00e4 valitsemaasi tuotteeseen, artikkeliin tai tuotemerkkiin.<\/p>",
+                                            "btnLink": {
+                                                "type": "url",
+                                                "record_id": "",
+                                                "text": "Linkki",
+                                                "url": "",
+                                                "target": "_self"
+                                            },
+                                            "img": {
+                                                "string_value": "",
+                                                "src": "",
+                                                "offset_top": "",
+                                                "offset_left": "",
+                                                "width": "",
+                                                "height": ""
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "text",
+                                        "settings": {
+                                            "title": "Otsikko",
+                                            "richtext": "<p>Lis\u00e4\u00e4 sopiva teksti jolla voit esimerkiksi keskitty\u00e4 valitsemaasi tuotteeseen, artikkeliin tai tuotemerkkiin.<\/p>",
+                                            "btnLink": {
+                                                "type": "url",
+                                                "record_id": "",
+                                                "text": "Linkki",
+                                                "url": "",
+                                                "target": "_self"
+                                            },
+                                            "img": {
+                                                "string_value": "",
+                                                "src": "",
+                                                "offset_top": "",
+                                                "offset_left": "",
+                                                "width": "",
+                                                "height": ""
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "blocks": []
+                    }
+                ]
+            }
+        }
     },
     "presets": {
         "default": {
@@ -807,6 +561,77 @@
             "image": "assets\/theme-preset-default.jpg",
             "default": true,
             "settings": {
+                "styleGridContainerMaxWidthSm": "540px",
+                "styleGridContainerMaxWidthMd": "720px",
+                "styleGridContainerMaxWidthLg": "960px",
+                "styleGridContainerMaxWidthXl": "1140px",
+                "styleGridContainerMaxWidthXxl": "1320px",
+                "styleGridBreakpointSm": "576px",
+                "styleGridBreakpointMd": "768px",
+                "styleGridBreakpointLg": "992px",
+                "styleGridBreakpointXl": "1200px",
+                "styleGridBreakpointXxl": "1400px",
+                "styleGridContainerPaddingX": "0.714275rem",
+                "styleGridGutterWidth": "1.42855rem",
+                "styleIconStrokeWidth": "1.5px",
+                "styleCartVariant": "1",
+                "styleProductBadgePosition": "bottom-start",
+                "styleAnnouncementHeight": "2.6rem",
+                "styleButtonPrimaryVariant": "1",
+                "styleButtonSecondaryVariant": "1",
+                "styleBorderRadius": "4rem",
+                "styleButtonBorderRadius": "0px",
+                "styleInputBorderRadius": "0px",
+                "styleComponentBorderRadius": "0px",
+                "styleImageBorderRadius": "0px",
+                "styleProductImageBorderRadius": "0px",
+                "sectionPaddingTop": "4rem",
+                "sectionPaddingBottom": "4rem",
+                "sectionInnerGap": "3.5rem",
+                "sectionHeaderGapScale": "2",
+                "sectionBgImgPos": "center-center",
+                "sectionOverlay": "",
+                "sectionOverlayPadding": "2.25rem",
+                "sectionHighlightItems": "",
+                "sectionHighlightItemBorder": "",
+                "sectionTextAlign": "start",
+                "sectionQuickLinkStyle": "primary",
+                "sectionAnimation": "animate__fadeInUp",
+                "style_link_color": "#333333",
+                "style_accent_color": "#121212",
+                "style_btn_bg_color": "#121212",
+                "style_btn_text_color": "#ffffff",
+                "style_icon_color": "#333333",
+                "style_header_bg_color": "#ffffff",
+                "style_header_text_color": "#4d4d4d",
+                "style_header_accent_color": "#121212",
+                "style_footer_bg_color": "#ffffff",
+                "style_footer_text_color": "#4d4d4d",
+                "style_footer_accent_color": "#121212",
+                "style_bg_color": "#ffffff",
+                "style_secondary_bg_color": "#f3f5f6",
+                "style_border_color": "#ececec",
+                "style_heading_color": "#121212",
+                "style_subheading_color": "#333333",
+                "style_text_color": "#202020",
+                "style_product_title_color": "#121212",
+                "style_price_color": "#121212",
+                "style_sale_price_color": "#121212",
+                "style_badge_bg_color": "#121212",
+                "style_badge_text_color": "#ffffff",
+                "style_new_badge_bg_color": "#121212",
+                "style_new_badge_text_color": "#ffffff",
+                "style_discount_badge_bg_color": "#324fb4",
+                "style_discount_badge_text_color": "#ffffff",
+                "style_review_icon_color": "#121212",
+                "style_table_bg_color": "#ffffff",
+                "style_table_text_color": "#202020",
+                "style_table_border_color": "#ececec",
+                "style_form_bg_color": "#ffffff",
+                "style_form_text_color": "#202020",
+                "style_form_border_color": "#ececec",
+                "style_announcement_bg_color": "#121212",
+                "style_announcement_text_color": "#ffffff",
                 "styles": {
                     "1": {
                         "bg_color": "#ffffff",
@@ -954,125 +779,66 @@
                         "form_border_color": "#393939"
                     }
                 },
-                "styleGridContainerMaxWidthSm": "540px",
-                "styleGridContainerMaxWidthMd": "720px",
-                "styleGridContainerMaxWidthLg": "960px",
-                "styleGridContainerMaxWidthXl": "1140px",
-                "styleGridContainerMaxWidthXxl": "1320px",
-                "styleGridBreakpointSm": "576px",
-                "styleGridBreakpointMd": "768px",
-                "styleGridBreakpointLg": "992px",
-                "styleGridBreakpointXl": "1200px",
-                "styleGridBreakpointXxl": "1400px",
-                "styleGridContainerPaddingX": "0.714275rem",
-                "styleGridGutterWidth": "1.42855rem",
-                "styleIconStrokeWidth": "1.5px",
-                "styleCartVariant": "1",
-                "styleAnnouncementHeight": "2.6rem",
-                "styleButtonPrimaryVariant": "1",
-                "styleButtonSecondaryVariant": "1",
-                "styleBorderRadius": "4rem",
-                "styleButtonBorderRadius": "0px",
-                "styleInputBorderRadius": "0px",
-                "styleComponentBorderRadius": "0px",
-                "styleImageBorderRadius": "0px",
-                "styleProductImageBorderRadius": "0px",
-                "sectionPaddingTop": "4rem",
-                "sectionPaddingBottom": "4rem",
-                "sectionInnerGap": "2rem",
-                "sectionBgImgPos": "center-center",
-                "sectionOverlay": "",
-                "sectionOverlayPadding": "2.25rem",
-                "sectionHighlightItems": "",
-                "sectionHighlightItemBorder": "",
-                "sectionTextAlign": "center",
-                "sectionQuickLinkStyle": "link-with-icon",
-                "sectionAnimation": "animate__fadeInUp",
-                "style_link_color": "#333333",
-                "style_accent_color": "#121212",
-                "style_btn_bg_color": "#121212",
-                "style_btn_text_color": "#ffffff",
-                "style_icon_color": "#333333",
-                "style_header_bg_color": "#ffffff",
-                "style_header_text_color": "#4d4d4d",
-                "style_header_accent_color": "#121212",
-                "style_footer_bg_color": "#ffffff",
-                "style_footer_text_color": "#4d4d4d",
-                "style_footer_accent_color": "#121212",
-                "style_bg_color": "#ffffff",
-                "style_secondary_bg_color": "#f3f5f6",
-                "style_border_color": "#ececec",
-                "style_heading_color": "#121212",
-                "style_subheading_color": "#333333",
-                "style_text_color": "#202020",
-                "style_product_title_color": "#121212",
-                "style_price_color": "#121212",
-                "style_sale_price_color": "#121212",
-                "style_badge_bg_color": "#121212",
-                "style_badge_text_color": "#ffffff",
-                "style_new_badge_bg_color": "#121212",
-                "style_new_badge_text_color": "#ffffff",
-                "style_discount_badge_bg_color": "#324fb4",
-                "style_discount_badge_text_color": "#ffffff",
-                "style_review_icon_color": "#121212",
-                "style_table_bg_color": "#ffffff",
-                "style_table_text_color": "#202020",
-                "style_table_border_color": "#ececec",
-                "style_form_bg_color": "#ffffff",
-                "style_form_text_color": "#202020",
-                "style_form_border_color": "#ececec",
-                "style_announcement_bg_color": "#121212",
-                "style_announcement_text_color": "#ffffff",
                 "textScale": "1",
                 "textLineHeight": "1.85",
-                "bodyTextFont": "Roboto",
+                "bodyTextFont": "Assistant",
                 "bodyLetterSpacing": "0.06rem",
                 "bodyTextFontStyle": "normal",
-                "headingFont": "Montserrat",
+                "headingFont": "Assistant",
                 "headingFontScale": "1",
                 "headingLetterSpacing": "1px",
                 "headingFontWeight": "700",
                 "headingFontStyle": "normal",
                 "headingTextTransform": "none",
-                "subheadingFont": "Montserrat",
+                "subheadingFont": "Assistant",
                 "subheadingLetterSpacing": "3px",
                 "subheadingFontWeight": "400",
                 "subheadingFontStyle": "normal",
                 "subheadingTextTransform": "none",
-                "buttonFont": "Roboto",
+                "buttonFont": "Assistant",
                 "buttonLetterSpacing": "1px",
                 "buttonFontWeight": "700",
                 "buttonFontStyle": "normal",
                 "buttonTextTransform": "none",
-                "accentFont": "Montserrat",
+                "accentFont": "Assistant",
                 "accentFontWeight": "400",
                 "accentFontStyle": "normal",
                 "accentTextTransform": "none",
-                "navigationFont": "Roboto",
+                "navigationFont": "Assistant",
                 "navigationFontScale": "1",
                 "navigationLetterSpacing": "1px",
                 "navigationFontWeight": "400",
                 "navigationFontStyle": "normal",
                 "navigationTextTransform": "none",
                 "accessibilityShowAnimations": true,
+                "accessibilityShowSearch": true,
                 "accessibilityShowSearchAutocomplete": true,
                 "accessibilityShowBackToTopButton": true,
+                "accessibilityShowWishlist": true,
                 "cartShowAddNotification": true,
                 "taxFreeShopping": false,
                 "cookiesPolicyPosition": "middle",
                 "productImageAspectRatio": "1:1",
                 "productImageAspectRatioFit": "cover",
                 "productPerRow": "4",
+                "productShowVariantOptionAsImage": false,
+                "productShowVariants": true,
+                "productShowVariantImgsOnHover": false,
+                "productShowVariantOption1": "color",
+                "productShowVariantOption2": "size",
+                "productShowVariantOption3": false,
                 "productShowName": true,
                 "productShowManufacturer": false,
                 "productShowPromotion": true,
                 "productShowPricing": true,
                 "productShowRating": true,
                 "productShowNewBadge": true,
+                "productShowPromotionBadge": true,
                 "productShowDiscountBadge": true,
                 "productShowOutOfStockBadge": true,
+                "productShowDiscountPercentage": false,
                 "productWrapName": false,
-                "productShowAddToCart": true,
+                "productShowAddToCart": false,
                 "productShowStockBalance": false,
                 "articleImageAspectRatio": "1:1",
                 "articleImageAspectRatioFit": "cover",
@@ -1082,12 +848,6 @@
                 "registerAdditionalInformation": false,
                 "showPolicyAgreementAsText": false,
                 "klarnaClientId": "",
-                "schemaWebsite": true,
-                "schemaOrganization": true,
-                "schemaProduct": true,
-                "schemaBlogPosting": true,
-                "schemaBreadcrumbList": true,
-                "schemaItemList": true,
                 "facebookPageUrl": "",
                 "instagramPageUrl": "",
                 "xPageUrl": "",
@@ -1100,481 +860,259 @@
                 "redditPageUrl": "",
                 "tiktokPageUrl": "",
                 "ravelryPageUrl": "",
-                "showAnimations": true,
-                "showSearchAutocomplete": true,
-                "taxFreePrices": false,
-                "policyAgreementMethod": "check",
-                "showBackToTopButton": true,
-                "klarnaPlacementsClientId": "",
-                "twitterPageUrl": "a",
-                "style_cookie_notice_bg_color": "#000000",
-                "style_cookie_notice_text_color": "#ffffff",
-                "articlesPerRow": "4",
-                "animations": true,
-                "searchAutocomplete": true,
-                "backToTopButton": true,
-                "aspectRatioProductImage": "1:1",
-                "aspectRatioProductImageFit": "cover",
-                "productsPerRow": "4",
-                "productNameWrap": true,
-                "addToCartNotification": true,
-                "cookiesNotificationPosition": "middle",
-                "blogShowAuthor": false,
-                "sectionBgImgPosition": "center-center"
-            },
-            "templates": {
-                "frontpage": {
-                    "sections": [
-                        {
-                            "id": "d1b614c1554adb363b5396d097c05422",
-                            "title": "Kuvakaruselli",
-                            "name": "image-carousel",
-                            "settings": {
-                                "loop": true,
-                                "autoplay": true,
-                                "autoplaySpeed": "3",
-                                "sectionHeight": "sm",
-                                "effect": "fade",
-                                "slideImgOverlay": "0",
-                                "slideImgBlur": "0",
-                                "navigation": "hover",
-                                "pagination": "hover",
-                                "slideTitleTag": "span",
-                                "setting_blocks": {
-                                    "items": {
-                                        "F4c98887-2f85-4be6-a1b8-607600aa691c": {
-                                            "type": "image",
-                                            "settings": {
-                                                "img": {
-                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1575561723050-3a69691d9700?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwyMjMzODd8MHwxfHNlYXJjaHw0fHx3b21lbnMlMjBzdW58ZW58MHx8fHwxNjY3MjQ4Nzkw&ixlib=rb-4.0.3&q=80&w=1080",
-                                                    "src": "https:\/\/images.unsplash.com\/photo-1575561723050-3a69691d9700?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwyMjMzODd8MHwxfHNlYXJjaHw0fHx3b21lbnMlMjBzdW58ZW58MHx8fHwxNjY3MjQ4Nzkw&ixlib=rb-4.0.3&q=80&w=1080",
-                                                    "offset_top": "50",
-                                                    "offset_left": "50",
-                                                    "width": "719",
-                                                    "height": "1080"
-                                                },
-                                                "imgAlt": "",
-                                                "title": "",
-                                                "description": "",
-                                                "btnLabel": "",
-                                                "btnResource": {
-                                                    "type": "url",
-                                                    "record_id": "",
-                                                    "url": ""
-                                                },
-                                                "btnStyle": "btn1",
-                                                "btnresourceOpenInNewTab": false
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            "blocks": []
-                        },
-                        {
-                            "id": "d8912b954eeb9581d610f13486d443e0",
-                            "title": "Tuoteryhm\u00e4karuselli",
-                            "name": "category-carousel",
-                            "settings": {
-                                "sectionTitle": "Featured product groups",
-                                "sectionSubtitle": "",
-                                "sectionHeaderTextAlign": "start",
-                                "itemsPerView": "5",
-                                "style": "2",
-                                "sectionColSpacing": "sm",
-                                "slideTitlePosition": "below",
-                                "slideTextColor": "#ffffff",
-                                "slideImgOverlay": "0",
-                                "navigation": "hover",
-                                "pagination": "on",
-                                "sectionTitleTag": "h2",
-                                "sectionSubtitleTag": "h3",
-                                "slideTitleTag": "span",
-                                "sectionHeight": "custom",
-                                "sectionHeightCustomTop": "50",
-                                "sectionHeightCustomBottom": "0",
-                                "sectionInnerSpacing": "",
-                                "sectionBgImg": {
-                                    "string_value": "",
-                                    "src": "",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "",
-                                    "height": ""
-                                },
-                                "sectionBgImgPos": "left-top",
-                                "sectionBgImgDimming": "0",
-                                "sectionBgImgBlur": "0",
-                                "sectionContentBgColorStatus": false,
-                                "sectionContentBgColor": "#ffffff"
-                            },
-                            "blocks": []
-                        },
-                        {
-                            "id": "46e2e6f3a75f50f2c4c4e395f6ad96da",
-                            "title": "Tuotelista",
-                            "name": "product-list",
-                            "settings": {
-                                "sectionTitle": "Featured products",
-                                "sectionSubtitle": "",
-                                "sectionHeaderTextAlign": "start",
-                                "listType": "recent",
-                                "tagId": "",
-                                "category": {
-                                    "type": "category",
-                                    "id": "",
-                                    "name": ""
-                                },
-                                "manufacturer": {
-                                    "type": "manufacturer",
-                                    "id": "",
-                                    "name": ""
-                                },
-                                "itemAmount": "12",
-                                "itemsPerRow": "4",
-                                "sectionTitleTag": "h2",
-                                "sectionSubtitleTag": "h3",
-                                "sectionHeight": "",
-                                "sectionHeightCustomTop": "0",
-                                "sectionHeightCustomBottom": "0",
-                                "sectionInnerSpacing": "",
-                                "showAddToCart": true,
-                                "showDiscountBadge": true,
-                                "showOutOfStockBadge": true,
-                                "showNewBadge": true,
-                                "showManufacturer": true,
-                                "showProductName": true,
-                                "showPricing": true,
-                                "sectionBgImg": {
-                                    "string_value": "",
-                                    "src": "",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "",
-                                    "height": ""
-                                },
-                                "sectionBgImgPos": "left-top",
-                                "sectionBgImgDimming": "0",
-                                "sectionBgImgBlur": "0",
-                                "sectionContentBgColorStatus": false,
-                                "sectionContentBgColor": "#ffffff"
-                            },
-                            "blocks": []
-                        },
-                        {
-                            "id": "39c6a8f49b78ffb125dcd4e49a065c36",
-                            "title": "Mainoslista",
-                            "name": "promotion-list",
-                            "settings": {
-                                "sectionTitle": "Talk about your brand",
-                                "sectionSubtitle": "",
-                                "sectionHeaderTextAlign": "start",
-                                "promotionLayout": "1",
-                                "itemsPerRow": "3",
-                                "sectionColSpacing": "sm",
-                                "sectionTitleTag": "h2",
-                                "sectionSubtitleTag": "span",
-                                "sectionHeight": "custom",
-                                "sectionHeightCustomTop": "0",
-                                "sectionHeightCustomBottom": "50",
-                                "sectionBgImg": {
-                                    "string_value": "",
-                                    "src": "",
-                                    "offset_top": "50",
-                                    "offset_left": "50",
-                                    "width": "",
-                                    "height": ""
-                                },
-                                "sectionBgImgPos": "center-center",
-                                "sectionBgImgDimming": "0",
-                                "sectionBgImgBlur": "0",
-                                "sectionContentBgColorStatus": false,
-                                "sectionContentBgColor": "#ffffff",
-                                "setting_blocks": {
-                                    "items": {
-                                        "1dde8cf9-7311-45b2-9abe-705e6d061ec2": {
-                                            "type": "image",
-                                            "settings": {
-                                                "img": {
-                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1556905055-8f358a7a47b2?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwyMjMzODd8MHwxfHNlYXJjaHwxNHx8ZmFzaGlvbiUyMGNsb3RoZXN8ZW58MHx8fHwxNjY3MjQ5MzQ5&ixlib=rb-4.0.3&q=80&w=1080",
-                                                    "src": "https:\/\/images.unsplash.com\/photo-1556905055-8f358a7a47b2?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwyMjMzODd8MHwxfHNlYXJjaHwxNHx8ZmFzaGlvbiUyMGNsb3RoZXN8ZW58MHx8fHwxNjY3MjQ5MzQ5&ixlib=rb-4.0.3&q=80&w=1080",
-                                                    "offset_top": "50",
-                                                    "offset_left": "50",
-                                                    "width": "720",
-                                                    "height": "1080"
-                                                },
-                                                "imgAlt": "",
-                                                "style": "style2",
-                                                "title": "Promoted item",
-                                                "description": "Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.",
-                                                "btnLabel": "Button label",
-                                                "btnStyle": "link",
-                                                "resource": {
-                                                    "type": "url",
-                                                    "record_id": "",
-                                                    "url": ""
-                                                },
-                                                "resourceOpenInNewTab": false
-                                            }
-                                        },
-                                        "00424735-0eb2-4285-a529-468c3108482c": {
-                                            "type": "image",
-                                            "settings": {
-                                                "img": {
-                                                    "string_value": "https:\/\/images.unsplash.com\/photo-1532453288672-3a27e9be9efd?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwyMjMzODd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwY2xvdGhlc3xlbnwwfHx8fDE2NjcyNDkzMjU&ixlib=rb-4.0.3&q=80&w=1080",
-                                                    "src": "https:\/\/images.unsplash.com\/photo-1532453288672-3a27e9be9efd?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwyMjMzODd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwY2xvdGhlc3xlbnwwfHx8fDE2NjcyNDkzMjU&ixlib=rb-4.0.3&q=80&w=1080",
-                                                    "offset_top": "50",
-                                                    "offset_left": "50",
-                                                    "width": "1350",
-                                                    "height": "1080"
-                                                },
-                                                "imgAlt": "",
-                                                "style": "style2",
-                                                "title": "Promoted item",
-                                                "description": "Pair text with an image to focus on your chosen product, article or brand and tell your customers about it.",
-                                                "btnLabel": "Button label",
-                                                "btnStyle": "link",
-                                                "resource": {
-                                                    "type": "url",
-                                                    "record_id": "",
-                                                    "url": ""
-                                                },
-                                                "resourceOpenInNewTab": false
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            "blocks": []
-                        }
-                    ]
+                "twitterPageUrl": "",
+                "newsletterPopup": true,
+                "newsletterPopupDelay": "5",
+                "newsletterPopupCookieDuration": "86400",
+                "newsletterPopupImg": {
+                    "string_value": "https:\/\/images.unsplash.com\/photo-1469334031218-e382a71b716b",
+                    "src": "https:\/\/images.unsplash.com\/photo-1469334031218-e382a71b716b",
+                    "offset_top": "50",
+                    "offset_left": "50",
+                    "width": "800",
+                    "height": "800"
                 },
-                "cart": {
-                    "sections": [
-                        {
-                            "name": "cart-template",
-                            "id": "cart-template",
-                            "blocks": [],
-                            "settings": [],
-                            "sticky": true
-                        }
-                    ]
-                },
-                "search": {
-                    "sections": [
-                        {
-                            "name": "search-template",
-                            "id": "search-template",
-                            "blocks": [],
-                            "settings": {
-                                "itemsPerRow": "4",
-                                "showDiscountBadge": true,
-                                "showOutOfStockBadge": true,
-                                "showNewBadge": true,
-                                "showManufacturer": true,
-                                "showProductName": true,
-                                "showPricing": true,
-                                "showAddToCart": true
-                            },
-                            "sticky": true
-                        }
-                    ]
-                },
-                "password": {
-                    "sections": [
-                        {
-                            "name": "password-template",
-                            "id": "password-template",
-                            "blocks": [],
-                            "settings": [],
-                            "sticky": true
-                        }
-                    ]
-                },
-                "manufacturer": {
-                    "sections": [
-                        {
-                            "name": "manufacturer-template",
-                            "id": "manufacturer-template",
-                            "blocks": [],
-                            "settings": {
-                                "itemsPerRow": "4",
-                                "showDiscountBadge": true,
-                                "showOutOfStockBadge": true,
-                                "showNewBadge": true,
-                                "showManufacturer": true,
-                                "showProductName": true,
-                                "showPricing": true
-                            },
-                            "sticky": true
-                        }
-                    ]
-                },
-                "category": {
-                    "sections": [
-                        {
-                            "name": "category-template",
-                            "id": "category-template",
-                            "blocks": [],
-                            "settings": {
-                                "itemsPerRow": "4",
-                                "showDiscountBadge": true,
-                                "showOutOfStockBadge": true,
-                                "showNewBadge": true,
-                                "showManufacturer": true,
-                                "showProductName": true,
-                                "showPricing": true,
-                                "showAddToCart": true,
-                                "showCategoryList": false,
-                                "showSubcategoryImg": true,
-                                "subcategoryImgFit": true,
-                                "highlightActiveSubcategory": false
-                            },
-                            "sticky": true
-                        }
-                    ]
-                },
-                "product": {
-                    "sections": [
-                        {
-                            "name": "product-template",
-                            "id": "product-template",
-                            "blocks": [],
-                            "settings": {
-                                "showBreadcrumbs": true,
-                                "showQuantitySelect": true,
-                                "showStockBalance": true,
-                                "showProductOptionPrice": true,
-                                "showProductOptionTotalPrice": true,
-                                "showProductOptionStockBalance": true,
-                                "openProductDescriptionByDefault": true,
-                                "showLowestPrice": true,
-                                "showDiscountBadge": true,
-                                "showOutOfStockBadge": true,
-                                "showNewBadge": true
-                            },
-                            "sticky": true
-                        }
-                    ]
-                },
-                "catalog": {
-                    "sections": [
-                        {
-                            "name": "catalog-template",
-                            "id": "catalog-template",
-                            "blocks": [],
-                            "settings": {
-                                "itemsPerRow": "4",
-                                "showDiscountBadge": true,
-                                "showOutOfStockBadge": true,
-                                "showNewBadge": true,
-                                "showManufacturer": true,
-                                "showProductName": true,
-                                "showPricing": true,
-                                "showAddToCart": true,
-                                "showCategoryList": false
-                            },
-                            "sticky": true
-                        }
-                    ]
-                }
+                "schemaWebsite": true,
+                "schemaOrganization": true,
+                "schemaProduct": true,
+                "schemaBlogPosting": true,
+                "schemaBreadcrumbList": true,
+                "schemaItemList": true
             },
             "sections": [
                 {
                     "id": "header",
                     "name": "header",
                     "settings": {
+                        "headerItemsPaddingY": "2.2rem",
                         "logoImg": {
                             "string_value": "",
                             "src": "",
-                            "offset_top": "50",
-                            "offset_left": "50",
+                            "offset_top": "",
+                            "offset_left": "",
                             "width": "",
                             "height": ""
                         },
-                        "logoMaxSize": "60",
-                        "headerLayout": "1",
-                        "headerMenuItemColor": "#000000",
-                        "headerIndicatorColor": "#000000",
-                        "headerIconColor": "#000000",
-                        "announcementStatus": true,
-                        "announcementVisibility": "all",
-                        "announcementText": "Make an announcement or share information about your store",
-                        "announcementLink": {
-                            "type": "url",
-                            "record_id": "",
-                            "url": ""
-                        },
-                        "announcementLinkOpenInNewWindowStatus": false,
-                        "announcementBgColor": "#555555",
-                        "announcementTextColor": "#ffffff",
-                        "announcementKlarna": false,
-                        "announcementKlarnaType": "top-strip-promotion-auto-size",
-                        "announcementKlarnaDark": false,
+                        "logoSize": "120",
+                        "logoPosition": "start",
+                        "mobileLogoPosition": "center",
                         "menu": "main",
-                        "stickyHeader": true,
-                        "headerMegamenu": false,
-                        "headerSubmenuIndicator": true,
+                        "menuItemsAlign": "start",
                         "mobileMenu": "main",
-                        "stickyMobileHeader": false,
-                        "socialMediaIconsStatus": true,
-                        "addProductCategoriesToMobileNavigation": false
+                        "mobileMenuSecondaryTitle": "",
+                        "mobileMenuSecondary": "",
+                        "mobileNavigationSimple": false,
+                        "mobileShowSocialIconsInNavigation": true,
+                        "mobileShowSearchInNavigation": false
+                    }
+                },
+                {
+                    "id": "announcement",
+                    "name": "announcement",
+                    "settings": {
+                        "announcementStatus": true,
+                        "announcementTextAlign": "center",
+                        "announcementVisibility": "all",
+                        "carouselAutoplaySpeed": "3",
+                        "setting_blocks": {
+                            "items": {
+                                "07acbdce-1a2b-4e24-b52e-4fade3565411": {
+                                    "type": "text",
+                                    "settings": {
+                                        "announcementLink": {
+                                            "type": "url",
+                                            "record_id": "",
+                                            "text": "Luo ensimm\u00e4inen ilmoituksesi! Kerro asiakkaille tarjouksista ja tapahtumista.",
+                                            "url": "",
+                                            "target": "_self"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 },
                 {
                     "id": "footer",
                     "name": "footer",
                     "settings": {
-                        "footerLayout": "6",
-                        "footerTextArea1Status": false,
-                        "footerNewsletterStatus": false,
-                        "footerSocialMediaButtonsStatus": true,
-                        "footerTextArea2Status": false,
-                        "footerPaymentMethodsStatus": true,
-                        "footerTextArea1Title": "",
-                        "footerTextArea1Content": "",
-                        "footerNewsletterTitle": "Subscribe to our newsletter",
-                        "footerNewsletterContent": "<p>We announce in a newsletter about promotions, new products and sales.<\/p>",
+                        "footerGap": "3.6rem",
+                        "footerPaddingTop": "2.7rem",
+                        "footerPaddingBottom": "2.7rem",
+                        "footerTopBorder": true,
+                        "footerTopBorderFluid": true,
+                        "footerBottomBorder": true,
+                        "footerBottomBorderFluid": true,
+                        "footerTextArea1Title": "Meist\u00e4",
+                        "footerTextArea1Content": "<p>Tervetuloa verkkokauppaan! Olemme ylpeit\u00e4 tarjotessamme sinulle sujuvan ja ilahduttavan ostoskokemuksen. Sitoutuneina asiakastyytyv\u00e4isyyteen pyrimme tarjoamaan sinulle uusimmat trendit, ly\u00f6m\u00e4tt\u00f6m\u00e4t hinnat ja vertaansa vailla olevan palvelun.<\/p>",
+                        "footerTextArea2Content": "<p>\u00a9 2024 Nova<\/p>",
+                        "footerNewsletterTitle": "Uutiskirje",
+                        "footerNewsletterContent": "<p>Tilaa uutiskirje saadaksesi ilmoituksia uusista tuotteista, erikoistarjouksista ja tapahtumista.<\/p>",
                         "footerSocialMediaTitle": "",
                         "footerSocialMediaContent": "",
-                        "footerTextArea2Title": "",
-                        "footerTextArea2Content": "",
                         "footerPaymentMethodsImg": {
-                            "string_value": "https:\/\/cdn.finqu.dev\/users\/1\/images\/uploads\/paytrail-banneri-2023-kaikki-maksutavat_1080_1080.png",
-                            "src": "https:\/\/cdn.finqu.dev\/users\/1\/images\/uploads\/paytrail-banneri-2023-kaikki-maksutavat_1080_1080.png",
-                            "offset_top": "50",
-                            "offset_left": "50",
-                            "width": "215",
-                            "height": "1080"
+                            "string_value": "",
+                            "src": "",
+                            "offset_top": "",
+                            "offset_left": "",
+                            "width": "",
+                            "height": ""
                         },
+                        "footerLogoImg": {
+                            "string_value": "",
+                            "src": "",
+                            "offset_top": "",
+                            "offset_left": "",
+                            "width": "",
+                            "height": ""
+                        },
+                        "footerMenu1Title": "Pikalinkit",
                         "footerMenu1": "footer",
-                        "footerMenu1Title": "",
+                        "footerMenu2Title": "Tiedot",
                         "footerMenu2": "footer",
-                        "footerMenu2Title": "",
-                        "footerMenu3": "footer",
                         "footerMenu3Title": "",
-                        "sectionHeight": "",
-                        "sectionInnerSpacing": "",
-                        "sectionContentSpacing": ""
-                    }
-                },
-                {
-                    "id": "category-template",
-                    "name": "category-template",
-                    "settings": {
-                        "itemsPerRow": "3",
-                        "showDiscountBadge": true,
-                        "showOutOfStockBadge": true,
-                        "showNewBadge": true,
-                        "showManufacturer": true,
-                        "showProductName": true,
-                        "showPricing": true
+                        "footerMenu3": "",
+                        "footerLayout": "1",
+                        "footerTextArea1Status": true,
+                        "footerTextArea2Status": true,
+                        "footerNewsletterStatus": true,
+                        "footerSocialMediaButtonsStatus": true,
+                        "footerPaymentMethodsStatus": true,
+                        "footerLogoStatus": true
                     }
                 }
-            ]
+            ],
+            "templates": {
+                "frontpage": {
+                    "sections": [
+                        {
+                            "id": "8475dd8224ae26e72fe61f2a4269c429",
+                            "title": "Hero split images",
+                            "name": "hero-split-images",
+                            "settings": {
+                                "sectionTitle": "Uusi mahtava Hero-otsikko!",
+                                "sectionSubtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
+                                "sectionColorScheme": "dark",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
+                                "imgStart": {
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1586158291800-2665f07bba79",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1586158291800-2665f07bba79",
+                                    "offset_top": "50",
+                                    "offset_left": "50",
+                                    "width": "1080",
+                                    "height": "1080"
+                                },
+                                "imgEnd": {
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1617104424032-b9bd6972d0e4",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1617104424032-b9bd6972d0e4",
+                                    "offset_top": "50",
+                                    "offset_left": "50",
+                                    "width": "1080",
+                                    "height": "1080"
+                                }
+                            },
+                            "blocks": []
+                        },
+                        {
+                            "id": "51810b6b3ff0eb0d6c6f8f7be8fb0f62",
+                            "title": "Product list",
+                            "name": "product-list",
+                            "settings": {
+                                "sectionTitle": "Suosituimmat tuotteet"
+                            },
+                            "blocks": []
+                        },
+                        {
+                            "id": "27f9db39c466c7bac217b098989cd0f7",
+                            "title": "Text columns",
+                            "name": "text-columns",
+                            "settings": {
+                                "orientation": "horizontal",
+                                "sectionOverline": "",
+                                "sectionTitle": "",
+                                "sectionSubtitle": "",
+                                "colPerRow": "2",
+                                "sectionHighlightItems": "nil",
+                                "sectionTextAlign": "center",
+                                "btnStyle": "nil",
+                                "imgAspectRatio": "1:1",
+                                "imgScaleRatio": "1",
+                                "imgAlign": "center",
+                                "imgFit": true,
+                                "sectionOverlineTag": "h3",
+                                "sectionTitleTag": "h2",
+                                "sectionSubtitleTag": "h3",
+                                "sectionColorScheme": false,
+                                "sectionAdditionalTitles": false,
+                                "sectionPaddingMode": "auto",
+                                "sectionPaddingTop": "0",
+                                "sectionPaddingBottom": "0",
+                                "sectionBgImg": {
+                                    "string_value": "",
+                                    "src": "",
+                                    "offset_top": "",
+                                    "offset_left": "",
+                                    "width": "",
+                                    "height": ""
+                                },
+                                "sectionBgImgDimming": "0",
+                                "sectionBgImgBlur": "0",
+                                "setting_blocks": {
+                                    "items": [
+                                        {
+                                            "type": "text",
+                                            "settings": {
+                                                "title": "Otsikko",
+                                                "richtext": "<p>Lis\u00e4\u00e4 sopiva teksti jolla voit esimerkiksi keskitty\u00e4 valitsemaasi tuotteeseen, artikkeliin tai tuotemerkkiin.<\/p>",
+                                                "btnLink": {
+                                                    "type": "url",
+                                                    "record_id": "",
+                                                    "text": "Linkki",
+                                                    "url": "",
+                                                    "target": "_self"
+                                                },
+                                                "img": {
+                                                    "string_value": "",
+                                                    "src": "",
+                                                    "offset_top": "",
+                                                    "offset_left": "",
+                                                    "width": "",
+                                                    "height": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "text",
+                                            "settings": {
+                                                "title": "Otsikko",
+                                                "richtext": "<p>Lis\u00e4\u00e4 sopiva teksti jolla voit esimerkiksi keskitty\u00e4 valitsemaasi tuotteeseen, artikkeliin tai tuotemerkkiin.<\/p>",
+                                                "btnLink": {
+                                                    "type": "url",
+                                                    "record_id": "",
+                                                    "text": "Linkki",
+                                                    "url": "",
+                                                    "target": "_self"
+                                                },
+                                                "img": {
+                                                    "string_value": "",
+                                                    "src": "",
+                                                    "offset_top": "",
+                                                    "offset_left": "",
+                                                    "width": "",
+                                                    "height": ""
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "blocks": []
+                        }
+                    ]
+                }
+            }
         }
-    },
-    "asset_cache": {
-        "main.css": "main.e38b3d287849dff6d21caef62c173a72.css"
     }
 }

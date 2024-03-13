@@ -16,7 +16,7 @@
 
                         {% if section.settings.footerMenu1 %}
 
-                            <div class="col-12 col-md-2">
+                            <div class="col-12 col-md-4 col-lg-2">
 
                                 <div class="site-footer-menu-container">
 
@@ -92,7 +92,7 @@
 
                         {% if section.settings.footerMenu2 %}
 
-                            <div class="col-12 col-md-2">
+                            <div class="col-12 col-md-4 col-lg-2">
 
                                 <div class="site-footer-menu-container">
 
@@ -168,7 +168,7 @@
 
                         {% if section.settings.footerMenu3 %}
 
-                            <div class="col-12 col-md-2">
+                            <div class="col-12 col-md-4 col-lg-2">
 
                                 <div class="site-footer-menu-container">
 
@@ -244,7 +244,7 @@
 
                         {% if section.settings.footerTextArea1Status %}
 
-                            <div class="col-12 col-md">
+                            <div class="col-12 col-md-6 col-lg">
 
                                 <div class="site-footer-text-container">
 
@@ -272,7 +272,7 @@
 
                         {% if section.settings.footerNewsletterStatus %}
 
-                            <div class="col-12 col-md">
+                            <div class="col-12 col-md-6 col-lg">
 
                                 <div class="site-footer-newsletter-container">
 
@@ -306,7 +306,7 @@
 
                                             {% if section.settings.footerNewsletterContent %}
 
-                                                <div class="text-richtext">
+                                                <div class="text-richtext mb-4">
 
                                                     {{ section.settings.footerNewsletterContent }}
 
@@ -328,7 +328,7 @@
 
                                             {% else %}
 
-                                               <div class="input-group mt-4">
+                                               <div class="input-group">
                                                     
                                                     <div class="form-floating">
 
@@ -416,7 +416,7 @@
 
                                             {% for payment_method in store.payment_methods %}
 
-                                                {%- assign img = payment_method.image -%}
+                                                {%- assign img = payment_method.logo -%}
 
                                                 {% if img %}
 
@@ -426,7 +426,7 @@
 
                                                         <picture>
                                                             <img
-                                                                alt="{{ payment_method.name }}"
+                                                                alt="{{ payment_method.title }}"
                                                                 data-src="{{ img | thumb: imgSize }}"
                                                                 data-srcset="{{ img | thumb: imgSize }} 1x, {{ img | thumb: imgSize | thumb:'@2x' }} 2x"
                                                                 class="lazy d-block mx-auto img-fluid">
@@ -462,11 +462,11 @@
 
                         <div class="col-12 col-md">
 
-                            {%- if section.settings.footerTextArea2Status -%}
+                            {%- if section.settings.footerTextArea2Status and section.settings.footerTextArea2Content -%}
                                 <span class="d-inline-block text-richtext">{{- section.settings.footerTextArea2Content -}}</span> - 
                             {%- endif -%}
 
-                            <a target="_blank" rel="nofollow noopener" class="text-reset" href="https://www.finqu.com?utm_campaign=poweredby&utm_medium=finqu&utm_source=onlinestore">Powered by Finqu</a>
+                            {{ powered_by_link }}
 
                         </div>
 

@@ -1,25 +1,25 @@
-<div class="product-attribute-container product-attribute-select mb-4{% if inline %} d-md-flex{% endif %}">
+<div class="product-customization-container product-customization-select mb-4{% if inline %} d-md-flex{% endif %}">
 
     {% if attribute.name %}
 
         {% if highlightLabel %}
-        <label for="product-attribute-{{ attribute.id }}" class="form-label fw-bold{% if inline %} me-2 d-inline-block min-w-px-100{% endif %}">{{ attribute.name }}:</label>
+        <label for="product-customization-{{ attribute.id }}" class="form-label fw-bold{% if inline %} me-2 d-inline-block min-w-px-100{% endif %}">{{ attribute.name }}:</label>
         {% else %}
-            <label for="product-attribute-{{ attribute.id }}" class="form-label{% if inline %} me-2 d-inline-block min-w-px-100{% endif %}">{{ attribute.name }}</label>
+            <label for="product-customization-{{ attribute.id }}" class="form-label{% if inline %} me-2 d-inline-block min-w-px-100{% endif %}">{{ attribute.name }}</label>
         {% endif %}
 
     {% endif %}
 
-    <select class="product-attribute form-select"
+    <select class="product-customization form-select"
         data-attribute="{{ attribute.id }}"
-        id="product-attribute-{{ attribute.id }}"
+        id="product-customization-{{ attribute.id }}"
         name="{{ attribute.id }}"
         data-is-usable
         disabled>
 
         <option disabled selected value>{{ 'general.choose' | t }}</option>
 
-        {% for option in attribute.options %}
+        {% for option in group.options %}
 
             {%- if settings.taxFreeShopping -%}
                 {% assign itemPrice = option.net_price %}
@@ -27,13 +27,13 @@
                 {% assign itemPrice = option.price %}
             {%- endif -%}
 
-            {% if itemPrice > 0 and showOptionPrice and showOptionTotalPrice and option.in_stock == true %}
+            {% if itemPrice > 0 and showCustomizationPrice and showCustomizationTotalPrice and option.in_stock == true %}
 
                 {% assign arg1 = true %}
 
             {% endif %}
 
-            {% if itemPrice > 0 and showOptionPrice and showOptionTotalPrice and inventoryPolicy == 'continue' %}
+            {% if itemPrice > 0 and showCustomizationPrice and showCustomizationTotalPrice and inventoryPolicy == 'continue' %}
 
                 {% assign arg2 = true %}
 
@@ -45,7 +45,7 @@
 
                 {{ option.name }}
 
-                {% if showOptionStockBalance and inventoryPolicy == 'deny' and isPreviewProduct == false and option.in_stock == true and option.subattribute != true %}
+                {% if showCustomizationStockBalance and inventoryPolicy == 'deny' and isPreviewProduct == false and option.in_stock == true and option.child_group != true %}
 
                     ({{ option.stock }} {{ unit }})
 
@@ -55,7 +55,7 @@
 
                     ({{ 'product.out_of_stock' | t }})
 
-                {% elsif itemPrice > 0 and showOptionPrice and showOptionTotalPrice == false %}
+                {% elsif itemPrice > 0 and showCustomizationPrice and showCustomizationTotalPrice == false %}
 
                     (+{{ itemPrice | money_with_currency }})
 
@@ -69,11 +69,11 @@
 
 </div>
 
-{% for option in attribute.options %}
+{% for option in group.options %}
 
-    {% if option.subattribute %}
+    {% if option.child_group %}
 
-        {% render 'product-attributes/subattribute', option: option, showOptionPrice: showOptionPrice, showOptionTotalPrice: showOptionTotalPrice, showOptionStockBalance: showOptionStockBalance, inventoryPolicy: inventoryPolicy, isPreviewProduct: isPreviewProduct, unit: unit, inline: inline, highlightLabel: highlightLabel %}
+        {% render 'product-customizations/subattribute', option: option, showCustomizationPrice: showCustomizationPrice, showCustomizationTotalPrice: showCustomizationTotalPrice, showCustomizationStockBalance: showCustomizationStockBalance, inventoryPolicy: inventoryPolicy, isPreviewProduct: isPreviewProduct, unit: unit, inline: inline, highlightLabel: highlightLabel %}
 
     {% endif %}
 

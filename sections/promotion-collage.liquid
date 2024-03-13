@@ -116,8 +116,8 @@
 
                 <div class="position-relative img-indicator-zoom text-inherit">
 
-                    {%- if item.settings.link.url %}
-                        <a href="{{ item.settings.link.url | link }}"{% if section.settings.linkOpenInNewTab %} target="_blank"{% endif %}>
+                    {%- if item.settings.btnLink.url %}
+                        <a href="{{ item.settings.btnLink.url | link }}" target="{{ item.settings.btnLink.target }}">
                     {%- endif %}
 
                     <div class="aspect-ratio-1-1">
@@ -141,7 +141,7 @@
                                         {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
 
                                     <img
-                                        alt="{{ item.settings.imgAlt }}"
+                                        alt="{{ item.settings.img.alt }}"
                                         data-src="{{ item.settings.img | thumb: imgSizeSm }}"
                                         data-srcset="{{ item.settings.img | thumb: imgSizeSm }} 1x, {{ item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
                                         class="lazy aspect-ratio-item aspect-ratio-item-cover"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
@@ -164,15 +164,15 @@
 
                     <div class="grid g-0 position-absolute top-0 start-0 w-100 h-100 p-g p-md-5" style="--bs-gap: 0">
 
-                        <div class="g-col-12 place-self-end-center" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+                        <div class="g-col-12 place-self-end-center" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}" data-yolo="{{ item.settings.btnLink.text }}">
 
-                            {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLabel -%}
+                            {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLink.text -%}
 
                         </div>
                     
                     </div>
 
-                    {%- if item.settings.link.url %}
+                    {%- if item.settings.btnLink.url %}
                         </a>
                     {%- endif %}
                 
@@ -240,8 +240,8 @@
 
                 <div class="g-col-12 g-col-md-6 position-relative img-indicator-zoom text-inherit">
 
-                    {%- if item.settings.link.url %}
-                        <a href="{{ item.settings.link.url | link }}"{% if section.settings.linkOpenInNewTab %} target="_blank"{% endif %}>
+                    {%- if item.settings.btnLink.url %}
+                        <a href="{{ item.settings.btnLink.url | link }}" target="{{ item.settings.btnLink.target }}">
                     {%- endif %}
 
                     <div class="aspect-ratio-16-9">
@@ -265,7 +265,7 @@
                                         {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
 
                                     <img
-                                        alt="{{ item.settings.imgAlt }}"
+                                        alt="{{ item.settings.img.alt }}"
                                         data-src="{{ item.settings.img | thumb: imgSizeSm }}"
                                         data-srcset="{{ item.settings.img | thumb: imgSizeSm }} 1x, {{ item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
                                         class="lazy aspect-ratio-item aspect-ratio-item-cover"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
@@ -294,11 +294,21 @@
 
                             {% render 'section-header', sectionTitle: item.settings.title, sectionTitleTag: 'span', sectionSubtitle: item.settings.subtitle, sectionSubtitleTag: 'span', sectionOverline: item.settings.overline, sectionOverlineTag: 'span', sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle, sectionHeaderGapScale: 0.5, sectionHeaderTextAlign: section.settings.sectionContentTextAlign %}
 
+                            {%- if item.settings.btnLink.text -%}
+
+                                <div class="d-flex mt-4 justify-content-{{ section.settings.sectionContentTextAlign }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
+
+                                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLink.text -%}
+
+                                </div>
+
+                            {%- endif -%}
+
                         </div>
                     
                     </div>
 
-                    {%- if item.settings.link.url %}
+                    {%- if item.settings.btnLink.url %}
                         </a>
                     {%- endif %}
                 
@@ -366,8 +376,8 @@
 
                 <div class="g-col-12 g-col-md-4 position-relative img-indicator-zoom text-inherit">
 
-                    {%- if item.settings.link.url %}
-                        <a href="{{ item.settings.link.url | link }}"{% if section.settings.linkOpenInNewTab %} target="_blank"{% endif %}>
+                    {%- if item.settings.btnLink.url %}
+                        <a href="{{ item.settings.btnLink.url | link }}" target="{{ item.settings.btnLink.target }}">
                     {%- endif %}
 
                     <div class="aspect-ratio-16-9 aspect-ratio-md-4-3">
@@ -391,7 +401,7 @@
                                         {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
 
                                     <img
-                                        alt="{{ item.settings.imgAlt }}"
+                                        alt="{{ item.settings.img.alt }}"
                                         data-src="{{ item.settings.img | thumb: imgSizeSm }}"
                                         data-srcset="{{ item.settings.img | thumb: imgSizeSm }} 1x, {{ item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
                                         class="lazy aspect-ratio-item aspect-ratio-item-cover"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
@@ -420,11 +430,11 @@
 
                             {% render 'section-header', sectionTitle: item.settings.title, sectionTitleTag: 'span', sectionDescription: item.settings.subtitle, sectionSubtitleTag: 'span', sectionOverline: item.settings.overline, sectionOverlineTag: 'span', sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle, sectionHeaderGapScale: 0.5, sectionHeaderTextAlign: section.settings.sectionContentTextAlign %}
 
-                            {%- if item.settings.btnLabel -%}
+                            {%- if item.settings.btnLink.text -%}
 
                                 <div class="d-flex mt-4 justify-content-{{ section.settings.sectionContentTextAlign }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
-                                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLabel -%}
+                                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLink.text -%}
 
                                 </div>
 
@@ -434,7 +444,7 @@
                     
                     </div>
 
-                    {%- if item.settings.link.url %}
+                    {%- if item.settings.btnLink.url %}
                         </a>
                     {%- endif %}
                 
@@ -532,24 +542,24 @@
 
                 {% if everyThird == 0 %}
 
-                    {%- assign aspectRatioClass = 'aspect-ratio-1-1 aspect-ratio-md-9-11' -%}
+                    {%- assign aspectRatioClass = 'aspect-ratio-1-1 aspect-ratio-md-1-1' -%}
                     {%- assign imgSizeSm = '400,400' -%}
-                    {%- assign imgSizeMd = '560,682' -%}
+                    {%- assign imgSizeMd = '560,560' -%}
                     {%- assign imgSizeLg = '650,792' -%}
 
                 {% else %}
 
-                    {%- assign aspectRatioClass = 'aspect-ratio-16-9 aspect-ratio-md-cover' -%}
-                    {%- assign imgSizeSm = '400,229' -%}
-                    {%- assign imgSizeMd = '275,336' -%}
-                    {%- assign imgSizeLg = '320,391' -%}
+                    {%- assign aspectRatioClass = 'aspect-ratio-1-1' -%}
+                    {%- assign imgSizeSm = '400,400' -%}
+                    {%- assign imgSizeMd = '275,275' -%}
+                    {%- assign imgSizeLg = '320,320' -%}
 
                 {% endif %}
 
                 <div class="position-relative img-indicator-zoom text-inherit">
 
-                    {%- if item.settings.link.url %}
-                        <a href="{{ item.settings.link.url | link }}"{% if section.settings.linkOpenInNewTab %} target="_blank"{% endif %}>
+                    {%- if item.settings.btnLink.url %}
+                        <a href="{{ item.settings.btnLink.url | link }}" target="{{ item.settings.btnLink.target }}">
                     {%- endif %}
 
                     <div class="{{ aspectRatioClass }}">
@@ -573,7 +583,7 @@
                                         {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
 
                                     <img
-                                        alt="{{ item.settings.imgAlt }}"
+                                        alt="{{ item.settings.img.alt }}"
                                         data-src="{{ item.settings.img | thumb: imgSizeSm }}"
                                         data-srcset="{{ item.settings.img | thumb: imgSizeSm }} 1x, {{ item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
                                         class="lazy aspect-ratio-item aspect-ratio-item-cover"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
@@ -602,11 +612,11 @@
 
                             {% render 'section-header', sectionTitle: item.settings.title, sectionTitleTag: 'span', sectionDescription: item.settings.subtitle, sectionSubtitleTag: 'span', sectionOverline: item.settings.overline, sectionOverlineTag: 'span', sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle, sectionHeaderGapScale: 0.5, sectionHeaderTextAlign: section.settings.sectionContentTextAlign %}
 
-                            {%- if item.settings.btnLabel -%}
+                            {%- if item.settings.btnLink.text -%}
 
                                 <div class="d-flex mt-4 justify-content-{{ section.settings.sectionContentTextAlign }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
-                                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLabel -%}
+                                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLink.text -%}
 
                                 </div>
 
@@ -616,7 +626,7 @@
                     
                     </div>
 
-                    {%- if item.settings.link.url %}
+                    {%- if item.settings.btnLink.url %}
                         </a>
                     {%- endif %}
                 
@@ -684,8 +694,8 @@
 
                 <div class="g-col-12 g-col-md-4 position-relative img-indicator-zoom text-inherit">
 
-                    {%- if item.settings.link.url %}
-                        <a href="{{ item.settings.link.url | link }}"{% if section.settings.linkOpenInNewTab %} target="_blank"{% endif %}>
+                    {%- if item.settings.btnLink.url %}
+                        <a href="{{ item.settings.btnLink.url | link }}" target="{{ item.settings.btnLink.target }}">
                     {%- endif %}
 
                     <div class="aspect-ratio-1-1">
@@ -709,7 +719,7 @@
                                         {{- item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x">
 
                                     <img
-                                        alt="{{ item.settings.imgAlt }}"
+                                        alt="{{ item.settings.img.alt }}"
                                         data-src="{{ item.settings.img | thumb: imgSizeSm }}"
                                         data-srcset="{{ item.settings.img | thumb: imgSizeSm }} 1x, {{ item.settings.img | thumb: imgSizeSm | thumb:'@2x' }} 2x"
                                         class="lazy aspect-ratio-item aspect-ratio-item-cover"{% if item.settings.img.offset_left or item.settings.img.offset_top %} style="--object-position: {{ item.settings.img.offset_left }}% {{ item.settings.img.offset_top }}%"{% endif %}>
@@ -738,11 +748,11 @@
 
                             {% render 'section-header', sectionTitle: item.settings.title, sectionTitleTag: 'span', sectionHeaderContainer: 'none', sectionAnimation: settings.sectionAnimation, sectionHandle: sectionHandle, sectionHeaderGapScale: 0.5, sectionHeaderTextAlign: section.settings.sectionContentTextAlign %}
 
-                            {%- if item.settings.btnLabel -%}
+                            {%- if item.settings.btnLink.text -%}
 
                                 <div class="d-flex mt-4 justify-content-{{ section.settings.sectionContentTextAlign }}" data-aos="{{ settings.sectionAnimation }}" data-aos-anchor="#finqu-section-{{ section.id }}" data-aos-delay style="--aos-order: {{ sectionAnimationOrder }}">
 
-                                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLabel -%}
+                                    {%- render 'section-quick-link', style: section.settings.btnStyle, text: item.settings.btnLink.text -%}
 
                                 </div>
 
@@ -752,7 +762,7 @@
                     
                     </div>
 
-                    {%- if item.settings.link.url %}
+                    {%- if item.settings.btnLink.url %}
                         </a>
                     {%- endif %}
                 
@@ -776,7 +786,7 @@
     },
     "tag": "section",
     "class": "section section-promotion-collage",
-    "category": "theme-basic",
+    "category": "theme-marketing",
     "settings": {
         "list_type": "tabs",
         "groups": [
@@ -791,19 +801,13 @@
                         "id": "collageLayout"
                     },
                     {
-                        "type": "title",
-                        "label": {
-                            "en": "Titles",
-                            "fi": "Otsikot"
-                        }
-                    },
-                    {
                         "id": "sectionOverline",
                         "type": "text",
                         "label": {
                             "en": "Top title",
                             "fi": "Yläotsikko"
-                        }
+                        },
+                        "conditions": ["sectionAdditionalTitles eq true"]
                     },
                     {
                         "id": "sectionTitle",
@@ -844,22 +848,16 @@
                         },
                         "settings": [
                             {
-                                "id": "colorScheme",
-                                "type": "color",
-                                "label": {
-                                    "en": "Color scheme",
-                                    "fi": "Väriskeema"
-                                },
-                                "default": "#ffffff"
-                            },
-                            {
                                 "id": "overline",
                                 "type": "text",
                                 "label": {
                                     "en": "Top title",
                                     "fi": "Yläotsikko"
                                 },
-                                "conditions": ["collageLayout in 2,3"]
+                                "conditions": [
+                                    "sectionAdditionalTitles eq true",
+                                    "collageLayout in 2,3"
+                                ]
                             },
                             {
                                 "id": "title",
@@ -880,26 +878,32 @@
                                 "conditions": ["collageLayout in 2,3,4"]
                             },
                             {
-                                "id": "btnLabel",
-                                "type": "text",
-                                "label": {
-                                    "en": "Button text",
-                                    "fi": "Painikkeen teksti"
-                                },
-                                "conditions": ["collageLayout in 1,3,4,5"]
-                            },
-                            {
-                                "id": "link",
+                                "id": "btnLink",
                                 "type": "url",
                                 "label": {
-                                    "en": "Link",
-                                    "fi": "Linkki"
-                                }
+                                    "en": "Button",
+                                    "fi": "Painike"
+                                },
+                                "include_target": true,
+                                "include_text": true
                             },
                             {
                                 "id": "img",
                                 "type": "image-picker",
+                                "label": {
+                                    "en": "Image",
+                                    "fi": "Kuva"
+                                },
                                 "adjustments": true
+                            },
+                            {
+                                "id": "colorScheme",
+                                "type": "color",
+                                "label": {
+                                    "en": "Color scheme",
+                                    "fi": "Väriskeema"
+                                },
+                                "default": "#ffffff"
                             }
                         ]
                     }
@@ -910,357 +914,387 @@
                     "en": "Settings",
                     "fi": "Asetukset"
                 },
-                "settings": [
-                    {
-                        "type": "title",
-                        "label": {
-                            "en": "Content",
-                            "fi": "Sisältö"
+                "settings": {
+                    "list_type": "list",
+                    "groups": [
+                        {
+                            "title": {
+                                "en": "Content",
+                                "fi": "Sisältö"
+                            },
+                            "settings": [
+                                {
+                                    "id": "sectionHeaderTextAlign",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Heading text align",
+                                        "fi": "Otsikon tekstin tasaus"
+                                    },
+                                    "default": "nil",
+                                    "options": [
+                                        {
+                                            "value": "nil",
+                                            "label": "Auto"
+                                        },
+                                        {
+                                            "value": "start",
+                                            "label": "{# icon.align-start #}"
+                                        },
+                                        {
+                                            "value": "center",
+                                            "label": "{# icon.align-center #}"
+                                        },
+                                        {
+                                            "value": "end",
+                                            "label": "{# icon.align-end #}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sectionContentTextAlign",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Content text align",
+                                        "fi": "Sisällön tekstin tasaus"
+                                    },
+                                    "default": "nil",
+                                    "options": [
+                                        {
+                                            "value": "nil",
+                                            "label": "Auto"
+                                        },
+                                        {
+                                            "value": "start",
+                                            "label": "{# icon.align-start #}"
+                                        },
+                                        {
+                                            "value": "center",
+                                            "label": "{# icon.align-center #}"
+                                        },
+                                        {
+                                            "value": "end",
+                                            "label": "{# icon.align-end #}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "btnStyle",
+                                    "type": "select",
+                                    "label": {
+                                        "en": "Button style",
+                                        "fi": "Painikkeen tyyli"
+                                    },
+                                    "default": "nil",
+                                    "options": [
+                                        {
+                                            "value": "nil",
+                                            "label": "Auto"
+                                        },
+                                        {
+                                            "value": "primary",
+                                            "label": {
+                                                "en": "Fill",
+                                                "fi": "Täytetty"
+                                            }
+                                        },
+                                        {
+                                            "value": "secondary",
+                                            "label": {
+                                                "en": "Outline",
+                                                "fi": "Ääriviivat"
+                                            }
+                                        },
+                                        {
+                                            "value": "link",
+                                            "label": {
+                                                "en": "Text",
+                                                "fi": "Teksti"
+                                            }
+                                        },
+                                        {
+                                            "value": "link-with-icon",
+                                            "label": {
+                                                "en": "Text with icon",
+                                                "fi": "Teksti kuvakkeella"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": {
+                                "en": "SEO",
+                                "fi": "SEO"
+                            },
+                            "settings": [
+                                {
+                                    "id": "sectionOverlineTag",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Top title SEO priority",
+                                        "fi": "Yläotsikon SEO-prioriteetti"
+                                    },
+                                    "default": "h3",
+                                    "options": [
+                                        {
+                                            "value": "h3",
+                                            "label": "H3"
+                                        },
+                                        {
+                                            "value": "span",
+                                            "label": {
+                                                "en": "Text",
+                                                "fi": "Teksti"
+                                            }
+                                        }
+                                    ],
+                                    "conditions": ["sectionAdditionalTitles eq true"]
+                                },
+                                {
+                                    "id": "sectionTitleTag",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Main title SEO priority",
+                                        "fi": "Pääotsikon SEO-prioriteetti"
+                                    },
+                                    "default": "h2",
+                                    "options": [
+                                        {
+                                            "value": "h1",
+                                            "label": "H1"
+                                        },
+                                        {
+                                            "value": "h2",
+                                            "label": "H2"
+                                        },
+                                        {
+                                            "value": "h3",
+                                            "label": "H3"
+                                        },
+                                        {
+                                            "value": "span",
+                                            "label": {
+                                                "en": "Text",
+                                                "fi": "Teksti"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sectionSubtitleTag",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Subtitle SEO priority",
+                                        "fi": "Alaotsikon SEO-prioriteetti"
+                                    },
+                                    "default": "h3",
+                                    "options": [
+                                        {
+                                            "value": "h3",
+                                            "label": "H3"
+                                        },
+                                        {
+                                            "value": "span",
+                                            "label": {
+                                                "en": "Text",
+                                                "fi": "Teksti"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": {
+                                "en": "Section",
+                                "fi": "Osio"
+                            },
+                            "settings": [
+                                {
+                                    "id": "sectionColorScheme",
+                                    "type": "select",
+                                    "label": {
+                                        "en": "Color scheme",
+                                        "fi": "Värityyli"
+                                    },
+                                    "default": false,
+                                    "options": [
+                                        {
+                                            "value": false,
+                                            "label": {
+                                                "en": "Disabled",
+                                                "fi": "Pois käytöstä"
+                                            }
+                                        },
+                                        {
+                                            "value": "light",
+                                            "label": {
+                                                "en": "Light background / Dark content",
+                                                "fi": "Vaalea tausta / Tumma sisältö"
+                                            }
+                                        },
+                                        {
+                                            "value": "dark",
+                                            "label": {
+                                                "en": "Dark background / Light content",
+                                                "fi": "Tumma tausta / Vaalea sisältö"
+                                            }
+                                        },
+                                        {
+                                            "value": "accent",
+                                            "label": {
+                                                "en": "Accent background / Adaptive content",
+                                                "fi": "Korostus tausta / Mukautuva sisältö"
+                                            }
+                                        },
+                                        {
+                                            "value": "1",
+                                            "label": {
+                                                "en": "Color scheme 1",
+                                                "fi": "Värityyli 1"
+                                            }
+                                        },
+                                        {
+                                            "value": "2",
+                                            "label": {
+                                                "en": "Color scheme 2",
+                                                "fi": "Värityyli 2"
+                                            }
+                                        },
+                                        {
+                                            "value": "3",
+                                            "label": {
+                                                "en": "Color scheme 3",
+                                                "fi": "Värityyli 3"
+                                            }
+                                        },
+                                        {
+                                            "value": "4",
+                                            "label": {
+                                                "en": "Color scheme 4",
+                                                "fi": "Värityyli 4"
+                                            }
+                                        },
+                                        {
+                                            "value": "5",
+                                            "label": {
+                                                "en": "Color scheme 5",
+                                                "fi": "Värityyli 5"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sectionAdditionalTitles",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Show additional titles",
+                                        "fi": "Näytä lisäotsikot"
+                                    },
+                                    "default": false,
+                                    "options": [
+                                        {
+                                            "value": false,
+                                            "label": "Off"
+                                        },
+                                        {
+                                            "value": true,
+                                            "label": "On"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sectionPaddingMode",
+                                    "type": "radio-pill",
+                                    "label": {
+                                        "en": "Padding",
+                                        "fi": "Välit"
+                                    },
+                                    "default": "auto",
+                                    "options": [
+                                        {
+                                            "value": "auto",
+                                            "label": "Auto"
+                                        },
+                                        {
+                                            "value": "custom",
+                                            "label": {
+                                                "en": "Custom",
+                                                "fi": "Mukautettu"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "sectionPaddingTop",
+                                    "label": {
+                                        "en": "Padding top",
+                                        "fi": "Väli ylhäällä"
+                                    },
+                                    "type": "range",
+                                    "min": 0,
+                                    "max": 15,
+                                    "step": 1,
+                                    "default": "0",
+                                    "unit": "rem",
+                                    "conditions": ["sectionPaddingMode eq custom"]
+                                },
+                                {
+                                    "id": "sectionPaddingBottom",
+                                    "label": {
+                                        "en": "Padding bottom",
+                                        "fi": "Väli alhaalla"
+                                    },
+                                    "type": "range",
+                                    "min": 0,
+                                    "max": 15,
+                                    "step": 1,
+                                    "default": "0",
+                                    "unit": "rem",
+                                    "conditions": ["sectionPaddingMode eq custom"]
+                                },
+                                {
+                                    "id": "sectionBgImg",
+                                    "type": "image-picker",
+                                    "label": {
+                                        "en": "Background image",
+                                        "fi": "Taustakuva"
+                                    },
+                                    "adjustments": true
+                                },
+                                {
+                                    "id": "sectionBgImgDimming",
+                                    "label": {
+                                        "en": "Image dimming",
+                                        "fi": "Kuvan tummennus"
+                                    },
+                                    "type": "range",
+                                    "min": 0,
+                                    "max": 90,
+                                    "step": 5,
+                                    "default": "0",
+                                    "unit": "%",
+                                    "conditions": ["!sectionBgImg eq false"]
+                                },
+                                {
+                                    "id": "sectionBgImgBlur",
+                                    "label": {
+                                        "en": "Image blur",
+                                        "fi": "Kuvan sumentaminen"
+                                    },
+                                    "type": "range",
+                                    "min": 0,
+                                    "max": 10,
+                                    "step": 1,
+                                    "default": "0",
+                                    "unit": " ",
+                                    "conditions": ["!sectionBgImg eq false"]
+                                }
+                            ]
                         }
-                    },
-                    {
-                        "id": "sectionHeaderTextAlign",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Heading text align",
-                            "fi": "Otsikon tekstin tasaus"
-                        },
-                        "default": "nil",
-                        "options": [
-                            {
-                                "value": "nil",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": "start",
-                                "label": "{# icon.align-start #}"
-                            },
-                            {
-                                "value": "center",
-                                "label": "{# icon.align-center #}"
-                            },
-                            {
-                                "value": "end",
-                                "label": "{# icon.align-end #}"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "sectionContentTextAlign",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Content text align",
-                            "fi": "Sisällön tekstin tasaus"
-                        },
-                        "default": "nil",
-                        "options": [
-                            {
-                                "value": "nil",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": "start",
-                                "label": "{# icon.align-start #}"
-                            },
-                            {
-                                "value": "center",
-                                "label": "{# icon.align-center #}"
-                            },
-                            {
-                                "value": "end",
-                                "label": "{# icon.align-end #}"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "btnStyle",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Button style",
-                            "fi": "Painikkeen tyyli"
-                        },
-                        "default": "primary",
-                        "options": [
-                            {
-                                "value": "primary",
-                                "label": {
-                                    "en": "Style 1",
-                                    "fi": "Tyyli 1"
-                                }
-                            },
-                            {
-                                "value": "secondary",
-                                "label": {
-                                    "en": "Style 2",
-                                    "fi": "Tyyli 2"
-                                }
-                            },
-                            {
-                                "value": "link",
-                                "label": {
-                                    "en": "Style 3",
-                                    "fi": "Tyyli 3"
-                                }
-                            }
-                        ],
-                        "conditions": ["collageLayout eq in 1,3,4,5"]
-                    },
-                    {
-                        "id": "linkOpenInNewTab",
-                        "type": "checkbox",
-                        "label": {
-                            "en": "Open links in a new tab",
-                            "fi": "Avaa linkit uudessa välilehdessä"
-                        },
-                        "default": false
-                    },
-                    {
-                        "type": "title",
-                        "label": {
-                            "en": "SEO",
-                            "fi": "SEO"
-                        }
-                    },
-                    {
-                        "id": "sectionOverlineTag",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Top title SEO priority",
-                            "fi": "Yläotsikon SEO-prioriteetti"
-                        },
-                        "default": "h3",
-                        "options": [
-                            {
-                                "value": "h3",
-                                "label": "H3"
-                            },
-                            {
-                                "value": "span",
-                                "label": {
-                                    "en": "Text",
-                                    "fi": "Teksti"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "sectionTitleTag",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Main title SEO priority",
-                            "fi": "Pääotsikon SEO-prioriteetti"
-                        },
-                        "default": "h2",
-                        "options": [
-                            {
-                                "value": "h1",
-                                "label": "H1"
-                            },
-                            {
-                                "value": "h2",
-                                "label": "H2"
-                            },
-                            {
-                                "value": "h3",
-                                "label": "H3"
-                            },
-                            {
-                                "value": "span",
-                                "label": {
-                                    "en": "Text",
-                                    "fi": "Teksti"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "sectionSubtitleTag",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Subtitle SEO priority",
-                            "fi": "Alaotsikon SEO-prioriteetti"
-                        },
-                        "default": "h3",
-                        "options": [
-                            {
-                                "value": "h3",
-                                "label": "H3"
-                            },
-                            {
-                                "value": "span",
-                                "label": {
-                                    "en": "Text",
-                                    "fi": "Teksti"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "type": "title",
-                        "label": {
-                            "en": "Section",
-                            "fi": "Osio"
-                        }
-                    },
-                    {
-                        "id": "sectionColorScheme",
-                        "type": "select",
-                        "label": {
-                            "en": "Color color scheme",
-                            "fi": "Värityyli"
-                        },
-                        "options": [
-                            {
-                                "value": false,
-                                "label": {
-                                    "en": "Disabled",
-                                    "fi": "Pois käytöstä"
-                                }
-                            },
-                            {
-                                "value": "1",
-                                "label": {
-                                    "en": "Color scheme 1",
-                                    "fi": "Värityyli 1"
-                                }
-                            },
-                            {
-                                "value": "2",
-                                "label": {
-                                    "en": "Color scheme 2",
-                                    "fi": "Värityyli 2"
-                                }
-                            },
-                            {
-                                "value": "3",
-                                "label": {
-                                    "en": "Color scheme 3",
-                                    "fi": "Värityyli 3"
-                                }
-                            },
-                            {
-                                "value": "4",
-                                "label": {
-                                    "en": "Color scheme 4",
-                                    "fi": "Värityyli 4"
-                                }
-                            },
-                            {
-                                "value": "5",
-                                "label": {
-                                    "en": "Color scheme 5",
-                                    "fi": "Värityyli 5"
-                                }
-                            },
-                            {
-                                "value": "light",
-                                "label": {
-                                    "en": "Light background / Dark content",
-                                    "fi": "Vaalea tausta / Tumma sisältö"
-                                }
-                            },
-                            {
-                                "value": "dark",
-                                "label": {
-                                    "en": "Dark background / Light content",
-                                    "fi": "Tumma tausta / Vaalea sisältö"
-                                }
-                            },
-                            {
-                                "value": "accent",
-                                "label": {
-                                    "en": "Accent background / Adaptive content",
-                                    "fi": "Korostus tausta / Mukautuva sisältö"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "sectionPaddingMode",
-                        "type": "radio-pill",
-                        "label": {
-                            "en": "Padding",
-                            "fi": "Välit"
-                        },
-                        "default": "auto",
-                        "options": [
-                            {
-                                "value": "auto",
-                                "label": "Auto"
-                            },
-                            {
-                                "value": "custom",
-                                "label": {
-                                    "en": "Custom",
-                                    "fi": "Mukautettu"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "id": "sectionPaddingTop",
-                        "label": {
-                            "en": "Padding top",
-                            "fi": "Väli ylhäällä"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 15,
-                        "step": 1,
-                        "default": "0",
-                        "unit": "rem",
-                        "conditions": ["sectionPaddingMode eq custom"]
-                    },
-                    {
-                        "id": "sectionPaddingBottom",
-                        "label": {
-                            "en": "Padding bottom",
-                            "fi": "Väli alhaalla"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 15,
-                        "step": 1,
-                        "default": "0",
-                        "unit": "rem",
-                        "conditions": ["sectionPaddingMode eq custom"]
-                    },
-                    {
-                        "id": "sectionBgImg",
-                        "type": "image-picker",
-                        "label": {
-                            "en": "Background image",
-                            "fi": "Taustakuva"
-                        },
-                        "adjustments": true
-                    },
-                    {
-                        "id": "sectionBgImgDimming",
-                        "label": {
-                            "en": "Image dimming",
-                            "fi": "Kuvan tummennus"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 90,
-                        "step": 5,
-                        "default": "0",
-                        "unit": "%"
-                    },
-                    {
-                        "id": "sectionBgImgBlur",
-                        "label": {
-                            "en": "Image blur",
-                            "fi": "Kuvan sumentaminen"
-                        },
-                        "type": "range",
-                        "min": 0,
-                        "max": 10,
-                        "step": 1,
-                        "default": "0",
-                        "unit": " "
-                    }
-                ]
+                    ]
+                }
             }
         ]
     },
@@ -1274,10 +1308,12 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "btnLabel": "Women",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/mathilde-langevin-nuapbzudm9o-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/mathilde-langevin-nuapbzudm9o-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1582345486418-0eeaeecb5dda",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1582345486418-0eeaeecb5dda",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1289,10 +1325,12 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "btnLabel": "Men",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/alex-shuper-4dsx73mxsdo-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/alex-shuper-4dsx73mxsdo-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1304,10 +1342,12 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "btnLabel": "Accessies",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/ave-calvar-hygfol9gmwg-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/ave-calvar-hygfol9gmwg-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1319,10 +1359,12 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "btnLabel": "Shoes",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/luca-laurence-fsexc3osiic-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/luca-laurence-fsexc3osiic-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1518019671582-55004f1bc9ab",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1518019671582-55004f1bc9ab",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1334,10 +1376,12 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "btnLabel": "Watch collections",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/andrej-lisakov-isqgwvxfaha-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/andrej-lisakov-isqgwvxfaha-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1359,11 +1403,11 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "Lookbook 2022",
-                                "subtitle": "Make love this look",
+                                "title": "Mainoksen otsikko",
+                                "subtitle": "Kerro lyhyesti mainoksesta asiakkaillesi",
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/mathilde-langevin-nuapbzudm9o-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/mathilde-langevin-nuapbzudm9o-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1375,12 +1419,11 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "overline": "Huge sale",
-                                "title": "50 % Off",
-                                "subtitle": "Hurry up",
+                                "title": "Mainoksen otsikko",
+                                "subtitle": "Kerro lyhyesti mainoksesta asiakkaillesi",
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/alex-shuper-4dsx73mxsdo-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/alex-shuper-4dsx73mxsdo-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1402,12 +1445,14 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "OLED TVs",
-                                "subtitle": "Exclusive offers on TVs until Dec 31. $100 off on every purchase",
-                                "btnLabel": "Shop OLED TVs",
+                                "title": "Mainoksen otsikko",
+                                "subtitle": "Kerro lyhyesti mainoksesta asiakkaillesi.",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/mathilde-langevin-nuapbzudm9o-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/mathilde-langevin-nuapbzudm9o-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1419,12 +1464,14 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "Speakers",
-                                "subtitle": "Explore our range of high-quality speakers.",
-                                "btnLabel": "Shop Speakers",
+                                "title": "Mainoksen otsikko",
+                                "subtitle": "Kerro lyhyesti mainoksesta asiakkaillesi.",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/alex-shuper-4dsx73mxsdo-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/alex-shuper-4dsx73mxsdo-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1436,12 +1483,14 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "Headphones",
-                                "subtitle": "Discover our new headphones. Up to 25% Off !",
-                                "btnLabel": "Shop Headphones",
+                                "title": "Mainoksen otsikko",
+                                "subtitle": "Kerro lyhyesti mainoksesta asiakkaillesi.",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/ave-calvar-hygfol9gmwg-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/ave-calvar-hygfol9gmwg-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1463,12 +1512,14 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "Bluetooth",
-                                "subtitle": "Feel the freedom with our Bluetooth headphones and speakers.",
-                                "btnLabel": "Shop now",
+                                "title": "Mainoksen otsikko",
+                                "subtitle": "Kerro lyhyesti mainoksesta asiakkaillesi.",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/andrej-lisakov-isqgwvxfaha-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/andrej-lisakov-isqgwvxfaha-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1582345486418-0eeaeecb5dda",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1582345486418-0eeaeecb5dda",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1480,12 +1531,14 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "Professional Audio",
-                                "subtitle": "Get the best deals for professional audio equipment.",
-                                "btnLabel": "Shop Now",
+                                "title": "Mainoksen otsikko",
+                                "subtitle": "Kerro lyhyesti mainoksesta asiakkaillesi.",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/luca-laurence-fsexc3osiic-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/luca-laurence-fsexc3osiic-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1497,12 +1550,14 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "Headphones",
-                                "subtitle": "Our selection of premium headphones to enjoy your favorite playlist with an incredible sound.",
-                                "btnLabel": "Shop Now",
+                                "title": "Mainoksen otsikko",
+                                "subtitle": "Kerro lyhyesti mainoksesta asiakkaillesi.",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/ave-calvar-hygfol9gmwg-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/ave-calvar-hygfol9gmwg-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1514,12 +1569,14 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "Accessories",
-                                "subtitle": "Our various accessories to have the best experience.",
-                                "btnLabel": "Shop Now",
+                                "title": "Mainoksen otsikko",
+                                "subtitle": "Kerro lyhyesti mainoksesta asiakkaillesi.",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/alex-shuper-4dsx73mxsdo-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/alex-shuper-4dsx73mxsdo-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1531,12 +1588,14 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "Projectors",
-                                "subtitle": "Play or watch your favorites TV shows with these projectors.",
-                                "btnLabel": "Shop Now",
+                                "title": "Mainoksen otsikko",
+                                "subtitle": "Kerro lyhyesti mainoksesta asiakkaillesi.",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                  "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/mathilde-langevin-nuapbzudm9o-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/mathilde-langevin-nuapbzudm9o-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1518019671582-55004f1bc9ab",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1518019671582-55004f1bc9ab",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1559,11 +1618,13 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "Staff Picks",
-                                "btnLabel": "Shop now",
+                                "title": "Mainoksen otsikko",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/alex-shuper-4dsx73mxsdo-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/alex-shuper-4dsx73mxsdo-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1532204182725-d0f67855ac87",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1575,11 +1636,13 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "Date Night Bags",
-                                "btnLabel": "Shop Now",
+                                "title": "Mainoksen otsikko",
+                                "btnLink": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/ave-calvar-hygfol9gmwg-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/ave-calvar-hygfol9gmwg-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1531326842537-a4bb23c9544e",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
@@ -1591,11 +1654,13 @@
                             "type": "image",
                             "settings": {
                                 "colorScheme": "#ffffff",
-                                "title": "Easy Mules",
-                                "btnLabel": "Shop Now",
+                                "title": "Mainoksen otsikko",
+                                "link": {
+                                    "text": "Shoppaile nyt"
+                                },
                                 "img": {
-                                    "string_value": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/mathilde-langevin-nuapbzudm9o-unsplash_1080_1080.jpg",
-                                    "src": "https:\/\/cdn.finqu.dev\/users\/231\/images\/uploads\/mathilde-langevin-nuapbzudm9o-unsplash_1080_1080.jpg",
+                                    "string_value": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
+                                    "src": "https:\/\/images.unsplash.com\/photo-1578500494198-246f612d3b3d",
                                     "offset_top": "50",
                                     "offset_left": "50",
                                     "width": "1080",
