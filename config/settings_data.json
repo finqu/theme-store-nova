@@ -301,7 +301,7 @@
             "tiktokPageUrl": "",
             "ravelryPageUrl": "",
             "twitterPageUrl": "",
-            "newsletterPopup": true,
+            "newsletterPopup": false,
             "newsletterPopupDelay": "5",
             "newsletterPopupCookieDuration": "86400",
             "newsletterPopupImg": {
