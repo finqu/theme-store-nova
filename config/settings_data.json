@@ -34,7 +34,7 @@
             "styleAnnouncementFontScale": "0.9",
             "styleButtonPrimaryVariant": "1",
             "styleButtonSecondaryVariant": "1",
-            "styleBorderRadius": "0px",
+            "styleBorderRadius": "4rem",
             "styleButtonBorderRadius": "0px",
             "styleInputBorder": true,
             "styleInputBorderRadius": "0px",
@@ -135,7 +135,7 @@
             "cartShowAddNotification": true,
             "taxFreeShopping": false,
             "cookiesPolicyPosition": "middle",
-            "productImageAspectRatio": "1:1",
+            "productImageAspectRatio": "3:4",
             "productImageAspectRatioFit": "cover",
             "productPerRow": "4",
             "productShowVariantOptionTaxonomyTypeAsImage": false,
@@ -165,50 +165,51 @@
             "registerAdditionalInformation": false,
             "showPolicyAgreementAsText": false,
             "klarnaClientId": "",
-            "facebookPageUrl": "",
-            "instagramPageUrl": "",
-            "xPageUrl": "",
-            "whatsappPageUrl": "",
-            "snapchatPageUrl": "",
-            "pinterestPageUrl": "",
+            "facebookPageUrl": "#",
+            "instagramPageUrl": "#",
+            "xPageUrl": "#",
+            "whatsappPageUrl": "#",
+            "snapchatPageUrl": "#",
+            "pinterestPageUrl": "#",
             "youtubePageUrl": "",
             "linkedinPageUrl": "",
             "tumblrPageUrl": "",
             "redditPageUrl": "",
             "tiktokPageUrl": "",
             "ravelryPageUrl": "",
-            "twitterPageUrl": "",
-            "newsletterPopup": false,
+            "newsletterPopup": true,
             "newsletterPopupDelay": "5",
             "newsletterPopupCookieDuration": "86400",
             "newsletterPopupImg": {
-                "string_value": "https:\/\/images.unsplash.com\/photo-1469334031218-e382a71b716b",
-                "src": "https:\/\/images.unsplash.com\/photo-1469334031218-e382a71b716b",
+                "string_value": "https:\/\/images.unsplash.com\/photo-1596993100471-c3905dafa78e?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwyOHx8ZmFzaGlvbiUyMHNwcmluZ3xlbnwwfHwxfHwxNzE0ODA5ODgyfDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
+                "src": "https:\/\/images.unsplash.com\/photo-1596993100471-c3905dafa78e?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwyOHx8ZmFzaGlvbiUyMHNwcmluZ3xlbnwwfHwxfHwxNzE0ODA5ODgyfDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
                 "offset_top": "50",
                 "offset_left": "50",
-                "width": "",
-                "height": ""
+                "width": "4800",
+                "height": "3200"
             },
             "schemaWebsite": true,
             "schemaOrganization": true,
             "schemaProduct": true,
             "schemaBlogPosting": true,
             "schemaBreadcrumbList": true,
-            "schemaItemList": true
+            "schemaItemList": true,
+            "twitterPageUrl": ""
         },
         "sections": [
             {
                 "id": "header",
                 "name": "header",
                 "settings": {
+                    "gridContainer": "",
                     "headerItemsPaddingY": "2.2rem",
                     "logoImg": {
-                        "string_value": "",
-                        "src": "",
+                        "string_value": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-logo.png",
+                        "src": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-logo.png",
                         "offset_top": "",
                         "offset_left": "",
-                        "width": "",
-                        "height": ""
+                        "width": "457",
+                        "height": "618"
                     },
                     "logoSize": "120",
                     "logoPosition": "start",
@@ -221,7 +222,83 @@
                     "mobileMenuSecondary": "",
                     "mobileNavigationSimple": false,
                     "mobileShowSocialIconsInNavigation": true,
-                    "mobileShowSearchInNavigation": false
+                    "mobileShowSearchInNavigation": false,
+                    "setting_blocks": {
+                        "megamenus": {
+                            "6a9b6c7e-bac3-4d65-ab3f-27f649c473a3": {
+                                "type": "menu",
+                                "settings": {
+                                    "index": "2",
+                                    "colPerRow": "4",
+                                    "menu": "",
+                                    "promotion1Img": {
+                                        "string_value": "https:\/\/images.unsplash.com\/photo-1584216338898-f34d78201414?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwxOHx8ZmFzaGlvbiUyMHdpbnRlcnxlbnwwfHwxfHwxNzE0ODA5OTQwfDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
+                                        "src": "https:\/\/images.unsplash.com\/photo-1584216338898-f34d78201414?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwxOHx8ZmFzaGlvbiUyMHdpbnRlcnxlbnwwfHwxfHwxNzE0ODA5OTQwfDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
+                                        "offset_top": "22",
+                                        "offset_left": "49",
+                                        "width": "5184",
+                                        "height": "3456"
+                                    },
+                                    "promotion1ImgAspectRatio": "4:3",
+                                    "promotion1Link": {
+                                        "type": "url",
+                                        "record_id": "15612948",
+                                        "text": "Kev\u00e4t",
+                                        "url": "\/tuoteryhma\/naisten-vaatteet",
+                                        "target": "_self"
+                                    },
+                                    "promotion2Img": {
+                                        "string_value": "https:\/\/images.unsplash.com\/photo-1550928431-ee0ec6db30d3?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwxMnx8ZmFzaGlvbiUyMHNwcmluZ3xlbnwwfHwxfHwxNzE0ODA5ODgyfDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
+                                        "src": "https:\/\/images.unsplash.com\/photo-1550928431-ee0ec6db30d3?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwxMnx8ZmFzaGlvbiUyMHNwcmluZ3xlbnwwfHwxfHwxNzE0ODA5ODgyfDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
+                                        "offset_top": "27",
+                                        "offset_left": "49",
+                                        "width": "2953",
+                                        "height": "1969"
+                                    },
+                                    "promotion2ImgAspectRatio": "4:3",
+                                    "promotion2Link": {
+                                        "type": "url",
+                                        "record_id": "15612948",
+                                        "text": "Kes\u00e4",
+                                        "url": "\/tuoteryhma\/naisten-vaatteet",
+                                        "target": "_self"
+                                    },
+                                    "promotion3Img": {
+                                        "string_value": "https:\/\/images.unsplash.com\/photo-1548624313-0396c75e4b1a?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwyOXx8ZmFzaGlvbiUyMHdpbnRlcnxlbnwwfHwxfHwxNzE0ODA5OTQwfDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
+                                        "src": "https:\/\/images.unsplash.com\/photo-1548624313-0396c75e4b1a?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwyOXx8ZmFzaGlvbiUyMHdpbnRlcnxlbnwwfHwxfHwxNzE0ODA5OTQwfDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
+                                        "offset_top": "50",
+                                        "offset_left": "50",
+                                        "width": "3707",
+                                        "height": "2471"
+                                    },
+                                    "promotion3ImgAspectRatio": "4:3",
+                                    "promotion3Link": {
+                                        "type": "url",
+                                        "record_id": "15612948",
+                                        "text": "Syksy",
+                                        "url": "\/tuoteryhma\/naisten-vaatteet",
+                                        "target": "_self"
+                                    },
+                                    "promotion4Img": {
+                                        "string_value": "https:\/\/images.unsplash.com\/photo-1610918018841-81a67e2e0b89?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwzMHx8ZmFzaGlvbiUyMHdpbnRlcnxlbnwwfHwxfHwxNzE0ODA5OTQwfDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
+                                        "src": "https:\/\/images.unsplash.com\/photo-1610918018841-81a67e2e0b89?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwzMHx8ZmFzaGlvbiUyMHdpbnRlcnxlbnwwfHwxfHwxNzE0ODA5OTQwfDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
+                                        "offset_top": "18",
+                                        "offset_left": "48",
+                                        "width": "5760",
+                                        "height": "3840"
+                                    },
+                                    "promotion4ImgAspectRatio": "4:3",
+                                    "promotion4Link": {
+                                        "type": "url",
+                                        "record_id": "15612643",
+                                        "text": "Talvi",
+                                        "url": "\/tuoteryhma\/muoti",
+                                        "target": "_self"
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             },
             {
@@ -231,7 +308,7 @@
                     "announcementStatus": true,
                     "announcementTextAlign": "center",
                     "announcementVisibility": "all",
-                    "carouselAutoplaySpeed": "3",
+                    "carouselAutoplaySpeed": "5",
                     "setting_blocks": {
                         "items": {
                             "07acbdce-1a2b-4e24-b52e-4fade3565411": {
@@ -240,7 +317,19 @@
                                     "announcementLink": {
                                         "type": "url",
                                         "record_id": "",
-                                        "text": "Luo ensimm\u00e4inen ilmoituksesi! Kerro asiakkaille tarjouksista ja tapahtumista.",
+                                        "text": "Kev\u00e4\u00e4n mallisto saapunut - Tutustu uutuuksiin!",
+                                        "url": "",
+                                        "target": "_self"
+                                    }
+                                }
+                            },
+                            "366934e7-3267-47ee-8417-7728b82e65d6": {
+                                "type": "text",
+                                "settings": {
+                                    "announcementLink": {
+                                        "type": "url",
+                                        "record_id": "",
+                                        "text": "K\u00e4yt\u00e4 kassalla koodia <b>MUOTI<\/b> ja saat 20% alennuksen ensimm\u00e4isest\u00e4 ostoksesta!",
                                         "url": "",
                                         "target": "_self"
                                     }
@@ -308,25 +397,53 @@
                         "title": "Hero split images",
                         "name": "hero-split-images",
                         "settings": {
-                            "sectionTitle": "Uusi mahtava Hero-otsikko!",
-                            "sectionSubtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
-                            "sectionColorScheme": "dark",
-                            "sectionMinHeight": "95",
+                            "sectionOverline": "",
+                            "sectionTitle": "Muotikauppasi verkossa!",
+                            "sectionSubtitle": "El\u00e4 jokainen p\u00e4iv\u00e4 kuin se olisi muotin\u00e4yt\u00f6ksen catwalk. Tarjoamme uusimmat trendit ja ajattomat klassikot, jotta voit loistaa ja el\u00e4\u00e4 t\u00e4ysill\u00e4 - tyylikk\u00e4\u00e4sti",
                             "btnLink": {
-                                "text": "Shoppaile nyt"
+                                "type": "url",
+                                "record_id": "",
+                                "text": "Shoppaile nyt",
+                                "url": "",
+                                "target": "_self"
                             },
                             "imgStart": {
                                 "string_value": "https:\/\/images.unsplash.com\/photo-1525968681927-9cd76a0590a9",
                                 "src": "https:\/\/images.unsplash.com\/photo-1525968681927-9cd76a0590a9",
                                 "offset_top": "50",
-                                "offset_left": "50"
+                                "offset_left": "50",
+                                "width": "6339",
+                                "height": "8875"
                             },
                             "imgEnd": {
                                 "string_value": "https:\/\/images.unsplash.com\/photo-1513326765101-7f735faae181",
                                 "src": "https:\/\/images.unsplash.com\/photo-1513326765101-7f735faae181",
                                 "offset_top": "50",
-                                "offset_left": "50"
-                            }
+                                "offset_left": "50",
+                                "width": "2145",
+                                "height": "3000"
+                            },
+                            "imgMobile": {
+                                "string_value": "",
+                                "src": "",
+                                "offset_top": "",
+                                "offset_left": "",
+                                "width": "",
+                                "height": ""
+                            },
+                            "textHorizontalAlign": "center",
+                            "textVerticalAlign": "center",
+                            "btnStyle": "nil",
+                            "sectionHeaderFontSizeScale": "1",
+                            "imgDimming": "0",
+                            "imgBlur": "0",
+                            "sectionOverlineTag": "h3",
+                            "sectionTitleTag": "h2",
+                            "sectionSubtitleTag": "h3",
+                            "sectionColorScheme": "dark",
+                            "style_custom_color": "#f3f5f6",
+                            "sectionAdditionalTitles": false,
+                            "sectionMinHeight": "95"
                         },
                         "blocks": []
                     },
@@ -339,52 +456,410 @@
                         }
                     },
                     {
-                        "id": "27f9db39c466c7bac217b098989cd0f7",
-                        "title": "Text columns",
-                        "name": "text-columns",
+                        "id": "e620c74219b5080a1b7e6ffdec277681",
+                        "title": "Hero kuvalla",
+                        "name": "hero-with-image",
+                        "settings": {
+                            "sectionOverline": "",
+                            "sectionTitle": "L\u00f6yd\u00e4 muotia, joka kertoo tarinasi!",
+                            "sectionSubtitle": "Tutustu kokoelmiimme, jotka on suunniteltu heijastamaan persoonallisuuttasi ja el\u00e4m\u00e4ntarinaasi. L\u00f6yd\u00e4 vaatteet, jotka kertovat enemm\u00e4n kuin tuhat sanaa - valitse tyyli, joka on yht\u00e4 ainutlaatuinen kuin sin\u00e4!",
+                            "btnLink": {
+                                "type": "url",
+                                "record_id": "15603383",
+                                "text": "Shoppaile nyt",
+                                "url": "\/tuotteet",
+                                "target": "_self"
+                            },
+                            "img": {
+                                "string_value": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-fashion-colorful-woman.jpeg",
+                                "src": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-fashion-colorful-woman.jpeg",
+                                "offset_top": "50",
+                                "offset_left": "50",
+                                "width": "6698",
+                                "height": "4465"
+                            },
+                            "textHorizontalAlign": "start",
+                            "textVerticalAlign": "center",
+                            "btnStyle": "nil",
+                            "sectionHeaderFontSizeScale": "1",
+                            "cols": "6,6",
+                            "imgPosition": "end",
+                            "imgHorizontalAlign": "center",
+                            "imgVerticalAlign": "center",
+                            "imgAspectRatio": "auto",
+                            "imgFit": false,
+                            "sectionOverlineTag": "h3",
+                            "sectionTitleTag": "h2",
+                            "sectionSubtitleTag": "h3",
+                            "sectionColorScheme": "dark",
+                            "style_custom_color": "#f3f5f6",
+                            "sectionAdditionalTitles": false,
+                            "sectionPaddingMode": "auto",
+                            "sectionPaddingTop": "0",
+                            "sectionPaddingBottom": "0",
+                            "sectionMinHeight": "60",
+                            "sectionBgImg": {
+                                "string_value": "",
+                                "src": "",
+                                "offset_top": "",
+                                "offset_left": "",
+                                "width": "",
+                                "height": ""
+                            },
+                            "sectionBgImgDimming": "0",
+                            "sectionBgImgBlur": "0"
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "5e973bfee4374b2e4575946e7d94292d",
+                        "title": "Tuotekaruselli mainoksella",
+                        "name": "product-carousel",
+                        "settings": {
+                            "sectionOverline": "",
+                            "sectionTitle": "Uudet tulokkaat",
+                            "sectionSubtitle": "",
+                            "sectionQuickLinkResource": {
+                                "type": "url",
+                                "record_id": "",
+                                "text": "",
+                                "url": ""
+                            },
+                            "listType": "recent",
+                            "tagId": "",
+                            "category": {
+                                "type": "category",
+                                "id": "",
+                                "name": ""
+                            },
+                            "manufacturer": {
+                                "type": "manufacturer",
+                                "id": "",
+                                "name": ""
+                            },
+                            "productAmount": "8",
+                            "customDisplayInformation": false,
+                            "productPerRow": "3",
+                            "showProductName": true,
+                            "showManufacturer": true,
+                            "showPromotion": true,
+                            "showPricing": true,
+                            "showRating": true,
+                            "showNewBadge": true,
+                            "showPromotionBadge": true,
+                            "showDiscountBadge": true,
+                            "showOutOfStockBadge": true,
+                            "showAddToCart": true,
+                            "showStockBalance": true,
+                            "showVariants": true,
+                            "showPromotionSlide": true,
+                            "promotionText": "Tutustu uutuuksiimme",
+                            "promotionLinkResource": {
+                                "type": "url",
+                                "record_id": "",
+                                "text": "Shoppaile nyt",
+                                "url": "",
+                                "target": "_self"
+                            },
+                            "promotionTextColor": "#ffffff",
+                            "promotionImg": {
+                                "string_value": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-fashion-bag.jpeg",
+                                "src": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-fashion-bag.jpeg",
+                                "offset_top": "50",
+                                "offset_left": "50",
+                                "width": "6016",
+                                "height": "4016"
+                            },
+                            "promotionImgDimming": "20",
+                            "sectionHighlightItems": "nil",
+                            "sectionHeaderTextAlign": "nil",
+                            "sectionTextAlign": "nil",
+                            "sectionQuickLinkStyle": "nil",
+                            "carouselStyle": "2",
+                            "carouselNavigation": "hover",
+                            "carouselPagination": "on",
+                            "carouselAutoplaySpeed": "0",
+                            "sectionOverlineTag": "h3",
+                            "sectionTitleTag": "h2",
+                            "sectionSubtitleTag": "h3",
+                            "sectionColorScheme": false,
+                            "style_custom_color": "#f3f5f6",
+                            "sectionAdditionalTitles": false,
+                            "sectionPaddingMode": "auto",
+                            "sectionPaddingTop": "0",
+                            "sectionPaddingBottom": "0",
+                            "sectionBgImg": {
+                                "string_value": "",
+                                "src": "",
+                                "offset_top": "",
+                                "offset_left": "",
+                                "width": "",
+                                "height": ""
+                            },
+                            "sectionBgImgDimming": "0",
+                            "sectionBgImgBlur": "0"
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "ecf6854162dddc04bef9a84035989898",
+                        "title": "Kuvia tekstin kanssa",
+                        "name": "images-with-text",
+                        "settings": {
+                            "sectionOverline": "",
+                            "sectionTitle": "L\u00f6yd\u00e4 muotia, joka inspiroi!",
+                            "sectionSubtitle": "",
+                            "richtext": "<p>Inspiroi ymp\u00e4rill\u00e4si olevia ainutlaatuisella tyylill\u00e4si. Meid\u00e4t on omistettu tuomaan sinulle vaatteita, jotka eiv\u00e4t ainoastaan n\u00e4yt\u00e4 hyvilt\u00e4, vaan saavat sinut tuntemaan olosi voimaantuneeksi ja valmiiksi valloittamaan maailman.<\/p>",
+                            "btnLink": {
+                                "type": "url",
+                                "record_id": "",
+                                "text": "Shoppaile nyt",
+                                "url": "",
+                                "target": "_self"
+                            },
+                            "img1": {
+                                "string_value": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-fashion-woman-white-bluebg.jpeg",
+                                "src": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-fashion-woman-white-bluebg.jpeg",
+                                "offset_top": "50",
+                                "offset_left": "50",
+                                "width": "6720",
+                                "height": "4480"
+                            },
+                            "img2": {
+                                "string_value": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-fashion-woman-black-bluebg.jpeg",
+                                "src": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-fashion-woman-black-bluebg.jpeg",
+                                "offset_top": "50",
+                                "offset_left": "50",
+                                "width": "5600",
+                                "height": "4480"
+                            },
+                            "sectionHighlightItems": "nil",
+                            "sectionTextAlign": "nil",
+                            "btnStyle": "primary",
+                            "imgAspectRatio": "1:1",
+                            "imgFit": true,
+                            "sectionOverlineTag": "h3",
+                            "sectionTitleTag": "h2",
+                            "sectionSubtitleTag": "h3",
+                            "sectionColorScheme": false,
+                            "style_custom_color": "#f3f5f6",
+                            "sectionAdditionalTitles": false,
+                            "sectionPaddingMode": "auto",
+                            "sectionPaddingTop": "0",
+                            "sectionPaddingBottom": "0",
+                            "sectionBgImg": {
+                                "string_value": "",
+                                "src": "",
+                                "offset_top": "",
+                                "offset_left": "",
+                                "width": "",
+                                "height": ""
+                            },
+                            "sectionBgImgDimming": "0",
+                            "sectionBgImgBlur": "0"
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "a716094a8344ce1537558fc926f01df9",
+                        "title": "Kampanjabanneri alennuskoodilla",
+                        "name": "promotion-banner",
+                        "settings": {
+                            "bannerLayout": "2",
+                            "title": "Osta nyt ja saat kassalla -20% koodilla",
+                            "discountCode": "MUOTI",
+                            "datetime": "",
+                            "btnLink": {
+                                "type": "url",
+                                "record_id": "",
+                                "text": "Shoppaile nyt",
+                                "url": "",
+                                "target": "_self"
+                            },
+                            "sectionTextAlign": "center",
+                            "btnStyle": "nil",
+                            "datetimeZeroPad": true,
+                            "datetimeHideTimeUnitOnZero": false,
+                            "datetimeShowYears": false,
+                            "datetimeShowMonths": false,
+                            "sectionColorScheme": "secondary",
+                            "style_custom_color": "#f3f5f6",
+                            "sectionPaddingMode": "custom",
+                            "sectionPaddingTop": "2",
+                            "sectionPaddingBottom": "2"
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "17933d05e555f6e972946d21095bc963",
+                        "title": "Kuvakkeet tekstin kanssa",
+                        "name": "icons-with-text",
                         "settings": {
                             "orientation": "horizontal",
-                            "colPerRow": "2",
+                            "sectionOverline": "",
+                            "sectionTitle": "",
+                            "sectionSubtitle": "",
+                            "sectionContainer": "nil",
                             "sectionTextAlign": "center",
-                            "sectionColorScheme": "secondary",
-                            "imgAspectRatio": "1:1",
-                            "imgScaleRatio": "1",
-                            "imgAlign": "center",
-                            "imgFit": true,
+                            "sectionOverlineTag": "h3",
+                            "sectionTitleTag": "h2",
+                            "sectionSubtitleTag": "h3",
+                            "sectionColorScheme": false,
+                            "style_custom_color": "#f3f5f6",
+                            "sectionAdditionalTitles": false,
+                            "sectionPaddingMode": "auto",
+                            "sectionPaddingTop": "4",
+                            "sectionPaddingBottom": "5",
+                            "sectionBgImg": {
+                                "string_value": "",
+                                "src": "",
+                                "offset_top": "",
+                                "offset_left": "",
+                                "width": "",
+                                "height": ""
+                            },
+                            "sectionBgImgDimming": "0",
+                            "sectionBgImgBlur": "0",
                             "setting_blocks": {
-                                "items": [
-                                    {
+                                "items": {
+                                    "3136312542826423": {
                                         "type": "text",
                                         "settings": {
-                                            "title": "Otsikko",
-                                            "richtext": "<p>Lis\u00e4\u00e4 sopiva teksti jolla voit esimerkiksi keskitty\u00e4 valitsemaasi tuotteeseen, artikkeliin tai tuotemerkkiin.<\/p>",
-                                            "btnLink": {
-                                                "type": "url",
-                                                "record_id": "",
-                                                "text": "Linkki",
-                                                "url": "",
-                                                "target": "_self"
-                                            }
+                                            "iconFormat": "svg",
+                                            "img": {
+                                                "string_value": "",
+                                                "src": "",
+                                                "offset_top": "",
+                                                "offset_left": "",
+                                                "width": "",
+                                                "height": ""
+                                            },
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><g><path d=\"M19.67,14.87h1.51c.52-.04.91-.49.88-1.01v-7.47c.09-1.56-1.08-2.9-2.64-3.03h-5.27v11.5\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.67,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16h0c0,1.19.97,2.16,2.16,2.16,1.19,0,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16.97,2.16,2.16,2.16,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M17.03,3.37v3.47s0,.03,0,.04c.01.45.38.81.83.79h4.2\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87h6.95\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.71,11.03h2.36\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,1.94c0-.79.64-1.44,1.44-1.44h10.78c.79,0,1.44.64,1.44,1.44v8.14s-13.66,0-13.66,0V1.94Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,10.07v3.35c0,.79.64,1.44,1.44,1.44h2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><\/g><\/svg>",
+                                            "title": "Nopea toimitus!",
+                                            "richtext": "<p>Nopea ja luotettava toimitus suoraan ovellesi, jotta voit nauttia uusista l\u00f6yd\u00f6ist\u00e4si heti<\/p>"
                                         }
                                     },
-                                    {
+                                    "1485272252048968": {
                                         "type": "text",
                                         "settings": {
-                                            "title": "Otsikko",
-                                            "richtext": "<p>Lis\u00e4\u00e4 sopiva teksti jolla voit esimerkiksi keskitty\u00e4 valitsemaasi tuotteeseen, artikkeliin tai tuotemerkkiin.<\/p>",
-                                            "btnLink": {
-                                                "type": "url",
-                                                "record_id": "",
-                                                "text": "Linkki",
-                                                "url": "",
-                                                "target": "_self"
-                                            }
+                                            "iconFormat": "svg",
+                                            "img": {
+                                                "string_value": "",
+                                                "src": "",
+                                                "offset_top": "",
+                                                "offset_left": "",
+                                                "width": "",
+                                                "height": ""
+                                            },
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"m5.03125 20.840875 -4.3125 -4.3125 4.3125 -4.3125\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M0.71875 16.528375h14.375a7.1875 7.1875 0 0 0 0 -14.375h-5.75\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                            "title": "Ilmainen palautus!",
+                                            "richtext": "<p>Ilmainen palautus ja joustavat vaihtoehdot - ostaminen meilt\u00e4 on t\u00e4ysin riskit\u00f6nt\u00e4.<\/p>"
+                                        }
+                                    },
+                                    "3497938686528596": {
+                                        "type": "text",
+                                        "settings": {
+                                            "iconFormat": "svg",
+                                            "img": {
+                                                "string_value": "",
+                                                "src": "",
+                                                "offset_top": "",
+                                                "offset_left": "",
+                                                "width": "",
+                                                "height": ""
+                                            },
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M4.3125 17.25h-0.71875a2.875 2.875 0 0 1 -2.875 -2.875v-2.875a2.875 2.875 0 0 1 2.875 -2.875h0.71875a0.71875 0.71875 0 0 1 0.71875 0.71875v7.1875a0.71875 0.71875 0 0 1 -0.71875 0.71875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M19.40625 17.25h-0.71875a0.71875 0.71875 0 0 1 -0.71875 -0.71875v-7.1875A0.71875 0.71875 0 0 1 18.6875 8.625h0.71875a2.875 2.875 0 0 1 2.875 2.875v2.875a2.875 2.875 0 0 1 -2.875 2.875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M3.59375 8.625A7.90625 7.90625 0 0 1 11.5 0.71875h0A7.90625 7.90625 0 0 1 19.40625 8.625\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M14.375 20.84375h2.15625a2.875 2.875 0 0 0 2.875 -2.875h0V17.25\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M12.9375 22.28125H11.5a1.4375 1.4375 0 0 1 -1.4375 -1.4375h0a1.4375 1.4375 0 0 1 1.4375 -1.4375h1.4375a1.4375 1.4375 0 0 1 1.4375 1.4375h0a1.4375 1.4375 0 0 1 -1.4375 1.4375Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                            "title": "Upea asiakaspalvelu!",
+                                            "richtext": "<p>Upea asiakaspalvelumme auttaa ostoksen jokaisessa vaiheessa.<\/p>"
+                                        }
+                                    },
+                                    "1318417319946211": {
+                                        "type": "text",
+                                        "settings": {
+                                            "iconFormat": "svg",
+                                            "img": {
+                                                "string_value": "",
+                                                "src": "",
+                                                "offset_top": "",
+                                                "offset_left": "",
+                                                "width": "",
+                                                "height": ""
+                                            },
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M2.15625 3.59375h18.6875s1.4375 0 1.4375 1.4375v12.9375s0 1.4375 -1.4375 1.4375H2.15625s-1.4375 0 -1.4375 -1.4375V5.03125s0 -1.4375 1.4375 -1.4375\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m0.71875 7.90625 21.5625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 12.21875 7.90625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 15.09375 5.03125 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                            "title": "Parhaat maksutavat!",
+                                            "richtext": "<p>Monipuoliset maksutavat takaavat helpon ostokokemuksen.<\/p>"
                                         }
                                     }
-                                ]
+                                }
                             }
                         },
                         "blocks": []
+                    }
+                ]
+            },
+            "404": {
+                "sections": [
+                    {
+                        "name": "404-template",
+                        "id": "404-template",
+                        "blocks": [],
+                        "settings": [],
+                        "sticky": true
+                    }
+                ]
+            },
+            "category": {
+                "sections": [
+                    {
+                        "name": "category-template",
+                        "id": "category-template",
+                        "blocks": [],
+                        "settings": [],
+                        "sticky": true
+                    }
+                ]
+            },
+            "blog": {
+                "sections": [
+                    {
+                        "name": "blog-template",
+                        "id": "blog-template",
+                        "blocks": [],
+                        "settings": [],
+                        "sticky": true
+                    }
+                ]
+            },
+            "product": {
+                "sections": [
+                    {
+                        "name": "product-template",
+                        "id": "product-template",
+                        "blocks": [],
+                        "settings": [],
+                        "sticky": true
+                    }
+                ]
+            },
+            "cart": {
+                "sections": [
+                    {
+                        "name": "cart-template",
+                        "id": "cart-template",
+                        "blocks": [],
+                        "settings": [],
+                        "sticky": true
+                    }
+                ]
+            },
+            "article": {
+                "sections": [
+                    {
+                        "name": "article-template",
+                        "id": "article-template",
+                        "blocks": [],
+                        "settings": [],
+                        "sticky": true
                     }
                 ]
             }
