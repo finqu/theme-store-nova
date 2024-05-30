@@ -242,9 +242,9 @@
                                     "promotion1ImgAspectRatio": "4:3",
                                     "promotion1Link": {
                                         "type": "url",
-                                        "record_id": "15612948",
+                                        "record_id": "15603383",
                                         "text": "Kev\u00e4t",
-                                        "url": "\/tuoteryhma\/naisten-vaatteet",
+                                        "url": "\/tuotteet",
                                         "target": "_self"
                                     },
                                     "promotion2Img": {
@@ -258,9 +258,9 @@
                                     "promotion2ImgAspectRatio": "4:3",
                                     "promotion2Link": {
                                         "type": "url",
-                                        "record_id": "15612948",
+                                        "record_id": "15603383",
                                         "text": "Kes\u00e4",
-                                        "url": "\/tuoteryhma\/naisten-vaatteet",
+                                        "url": "\/tuotteet",
                                         "target": "_self"
                                     },
                                     "promotion3Img": {
@@ -274,9 +274,9 @@
                                     "promotion3ImgAspectRatio": "4:3",
                                     "promotion3Link": {
                                         "type": "url",
-                                        "record_id": "15612948",
+                                        "record_id": "15603383",
                                         "text": "Syksy",
-                                        "url": "\/tuoteryhma\/naisten-vaatteet",
+                                        "url": "\/tuotteet",
                                         "target": "_self"
                                     },
                                     "promotion4Img": {
@@ -290,9 +290,25 @@
                                     "promotion4ImgAspectRatio": "4:3",
                                     "promotion4Link": {
                                         "type": "url",
-                                        "record_id": "15612643",
+                                        "record_id": "15603383",
                                         "text": "Talvi",
-                                        "url": "\/tuoteryhma\/muoti",
+                                        "url": "\/tuotteet",
+                                        "target": "_self"
+                                    },
+                                    "promotion5Img": {
+                                        "string_value": "",
+                                        "src": "",
+                                        "offset_top": "",
+                                        "offset_left": "",
+                                        "width": "",
+                                        "height": ""
+                                    },
+                                    "promotion5ImgAspectRatio": "16:9",
+                                    "promotion5Link": {
+                                        "type": "url",
+                                        "record_id": "",
+                                        "text": "",
+                                        "url": "",
                                         "target": "_self"
                                     }
                                 }
@@ -316,9 +332,9 @@
                                 "settings": {
                                     "announcementLink": {
                                         "type": "url",
-                                        "record_id": "",
+                                        "record_id": "15603383",
                                         "text": "Kev\u00e4\u00e4n mallisto saapunut - Tutustu uutuuksiin!",
-                                        "url": "",
+                                        "url": "\/tuotteet",
                                         "target": "_self"
                                     }
                                 }
@@ -328,9 +344,9 @@
                                 "settings": {
                                     "announcementLink": {
                                         "type": "url",
-                                        "record_id": "",
+                                        "record_id": "15603383",
                                         "text": "K\u00e4yt\u00e4 kassalla koodia <b>MUOTI<\/b> ja saat 20% alennuksen ensimm\u00e4isest\u00e4 ostoksesta!",
-                                        "url": "",
+                                        "url": "\/tuotteet",
                                         "target": "_self"
                                     }
                                 }
@@ -402,9 +418,9 @@
                             "sectionSubtitle": "El\u00e4 jokainen p\u00e4iv\u00e4 kuin se olisi muotin\u00e4yt\u00f6ksen catwalk. Tarjoamme uusimmat trendit ja ajattomat klassikot, jotta voit loistaa ja el\u00e4\u00e4 t\u00e4ysill\u00e4 - tyylikk\u00e4\u00e4sti",
                             "btnLink": {
                                 "type": "url",
-                                "record_id": "",
+                                "record_id": "15603383",
                                 "text": "Shoppaile nyt",
-                                "url": "",
+                                "url": "\/tuotteet",
                                 "target": "_self"
                             },
                             "imgStart": {
@@ -493,7 +509,7 @@
                             "sectionSubtitleTag": "h3",
                             "sectionColorScheme": "dark",
                             "style_custom_color": "#f3f5f6",
-                            "sectionAdditionalTitles": false,
+                            "sectionAdditionalTitles": true,
                             "sectionPaddingMode": "auto",
                             "sectionPaddingTop": "0",
                             "sectionPaddingBottom": "0",
@@ -519,6 +535,7 @@
                             "sectionOverline": "",
                             "sectionTitle": "Uudet tulokkaat",
                             "sectionSubtitle": "",
+                            "sectionDescription": "",
                             "sectionQuickLinkResource": {
                                 "type": "url",
                                 "record_id": "",
@@ -537,7 +554,7 @@
                                 "id": "",
                                 "name": ""
                             },
-                            "productAmount": "8",
+                            "productAmount": "6",
                             "customDisplayInformation": false,
                             "productPerRow": "3",
                             "showProductName": true,
@@ -556,9 +573,9 @@
                             "promotionText": "Tutustu uutuuksiimme",
                             "promotionLinkResource": {
                                 "type": "url",
-                                "record_id": "",
+                                "record_id": "15603383",
                                 "text": "Shoppaile nyt",
-                                "url": "",
+                                "url": "\/tuotteet",
                                 "target": "_self"
                             },
                             "promotionTextColor": "#ffffff",
@@ -585,6 +602,7 @@
                             "sectionColorScheme": false,
                             "style_custom_color": "#f3f5f6",
                             "sectionAdditionalTitles": false,
+                            "sectionAdditionalText": false,
                             "sectionPaddingMode": "auto",
                             "sectionPaddingTop": "0",
                             "sectionPaddingBottom": "0",
@@ -612,9 +630,9 @@
                             "richtext": "<p>Inspiroi ymp\u00e4rill\u00e4si olevia ainutlaatuisella tyylill\u00e4si. Meid\u00e4t on omistettu tuomaan sinulle vaatteita, jotka eiv\u00e4t ainoastaan n\u00e4yt\u00e4 hyvilt\u00e4, vaan saavat sinut tuntemaan olosi voimaantuneeksi ja valmiiksi valloittamaan maailman.<\/p>",
                             "btnLink": {
                                 "type": "url",
-                                "record_id": "",
+                                "record_id": "15603383",
                                 "text": "Shoppaile nyt",
-                                "url": "",
+                                "url": "\/tuotteet",
                                 "target": "_self"
                             },
                             "img1": {
@@ -671,9 +689,9 @@
                             "datetime": "",
                             "btnLink": {
                                 "type": "url",
-                                "record_id": "",
+                                "record_id": "15603383",
                                 "text": "Shoppaile nyt",
-                                "url": "",
+                                "url": "\/tuotteet",
                                 "target": "_self"
                             },
                             "sectionTextAlign": "center",
@@ -857,6 +875,17 @@
                     {
                         "name": "article-template",
                         "id": "article-template",
+                        "blocks": [],
+                        "settings": [],
+                        "sticky": true
+                    }
+                ]
+            },
+            "catalog": {
+                "sections": [
+                    {
+                        "name": "catalog-template",
+                        "id": "catalog-template",
                         "blocks": [],
                         "settings": [],
                         "sticky": true
