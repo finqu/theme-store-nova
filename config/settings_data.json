@@ -18,7 +18,7 @@
             "styleGridGutterWidth": "1.42855rem",
             "styleIconStrokeWidth": "1.5px",
             "styleFormFloatingHeight": "2.90rem",
-            "styleFormFloatingLineHeight": "1.25",
+            "styleFormFloatingLineHeight": "1.4",
             "styleFormFloatingPaddingY": "0.8rem",
             "styleFormFloatingPaddingX": "1rem",
             "styleFormFloatingInputPaddingT": "1.525rem",
@@ -145,8 +145,8 @@
             "productShowVariantOption2TaxonomyType": "size",
             "productShowVariantOption3TaxonomyType": false,
             "productShowName": true,
-            "productShowManufacturer": false,
-            "productShowPromotion": true,
+            "productShowManufacturer": true,
+            "productShowPromotion": false,
             "productShowPricing": true,
             "productShowRating": true,
             "productShowNewBadge": true,
@@ -406,6 +406,17 @@
             }
         ],
         "templates": {
+            "404": {
+                "sections": [
+                    {
+                        "name": "404-template",
+                        "id": "404-template",
+                        "blocks": [],
+                        "settings": [],
+                        "sticky": true
+                    }
+                ]
+            },
             "frontpage": {
                 "sections": [
                     {
@@ -542,12 +553,12 @@
                                 "text": "",
                                 "url": ""
                             },
-                            "listType": "recent",
+                            "listType": "category",
                             "tagId": "",
                             "category": {
                                 "type": "category",
-                                "id": "",
-                                "name": ""
+                                "id": "1810318",
+                                "name": "Laukut"
                             },
                             "manufacturer": {
                                 "type": "manufacturer",
@@ -573,9 +584,9 @@
                             "promotionText": "Tutustu uutuuksiimme",
                             "promotionLinkResource": {
                                 "type": "url",
-                                "record_id": "15603383",
+                                "record_id": "15638638",
                                 "text": "Shoppaile nyt",
-                                "url": "\/tuotteet",
+                                "url": "\/tuoteryhma\/laukut",
                                 "target": "_self"
                             },
                             "promotionTextColor": "#ffffff",
@@ -815,17 +826,6 @@
                     }
                 ]
             },
-            "404": {
-                "sections": [
-                    {
-                        "name": "404-template",
-                        "id": "404-template",
-                        "blocks": [],
-                        "settings": [],
-                        "sticky": true
-                    }
-                ]
-            },
             "category": {
                 "sections": [
                     {
@@ -854,7 +854,30 @@
                         "name": "product-template",
                         "id": "product-template",
                         "blocks": [],
-                        "settings": [],
+                        "settings": {
+                            "detailsFreeShippingLimit": "100",
+                            "detailsShippingAndReturnRichtext": "<p id=\"isPasted\"><strong>Ilmainen toimitus yli 100\u20ac tilauksille!<\/strong><\/p><p>Nauti ilmaisesta toimituksesta, kun tilauksesi ylitt\u00e4\u00e4 100\u20ac! Kaikkiin pienempiin tilauksiin lis\u00e4t\u00e4\u00e4n standardi toimitusmaksu, joka n\u00e4ytet\u00e4\u00e4n kassalla.<\/p><p><strong>Aina ilmainen palautus!<\/strong><\/p><p>Meille on t\u00e4rke\u00e4\u00e4, ett\u00e4 olet tyytyv\u00e4inen ostoksiisi. Siksi tarjoamme aina ilmaisen palautuksen, mik\u00e4li haluat vaihtaa tai palauttaa tuotteen. Palautusoikeus on voimassa 30 p\u00e4iv\u00e4\u00e4 tilauksen vastaanottamisesta.<\/p>",
+                            "detailsPaymentRichtext": "<p id=\"isPasted\"><strong>Turvallista ostamista!<\/strong><\/p><p>Meille on t&auml;rke&auml;&auml;, ett&auml; ostokokemuksesi on sek&auml; miellytt&auml;v&auml; ett&auml; turvallinen. Siksi tarjoamme laajan valikoiman suosituimpia ja luotettavia maksutapoja:<br><br><\/p><ul><li><strong>Verkkopankit<\/strong>: Maksa suoraan omasta verkkopankistasi.<\/li><li><strong>Korttimaksut<\/strong>: Maksa k&auml;tev&auml;sti Visa, MasterCard tai American Express -korteilla.<\/li><li><strong>Klarna<\/strong>: Osta Klarnalla, jolloin voit p&auml;&auml;tt&auml;&auml; maksatko heti, my&ouml;hemmin tai osissa.<\/li><\/ul>",
+                            "showBreadcrumbs": true,
+                            "showBuyNowButton": true,
+                            "showQuantitySelect": false,
+                            "showProductQuestionForm": true,
+                            "openProductDescriptionByDefault": true,
+                            "showLowestPrice": true,
+                            "showVariantSelectionAsDropdown": false,
+                            "showProductCustomizationPrice": true,
+                            "showProductCustomizationTotalPrice": false,
+                            "showProductCustomizationStockBalance": false,
+                            "customDisplayInformation": false,
+                            "showManufacturer": true,
+                            "showPromotion": true,
+                            "showNewBadge": true,
+                            "showPromotionBadge": true,
+                            "showDiscountBadge": true,
+                            "showOutOfStockBadge": true,
+                            "showStockBalance": true,
+                            "showRelatedProductsAsOptions": false
+                        },
                         "sticky": true
                     }
                 ]
@@ -867,6 +890,212 @@
                         "blocks": [],
                         "settings": [],
                         "sticky": true
+                    },
+                    {
+                        "id": "281a8d8d6ffc1440ddb99419628d53bb",
+                        "title": "Tuotelista",
+                        "name": "product-list",
+                        "settings": {
+                            "sectionOverline": "",
+                            "sectionTitle": "T\u00e4ydenn\u00e4 muotisi n\u00e4ill\u00e4 laukuilla",
+                            "sectionSubtitle": "",
+                            "sectionDescription": "",
+                            "sectionQuickLinkResource": {
+                                "type": "url",
+                                "record_id": "",
+                                "text": "",
+                                "url": ""
+                            },
+                            "listType": "category",
+                            "tagId": "",
+                            "category": {
+                                "type": "category",
+                                "id": "1810318",
+                                "name": "Laukut"
+                            },
+                            "manufacturer": {
+                                "type": "manufacturer",
+                                "id": "",
+                                "name": ""
+                            },
+                            "productAmount": "5",
+                            "customDisplayInformation": true,
+                            "productPerRow": "5",
+                            "showProductName": true,
+                            "showManufacturer": true,
+                            "showPromotion": true,
+                            "showPricing": true,
+                            "showRating": true,
+                            "showNewBadge": true,
+                            "showPromotionBadge": true,
+                            "showDiscountBadge": true,
+                            "showOutOfStockBadge": true,
+                            "showAddToCart": true,
+                            "showStockBalance": false,
+                            "showVariants": true,
+                            "sectionHighlightItems": "nil",
+                            "sectionHeaderTextAlign": "nil",
+                            "sectionTextAlign": "nil",
+                            "sectionQuickLinkStyle": "nil",
+                            "sectionOverlineTag": "h3",
+                            "sectionTitleTag": "h2",
+                            "sectionSubtitleTag": "h3",
+                            "sectionColorScheme": false,
+                            "style_custom_color": "#f3f5f6",
+                            "sectionAdditionalTitles": false,
+                            "sectionAdditionalText": false,
+                            "sectionPaddingMode": "auto",
+                            "sectionPaddingTop": "0",
+                            "sectionPaddingBottom": "0",
+                            "sectionBgImg": {
+                                "string_value": "",
+                                "src": "",
+                                "offset_top": "",
+                                "offset_left": "",
+                                "width": "",
+                                "height": ""
+                            },
+                            "sectionBgImgDimming": "0",
+                            "sectionBgImgBlur": "0"
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "0de219d5e0a627f8a5aeeb5b5a1382b7",
+                        "title": "Kampanjabanneri alennuskoodilla",
+                        "name": "promotion-banner",
+                        "settings": {
+                            "bannerLayout": "2",
+                            "title": "Osta nyt ja saat kassalla -20% koodilla",
+                            "discountCode": "MUOTI",
+                            "datetime": "",
+                            "btnLink": {
+                                "type": "url",
+                                "record_id": "",
+                                "text": "Shoppaile nyt",
+                                "url": "",
+                                "target": "_self"
+                            },
+                            "sectionTextAlign": "center",
+                            "btnStyle": "nil",
+                            "datetimeZeroPad": true,
+                            "datetimeHideTimeUnitOnZero": false,
+                            "datetimeShowYears": false,
+                            "datetimeShowMonths": false,
+                            "sectionColorScheme": "secondary",
+                            "style_custom_color": "#f3f5f6",
+                            "sectionPaddingMode": "custom",
+                            "sectionPaddingTop": "2",
+                            "sectionPaddingBottom": "2"
+                        },
+                        "blocks": []
+                    },
+                    {
+                        "id": "d8ed7968833267171394830935ef3c99",
+                        "title": "Kuvakkeet tekstin kanssa",
+                        "name": "icons-with-text",
+                        "settings": {
+                            "orientation": "horizontal",
+                            "sectionOverline": "",
+                            "sectionTitle": "",
+                            "sectionSubtitle": "",
+                            "sectionDescription": "",
+                            "sectionContainer": "nil",
+                            "sectionTextAlign": "center",
+                            "sectionOverlineTag": "h3",
+                            "sectionTitleTag": "h2",
+                            "sectionSubtitleTag": "h3",
+                            "sectionColorScheme": false,
+                            "style_custom_color": "#f3f5f6",
+                            "sectionAdditionalTitles": false,
+                            "sectionAdditionalText": false,
+                            "sectionPaddingMode": "auto",
+                            "sectionPaddingTop": "0",
+                            "sectionPaddingBottom": "0",
+                            "sectionBgImg": {
+                                "string_value": "",
+                                "src": "",
+                                "offset_top": "",
+                                "offset_left": "",
+                                "width": "",
+                                "height": ""
+                            },
+                            "sectionBgImgDimming": "0",
+                            "sectionBgImgBlur": "0",
+                            "setting_blocks": {
+                                "items": {
+                                    "3136312542826423": {
+                                        "type": "text",
+                                        "settings": {
+                                            "iconFormat": "svg",
+                                            "img": {
+                                                "string_value": "",
+                                                "src": "",
+                                                "offset_top": "",
+                                                "offset_left": "",
+                                                "width": "",
+                                                "height": ""
+                                            },
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><g><path d=\"M19.67,14.87h1.51c.52-.04.91-.49.88-1.01v-7.47c.09-1.56-1.08-2.9-2.64-3.03h-5.27v11.5\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.67,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16h0c0,1.19.97,2.16,2.16,2.16,1.19,0,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87c0-1.19-.97-2.16-2.16-2.16s-2.16.97-2.16,2.16.97,2.16,2.16,2.16,2.16-.97,2.16-2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M17.03,3.37v3.47s0,.03,0,.04c.01.45.38.81.83.79h4.2\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M8.41,14.87h6.95\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M19.71,11.03h2.36\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,1.94c0-.79.64-1.44,1.44-1.44h10.78c.79,0,1.44.64,1.44,1.44v8.14s-13.66,0-13.66,0V1.94Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><path d=\"M.5,10.07v3.35c0,.79.64,1.44,1.44,1.44h2.16\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\/><\/g><\/svg>",
+                                            "title": "Nopea toimitus!",
+                                            "richtext": "<p>Nopea ja luotettava toimitus suoraan ovellesi, jotta voit nauttia uusista l\u00f6yd\u00f6ist\u00e4si heti<\/p>"
+                                        }
+                                    },
+                                    "1485272252048968": {
+                                        "type": "text",
+                                        "settings": {
+                                            "iconFormat": "svg",
+                                            "img": {
+                                                "string_value": "",
+                                                "src": "",
+                                                "offset_top": "",
+                                                "offset_left": "",
+                                                "width": "",
+                                                "height": ""
+                                            },
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"m5.03125 20.840875 -4.3125 -4.3125 4.3125 -4.3125\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M0.71875 16.528375h14.375a7.1875 7.1875 0 0 0 0 -14.375h-5.75\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                            "title": "Ilmainen palautus!",
+                                            "richtext": "<p>Ilmainen palautus ja joustavat vaihtoehdot - ostaminen meilt\u00e4 on t\u00e4ysin riskit\u00f6nt\u00e4.<\/p>"
+                                        }
+                                    },
+                                    "3497938686528596": {
+                                        "type": "text",
+                                        "settings": {
+                                            "iconFormat": "svg",
+                                            "img": {
+                                                "string_value": "",
+                                                "src": "",
+                                                "offset_top": "",
+                                                "offset_left": "",
+                                                "width": "",
+                                                "height": ""
+                                            },
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M4.3125 17.25h-0.71875a2.875 2.875 0 0 1 -2.875 -2.875v-2.875a2.875 2.875 0 0 1 2.875 -2.875h0.71875a0.71875 0.71875 0 0 1 0.71875 0.71875v7.1875a0.71875 0.71875 0 0 1 -0.71875 0.71875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M19.40625 17.25h-0.71875a0.71875 0.71875 0 0 1 -0.71875 -0.71875v-7.1875A0.71875 0.71875 0 0 1 18.6875 8.625h0.71875a2.875 2.875 0 0 1 2.875 2.875v2.875a2.875 2.875 0 0 1 -2.875 2.875Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M3.59375 8.625A7.90625 7.90625 0 0 1 11.5 0.71875h0A7.90625 7.90625 0 0 1 19.40625 8.625\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M14.375 20.84375h2.15625a2.875 2.875 0 0 0 2.875 -2.875h0V17.25\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"M12.9375 22.28125H11.5a1.4375 1.4375 0 0 1 -1.4375 -1.4375h0a1.4375 1.4375 0 0 1 1.4375 -1.4375h1.4375a1.4375 1.4375 0 0 1 1.4375 1.4375h0a1.4375 1.4375 0 0 1 -1.4375 1.4375Z\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                            "title": "Upea asiakaspalvelu!",
+                                            "richtext": "<p>Upea asiakaspalvelumme auttaa ostoksen jokaisessa vaiheessa.<\/p>"
+                                        }
+                                    },
+                                    "1318417319946211": {
+                                        "type": "text",
+                                        "settings": {
+                                            "iconFormat": "svg",
+                                            "img": {
+                                                "string_value": "",
+                                                "src": "",
+                                                "offset_top": "",
+                                                "offset_left": "",
+                                                "width": "",
+                                                "height": ""
+                                            },
+                                            "svgContent": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewBox=\"-0.5 -0.5 24 24\"><path d=\"M2.15625 3.59375h18.6875s1.4375 0 1.4375 1.4375v12.9375s0 1.4375 -1.4375 1.4375H2.15625s-1.4375 0 -1.4375 -1.4375V5.03125s0 -1.4375 1.4375 -1.4375\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m0.71875 7.90625 21.5625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 12.21875 7.90625 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><path d=\"m5.03125 15.09375 5.03125 0\" fill=\"none\" stroke=\"currentcolor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"><\/path><\/svg>",
+                                            "title": "Parhaat maksutavat",
+                                            "richtext": "<p>Monipuoliset maksutavat takaavat helpon ostokokemuksen.<\/p>"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "blocks": []
                     }
                 ]
             },
@@ -886,6 +1115,28 @@
                     {
                         "name": "catalog-template",
                         "id": "catalog-template",
+                        "blocks": [],
+                        "settings": [],
+                        "sticky": true
+                    }
+                ]
+            },
+            "password": {
+                "sections": [
+                    {
+                        "name": "password-template",
+                        "id": "password-template",
+                        "blocks": [],
+                        "settings": [],
+                        "sticky": true
+                    }
+                ]
+            },
+            "manufacturer": {
+                "sections": [
+                    {
+                        "name": "manufacturer-template",
+                        "id": "manufacturer-template",
                         "blocks": [],
                         "settings": [],
                         "sticky": true
@@ -917,7 +1168,7 @@
                 "styleGridGutterWidth": "1.42855rem",
                 "styleIconStrokeWidth": "1.5px",
                 "styleFormFloatingHeight": "2.90rem",
-                "styleFormFloatingLineHeight": "1.25",
+                "styleFormFloatingLineHeight": "1.4",
                 "styleFormFloatingPaddingY": "0.8rem",
                 "styleFormFloatingPaddingX": "1rem",
                 "styleFormFloatingInputPaddingT": "1.525rem",
@@ -1045,7 +1296,7 @@
                 "productShowVariantOption3TaxonomyType": false,
                 "productShowName": true,
                 "productShowManufacturer": false,
-                "productShowPromotion": true,
+                "productShowPromotion": false,
                 "productShowPricing": true,
                 "productShowRating": true,
                 "productShowNewBadge": true,
@@ -1211,6 +1462,7 @@
                                 "sectionSubtitle": "Kerro asiakkaillesi t\u00e4st\u00e4 Hero-osiosta.",
                                 "sectionColorScheme": "dark",
                                 "sectionMinHeight": "95",
+                                "sectionMinHeightMobile": "50",
                                 "btnLink": {
                                     "text": "Shoppaile nyt"
                                 },
