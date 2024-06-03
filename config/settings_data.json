@@ -470,7 +470,8 @@
                             "sectionColorScheme": "dark",
                             "style_custom_color": "#f3f5f6",
                             "sectionAdditionalTitles": false,
-                            "sectionMinHeight": "95"
+                            "sectionMinHeight": "95",
+                            "sectionMinHeightMobile": "70"
                         },
                         "blocks": []
                     },
@@ -525,6 +526,7 @@
                             "sectionPaddingTop": "0",
                             "sectionPaddingBottom": "0",
                             "sectionMinHeight": "60",
+                            "sectionMinHeightMobile": "40",
                             "sectionBgImg": {
                                 "string_value": "",
                                 "src": "",
@@ -856,7 +858,7 @@
                         "blocks": [],
                         "settings": {
                             "detailsFreeShippingLimit": "100",
-                            "detailsShippingAndReturnRichtext": "<p id=\"isPasted\"><strong>Ilmainen toimitus yli 100\u20ac tilauksille!<\/strong><\/p><p>Nauti ilmaisesta toimituksesta, kun tilauksesi ylitt\u00e4\u00e4 100\u20ac! Kaikkiin pienempiin tilauksiin lis\u00e4t\u00e4\u00e4n standardi toimitusmaksu, joka n\u00e4ytet\u00e4\u00e4n kassalla.<\/p><p><strong>Aina ilmainen palautus!<\/strong><\/p><p>Meille on t\u00e4rke\u00e4\u00e4, ett\u00e4 olet tyytyv\u00e4inen ostoksiisi. Siksi tarjoamme aina ilmaisen palautuksen, mik\u00e4li haluat vaihtaa tai palauttaa tuotteen. Palautusoikeus on voimassa 30 p\u00e4iv\u00e4\u00e4 tilauksen vastaanottamisesta.<\/p>",
+                            "detailsShippingAndReturnRichtext": "<p id=\"isPasted\"><strong>Ilmainen toimitus yli 100 \u20ac tilauksille!<\/strong><\/p><p>Nauti ilmaisesta toimituksesta, kun tilauksesi ylitt\u00e4\u00e4 100 \u20ac! Kaikkiin pienempiin tilauksiin lis\u00e4t\u00e4\u00e4n standardi toimitusmaksu, joka n\u00e4ytet\u00e4\u00e4n kassalla.<\/p><p><strong>Aina ilmainen palautus!<\/strong><\/p><p>Meille on t\u00e4rke\u00e4\u00e4, ett\u00e4 olet tyytyv\u00e4inen ostoksiisi. Siksi tarjoamme aina ilmaisen palautuksen, mik\u00e4li haluat vaihtaa tai palauttaa tuotteen. Palautusoikeus on voimassa 30 p\u00e4iv\u00e4\u00e4 tilauksen vastaanottamisesta.<\/p>",
                             "detailsPaymentRichtext": "<p id=\"isPasted\"><strong>Turvallista ostamista!<\/strong><\/p><p>Meille on t&auml;rke&auml;&auml;, ett&auml; ostokokemuksesi on sek&auml; miellytt&auml;v&auml; ett&auml; turvallinen. Siksi tarjoamme laajan valikoiman suosituimpia ja luotettavia maksutapoja:<br><br><\/p><ul><li><strong>Verkkopankit<\/strong>: Maksa suoraan omasta verkkopankistasi.<\/li><li><strong>Korttimaksut<\/strong>: Maksa k&auml;tev&auml;sti Visa, MasterCard tai American Express -korteilla.<\/li><li><strong>Klarna<\/strong>: Osta Klarnalla, jolloin voit p&auml;&auml;tt&auml;&auml; maksatko heti, my&ouml;hemmin tai osissa.<\/li><\/ul>",
                             "showBreadcrumbs": true,
                             "showBuyNowButton": true,
