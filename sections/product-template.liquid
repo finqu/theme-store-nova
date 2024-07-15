@@ -175,6 +175,10 @@
             {%- assign showStockBalance = true -%}
         {%- endif -%}
 
+        {%- if settings.accessibilityShowWishlist and section.settings.showBuyNowButton and product.default_or_selected_variant.notifications_supported == false -%}
+            {%- assign showWishlistCondition = true -%}
+        {%- endif -%}
+
         {%- assign generalImages = product.images | where: 'attached_to_variant', false -%}
 
         <div class="product-container section-highlight-item section-highlight-item-md mb-md-8">
@@ -814,11 +818,11 @@
 
                                     {% endif %}
 
-                                    <div class="product-price-container">
+                                    <div class="product-price-container flex-wrap column-gap-3 row-gap-2">
 
                                         {% if product.default_or_selected_variant.price != product.default_or_selected_variant.original_price %}
 
-                                            <span class="product-sale-price-text text-sale-price me-1" data-product-price-dynamic>
+                                            <span class="product-sale-price-text text-sale-price" data-product-price-dynamic>
                                                 {{- settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.net_price, product.default_or_selected_variant.price | money_with_currency -}}
                                             </span>
 
@@ -1002,6 +1006,7 @@
                                                     {% assign showCustomizationPrice = section.settings.showProductCustomizationPrice %}
                                                     {% assign showCustomizationTotalPrice = section.settings.showProductCustomizationTotalPrice %}
                                                     {% assign showCustomizationStockBalance = section.settings.showProductCustomizationStockBalance %}
+                                                    {% assign showSimpleInputs = section.settings.showSimpleProductCustomizationInputElements %}
                                                     {% assign inventoryPolicy = product.default_or_selected_variant.inventory_policy %}
                                                     {% assign isPreviewProduct = product.in_preview %}
                                                     {% assign unit = product.default_or_selected_variant.unit %}
@@ -1014,11 +1019,11 @@
 
                                                         {%- elsif group.input_type == 'radio' -%}
 
-                                                            {% render 'product-customizations/radio', group: group, showCustomizationPrice: showCustomizationPrice, showCustomizationTotalPrice: showCustomizationTotalPrice, showCustomizationStockBalance: showCustomizationStockBalance, inventoryPolicy: inventoryPolicy, isPreviewProduct: isPreviewProduct, unit: unit, style: 'badge' %}
+                                                            {% render 'product-customizations/radio', group: group, showCustomizationPrice: showCustomizationPrice, showCustomizationTotalPrice: showCustomizationTotalPrice, showCustomizationStockBalance: showCustomizationStockBalance, inventoryPolicy: inventoryPolicy, isPreviewProduct: isPreviewProduct, unit: unit, simpleInputs: showSimpleInputs %}
 
                                                         {%- elsif group.input_type == 'checkbox' -%}
 
-                                                            {% render 'product-customizations/checkbox', group: group, showCustomizationPrice: showCustomizationPrice, showCustomizationTotalPrice: showCustomizationTotalPrice, showCustomizationStockBalance: showCustomizationStockBalance, inventoryPolicy: inventoryPolicy, isPreviewProduct: isPreviewProduct, unit: unit %}
+                                                            {% render 'product-customizations/checkbox', group: group, showCustomizationPrice: showCustomizationPrice, showCustomizationTotalPrice: showCustomizationTotalPrice, showCustomizationStockBalance: showCustomizationStockBalance, inventoryPolicy: inventoryPolicy, isPreviewProduct: isPreviewProduct, unit: unit, simpleInputs: showSimpleInputs %}
 
                                                         {%- elsif group.input_type == 'text' -%}
 
@@ -1159,19 +1164,7 @@
 
                                             {% endif %}
 
-                                            {% if settings.klarnaClientId %}
-
-                                                <div class="mt-3">
-
-                                                    {% assign itemPrice = settings.taxFreeShopping == true | yepnope: product.default_or_selected_variant.net_price, product.default_or_selected_variant.price %}
-
-                                                    {% render 'klarna-placement', type: 'credit-promotion-auto-size', purchaseAmount: itemPrice %}
-
-                                                </div>
-
-                                            {% endif %}
-
-                                            {% if section.settings.showProductQuestionForm or product.size_chart or settings.accessibilityShowWishlist and section.settings.showBuyNowButton %}
+                                            {% if section.settings.showProductQuestionForm or product.size_chart or showWishlistCondition %}
 
                                                 <div class="d-flex justify-content-between justify-content-md-start gap-g mt-3">
 
@@ -1211,7 +1204,7 @@
 
                                                     {% endif %}
 
-                                                    {% if settings.accessibilityShowWishlist and section.settings.showBuyNowButton and product.default_or_selected_variant.notifications_supported == false %}
+                                                    {% if showWishlistCondition %}
 
                                                         <button
                                                             type="button"
@@ -1239,65 +1232,73 @@
 
                                             {% endif %}
 
-                                            {% if and product.default_or_selected_variant.in_preview == false %}
+                                            {% if product.default_or_selected_variant.in_preview == false %}
 
-                                                <div class="product-highlights">
+                                                {%- if product.default_or_selected_variant.deliverytime and product.default_or_selected_variant.deliverytime.max.days > 0 or section.settings.detailsFreeShippingLimit -%}
+                                                    {%- assign showDelivery = true -%}
+                                                {%- endif -%}
+                                                
+                                                {% if showDelivery or product.return_policy_time_limit %}
 
-                                                    {% if product.default_or_selected_variant.deliverytime and product.default_or_selected_variant.deliverytime.max.days > 0 or section.settings.detailsFreeShippingLimit %}
+                                                    <div class="product-highlights">
 
-                                                        <div class="product-delivery text-title d-flex">
+                                                        {% if showDelivery %}
 
-                                                            {% if product.default_or_selected_variant.deliverytime and product.default_or_selected_variant.deliverytime.max.days > 0 %}
-
-                                                                {%- render 'icon', icon: 'delivery-time', class: 'svg-icon-fw svg-icon-lg' -%}
-
-                                                            {% else %}
-
-                                                                {%- render 'icon', icon: 'delivery', class: 'svg-icon-fw svg-icon-lg' -%}
-
-                                                            {% endif %}
-
-                                                            <div class="ms-3">
+                                                            <div class="product-delivery text-title d-flex">
 
                                                                 {% if product.default_or_selected_variant.deliverytime and product.default_or_selected_variant.deliverytime.max.days > 0 %}
 
-                                                                    <span class="d-block fw-bold">
-                                                                        {{- 'product.delivery_time_dynamic' | t: min_days: product.default_or_selected_variant.deliverytime.min.days, max_days: product.default_or_selected_variant.deliverytime.max.days -}}
-                                                                    </span>
+                                                                    {%- render 'icon', icon: 'delivery-time', class: 'svg-icon-fw svg-icon-lg' -%}
+
+                                                                {% else %}
+
+                                                                    {%- render 'icon', icon: 'delivery', class: 'svg-icon-fw svg-icon-lg' -%}
 
                                                                 {% endif %}
 
-                                                                {% if section.settings.detailsFreeShippingLimit %}
+                                                                <div class="ms-3">
 
-                                                                    {%- assign amountWithCurrency = section.settings.detailsFreeShippingLimit | money_with_currency -%}
+                                                                    {% if product.default_or_selected_variant.deliverytime and product.default_or_selected_variant.deliverytime.max.days > 0 %}
 
-                                                                    <span{% unless product.default_or_selected_variant.deliverytime or product.default_or_selected_variant.deliverytime.max.days < 1 %} class="d-block fw-bold"{% endunless %}>
-                                                                        {{ 'product.free_shipping_dynamic' | t: amount: amountWithCurrency -}}
-                                                                    </span>
+                                                                        <span class="d-block fw-bold">
+                                                                            {{- 'product.delivery_time_dynamic' | t: min_days: product.default_or_selected_variant.deliverytime.min.days, max_days: product.default_or_selected_variant.deliverytime.max.days -}}
+                                                                        </span>
 
-                                                                {% endif %}
+                                                                    {% endif %}
+
+                                                                    {% if section.settings.detailsFreeShippingLimit %}
+
+                                                                        {%- assign amountWithCurrency = section.settings.detailsFreeShippingLimit | money_with_currency -%}
+
+                                                                        <span{% unless product.default_or_selected_variant.deliverytime or product.default_or_selected_variant.deliverytime.max.days < 1 %} class="d-block fw-bold"{% endunless %}>
+                                                                            {{ 'product.free_shipping_dynamic' | t: amount: amountWithCurrency -}}
+                                                                        </span>
+
+                                                                    {% endif %}
+
+                                                                </div>
 
                                                             </div>
 
-                                                        </div>
+                                                        {% endif %}
 
-                                                    {% endif %}
+                                                        {% if product.return_policy_time_limit %}
 
-                                                    {% if product.return_policy_time_limit %}
+                                                            <div class="product-return-time text-title">
 
-                                                        <div class="product-return-time text-title">
+                                                                {%- render 'icon', icon: 'arrow-return', class: 'svg-icon-fw svg-icon-lg' -%}
 
-                                                            {%- render 'icon', icon: 'arrow-return', class: 'svg-icon-fw svg-icon-lg' -%}
+                                                                <span class="fw-bold ms-3">
+                                                                    {{- 'product.return_time_dynamic' | t: days: product.return_policy_time_limit -}}
+                                                                </span>
 
-                                                            <span class="fw-bold ms-3">
-                                                                {{- 'product.return_time_dynamic' | t: days: product.return_policy_time_limit -}}
-                                                            </span>
+                                                            </div>
 
-                                                        </div>
+                                                        {% endif %}
 
-                                                    {% endif %}
+                                                    </div>
 
-                                                </div>
+                                                {% endif %}
 
                                             {% endif %}
 
@@ -1348,7 +1349,7 @@
 
                                         {% endif %}
 
-                                        {% if section.settings.showProductQuestionForm or product.size_chart or settings.accessibilityShowWishlist and product.default_or_selected_variant.notifications_supported == false %}
+                                        {% if section.settings.showProductQuestionForm or product.size_chart or showWishlistCondition %}
 
                                             <div class="d-flex justify-content-between justify-content-md-start gap-g mt-3">
 
@@ -1388,7 +1389,7 @@
 
                                                 {% endif %}
 
-                                                {% if settings.accessibilityShowWishlist and product.default_or_selected_variant.notifications_supported == false %}
+                                                {% if showWishlistCondition %}
 
                                                     <button
                                                         type="button"
@@ -1565,7 +1566,7 @@
 
                                                 <div class="mb-4">
 
-                                                    {% if product.default_or_selected_variant.customer_can_review %}
+                                                    {% if product.customer_can_review %}
 
                                                         <button id="product-review-create" class="btn btn-sm btn-secondary{% if submitted_form.id == 'product-review-form' and submitted_form.error %} d-none{% endif %}">
                                                             {{- 'product.write_review' | t -}}
@@ -2033,7 +2034,7 @@
 
                                             </a>
 
-                                            <div class="flex-grow-1">
+                                            <div class="text-break">
 
                                                 <a href="{{ relatedItem | link }}" class="fw-bold d-block mt-3">
                                                     {{ relatedItem.title }}
@@ -2071,7 +2072,7 @@
 
                                                 <button
                                                     type="button"
-                                                    class="btn btn-secondary btn-sm"
+                                                    class="btn btn-secondary btn-sm flex-shrink-0"
                                                     data-cart-add="{{ relatedItem.id }}"
                                                     data-cart-quantity="{{ relatedItem.min_quantity }}">
                                                     {{- 'cart.quick_add' | t -}}
@@ -2079,7 +2080,7 @@
 
                                             {% else %}
 
-                                                <a href="{{ relatedItem | link }}" class="btn btn-secondary btn-sm">
+                                                <a href="{{ relatedItem | link }}" class="btn btn-secondary btn-sm flex-shrink-0">
                                                     {{- 'general.product_view' | t -}}
                                                 </a>
 
@@ -2799,6 +2800,15 @@
                             "fi": "Näytä mukautuksessa varastosaldo"
                         },
                         "default": false
+                    },
+                    {
+                        "id": "showSimpleProductCustomizationInputElements",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Use simple input elements on customization",
+                            "fi": "Käytä mukautuksessa yksinkertaisia syöttöelementtejä"
+                        },
+                        "default": true
                     },
                     {
                         "type": "spacer"
