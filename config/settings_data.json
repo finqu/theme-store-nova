@@ -232,6 +232,8 @@
                                 "settings": {
                                     "index": "2",
                                     "colPerRow": "4",
+                                    "uiScale": "1",
+                                    "menuItemTextTransform": "uppercase",
                                     "menu": "",
                                     "promotion1Img": {
                                         "string_value": "https:\/\/images.unsplash.com\/photo-1584216338898-f34d78201414?ixid=M3wyMjMzODd8MHwxfHNlYXJjaHwxOHx8ZmFzaGlvbiUyMHdpbnRlcnxlbnwwfHwxfHwxNzE0ODA5OTQwfDA&ixlib=rb-4.0.3&fit=crop&w=3840&q=80&fit=max",
