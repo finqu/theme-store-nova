@@ -1081,7 +1081,7 @@
                                                     <div class="product-quantity-container mb-4">
 
                                                         <label for="product-quantity-input" class="form-label">
-                                                            {{- 'general.quantity' | t -}}
+                                                            {{- 'general.quantity' | t -}}{% if section.settings.showQuantityUnit %} ({{ product.default_or_selected_variant.unit }}){% endif %}
                                                         </label>
 
                                                         <div class="product-quantity">
@@ -2747,6 +2747,16 @@
                             "fi": "Näytä määrävalinta"
                         },
                         "default": false
+                    },
+                    {
+                        "id": "showQuantityUnit",
+                        "type": "checkbox",
+                        "label": {
+                            "en": "Show unit of quantity",
+                            "fi": "Näytä määräyksikkö"
+                        },
+                        "default": false,
+                        "conditions": ["showQuantitySelect eq true"]
                     },
                     {
                         "id": "showProductQuestionForm",
