@@ -733,3 +733,7 @@ Dispatched when a contact email is sent.
 
 **Snippet:**
 ```javascript
+document.addEventListener('theme:contact:sendEmail', () => {
+    console.log('Contact email sent');
+});
+```
