@@ -209,15 +209,15 @@
                     "gridContainer": "",
                     "headerItemsPaddingY": "2.2rem",
                     "logoImg": {
-                        "string_value": "",
-                        "src": "",
+                        "string_value": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-logo.png",
+                        "src": "https:\/\/media.finqu.com\/9f788bd38e2ac21221da7e14877417c832af023f1bd8a8aa5c5eb983776e91b4\/nova-logo.png",
                         "offset_top": "",
                         "offset_left": "",
-                        "width": "",
-                        "height": ""
+                        "width": "457",
+                        "height": "618"
                     },
-                    "logoSize": "100",
-                    "logoPosition": "center",
+                    "logoSize": "120",
+                    "logoPosition": "start",
                     "mobileLogoSize": "100",
                     "mobileLogoPosition": "center",
                     "menu": "main",
