@@ -1,0 +1,91 @@
+{
+    "name": {
+        "en": "Footer Group",
+        "fi": "Alatunnisteryhmä"
+    },
+    "type": "footer",
+    "max_sections": 5,
+    "allowed_sections": [
+        "footer",
+        "footer-link-bar",
+        "footer-localization-bar",
+        "footer-social-bar"
+    ],
+    "default_sections": [
+        {
+            "name": "footer",
+            "title": {
+                "en": "Footer",
+                "fi": "Alatunniste"
+            },
+            "settings": {
+                "footerBottomBorder": true,
+                "footerBottomBorderFluid": true,
+                "footerGap": "3.6rem",
+                "footerLayout": "4",
+                "footerLogoImg": {
+                    "height": "",
+                    "offset_left": "",
+                    "offset_top": "",
+                    "src": "",
+                    "string_value": "",
+                    "width": ""
+                },
+                "footerLogoStatus": true,
+                "footerMenu1": "footer",
+                "footerMenu1Title": "",
+                "footerMenu2": "",
+                "footerMenu2Title": "",
+                "footerMenu3": "",
+                "footerMenu3Title": "",
+                "footerPaymentMethodsImg": {
+                    "height": "",
+                    "offset_left": "",
+                    "offset_top": "",
+                    "src": "",
+                    "string_value": "",
+                    "width": ""
+                },
+                "footerPaymentMethodsStatus": true,
+                "footerTextArea2Content": "<p>Nova</p>",
+                "footerTextArea2Status": true,
+                "footerTopBorder": true,
+                "footerTopBorderFluid": true,
+                "sectionColorScheme": "custom",
+                "style_custom_color": "#ffffff",
+                "style_custom_text_color": "#4d4d4d",
+                "sectionPaddingMode": "custom",
+                "sectionPadding": {
+                    "apply_to_all_sides": false,
+                    "padding": {
+                        "top": 2.7,
+                        "right": 0,
+                        "bottom": 2.7,
+                        "left": 0
+                    }
+                },
+                "sectionTextAlign": "center",
+                "footerLocalizationStatus": true,
+                "style_custom_content_color": "#ffffff",
+                "style_custom_content_text_color": "",
+                "sectionBorderRadius": "0",
+                "sectionBgImg": "",
+                "sectionBgImgFit": "cover",
+                "sectionBgImgPosHorizontal": "center",
+                "sectionBgImgPosVertical": "center",
+                "sectionBgImgDimming": "0",
+                "sectionBgImgBlur": "0"
+            },
+            "blocks": [
+                {
+                    "id": "37ccf8a54ad110308da3cc7c71dbc722",
+                    "name": "social-media-buttons",
+                    "container": "left",
+                    "settings": {
+                        "contentAlign": "center"
+                    }
+                }
+            ]
+        }
+    ]
+}
